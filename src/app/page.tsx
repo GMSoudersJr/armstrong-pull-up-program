@@ -1,7 +1,6 @@
 import styles from "./page.module.css";
 import {HomePageTitle} from "@/components/homepage/Title";
 import {PageLink} from "@/components/PageLink";
-import Link from "next/link";
 
 export default function Home() {
   return (
