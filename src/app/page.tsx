@@ -1,6 +1,7 @@
 import styles from "./page.module.css";
 import {HomePageTitle} from "@/components/homepage/Title";
-import {OverviewLink} from "@/components/homepage/OverviewLink";
+import {PageLink} from "@/components/PageLink";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -13,8 +14,17 @@ export default function Home() {
 
         </div>
       </div>
-      <div className={styles.getStartedFlex}>
-        <OverviewLink />
+      <div className={styles.pageLinkFlex}>
+        <PageLink
+          path="/overview"
+          label="overview"
+        />
+
+        <PageLink
+          path="/program"
+          label="program"
+        />
+
       </div>
     </main>
   );

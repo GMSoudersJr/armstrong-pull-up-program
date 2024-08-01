@@ -6,7 +6,11 @@
   padding: 6rem;
   min-height: 100vh;
 }
+.pageLinkFlex {
+  display: flex;
+  gap: 3rem;
 
+}
 .description {
   display: inherit;
   justify-content: inherit;
