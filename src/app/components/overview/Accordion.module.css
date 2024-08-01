@@ -28,6 +28,11 @@
   margin-bottom: 0.5rem;
 }
 
+.panelListitem:last-child:has(a) {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .panel {
   display: hidden;
   padding: 0 18px;

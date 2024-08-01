@@ -1,14 +1,18 @@
+import {PageLink} from '@/components/PageLink';
+import styles from './page.module.css';
 import Link from "next/link";
 
 const ProgramPage = () => {
 
   return (
-    <main>
+    <main className={styles.main}>
       {DAYS.map((day) => {
       return (
-      <Link key={day.label} href={day.path}>
-        {day.label}
-      </Link>
+          <PageLink
+            key={day.path}
+            path={day.path}
+            label={day.label}
+          />
       )
       })}
     </main>

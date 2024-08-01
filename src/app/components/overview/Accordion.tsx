@@ -1,9 +1,9 @@
 'use client';
 
-import Link from 'next/link';
 import styles from './Accordion.module.css';
 import { useState, useRef } from 'react';
 import { flushSync } from 'react-dom';
+import {PageLink} from '../PageLink';
 
 interface AccordionProps {
   buttonText: string;
@@ -64,14 +64,10 @@ export const Accordion = ({ buttonText, panelText, link }: AccordionProps) => {
             <li
               className={styles.panelListitem}
             >
-              <h2>
-                <Link
-                  href={`/${link}`}
-                  style={{color: 'blue'}}
-                >
-                    DO IT!
-                </Link>
-              </h2>
+              <PageLink
+                path={`/program/${link}`}
+                label='get to it!'
+              />
             </li>
           )}
         </ul>

@@ -1,4 +1,6 @@
 .pageLink {
+  min-width: 8rem;
+  text-align: center;
   font-family: var(--font-stintUltraCondensed);
   font-size: 1.5rem;
   color: #259259;
