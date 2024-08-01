@@ -40,6 +40,18 @@
   --card-border-rgb: 131, 134, 135;
 }
 
+html {
+  font-family: var(--font-pontanoSans);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-stintUltraCondensed);
+}
+
+p {
+  font-family: var(--font-pontanoSans);
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;

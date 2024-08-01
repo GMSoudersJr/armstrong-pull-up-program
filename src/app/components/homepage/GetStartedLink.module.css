@@ -1,0 +1,9 @@
+.getStartedLink {
+  font-family: var(--font-stintUltraCondensed);
+  font-size: 1.5rem;
+  color: #259259;
+  padding: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  background-color: #D1D1D1;
+}
