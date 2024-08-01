@@ -1,4 +1,4 @@
-import { stintUltraCondensed, pontanoSans } from "@/fonts";
+import { pontanoSans, domine } from "@/fonts";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -14,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${stintUltraCondensed.variable} ${pontanoSans.variable}`}>{children}</body>
+      <body className={`${domine.variable} ${pontanoSans.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }
