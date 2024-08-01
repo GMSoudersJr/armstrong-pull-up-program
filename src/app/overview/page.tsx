@@ -1,4 +1,4 @@
-import { Accordion } from "@/components/getStarted/Accordion";
+import { Accordion } from "@/components/overview/Accordion";
 import { getAllDailyInstructions } from "@/utils";
 
 const GetStartedPage = async () => {

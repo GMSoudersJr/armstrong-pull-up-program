@@ -1,6 +1,6 @@
 import styles from "./page.module.css";
 import {HomePageTitle} from "@/components/homepage/Title";
-import {GetStartedLink} from "./components/homepage/GetStartedLink";
+import {OverviewLink} from "@/components/homepage/OverviewLink";
 
 export default function Home() {
   return (
@@ -14,7 +14,7 @@ export default function Home() {
         </div>
       </div>
       <div className={styles.getStartedFlex}>
-        <GetStartedLink />
+        <OverviewLink />
       </div>
     </main>
   );
