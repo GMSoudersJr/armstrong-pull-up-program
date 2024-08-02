@@ -41,9 +41,9 @@ const RepInput = ({ onChange, onEnter, repsArrayState }: RepInputProps) => {
   return (
     <section className={styles.repInputContainer}>
       <label className={styles.repInputLabel} htmlFor={repInputId}>
-        <p>
-          Reps
-        </p>
+        <h4>
+          REPS
+        </h4>
       </label>
       <input
         id={repInputId}
