@@ -1,3 +1,5 @@
 .repButton {
   padding: 1rem;
+  font-family: var(--font-pontanoSans);
+  border-radius: 0.75rem;
 }

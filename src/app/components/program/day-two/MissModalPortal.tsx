@@ -1,17 +1,19 @@
 import {Dispatch, SetStateAction} from "react";
+import styles from './MissModalPortal.module.css';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import HowManyRepsModal from '@/components/program/day-two/HowManyRepsModal';
 
 interface MissModalPortalProps {
+  onMissed: Dispatch<SetStateAction<boolean>>;
   repsState: number;
   repsArrayState: number[];
   setStateForReps: Dispatch<SetStateAction<number>>;
   setStateForRepsArray: Dispatch<SetStateAction<number[]>>;
-
 }
 
 const MissModalPortal = ({
+  onMissed,
   repsState,
   repsArrayState,
   setStateForReps,
@@ -20,19 +22,31 @@ const MissModalPortal = ({
 
   const [showModal, setShowModal] = useState(false);
 
+  function handleClick() {
+    setShowModal(true);
+  }
+
+  function handleClose() {
+    setShowModal(false);
+    onMissed(false);
+  }
+
   return (
     <>
       <button
-        onClick={() => setShowModal(true)}>
-        MISS
+        className={styles.missButton}
+        onClick={handleClick}>
+        ❌
       </button>
       {showModal && createPortal(
         <HowManyRepsModal
+          onMissed={onMissed}
           repsState={repsState}
           repsArrayState={repsArrayState}
           setStateForReps={setStateForReps}
           setStateForRepsArray={setStateForRepsArray}
-          onClose={() => setShowModal(false)}
+          onClose={handleClose}
+          setStateForShowModal={setShowModal}
         />,
         document.body
       )}

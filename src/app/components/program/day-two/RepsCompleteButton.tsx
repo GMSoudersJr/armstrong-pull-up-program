@@ -1,11 +1,11 @@
 import {Dispatch, SetStateAction} from "react";
+import styles from './RepsCompleteButton.module.css';
 
 interface RepsCompleteButtonProps {
   repsState: number;
   repsArrayState: number[];
   setStateForReps: Dispatch<SetStateAction<number>>;
   setStateForRepsArray: Dispatch<SetStateAction<number[]>>;
-
 }
 
 const RepsCompleteButton = ({
@@ -27,9 +27,10 @@ const RepsCompleteButton = ({
 
   return (
     <button
+      className={styles.doneButton}
       onClick={handleClick}
     >
-      DONE
+      ✅
     </button>
   )
 };

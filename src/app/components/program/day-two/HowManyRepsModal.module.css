@@ -1,11 +1,30 @@
 .modal {
-  width: 20rem;
-  height: 50vh;
-  position: absolute;
-  top: 25vh;
-  left: calc(50% - 10rem);
-  border: 1px solid yellow;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 37.5rem;
+  max-width: 100%;
+  height: 23.4375rem;
+  max-height: 100%;
   border-radius: 0.75rem;
-  padding: 3rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
   backdrop-filter: blur(15px);
+}
+
+.repsButtonContainer {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.75rem;
+  overflow-x: auto;
+}
+
+.closeButton {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
 }

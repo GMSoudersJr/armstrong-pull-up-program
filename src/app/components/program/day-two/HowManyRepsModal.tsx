@@ -4,14 +4,18 @@ import NumberedMissRepButton from "./NumberedMissRepButton";
 
 interface HowManyRepsModalProps {
   onClose: React.MouseEventHandler<HTMLButtonElement>;
+  setStateForShowModal: Dispatch<SetStateAction<boolean>>;
   repsState: number;
   repsArrayState: number[];
   setStateForReps: Dispatch<SetStateAction<number>>;
   setStateForRepsArray: Dispatch<SetStateAction<number[]>>;
+  onMissed: Dispatch<SetStateAction<boolean>>;
 }
 
 const HowManyRepsModal = ({
   onClose,
+  onMissed,
+  setStateForShowModal,
   repsState,
   repsArrayState,
   setStateForReps,
@@ -30,11 +34,17 @@ const HowManyRepsModal = ({
               repsArrayState={repsArrayState}
               setStateForReps={setStateForReps}
               setStateForRepsArray={setStateForRepsArray}
+              setStateForShowModal={setStateForShowModal}
+              onMissed={onMissed}
             />
           )
         })}
       </div>
-      <button onClick={onClose}>Close</button>
+      <button
+        className={styles.closeButton}
+        onClick={onClose}>
+        CLOSE
+      </button>
     </div>
   )
 };

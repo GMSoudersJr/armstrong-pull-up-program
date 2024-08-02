@@ -1,0 +1,11 @@
+.pyramidSectionContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 2rem;
+}
