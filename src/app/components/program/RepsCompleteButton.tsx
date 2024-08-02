@@ -2,12 +2,16 @@ import { Dispatch, SetStateAction } from "react";
 import styles from './RepsActionButton.module.css';
 
 interface RepsCompleteButtonProps {
-  setStateForRepsArray: Dispatch<SetStateAction<number[]>>;
-  repsArrayState: number[];
   reps: number;
+  repsArrayState: number[];
+  setStateForRepsArray: Dispatch<SetStateAction<number[]>>;
 }
 
-const RepsCompleteButton = ({ setStateForRepsArray, repsArrayState, reps }: RepsCompleteButtonProps) => {
+const RepsCompleteButton = ({
+  reps,
+  repsArrayState,
+  setStateForRepsArray,
+}: RepsCompleteButtonProps) => {
 
   function handleComplete() {
     setStateForRepsArray(

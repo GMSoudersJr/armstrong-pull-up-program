@@ -6,10 +6,12 @@ interface RepOutputProps {
 const RepOutput = ({ reps }: RepOutputProps) => {
 
   return (
-    <ul className={styles.repOutput}>
+    <ul className={styles.repOutputList}>
+
       {reps.map((numberOfReps, i) => {
+
         return (
-          <li key={i}>
+          <li key={i} className={styles.repOutputListitem}>
             {numberOfReps}
           </li>
         )
@@ -20,5 +22,3 @@ const RepOutput = ({ reps }: RepOutputProps) => {
 };
 
 export default RepOutput;
-
-

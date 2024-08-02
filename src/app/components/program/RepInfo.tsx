@@ -2,35 +2,40 @@
 
 import styles from './RepInfo.module.css'
 import RepInput from "./RepInput"
-import RepOutput from "./RepOutput"
 import { useState } from "react";
 import RepsCompleteButton from "@/components/program/RepsCompleteButton";
 import RepsRemoveButton from "@/components/program/RepsRemoveButton";
+import SetTable from './day-one/SetTable';
 
 const RepInfo = () => {
   let initialRepsArray: number[] = [];
+
   const [reps, setReps] = useState(0);
   const [repsArray, setRepsArray] = useState(initialRepsArray);
 
   return (
     <section className={styles.repInfoSection}>
-      <RepOutput reps={repsArray}/>
+      <SetTable repsArray={repsArray}/>
       {repsArray.length > 0 &&
         <RepsRemoveButton
-          setStateForRepsArray={setRepsArray}
           repsArrayState={repsArray}
+          setStateForRepsArray={setRepsArray}
         />
       }
-      <RepInput
-        onChange={setReps}
-        onEnter={setRepsArray}
-        repsArrayState={repsArray}
-      />
-      <RepsCompleteButton
-        reps={reps}
-        setStateForRepsArray={setRepsArray}
-        repsArrayState={repsArray}
-      />
+      {repsArray.length < 5 &&
+        <>
+          <RepInput
+            onChange={setReps}
+            onEnter={setRepsArray}
+            repsArrayState={repsArray}
+          />
+          <RepsCompleteButton
+            reps={reps}
+            repsArrayState={repsArray}
+            setStateForRepsArray={setRepsArray}
+          />
+        </>
+      }
     </section>
   )
 }
