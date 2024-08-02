@@ -1,0 +1,11 @@
+.modal {
+  width: 20rem;
+  height: 50vh;
+  position: absolute;
+  top: 25vh;
+  left: calc(50% - 10rem);
+  border: 1px solid yellow;
+  border-radius: 0.75rem;
+  padding: 3rem;
+  backdrop-filter: blur(15px);
+}

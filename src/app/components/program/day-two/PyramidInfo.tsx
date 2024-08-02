@@ -4,6 +4,7 @@ import { useState } from "react";
 import RepsCompleteButton from '@/components/program/day-two/RepsCompleteButton';
 import Pyramid from "@/components/program/day-two/Pyramid";
 import {isSingular} from "@/utils";
+import MissModalPortal from "./MissModalPortal";
 
 const PyramidInfo = () => {
   let initialRepsArray: number[] = [];
@@ -21,7 +22,12 @@ const PyramidInfo = () => {
         setStateForReps={setReps}
         setStateForRepsArray={setRepsArray}
       />
-      <button>MISS</button>
+      <MissModalPortal
+        repsState={reps}
+        repsArrayState={repsArray}
+        setStateForReps={setReps}
+        setStateForRepsArray={setRepsArray}
+      />
     </>
   )
 };
