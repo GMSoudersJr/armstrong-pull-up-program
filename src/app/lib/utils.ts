@@ -9,3 +9,7 @@ export async function getAllDailyInstructions(): Promise<TDailyInstruction[]>  {
 
   return data;
 }
+
+export const isSingular = (count: number): boolean => {
+  return count === 1;
+}

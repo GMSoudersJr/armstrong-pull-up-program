@@ -1,0 +1,6 @@
+.pyramidList {
+  display: flex;
+  align-items: flex-end;
+  width: min-content;
+}
+
