@@ -17,12 +17,16 @@ const ThreeTrainingSetsInfo = () => {
         <TrainingSetRepsInput
           setStateForTrainingSetReps={setTrainingSetReps}
         />
-      ) : (
+      ) : !currentGrip ? (
         <>
           <GripSelector
             completedGripsState={completedGrips}
             setStateForCurrentGrip={setCurrentGrip}
           />
+        </>
+      ) : (
+        <>
+          <h3>DO {trainingSetReps} {currentGrip.toUpperCase()} PULL-UPS</h3>
         </>
       )}
 
