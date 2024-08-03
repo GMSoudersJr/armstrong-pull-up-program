@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import ThreeTrainingSetsInfo from '@/components/program/day-three/ThreeTrainingSetsInfo';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
@@ -13,6 +14,9 @@ const DayThreePage = () => {
         <h1>DAY THREE</h1>
         <h2>THREE TRAINING SETS WITH THREE GRIPS</h2>
         <h3>60 SECONDS RECOVERY</h3>
+      </div>
+      <div className={styles.threeTrainingSetsContainer}>
+        <ThreeTrainingSetsInfo />
       </div>
     </main>
   )
