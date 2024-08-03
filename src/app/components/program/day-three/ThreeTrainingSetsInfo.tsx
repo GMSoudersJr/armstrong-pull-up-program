@@ -2,14 +2,14 @@
 
 import { useState } from "react";
 import TrainingSetRepsInput from "@/components/program/day-three/TrainingSetRepsInput";
+import GripSelector from "./GripSelector";
 
 const ThreeTrainingSetsInfo = () => {
 
   const [dayComplete, setDayComplete] = useState(false);
   const [trainingSetReps, setTrainingSetReps] = useState(0);
   const [currentGrip, setCurrentGrip] = useState('');
-
-  const GRIPS = ['neutral', 'wide', 'close'];
+  const [completedGrips, setCompletedGrips] = useState([]);
 
   return (
     <>
@@ -19,7 +19,10 @@ const ThreeTrainingSetsInfo = () => {
         />
       ) : (
         <>
-          <h1>{trainingSetReps}</h1>
+          <GripSelector
+            completedGripsState={completedGrips}
+            setStateForCurrentGrip={setCurrentGrip}
+          />
         </>
       )}
 
