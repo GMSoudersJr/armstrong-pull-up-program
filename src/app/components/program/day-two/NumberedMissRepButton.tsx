@@ -20,12 +20,16 @@ const NumberedMissRepButton = ({
 }: NumberedMissRepButtonProps) => {
 
   function handleClick() {
+
     setStateForReps(repCount);
+
     setStateForRepsArray([
       ...repsArrayState,
       repCount
     ]);
+
     setStateForShowModal(false);
+
     onMissed(true);
   };
 

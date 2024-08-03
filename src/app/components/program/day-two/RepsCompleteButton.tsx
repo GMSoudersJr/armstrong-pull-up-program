@@ -30,7 +30,7 @@ const RepsCompleteButton = ({
       className={styles.doneButton}
       onClick={handleClick}
     >
-      ✅
+      ✔
     </button>
   )
 };

@@ -3,6 +3,7 @@ import styles from './MissModalPortal.module.css';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import HowManyRepsModal from '@/components/program/day-two/HowManyRepsModal';
+import MissButton from "./MissButton";
 
 interface MissModalPortalProps {
   onMissed: Dispatch<SetStateAction<boolean>>;
@@ -33,11 +34,9 @@ const MissModalPortal = ({
 
   return (
     <>
-      <button
-        className={styles.missButton}
-        onClick={handleClick}>
-        ❌
-      </button>
+      <MissButton
+        setStateForShowModal={setShowModal}
+      />
       {showModal && createPortal(
         <HowManyRepsModal
           onMissed={onMissed}

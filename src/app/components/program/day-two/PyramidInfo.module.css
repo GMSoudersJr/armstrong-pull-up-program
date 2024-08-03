@@ -9,3 +9,12 @@
   display: flex;
   gap: 2rem;
 }
+
+.maxoutRepNumberContainer {
+  display: flex;
+  width: 320px;
+  max-width: 100%;
+  overflow-x: scroll;
+  gap: 0.75rem;
+  scrollbar-width: none;
+}
