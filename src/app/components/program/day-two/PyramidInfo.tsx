@@ -30,7 +30,7 @@ const PyramidInfo = () => {
       ) : (
         <h3 className={styles.doRepsText}>DO {reps} {isSingular(reps) ? 'REP' : 'REPS'}</h3>
       )}
-      <div className={ styles.actionButtons }>
+      <div className={ styles.actionButtonContainer }>
         {repsArray.length > 0 && !missed  && (
         <MissModalPortal
           onMissed={setMissed}

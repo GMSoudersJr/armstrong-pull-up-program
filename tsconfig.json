@@ -18,6 +18,7 @@
       }
     ],
     "paths": {
+      "@/emojis": ["./src/app/lib/emojis.ts"],
       "@/utils": ["./src/app/lib/utils.ts"],
       "@/data/*": ["./src/app/lib/data/*"],
       "@/components/*": ["./src/app/components/*"],

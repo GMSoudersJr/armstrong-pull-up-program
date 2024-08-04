@@ -1,36 +1,43 @@
 'use client';
 
 import { useState } from "react";
-import TrainingSetRepsInput from "@/components/program/day-three/TrainingSetRepsInput";
+import TrainingSetRepsInput from "@/components/program/TrainingSetRepsInput";
 import GripSelector from "./GripSelector";
+import SetInfo from "./SetInfo";
+import DayComplete from "@/components/program/DayComplete";
 
 const ThreeTrainingSetsInfo = () => {
+  let initialCompletedGrips: string[] = [];
 
-  const [dayComplete, setDayComplete] = useState(false);
   const [trainingSetReps, setTrainingSetReps] = useState(0);
   const [currentGrip, setCurrentGrip] = useState('');
-  const [completedGrips, setCompletedGrips] = useState([]);
+  const [completedGrips, setCompletedGrips] = useState(initialCompletedGrips);
+
+  const dayComplete = completedGrips.length === 3;
 
   return (
-    <>
-      {!trainingSetReps ? (
+    <section>
+      {dayComplete ? (
+        <DayComplete />
+      ) : !trainingSetReps ? (
         <TrainingSetRepsInput
           setStateForTrainingSetReps={setTrainingSetReps}
         />
       ) : !currentGrip ? (
-        <>
           <GripSelector
             completedGripsState={completedGrips}
             setStateForCurrentGrip={setCurrentGrip}
           />
-        </>
       ) : (
-        <>
-          <h3>DO {trainingSetReps} {currentGrip.toUpperCase()} PULL-UPS</h3>
-        </>
+          <SetInfo
+            trainingSetReps={trainingSetReps}
+            currentGrip={currentGrip}
+            completedGrips={completedGrips}
+            updateCurrentGrip={setCurrentGrip}
+            updateCompletedGrips={setCompletedGrips}
+          />
       )}
-
-    </>
+    </section>
   )
 };
 

@@ -34,9 +34,7 @@ const MissModalPortal = ({
 
   return (
     <>
-      <MissButton
-        setStateForShowModal={setShowModal}
-      />
+      <MissButton setStateForShowModal={setShowModal} />
       {showModal && createPortal(
         <HowManyRepsModal
           onMissed={onMissed}
