@@ -1,6 +1,7 @@
 import {checkMarkButtonEmoji, crossMarkButtonEmoji} from "@/emojis";
 import { Dispatch, SetStateAction } from "react";
 import styles from './MaxTrainingSets.module.css';
+import {isSingular} from "@/utils";
 
 interface MaxTrainingSetsProps {
   trainingSetReps: number;
@@ -26,10 +27,14 @@ const MaxTrainingSets = ({
 
   return (
     <section className={styles.maxTrainingSetsContainer}>
-      <div>{completedTrainingSets}</div>
+      <div className={styles.completeSetsDisplay}>
+        <h3>
+          COMPLETED {completedTrainingSets} {isSingular(completedTrainingSets) ? 'SET' : 'SETS'}
+        </h3>
+      </div>
       <h3 className={styles.maxSetsText}>
         {completedTrainingSets < 9 ? (
-          `AT LEAST ${9 - completedTrainingSets} SETS OF ${trainingSetReps}`
+          `AT LEAST ${9 - completedTrainingSets} MORE ${isSingular(9 - completedTrainingSets) ? 'SET' : 'SETS'} OF ${trainingSetReps}`
         ) : completedTrainingSets === 9 ? (
         `DO ANOTHER`
         ) : (
