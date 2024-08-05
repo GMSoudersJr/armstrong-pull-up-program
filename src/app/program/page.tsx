@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import {PageLink} from '@/components/PageLink';
 import styles from './page.module.css';
+import { DAYS } from '@/const';
 
 export const metadata: Metadata = {
   title: "Program | Armstrong Pull-up Program",
@@ -23,26 +24,4 @@ const ProgramPage = () => {
   )
 }
 
-const DAYS = [
-  {
-    path: '/program/day-one',
-    label: 'DAY ONE'
-  },
-  {
-    path: '/program/day-two',
-    label: 'DAY TWO'
-  },
-  {
-    path: '/program/day-three',
-    label: 'DAY THREE'
-  },
-  {
-    path: '/program/day-four',
-    label: 'DAY FOUR'
-  },
-  {
-    path: '/program/day-five',
-    label: 'DAY FIVE'
-  },
-]
 export default ProgramPage;
