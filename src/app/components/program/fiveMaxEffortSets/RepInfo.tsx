@@ -3,9 +3,9 @@
 import { useState } from "react";
 import styles from './RepInfo.module.css';
 import RepInput from "@/components/program/fiveMaxEffortSets/RepInput";
-import RepsCompleteButton from "@/components/program/RepsCompleteButton";
-import RepsRemoveButton from "@/components/program/RepsRemoveButton";
-import SetsTable from '@/components/program/fiveMaxEffortSets/SetsTable';
+import RepsCompleteButton from "@/components/program/fiveMaxEffortSets/RepsCompleteButton";
+import RepsRemoveButton from "@/components/program/fiveMaxEffortSets/RepsRemoveButton";
+import SetsTable from "@/components/program/fiveMaxEffortSets/SetsTable";
 
 const RepInfo = () => {
   let initialRepsArray: number[] = [];
