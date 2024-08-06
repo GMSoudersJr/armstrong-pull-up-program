@@ -1,10 +1,10 @@
-import styles from '@/components/program/fiveMaxEffortSets/SetTable.module.css';
+import styles from '@/components/program/fiveMaxEffortSets/SetsTable.module.css';
 
-interface SetTableProps {
+interface SetsTableProps {
   repsArray: number[];
 }
 
-const SetTable = ({ repsArray }: SetTableProps) => {
+const SetsTable = ({ repsArray }: SetsTableProps) => {
 
   return (
     <table className={styles.table}>
@@ -30,4 +30,4 @@ const SetTable = ({ repsArray }: SetTableProps) => {
   )
 }
 
-export default SetTable;
+export default SetsTable;

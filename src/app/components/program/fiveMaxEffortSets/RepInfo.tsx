@@ -5,7 +5,7 @@ import styles from '@/components/program/fiveMaxEffortSets/RepInfo.module.css';
 import RepInput from "@/components/program/fiveMaxEffortSets/RepInput";
 import RepsCompleteButton from "@/components/program/RepsCompleteButton";
 import RepsRemoveButton from "@/components/program/RepsRemoveButton";
-import SetTable from '@/components/program/fiveMaxEffortSets/SetTable';
+import SetsTable from '@/components/program/fiveMaxEffortSets/SetsTable';
 
 const RepInfo = () => {
   let initialRepsArray: number[] = [];
@@ -15,7 +15,7 @@ const RepInfo = () => {
 
   return (
     <section className={styles.repInfoSection}>
-      <SetTable repsArray={repsArray}/>
+      <SetsTable repsArray={repsArray}/>
       {repsArray.length > 0 &&
         <RepsRemoveButton
           repsArrayState={repsArray}
