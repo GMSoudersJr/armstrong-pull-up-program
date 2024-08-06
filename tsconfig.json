@@ -18,6 +18,12 @@
       }
     ],
     "paths": {
+      "@/const": ["./src/app/lib/const.ts"],
+      "@/emojis": ["./src/app/lib/emojis.ts"],
+      "@/utils": ["./src/app/lib/utils.ts"],
+      "@/data/*": ["./src/app/lib/data/*"],
+      "@/components/*": ["./src/app/components/*"],
+      "@/fonts": ["./src/app/fonts"],
       "@/*": ["./src/*"]
     }
   },

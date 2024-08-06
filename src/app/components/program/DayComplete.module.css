@@ -1,0 +1,9 @@
+.dayComplete {
+  width: 20rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.emoji {
+  font-family: var(--font-notoColorEmoji);
+}

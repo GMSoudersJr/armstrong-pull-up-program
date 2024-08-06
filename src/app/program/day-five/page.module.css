@@ -1,0 +1,22 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem;
+  min-height: 100vh;
+}
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.pageLinkSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: clamp(0.5rem, 7vh, 4rem);
+}

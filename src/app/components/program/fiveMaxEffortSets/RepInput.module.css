@@ -1,0 +1,22 @@
+.repInput {
+  padding: 0.5rem 0.8rem;
+  font-size: 1.5rem;
+  font-family: var(--font-pontanoSans);
+  text-align: center;
+  width: min-content;
+}
+
+.repInputLabel {
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.repInputLabel + input::-webkit-outer-spin-button,
+.repInputLabel + input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.repInputLabel + input[type=number] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
