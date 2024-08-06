@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import styles from './page.module.css';
-import RepInfo from '@/components/program/RepInfo';
+import FiveMaxEffortSets from '@/components/program/fiveMaxEffortSets/FiveMaxEffortSets';
 
 export const metadata: Metadata = {
   title: "Day One | Armstrong Pull-up Program",
@@ -16,7 +16,7 @@ const DayOnePage = () => {
         <h3>90 SECONDS RECOVERY</h3>
       </div>
       <div className={styles.repInfoContainer}>
-        <RepInfo />
+        <FiveMaxEffortSets />
       </div>
     </main>
   )

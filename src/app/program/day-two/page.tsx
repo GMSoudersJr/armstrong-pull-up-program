@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import styles from './page.module.css';
-import PyramidInfo from '@/components/program/day-two/PyramidInfo';
+import Pyramid from '@/components/program/pyramid/Pyramid';
 
 export const metadata: Metadata = {
   title: "Day Two | Armstrong Pull-up Program",
@@ -16,7 +16,7 @@ const DayTwoPage = () => {
         <h3>10-SECOND RECOVERY PER REP</h3>
       </div>
       <div className={styles.pyramid}>
-        <PyramidInfo />
+        <Pyramid />
       </div>
     </main>
   )
