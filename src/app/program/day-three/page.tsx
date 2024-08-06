@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import ThreeTrainingSetsInfo from '@/components/program/day-three/ThreeTrainingSetsInfo';
+import ThreeTrainingSetsThreeGrips from '@/components/program/threeTrainingSetsThreeGrips/ThreeTrainingSetsThreeGrips';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ const DayThreePage = () => {
         <h3>60 SECONDS RECOVERY</h3>
       </div>
       <div className={styles.threeTrainingSetsContainer}>
-        <ThreeTrainingSetsInfo />
+        <ThreeTrainingSetsThreeGrips />
       </div>
     </main>
   )

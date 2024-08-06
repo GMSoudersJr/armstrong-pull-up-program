@@ -1,11 +1,11 @@
 'use client';
 
-import styles from './RepInfo.module.css'
-import RepInput from "./RepInput"
 import { useState } from "react";
+import styles from '@/components/program/fiveMaxEffortSets/RepInfo.module.css';
+import RepInput from "@/components/program/fiveMaxEffortSets/RepInput";
 import RepsCompleteButton from "@/components/program/RepsCompleteButton";
 import RepsRemoveButton from "@/components/program/RepsRemoveButton";
-import SetTable from '@/components/program/day-one/SetTable';
+import SetTable from '@/components/program/fiveMaxEffortSets/SetTable';
 
 const RepInfo = () => {
   let initialRepsArray: number[] = [];

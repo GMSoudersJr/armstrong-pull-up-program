@@ -1,5 +1,5 @@
 import {Dispatch, SetStateAction} from "react";
-import styles from './RepsCompleteButton.module.css';
+import styles from '@/components/program/pyramid/RepsCompleteButton.module.css';
 import {checkMarkButtonEmoji} from "@/emojis";
 
 interface RepsCompleteButtonProps {

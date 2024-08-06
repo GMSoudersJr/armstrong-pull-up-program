@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from "react";
-import styles from './PyramidInfo.module.css';
-import RepsCompleteButton from '@/components/program/day-two/RepsCompleteButton';
+import styles from '@/components/program/pyramid/PyramidInfo.module.css';
+import RepsCompleteButton from '@/components/program/pyramid/RepsCompleteButton';
 import {isSingular} from "@/utils";
-import MissModalPortal from "@/components/program/day-two/MissModalPortal";
-import MaxoutNumberButton from "@/components/program/day-two/MaxoutNumberButton";
-import DayComplete from "../DayComplete";
+import MissModalPortal from "@/components/program/pyramid/MissModalPortal";
+import MaxoutNumberButton from "@/components/program/pyramid/MaxoutNumberButton";
+import DayComplete from "@/components/program/DayComplete";
 import PyramidDisplay from "@/components/program/pyramid/PyramidDisplay";
 
 const PyramidInfo = () => {

@@ -1,4 +1,4 @@
-import styles from './MaxoutNumberButton.module.css';
+import styles from '@/components/program/pyramid/MaxoutNumberButton.module.css';
 import { Dispatch, SetStateAction } from 'react';
 
 interface MaxoutNumberButtonProps {

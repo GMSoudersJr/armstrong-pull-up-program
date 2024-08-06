@@ -1,4 +1,4 @@
-import styles from './SetTable.module.css';
+import styles from '@/components/program/fiveMaxEffortSets/SetTable.module.css';
 
 interface SetTableProps {
   repsArray: number[];

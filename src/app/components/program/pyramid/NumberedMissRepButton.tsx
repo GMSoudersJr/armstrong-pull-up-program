@@ -1,4 +1,4 @@
-import styles from './NumberedMissRepButton.module.css';
+import styles from '@/components/program/pyramid/NumberedMissRepButton.module.css';
 import {Dispatch, SetStateAction} from "react";
 
 interface NumberedMissRepButtonProps {

@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import TrainingSetRepsInput from "@/components/program/TrainingSetRepsInput";
-import GripSelector from "./GripSelector";
-import SetInfo from "./SetInfo";
+import GripSelector from "@/components/program/threeTrainingSetsThreeGrips/GripSelector";
+import SetInfo from "@/components/program/threeTrainingSetsThreeGrips/SetInfo";
 import DayComplete from "@/components/program/DayComplete";
 
 const ThreeTrainingSetsInfo = () => {

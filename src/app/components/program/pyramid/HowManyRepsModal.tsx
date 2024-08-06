@@ -1,6 +1,6 @@
 import {Dispatch, SetStateAction} from "react";
-import styles from './HowManyRepsModal.module.css';
-import NumberedMissRepButton from "./NumberedMissRepButton";
+import styles from '@/components/program/pyramid/HowManyRepsModal.module.css';
+import NumberedMissRepButton from "@/components/program/pyramid/NumberedMissRepButton";
 
 interface HowManyRepsModalProps {
   onClose: React.MouseEventHandler<HTMLButtonElement>;

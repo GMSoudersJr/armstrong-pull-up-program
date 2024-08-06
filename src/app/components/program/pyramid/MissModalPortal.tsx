@@ -1,9 +1,8 @@
 import {Dispatch, SetStateAction} from "react";
-import styles from './MissModalPortal.module.css';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import HowManyRepsModal from '@/components/program/day-two/HowManyRepsModal';
-import MissButton from "./MissButton";
+import HowManyRepsModal from '@/components/program/pyramid/HowManyRepsModal';
+import MissButton from "@/components/program/pyramid/MissButton";
 
 interface MissModalPortalProps {
   onMissed: Dispatch<SetStateAction<boolean>>;
@@ -22,10 +21,6 @@ const MissModalPortal = ({
 }: MissModalPortalProps) => {
 
   const [showModal, setShowModal] = useState(false);
-
-  function handleClick() {
-    setShowModal(true);
-  }
 
   function handleClose() {
     setShowModal(false);
