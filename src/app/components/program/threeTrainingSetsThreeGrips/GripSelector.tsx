@@ -1,5 +1,5 @@
 import {Dispatch, SetStateAction} from "react";
-import styles from '@/components/program/threeTrainingSetsThreeGrips/GripSelector.module.css';
+import styles from './GripSelector.module.css';
 
 interface GripSelectorProps {
   completedGripsState: string[];

@@ -1,5 +1,5 @@
 import {checkMarkButtonEmoji, crossMarkButtonEmoji} from '@/emojis';
-import styles from '@/components/program/threeTrainingSetsThreeGrips/SetInfo.module.css';
+import styles from './SetInfo.module.css';
 import { Dispatch, SetStateAction, useState } from 'react';
 
 interface SetInfoProps {

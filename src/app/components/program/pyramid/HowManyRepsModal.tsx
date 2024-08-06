@@ -1,5 +1,5 @@
 import {Dispatch, SetStateAction} from "react";
-import styles from '@/components/program/pyramid/HowManyRepsModal.module.css';
+import styles from './HowManyRepsModal.module.css';
 import NumberedMissRepButton from "@/components/program/pyramid/NumberedMissRepButton";
 
 interface HowManyRepsModalProps {

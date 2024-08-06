@@ -1,6 +1,6 @@
 import {checkMarkButtonEmoji, crossMarkButtonEmoji} from "@/emojis";
 import { Dispatch, SetStateAction } from "react";
-import styles from '@/components/program/maxTrainingSets/MaxTrainingSetsDisplay.module.css';
+import styles from './MaxTrainingSetsDisplay.module.css';
 import {isSingular} from "@/utils";
 
 interface MaxTrainingSetsDisplayProps {

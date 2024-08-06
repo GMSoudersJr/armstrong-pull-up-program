@@ -1,5 +1,5 @@
 import {crossMarkButtonEmoji} from '@/emojis';
-import styles from '@/components/program/pyramid/MissButton.module.css';
+import styles from './MissButton.module.css';
 import {Dispatch, SetStateAction} from "react";
 
 interface MissButtonProps {

@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import styles from '@/components/program/pyramid/PyramidInfo.module.css';
+import styles from './PyramidInfo.module.css';
 import RepsCompleteButton from '@/components/program/pyramid/RepsCompleteButton';
 import {isSingular} from "@/utils";
 import MissModalPortal from "@/components/program/pyramid/MissModalPortal";

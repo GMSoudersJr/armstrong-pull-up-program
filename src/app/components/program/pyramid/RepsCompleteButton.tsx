@@ -1,5 +1,5 @@
 import {Dispatch, SetStateAction} from "react";
-import styles from '@/components/program/pyramid/RepsCompleteButton.module.css';
+import styles from './RepsCompleteButton.module.css';
 import {checkMarkButtonEmoji} from "@/emojis";
 
 interface RepsCompleteButtonProps {
@@ -28,7 +28,7 @@ const RepsCompleteButton = ({
 
   return (
     <button
-      className={styles.doneButton}
+      className={styles.completeButton}
       onClick={handleClick}
     >
       {checkMarkButtonEmoji}

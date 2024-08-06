@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import styles from './RepsActionButton.module.css';
+import {counterClockwiseArrowsButtonEmoji} from "@/emojis";
 
 interface RepsRemoveButtonProps {
   setStateForRepsArray: Dispatch<SetStateAction<number[]>>;
@@ -18,7 +19,7 @@ const RepsRemoveButton = ({ setStateForRepsArray, repsArrayState }: RepsRemoveBu
       onClick={handleRemove}
       className={`${styles.button} ${styles.removeButton}`}
     >
-      REMOVE
+      {counterClockwiseArrowsButtonEmoji}
     </button>
   )
 };

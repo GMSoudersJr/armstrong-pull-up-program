@@ -1,6 +1,7 @@
 import {
   Pontano_Sans,
-  Domine
+  Domine,
+  Noto_Color_Emoji
 } from 'next/font/google';
 
 export const pontanoSans = Pontano_Sans({
@@ -15,4 +16,10 @@ export const domine = Domine({
   weight: "variable",
   variable: "--font-domine",
   display: "swap"
+});
+
+export const notoColorEmoji = Noto_Color_Emoji({
+  weight: '400',
+  subsets: ['emoji'],
+  variable: "--font-notoColorEmoji",
 });

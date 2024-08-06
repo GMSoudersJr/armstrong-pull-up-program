@@ -1,4 +1,5 @@
-import styles from '@/components/program/pyramid/PyramidDisplay.module.css';
+import {brickEmoji} from '@/emojis';
+import styles from './PyramidDisplay.module.css';
 
 interface PyramidDisplayProps {
   repsArray: number[];
@@ -11,7 +12,7 @@ const PyramidDisplay = ({ repsArray }: PyramidDisplayProps) => {
       {repsArray.map((reps, i) => {
           return (
               <li key={i} className={styles.pyramidListItem}>
-                {`🧱`.repeat(reps)}
+                {brickEmoji.repeat(reps)}
               </li>
           )
       })}

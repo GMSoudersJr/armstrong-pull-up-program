@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from "react";
-import styles from '@/components/program/fiveMaxEffortSets/RepInfo.module.css';
+import styles from './RepInfo.module.css';
 import RepInput from "@/components/program/fiveMaxEffortSets/RepInput";
 import RepsCompleteButton from "@/components/program/RepsCompleteButton";
 import RepsRemoveButton from "@/components/program/RepsRemoveButton";
