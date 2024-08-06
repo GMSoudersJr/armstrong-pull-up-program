@@ -1,12 +1,12 @@
 import { Dispatch, SetStateAction } from "react";
 import styles from './RepsActionButton.module.css';
 
-interface RepsCompleteButtonProps {
+interface RepsRemoveButtonProps {
   setStateForRepsArray: Dispatch<SetStateAction<number[]>>;
   repsArrayState: number[];
 }
 
-const RepsRemoveButton = ({ setStateForRepsArray, repsArrayState }: RepsCompleteButtonProps) => {
+const RepsRemoveButton = ({ setStateForRepsArray, repsArrayState }: RepsRemoveButtonProps) => {
 
   function handleRemove() {
     setStateForRepsArray(repsArrayState.slice(0, -1));

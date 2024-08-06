@@ -5,7 +5,7 @@ import {
   useId,
   SyntheticEvent
 } from 'react';
-import styles from './RepInput.module.css';
+import styles from '@/components/program/fiveMaxEffortSets/RepInput.module.css';
 
 interface RepInputProps {
   onChange: Dispatch<SetStateAction<number>>;
