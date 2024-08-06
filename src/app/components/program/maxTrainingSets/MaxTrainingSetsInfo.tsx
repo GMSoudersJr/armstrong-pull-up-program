@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import TrainingSetRepsInput from "@/components/program/TrainingSetRepsInput";
-import MaxTrainingSets from "@/components/program/day-four/MaxTrainingSets";
+import MaxTrainingSetsDisplay from "@/components/program/maxTrainingSets/MaxTrainingSetsDisplay";
 import DayComplete from "@/components/program/DayComplete";
 
 const MaxTrainingSetsInfo = () => {
@@ -19,7 +19,7 @@ const MaxTrainingSetsInfo = () => {
           setStateForTrainingSetReps={setTrainingSetReps}
         />
       ) : (
-          <MaxTrainingSets
+          <MaxTrainingSetsDisplay
             completedTrainingSets={completedTrainingSets}
             trainingSetReps={trainingSetReps}
             updateCompletedTrainingSets={setCompletedTrainingSets}

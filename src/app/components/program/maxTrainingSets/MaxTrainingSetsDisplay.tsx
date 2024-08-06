@@ -1,20 +1,20 @@
 import {checkMarkButtonEmoji, crossMarkButtonEmoji} from "@/emojis";
 import { Dispatch, SetStateAction } from "react";
-import styles from './MaxTrainingSets.module.css';
+import styles from '@/components/program/maxTrainingSets/MaxTrainingSetsDisplay.module.css';
 import {isSingular} from "@/utils";
 
-interface MaxTrainingSetsProps {
+interface MaxTrainingSetsDisplayProps {
   trainingSetReps: number;
   updateCompletedTrainingSets: Dispatch<SetStateAction<number>>;
   updateDayComplete: Dispatch<SetStateAction<boolean>>;
   completedTrainingSets: number;
 }
-const MaxTrainingSets = ({
+const MaxTrainingSetsDisplay = ({
   trainingSetReps,
   updateCompletedTrainingSets,
   completedTrainingSets,
   updateDayComplete
-}: MaxTrainingSetsProps) => {
+}: MaxTrainingSetsDisplayProps) => {
 
 
   function handleComplete() {
@@ -53,4 +53,4 @@ const MaxTrainingSets = ({
   )
 };
 
-export default MaxTrainingSets;
+export default MaxTrainingSetsDisplay;

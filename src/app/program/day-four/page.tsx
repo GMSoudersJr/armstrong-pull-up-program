@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import styles from './page.module.css';
-import MaxTrainingSetsInfo from '@/components/program/day-four/MaxTrainingSetsInfo';
+import MaxTrainingSets from '@/components/program/maxTrainingSets/MaxTrainingSets';
 
 export const metadata: Metadata = {
   title: "Day Four | Armstrong Pull-up Program",
@@ -16,7 +16,7 @@ const DayFourPage = () => {
         <h3>60 SECONDS RECOVERY</h3>
       </div>
       <div>
-        <MaxTrainingSetsInfo />
+        <MaxTrainingSets />
       </div>
     </main>
   )
