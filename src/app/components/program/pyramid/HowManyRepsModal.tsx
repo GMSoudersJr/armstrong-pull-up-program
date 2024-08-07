@@ -21,7 +21,7 @@ const HowManyRepsModal = ({
 }: HowManyRepsModalProps) => {
 
   return (
-    <div className={styles.modal}>
+    <div className={styles.modal} id="modal">
       <h3>How many reps did you do?</h3>
       <div className={styles.repsButtonContainer}>
         {repsArrayState.map((reps, i) => {
