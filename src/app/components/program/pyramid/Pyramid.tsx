@@ -35,7 +35,6 @@ const Pyramid = () => {
         {repsArray.length > 0 && !missed  && (
         <MissModalPortal
           onMissed={setMissed}
-          repsState={reps}
           repsArrayState={repsArray}
           setStateForReps={setReps}
           setStateForRepsArray={setRepsArray}

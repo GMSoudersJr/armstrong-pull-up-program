@@ -6,7 +6,6 @@ import MissButton from "@/components/program/pyramid/MissButton";
 
 interface MissModalPortalProps {
   onMissed: Dispatch<SetStateAction<boolean>>;
-  repsState: number;
   repsArrayState: number[];
   setStateForReps: Dispatch<SetStateAction<number>>;
   setStateForRepsArray: Dispatch<SetStateAction<number[]>>;
@@ -14,7 +13,6 @@ interface MissModalPortalProps {
 
 const MissModalPortal = ({
   onMissed,
-  repsState,
   repsArrayState,
   setStateForReps,
   setStateForRepsArray
@@ -33,7 +31,6 @@ const MissModalPortal = ({
       {showModal && createPortal(
         <HowManyRepsModal
           onMissed={onMissed}
-          repsState={repsState}
           repsArrayState={repsArrayState}
           setStateForReps={setStateForReps}
           setStateForRepsArray={setStateForRepsArray}

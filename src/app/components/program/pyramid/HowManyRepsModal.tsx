@@ -5,7 +5,6 @@ import NumberedMissRepButton from "@/components/program/pyramid/NumberedMissRepB
 interface HowManyRepsModalProps {
   onClose: React.MouseEventHandler<HTMLButtonElement>;
   setStateForShowModal: Dispatch<SetStateAction<boolean>>;
-  repsState: number;
   repsArrayState: number[];
   setStateForReps: Dispatch<SetStateAction<number>>;
   setStateForRepsArray: Dispatch<SetStateAction<number[]>>;
@@ -16,7 +15,6 @@ const HowManyRepsModal = ({
   onClose,
   onMissed,
   setStateForShowModal,
-  repsState,
   repsArrayState,
   setStateForReps,
   setStateForRepsArray
