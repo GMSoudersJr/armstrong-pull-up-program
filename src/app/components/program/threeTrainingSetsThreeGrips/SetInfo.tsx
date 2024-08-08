@@ -12,7 +12,7 @@ interface SetInfoProps {
   updateCompletedGrips: Dispatch<SetStateAction<string[]>>;
 }
 
-const recoveryTime = 2;
+const recoveryTime = 60;
 
 const SetInfo = ({
   trainingSetReps,

@@ -1,5 +1,6 @@
 import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import styles from './TimerModal.module.css';
+import {isSingular} from '@/utils';
 
 interface TimerModalProps {
   onClose: React.MouseEventHandler<HTMLButtonElement>;
@@ -15,10 +16,12 @@ const TimerModal = ({
 
   const [secondsLeft, setSecondsLeft] = useState(recoveryTime);
 
-  if (secondsLeft <= 0) setStateForShowTimerModal(false);
 
   useEffect(() => {
-    if (secondsLeft <= 0) return;
+    if (secondsLeft === 0) {
+      setStateForShowTimerModal(false);
+      return;
+    }
 
     const intervalId = setInterval(() => {
       setSecondsLeft(secondsLeft => secondsLeft - 1);
@@ -27,7 +30,7 @@ const TimerModal = ({
     return () => {
       clearInterval(intervalId);
     }
-  }, []);
+  }, [secondsLeft]);
 
   return (
     <div id="timerModal" className={styles.modal}>
@@ -39,9 +42,9 @@ const TimerModal = ({
           &times;
         </button>
         <div>
-          <h1>
-            {secondsLeft > 0 && `Next set in ${secondsLeft} seconds`}
-          </h1>
+          <p>
+            {secondsLeft > 0 && `Next set in ${secondsLeft} ${isSingular(secondsLeft) ? 'second!' : 'seconds'}`}
+          </p>
         </div>
       </div>
     </div>

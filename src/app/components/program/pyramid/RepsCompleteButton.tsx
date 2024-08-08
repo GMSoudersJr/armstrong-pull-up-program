@@ -38,6 +38,7 @@ const RepsCompleteButton = ({
       <button
         className={styles.completeButton}
         onClick={handleClick}
+        disabled={showTimerModal}
       >
         {checkMarkButtonEmoji}
       </button>

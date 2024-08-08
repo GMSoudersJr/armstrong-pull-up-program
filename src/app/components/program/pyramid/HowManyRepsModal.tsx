@@ -9,15 +9,21 @@ interface HowManyRepsModalProps {
   setStateForReps: Dispatch<SetStateAction<number>>;
   setStateForRepsArray: Dispatch<SetStateAction<number[]>>;
   onMissed: Dispatch<SetStateAction<boolean>>;
+  setStateForShowTimerModal: Dispatch<SetStateAction<boolean>>;
+  showTimerModalState: boolean;
+  setRecoveryTime: Dispatch<SetStateAction<number>>;
 }
 
 const HowManyRepsModal = ({
   onClose,
   onMissed,
-  setStateForShowModal,
+  setStateForShowTimerModal,
   repsArrayState,
   setStateForReps,
-  setStateForRepsArray
+  setStateForRepsArray,
+  setStateForShowModal,
+  showTimerModalState,
+  setRecoveryTime
 }: HowManyRepsModalProps) => {
 
   return (
@@ -34,6 +40,9 @@ const HowManyRepsModal = ({
               setStateForRepsArray={setStateForRepsArray}
               setStateForShowModal={setStateForShowModal}
               onMissed={onMissed}
+              setStateForshowTimerModal={setStateForShowTimerModal}
+              showTimerModalState={showTimerModalState}
+              setRecoveryTime={setRecoveryTime}
             />
           )
         })}

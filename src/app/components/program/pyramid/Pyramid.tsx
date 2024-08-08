@@ -8,6 +8,8 @@ import MissModalPortal from "@/components/program/pyramid/MissModalPortal";
 import MaxoutNumberButton from "@/components/program/pyramid/MaxoutNumberButton";
 import DayComplete from "@/components/program/DayComplete";
 import PyramidDisplay from "@/components/program/pyramid/PyramidDisplay";
+import MissSetButton from "./MissSetButton";
+import NumberedMissRepButton from "./NumberedMissRepButton";
 
 const Pyramid = () => {
   let initialRepsArray: number[] = [];
@@ -16,6 +18,8 @@ const Pyramid = () => {
   const [repsArray, setRepsArray] = useState(initialRepsArray);
   const [missed, setMissed] = useState(false);
   const [dayComplete, setDayComplete] = useState(false);
+  const [showMissedSetNumbers, setShowMissedSetNumbers] = useState(false);
+  const [showMaxoutNumbers, setShowMaxoutNumbers] = useState(false);
 
   return (
     <section className={styles.pyramidSectionContainer}>
@@ -27,24 +31,38 @@ const Pyramid = () => {
 
 
       {missed ? (
+        <h3 className={styles.doRepsText}>How many did you do?</h3>
+      ) : showMaxoutNumbers ? (
         <h3 className={styles.doRepsText}>MAX OUT!</h3>
       ) : (
         <h3 className={styles.doRepsText}>DO {reps} {isSingular(reps) ? 'REP' : 'REPS'}</h3>
-      )}
+          )}
       <div className={ styles.actionButtonContainer }>
-        {repsArray.length > 0 && !missed  && (
-        <MissModalPortal
-          onMissed={setMissed}
-          repsArrayState={repsArray}
-          setStateForReps={setReps}
-          setStateForRepsArray={setRepsArray}
-        />
+        {repsArray.length > 0 && !missed && !showMaxoutNumbers && (
+          <MissSetButton onMissed={setMissed} />
         )}
         {missed ? (
+            <div className={styles.missedSetNumberContainer}>
+              {repsArray.map((reps, i) => {
+                return (
+                  <NumberedMissRepButton
+                    key={`${i}-${reps}`}
+                    repCount={reps}
+                    repsArrayState={repsArray}
+                    setStateForRepsArray={setRepsArray}
+                    setStateForReps={setReps}
+                    onMissed={setMissed}
+                    setStateForMaxNumbers={setShowMaxoutNumbers}
+                  />
+                )
+              })}
+            </div>
+        ) : showMaxoutNumbers ? (
           <div className={styles.maxoutRepNumberContainer}>
-            {repsArray.map((reps) => {
+            {repsArray.map((reps, i) => {
               return (
                 <MaxoutNumberButton
+                  key={`${i}-${reps}`}
                   repCount={reps}
                   repsArrayState={repsArray}
                   setStateForRepsArray={setRepsArray}

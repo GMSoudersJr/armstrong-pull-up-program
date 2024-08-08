@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { createPortal } from 'react-dom';
 import HowManyRepsModal from '@/components/program/pyramid/HowManyRepsModal';
 import MissButton from "@/components/program/pyramid/MissButton";
+import TimerModal from "../TimerModal";
 
 interface MissModalPortalProps {
   onMissed: Dispatch<SetStateAction<boolean>>;
@@ -20,6 +21,9 @@ const MissModalPortal = ({
 
   const [showModal, setShowModal] = useState(false);
 
+  const [showTimerModal, setShowTimerModal] = useState(false);
+  const [recoveryTime, setRecoveryTime] = useState(0);
+
   function handleClose() {
     setShowModal(false);
     onMissed(false);
@@ -36,6 +40,17 @@ const MissModalPortal = ({
           setStateForRepsArray={setStateForRepsArray}
           onClose={handleClose}
           setStateForShowModal={setShowModal}
+          setStateForShowTimerModal={setShowTimerModal}
+          showTimerModalState={showTimerModal}
+          setRecoveryTime={setRecoveryTime}
+        />,
+        document.body
+      )}
+      {showTimerModal && createPortal(
+        <TimerModal
+          onClose={handleClose}
+          setStateForShowTimerModal={setShowTimerModal}
+          recoveryTime={recoveryTime}
         />,
         document.body
       )}
