@@ -5,3 +5,5 @@ type TDailyInstruction = {
   instructions: string[] | [];
   link?: string
 }
+
+type TGrip = 'neutral' | 'wide' | 'close' | undefined;

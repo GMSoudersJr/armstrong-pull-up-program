@@ -29,16 +29,6 @@
   }
 }
 
-@keyframes notShowModal {
-  from {
-    top: 100%;
-  }
-
-  to {
-    top: 30%;
-  }
-}
-
 .repsButtonContainer {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

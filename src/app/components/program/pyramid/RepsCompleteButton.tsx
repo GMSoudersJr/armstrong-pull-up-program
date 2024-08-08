@@ -1,6 +1,8 @@
-import {Dispatch, SetStateAction} from "react";
+import {Dispatch, SetStateAction, useState} from "react";
 import styles from './RepsCompleteButton.module.css';
 import {checkMarkButtonEmoji} from "@/emojis";
+import {createPortal} from "react-dom";
+import TimerModal from "../TimerModal";
 
 interface RepsCompleteButtonProps {
   repsState: number;
@@ -16,7 +18,11 @@ const RepsCompleteButton = ({
   setStateForRepsArray
 }: RepsCompleteButtonProps) => {
 
+  const [showTimerModal, setShowTimerModal] = useState(false);
+  const [recoveryTime, setRecoveryTime] = useState(0);
+
   function handleClick() {
+    setRecoveryTime(10 * repsState);
     setStateForRepsArray(
       [
         ...repsArrayState,
@@ -24,15 +30,26 @@ const RepsCompleteButton = ({
       ]
     );
     setStateForReps(repsState => repsState + 1);
+    setShowTimerModal(true);
   }
 
   return (
-    <button
-      className={styles.completeButton}
-      onClick={handleClick}
-    >
-      {checkMarkButtonEmoji}
-    </button>
+    <>
+      <button
+        className={styles.completeButton}
+        onClick={handleClick}
+      >
+        {checkMarkButtonEmoji}
+      </button>
+      {showTimerModal && createPortal(
+      <TimerModal
+        onClose={() => setShowTimerModal(false)}
+        recoveryTime={recoveryTime}
+        setStateForShowTimerModal={setShowTimerModal}
+      />,
+      document.body
+      )}
+    </>
   )
 };
 

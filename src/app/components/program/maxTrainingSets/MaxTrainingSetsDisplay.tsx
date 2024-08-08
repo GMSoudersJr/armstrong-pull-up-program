@@ -1,7 +1,9 @@
 import {checkMarkButtonEmoji, crossMarkButtonEmoji} from "@/emojis";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import styles from './MaxTrainingSetsDisplay.module.css';
 import {isSingular} from "@/utils";
+import {createPortal} from "react-dom";
+import TimerModal from "../TimerModal";
 
 interface MaxTrainingSetsDisplayProps {
   trainingSetReps: number;
@@ -9,6 +11,9 @@ interface MaxTrainingSetsDisplayProps {
   updateDayComplete: Dispatch<SetStateAction<boolean>>;
   completedTrainingSets: number;
 }
+
+const recoveryTime = 60;
+
 const MaxTrainingSetsDisplay = ({
   trainingSetReps,
   updateCompletedTrainingSets,
@@ -16,9 +21,11 @@ const MaxTrainingSetsDisplay = ({
   updateDayComplete
 }: MaxTrainingSetsDisplayProps) => {
 
+  const [showTimerModal, setShowTimerModal] = useState(false);
 
   function handleComplete() {
     updateCompletedTrainingSets(completedTrainingSets => completedTrainingSets + 1);
+    setShowTimerModal(true);
   }
 
   function handleMiss() {
@@ -45,9 +52,19 @@ const MaxTrainingSetsDisplay = ({
         <button className={styles.actionButton} onClick={handleMiss}>
           {crossMarkButtonEmoji}
         </button>
-        <button className={styles.actionButton}  onClick={handleComplete}>
+        <button
+          className={styles.actionButton}
+          onClick={handleComplete}
+        >
           {checkMarkButtonEmoji}
         </button>
+        {showTimerModal && createPortal(
+        <TimerModal
+          onClose={() => setShowTimerModal(false)}
+          recoveryTime={recoveryTime}
+          setStateForShowTimerModal={setShowTimerModal}
+        />,
+        document.body)}
       </div>
     </section>
   )
