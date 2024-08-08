@@ -8,8 +8,8 @@ export async function getAllDailyInstructions(): Promise<TDailyInstruction[]>  {
   const data = await response.json();
 
   return data;
-}
+};
 
 export const isSingular = (count: number): boolean => {
   return count === 1;
-}
+};

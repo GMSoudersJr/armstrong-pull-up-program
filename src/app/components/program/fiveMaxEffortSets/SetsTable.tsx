@@ -19,9 +19,9 @@ const SetsTable = ({ repsArray }: SetsTableProps) => {
           })}
         </tr>
         <tr className={styles.tableRow}>
-          {repsArray.map((reps) => {
+          {repsArray.map((reps, i) => {
             return (
-              <td className={styles.tableData}>{reps}</td>
+              <td key={`${reps} in set ${i}`} className={styles.tableData}>{reps}</td>
             )
           })}
         </tr>
