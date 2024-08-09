@@ -13,6 +13,8 @@ After doing pull-ups, dexterity can be a problem, so the buttons should be large
 This is my solution!
 
 ## PLAN
-Have this be a local-first app.
-Most likely a Progressive Web App like Suit Yourself.
-Follow the program while I develop it to better understand the needs of users.
+- Have this be a local-first app.
+
+- Most likely a Progressive Web App like Suit Yourself.
+
+- Follow the program while I develop it to better understand the needs of users.
