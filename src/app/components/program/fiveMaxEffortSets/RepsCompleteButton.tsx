@@ -27,7 +27,7 @@ const RepsCompleteButton = ({
       ]
     );
 
-    setStateForShowTimerModal(true);
+    if (repsArrayState.length < 4) setStateForShowTimerModal(true);
 
   };
 

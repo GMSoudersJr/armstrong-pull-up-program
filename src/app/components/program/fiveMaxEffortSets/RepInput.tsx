@@ -43,7 +43,8 @@ const RepInput = ({
           reps
         ]
       );
-      setStateForShowTimerModal(true);
+
+      if (repsArrayState.length < 4) setStateForShowTimerModal(true);
     }
   }
 

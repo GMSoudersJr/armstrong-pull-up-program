@@ -19,11 +19,8 @@ const Pyramid = () => {
   const [repsArray, setRepsArray] = useState(initialRepsArray);
   const [missed, setMissed] = useState(false);
   const [dayComplete, setDayComplete] = useState(false);
-  const [showMissedSetNumbers, setShowMissedSetNumbers] = useState(false);
   const [showMaxoutNumbers, setShowMaxoutNumbers] = useState(false);
   const [showTimerModal, setShowTimerModal] = useState(false);
-
-  const missNumbers = new Set(repsArray);
 
   return (
     <section className={styles.pyramidSectionContainer}>

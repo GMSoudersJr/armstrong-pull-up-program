@@ -30,7 +30,7 @@ const TimerModal = ({
     return () => {
       clearInterval(intervalId);
     }
-  }, [secondsLeft]);
+  }, [secondsLeft, setStateForShowTimerModal]);
 
   return (
     <div id="timerModal" className={styles.modal}>
