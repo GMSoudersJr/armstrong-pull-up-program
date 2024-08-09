@@ -1,56 +1,48 @@
-import {Dispatch, SetStateAction, useState} from "react";
-import styles from './RepsCompleteButton.module.css';
+import {Dispatch, SetStateAction} from "react";
+import styles from './ActionButton.module.css';
 import {checkMarkButtonEmoji} from "@/emojis";
-import {createPortal} from "react-dom";
-import TimerModal from "../TimerModal";
 
 interface RepsCompleteButtonProps {
   repsState: number;
   repsArrayState: number[];
+  showTimerModalState: boolean;
   setStateForReps: Dispatch<SetStateAction<number>>;
   setStateForRepsArray: Dispatch<SetStateAction<number[]>>;
+  setStateForShowTimerModal: Dispatch<SetStateAction<boolean>>;
 }
 
 const RepsCompleteButton = ({
   repsState,
   repsArrayState,
   setStateForReps,
-  setStateForRepsArray
+  showTimerModalState,
+  setStateForRepsArray,
+  setStateForShowTimerModal
 }: RepsCompleteButtonProps) => {
 
-  const [showTimerModal, setShowTimerModal] = useState(false);
-  const [recoveryTime, setRecoveryTime] = useState(0);
-
   function handleClick() {
-    setRecoveryTime(10 * repsState);
+    const pyramidBrickNumber = repsState + 1;
+
     setStateForRepsArray(
       [
         ...repsArrayState,
-        repsState
+        pyramidBrickNumber
       ]
     );
+
     setStateForReps(repsState => repsState + 1);
-    setShowTimerModal(true);
+
+    setStateForShowTimerModal(true);
   }
 
   return (
-    <>
-      <button
-        className={styles.completeButton}
-        onClick={handleClick}
-        disabled={showTimerModal}
-      >
-        {checkMarkButtonEmoji}
-      </button>
-      {showTimerModal && createPortal(
-      <TimerModal
-        onClose={() => setShowTimerModal(false)}
-        recoveryTime={recoveryTime}
-        setStateForShowTimerModal={setShowTimerModal}
-      />,
-      document.body
-      )}
-    </>
+    <button
+      className={styles.pyramidActionButton}
+      onClick={handleClick}
+      disabled={showTimerModalState}
+    >
+      {checkMarkButtonEmoji}
+    </button>
   )
 };
 

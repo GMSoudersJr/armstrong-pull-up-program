@@ -11,9 +11,17 @@ interface RepInputProps {
   onChange: Dispatch<SetStateAction<number>>;
   onEnter: Dispatch<SetStateAction<number[]>>;
   repsArrayState: number[];
+  setStateForShowTimerModal: Dispatch<SetStateAction<boolean>>;
+  showTimerModalState: boolean;
 }
 
-const RepInput = ({ onChange, onEnter, repsArrayState }: RepInputProps) => {
+const RepInput = ({
+  onChange,
+  onEnter,
+  repsArrayState,
+  setStateForShowTimerModal,
+  showTimerModalState
+}: RepInputProps) => {
   const repInputId = useId();
 
   const [reps, setReps] = useState(0);
@@ -35,6 +43,7 @@ const RepInput = ({ onChange, onEnter, repsArrayState }: RepInputProps) => {
           reps
         ]
       );
+      setStateForShowTimerModal(true);
     }
   }
 
@@ -55,6 +64,7 @@ const RepInput = ({ onChange, onEnter, repsArrayState }: RepInputProps) => {
         value={reps}
         onChange={handleChange}
         onKeyUp={handleKeyUp}
+        disabled={showTimerModalState}
       />
     </section>
   )
