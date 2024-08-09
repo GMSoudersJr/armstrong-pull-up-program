@@ -4,7 +4,6 @@ import { useState } from "react";
 import styles from './Pyramid.module.css';
 import RepsCompleteButton from '@/components/program/pyramid/RepsCompleteButton';
 import {isSingular} from "@/utils";
-import MissModalPortal from "@/components/program/pyramid/MissModalPortal";
 import MaxoutNumberButton from "@/components/program/pyramid/MaxoutNumberButton";
 import DayComplete from "@/components/program/DayComplete";
 import PyramidDisplay from "@/components/program/pyramid/PyramidDisplay";
@@ -24,6 +23,8 @@ const Pyramid = () => {
   const [showMaxoutNumbers, setShowMaxoutNumbers] = useState(false);
   const [showTimerModal, setShowTimerModal] = useState(false);
 
+  const missNumbers = new Set(repsArray);
+
   return (
     <section className={styles.pyramidSectionContainer}>
       <PyramidDisplay repsArray={repsArray} />
@@ -35,7 +36,7 @@ const Pyramid = () => {
             {missed ? (
               `How many did you do?`
             ) : showMaxoutNumbers ? (
-              `MAX OUT!`
+              `MAX OUT! HOW MANY?`
             ) : (
             `DO ${completedReps + 1} ${isSingular(completedReps + 1) ? 'REP' : 'REPS'}`
             )}
@@ -69,7 +70,7 @@ const Pyramid = () => {
                 </div>
             ) : showMaxoutNumbers ? (
               <div className={styles.maxoutRepNumberContainer}>
-                {repsArray.map((reps, i) => {
+                {repsArray.slice(0, -1).map((reps, i) => {
                   return (
                     <MaxoutNumberButton
                       key={`${i}-${reps}`}
