@@ -1,11 +1,8 @@
-import {createPortal} from 'react-dom';
 import styles from './NumberedMissRepButton.module.css';
 import {
   Dispatch,
   SetStateAction,
-  useState
 } from "react";
-import TimerModal from '../TimerModal';
 
 interface NumberedMissRepButtonProps {
   onMissed: Dispatch<SetStateAction<boolean>>;
@@ -14,6 +11,8 @@ interface NumberedMissRepButtonProps {
   setStateForReps: Dispatch<SetStateAction<number>>;
   setStateForRepsArray: Dispatch<SetStateAction<number[]>>;
   setStateForMaxNumbers: Dispatch<SetStateAction<boolean>>;
+  showTimerModalState: boolean;
+  setStateForShowTimerModal: Dispatch<SetStateAction<boolean>>;
 }
 
 const NumberedMissRepButton = ({
@@ -22,10 +21,10 @@ const NumberedMissRepButton = ({
   repsArrayState,
   setStateForReps,
   setStateForRepsArray,
-  setStateForMaxNumbers
+  setStateForMaxNumbers,
+  showTimerModalState,
+  setStateForShowTimerModal
 }: NumberedMissRepButtonProps) => {
-
-  const [showTimerModal, setShowTimerModal] = useState(false);
 
   const recoveryTime = 10 * repCount;
 
@@ -38,7 +37,7 @@ const NumberedMissRepButton = ({
       repCount
     ]);
 
-    setShowTimerModal(true);
+    setStateForShowTimerModal(true);
 
     setTimeout(() => {
       setStateForMaxNumbers(true);
@@ -52,18 +51,10 @@ const NumberedMissRepButton = ({
       <button
         className={styles.repButton}
         onClick={handleClick}
-        disabled={showTimerModal}
+        disabled={showTimerModalState}
       >
         {repCount}
       </button>
-      {showTimerModal && createPortal(
-        <TimerModal
-          onClose={() => setShowTimerModal(false)}
-          recoveryTime={recoveryTime}
-          setStateForShowTimerModal={setShowTimerModal}
-        />,
-        document.body
-      )}
     </>
   )
 };

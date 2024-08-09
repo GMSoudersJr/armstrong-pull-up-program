@@ -71,6 +71,7 @@ const SetInfo = ({
         <button
           className={styles.actionButton}
           onClick={handleMiss}
+          disabled={showTimerModal}
         >
           {crossMarkButtonEmoji}
         </button>

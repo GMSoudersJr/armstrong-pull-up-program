@@ -49,12 +49,17 @@ const MaxTrainingSetsDisplay = ({
         )}
       </h3>
       <div className={styles.actionButtonsContainer}>
-        <button className={styles.actionButton} onClick={handleMiss}>
+        <button
+          className={styles.actionButton}
+          onClick={handleMiss}
+          disabled={showTimerModal}
+        >
           {crossMarkButtonEmoji}
         </button>
         <button
           className={styles.actionButton}
           onClick={handleComplete}
+          disabled={showTimerModal}
         >
           {checkMarkButtonEmoji}
         </button>
