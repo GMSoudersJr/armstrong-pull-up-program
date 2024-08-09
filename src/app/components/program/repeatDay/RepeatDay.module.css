@@ -1,0 +1,11 @@
+.repeatDayContainer {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+}
+
+.repeatButtonContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
