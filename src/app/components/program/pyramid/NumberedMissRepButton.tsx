@@ -26,8 +26,6 @@ const NumberedMissRepButton = ({
   setStateForShowTimerModal
 }: NumberedMissRepButtonProps) => {
 
-  const recoveryTime = 10 * repCount;
-
   function handleClick() {
 
     setStateForReps(repCount);
@@ -39,10 +37,9 @@ const NumberedMissRepButton = ({
 
     setStateForShowTimerModal(true);
 
-    setTimeout(() => {
-      setStateForMaxNumbers(true);
-      onMissed(false);
-    }, 1_000 * recoveryTime);
+    onMissed(false);
+
+    setStateForMaxNumbers(true);
 
   };
 
