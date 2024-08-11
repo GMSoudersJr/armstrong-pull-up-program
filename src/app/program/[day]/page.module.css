@@ -14,10 +14,4 @@
   gap: 0.5rem;
 }
 
-.repInfoSection {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  align-items: center;
-  width: 20rem;
-}
+

@@ -1,7 +1,17 @@
-.repeatDayContainer {
+.main {
   display: flex;
   flex-direction: column;
-  width: 20rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem;
+  min-height: 100vh;
+}
+
+.headingContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 0.5rem;
 }
 
 .repeatButtonContainer {

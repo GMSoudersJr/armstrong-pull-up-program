@@ -9,56 +9,56 @@ import MaxTrainingSets from '@/components/program/maxTrainingSets/MaxTrainingSet
 import { DAYS } from '@/const';
 import RepeatDayButton from '@/components/program/repeatDay/RepeatDayButton';
 
-const RepeatDay = () => {
+interface RepeatDayProps {
+  dayNumber: number;
+}
+
+const RepeatDay = ({ dayNumber }: RepeatDayProps) => {
 
   const repeatableDays = DAYS.slice(0, 4);
   const [mostDifficultDay, setMostDifficultDay] = useState(0);
 
   return (
-    <div className={styles.repeatDayContainer}>
-
+    <main className={styles.main}>
       {!mostDifficultDay ? (
-        <div className={styles.repeatButtonContainer}>
-          {repeatableDays.map((day, i) => {
-            return (
-              <RepeatDayButton
-                key={day.path}
-                name={day.name}
-                setStateForMostDifficultDay={setMostDifficultDay}
-                dayNumber={i + 1}
-              />
-            )
-          })}
-        </div>
-
-      ) : (
-        <div className={styles.mostDifficultDayContainer}>
-          <div className={styles.heading}>
-            <h1>
-              {repeatableDays.filter((day) => {
-                return day.number === mostDifficultDay
-              })[0].label.toUpperCase()}
-            </h1>
-            <h2>
-              {repeatableDays.filter((day) => {
-                return day.number === mostDifficultDay
-              })[0].heading2.toUpperCase()}
-            </h2>
-            <h3>
-              {repeatableDays.filter((day) => {
-                return day.number === mostDifficultDay
-              })[0].heading3.toUpperCase()}
-            </h3>
+        <>
+          <div className={styles.headingContainer}>
+            <h1>{DAYS.filter((day) => day.number === dayNumber)[0].label}</h1>
+            <h2>{DAYS.filter((day) => day.number === dayNumber)[0].heading2}</h2>
+            <h3>{DAYS.filter((day) => day.number === dayNumber)[0].heading3}</h3>
           </div>
-          {mostDifficultDay === 1 && <FiveMaxEffortSets />}
-          {mostDifficultDay === 2 && <Pyramid />}
-          {mostDifficultDay === 3 && <ThreeTrainingSetsThreeGrips />}
-          {mostDifficultDay === 4 && <MaxTrainingSets />}
 
-        </div>
+          <div className={styles.repeatButtonContainer}>
+            {repeatableDays.map((day, i) => {
+              return (
+                <RepeatDayButton
+                  key={day.path}
+                  name={day.name}
+                  setStateForMostDifficultDay={setMostDifficultDay}
+                  dayNumber={i + 1}
+                />
+              )
+            })}
+          </div>
+        </>
+      ) : (
+        <>
+          <div className={styles.headingContainer}>
+            <h1>{DAYS.filter((day) => day.number === dayNumber)[0].label}</h1>
+            <h2>{DAYS.filter((day) => day.number === mostDifficultDay)[0].heading2}</h2>
+            <h3>{DAYS.filter((day) => day.number === mostDifficultDay)[0].heading3}</h3>
+          </div>
+
+          <div className={styles.mostDifficultDayContainer}>
+            {mostDifficultDay === 1 && <FiveMaxEffortSets dayNumber={dayNumber}/>}
+            {mostDifficultDay === 2 && <Pyramid dayNumber={dayNumber}/>}
+            {mostDifficultDay === 3 && <ThreeTrainingSetsThreeGrips dayNumber={dayNumber}/>}
+            {mostDifficultDay === 4 && <MaxTrainingSets dayNumber={dayNumber}/>}
+          </div>
+        </>
 
       )}
-    </div>
+    </main>
   );
 };
 

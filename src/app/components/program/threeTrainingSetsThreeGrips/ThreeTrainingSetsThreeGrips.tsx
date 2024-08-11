@@ -1,12 +1,18 @@
 'use client';
 
+import styles from './ThreeTrainingSetsThreeGrips.module.css';
 import { useState } from "react";
 import TrainingSetRepsInput from "@/components/program/TrainingSetRepsInput";
 import GripSelector from "@/components/program/threeTrainingSetsThreeGrips/GripSelector";
 import SetInfo from "@/components/program/threeTrainingSetsThreeGrips/SetInfo";
 import DayComplete from "@/components/program/DayComplete";
+import { DAYS } from "@/const";
 
-const ThreeTrainingSetsThreeGrips = () => {
+interface ThreeTrainingSetsThreeGripsProps {
+  dayNumber: number;
+};
+
+const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsProps) => {
   let initialCompletedGrips: string[] = [];
 
   const [trainingSetReps, setTrainingSetReps] = useState(0);
@@ -16,28 +22,63 @@ const ThreeTrainingSetsThreeGrips = () => {
   const dayComplete = completedGrips.length === 3;
 
   return (
-    <section>
-      {dayComplete ? (
-        <DayComplete />
-      ) : !trainingSetReps ? (
-        <TrainingSetRepsInput
-          setStateForTrainingSetReps={setTrainingSetReps}
-        />
-      ) : !currentGrip ? (
-          <GripSelector
-            completedGripsState={completedGrips}
-            setStateForCurrentGrip={setCurrentGrip}
-          />
+    <>
+      {dayNumber === 5 ? (
+        <section>
+          {dayComplete ? (
+            <DayComplete />
+          ) : !trainingSetReps ? (
+            <TrainingSetRepsInput
+              setStateForTrainingSetReps={setTrainingSetReps}
+            />
+          ) : !currentGrip ? (
+              <GripSelector
+                completedGripsState={completedGrips}
+                setStateForCurrentGrip={setCurrentGrip}
+              />
+          ) : (
+              <SetInfo
+                trainingSetReps={trainingSetReps}
+                currentGrip={currentGrip}
+                completedGrips={completedGrips}
+                updateCurrentGrip={setCurrentGrip}
+                updateCompletedGrips={setCompletedGrips}
+              />
+          )}
+        </section>
       ) : (
-          <SetInfo
-            trainingSetReps={trainingSetReps}
-            currentGrip={currentGrip}
-            completedGrips={completedGrips}
-            updateCurrentGrip={setCurrentGrip}
-            updateCompletedGrips={setCompletedGrips}
-          />
+        <main className={styles.main}>
+          <div className={styles.headingContainer}>
+            <h1>{DAYS.filter((day) => day.number === dayNumber)[0].label}</h1>
+            <h2>{DAYS.filter((day) => day.number === dayNumber)[0].heading2}</h2>
+            <h3>{DAYS.filter((day) => day.number === dayNumber)[0].heading3}</h3>
+          </div>
+          <section>
+
+            {dayComplete ? (
+              <DayComplete />
+            ) : !trainingSetReps ? (
+              <TrainingSetRepsInput
+                setStateForTrainingSetReps={setTrainingSetReps}
+              />
+            ) : !currentGrip ? (
+                <GripSelector
+                  completedGripsState={completedGrips}
+                  setStateForCurrentGrip={setCurrentGrip}
+                />
+            ) : (
+                <SetInfo
+                  trainingSetReps={trainingSetReps}
+                  currentGrip={currentGrip}
+                  completedGrips={completedGrips}
+                  updateCurrentGrip={setCurrentGrip}
+                  updateCompletedGrips={setCompletedGrips}
+                />
+            )}
+          </section>
+        </main>
       )}
-    </section>
+    </>
   )
 };
 

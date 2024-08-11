@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import {PageLink} from '@/components/PageLink';
 import styles from './page.module.css';
 import { DAYS } from '@/const';
-import Program from '@/components/program/Program';
 
 export const metadata: Metadata = {
   title: "Program | Armstrong Pull-up Program",
@@ -12,7 +11,15 @@ const ProgramPage = () => {
 
   return (
     <main className={styles.main}>
-      <Program />
+      {DAYS.map((day) => {
+      return (
+          <PageLink
+            key={day.path}
+            path={`/program/${day.number}`}
+            label={day.label}
+          />
+      )
+      })}
     </main>
   )
 }
