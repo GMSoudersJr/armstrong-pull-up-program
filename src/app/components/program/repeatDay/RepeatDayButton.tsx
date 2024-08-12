@@ -22,7 +22,12 @@ const RepeatDayButton = ({
       className={styles.repeatDayButton}
       onClick={handleClick}
     >
-      {`D-${dayNumber} ${name?.toUpperCase()}`}
+      <h3>
+        {`Day ${dayNumber}`}
+      </h3>
+      <h4>
+        {`${name?.toUpperCase()}`}
+      </h4>
     </button>
 
   )
