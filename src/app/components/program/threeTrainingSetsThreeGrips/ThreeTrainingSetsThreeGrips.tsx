@@ -7,16 +7,18 @@ import GripSelector from "@/components/program/threeTrainingSetsThreeGrips/GripS
 import SetInfo from "@/components/program/threeTrainingSetsThreeGrips/SetInfo";
 import DayComplete from "@/components/program/DayComplete";
 import { DAYS } from "@/const";
+import {TGrip} from '@/app/lib/definitions';
 
 interface ThreeTrainingSetsThreeGripsProps {
   dayNumber: number;
 };
 
 const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsProps) => {
-  let initialCompletedGrips: string[] = [];
+  let initialCompletedGrips: TGrip[] = [];
+  let initalGrip: TGrip = '';
 
   const [trainingSetReps, setTrainingSetReps] = useState(0);
-  const [currentGrip, setCurrentGrip] = useState('');
+  const [currentGrip, setCurrentGrip] = useState(initalGrip);
   const [completedGrips, setCompletedGrips] = useState(initialCompletedGrips);
 
   const dayComplete = completedGrips.length === 3;
@@ -26,7 +28,15 @@ const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsP
       {dayNumber === 5 ? (
         <section>
           {dayComplete ? (
-            <DayComplete />
+            <DayComplete
+              dayData={{
+                dayNumber: 5,
+                dayAbbreviation: '3S3G',
+                trainingSetsCount: 9,
+                grips: completedGrips,
+                trainingSetReps: trainingSetReps,
+              }}
+            />
           ) : !trainingSetReps ? (
             <TrainingSetRepsInput
               setStateForTrainingSetReps={setTrainingSetReps}
@@ -56,7 +66,15 @@ const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsP
           <section>
 
             {dayComplete ? (
-              <DayComplete />
+              <DayComplete
+                dayData={{
+                  dayNumber: 3,
+                  dayAbbreviation: '3S3G',
+                  trainingSetsCount: 9,
+                  grips: completedGrips,
+                  trainingSetReps: trainingSetReps,
+                }}
+              />
             ) : !trainingSetReps ? (
               <TrainingSetRepsInput
                 setStateForTrainingSetReps={setTrainingSetReps}

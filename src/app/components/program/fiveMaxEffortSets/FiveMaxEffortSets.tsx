@@ -33,7 +33,13 @@ const FiveMaxEffortSets = ({ dayNumber }: FiveMaxEffortSetsProps) => {
       <section className={styles.repInfoSection}>
         <SetsTable repsArray={repsArray}/>
         {dayComplete ? (
-          <DayComplete />
+          <DayComplete
+            dayData={{
+              dayNumber: 5,
+              dayAbbreviation: '5MES',
+              sets: repsArray
+            }}
+          />
         ) : (
           <>
             {repsArray.length > 0 &&
@@ -82,7 +88,13 @@ const FiveMaxEffortSets = ({ dayNumber }: FiveMaxEffortSetsProps) => {
       <section className={styles.repInfoSection}>
         <SetsTable repsArray={repsArray}/>
         {dayComplete ? (
-          <DayComplete />
+          <DayComplete
+            dayData={{
+              dayNumber: 1,
+              dayAbbreviation: '5MES',
+              sets: repsArray
+            }}
+          />
         ) : (
           <>
             {repsArray.length > 0 &&

@@ -41,7 +41,7 @@ const MaxTrainingSetsDisplay = ({
       </div>
       <h3 className={styles.maxSetsText}>
         {completedTrainingSets < 9 ? (
-          `AT LEAST ${9 - completedTrainingSets} MORE ${isSingular(9 - completedTrainingSets) ? 'SET' : 'SETS'} OF ${trainingSetReps}`
+          `ONLY ${9 - completedTrainingSets} MORE ${isSingular(9 - completedTrainingSets) ? 'SET' : 'SETS'} OF ${trainingSetReps}`
         ) : completedTrainingSets === 9 ? (
         `DO ANOTHER`
         ) : (

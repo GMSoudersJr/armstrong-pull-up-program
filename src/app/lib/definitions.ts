@@ -6,4 +6,21 @@ type TDailyInstruction = {
   link?: string
 }
 
-type TGrip = 'neutral' | 'wide' | 'close' | undefined;
+type TDayAbrreviation = '5MES' | 'PYRA' | '3S3G' | 'MXSS';
+
+export type TGrip = 'neutral' | 'wide' | 'close' | 'pronated' | 'supinated' | string;
+
+type TDayNumber = 1 | 2 | 3 | 4 | 5;
+
+export type TDayComplete = {
+  date?: string;
+  weekNumber?: number;
+  dayNumber: TDayNumber;
+  dayAbbreviation: TDayAbrreviation;
+  sets?: number[]
+  grips?: TGrip[];
+  success?: boolean;
+  trainingSetReps?: number;
+  trainingSetsCount?: number;
+}
+

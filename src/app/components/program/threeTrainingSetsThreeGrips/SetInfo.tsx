@@ -3,13 +3,14 @@ import styles from './SetInfo.module.css';
 import { Dispatch, SetStateAction, useState } from 'react';
 import {createPortal} from 'react-dom';
 import TimerModal from '../TimerModal';
+import {TGrip} from '@/app/lib/definitions';
 
 interface SetInfoProps {
   trainingSetReps: number;
-  currentGrip: string;
-  completedGrips: string[];
-  updateCurrentGrip: Dispatch<SetStateAction<string>>;
-  updateCompletedGrips: Dispatch<SetStateAction<string[]>>;
+  currentGrip: TGrip;
+  completedGrips: TGrip[];
+  updateCurrentGrip: Dispatch<SetStateAction<TGrip>>;
+  updateCompletedGrips: Dispatch<SetStateAction<TGrip[]>>;
 }
 
 const recoveryTime = 60;
@@ -53,14 +54,14 @@ const SetInfo = ({
   return (
     <section className={styles.setInfoContainer}>
       <h2>
-        COMPLETED SETS
+        COMPLETED SETS:
         <span className={styles.setCount}>
           {` ${completedSetCount}`}
         </span>
       </h2>
 
       {completedSetCount < 3 ? (
-        <h3>{trainingSetReps} {currentGrip.toUpperCase()} PULL-UPS</h3>
+        <h3>{trainingSetReps} {currentGrip?.toUpperCase()} PULL-UPS</h3>
       ) : completedGrips.length < 2 ? (
         <h3>CHOOSE NEXT GRIP</h3>
       ) : (

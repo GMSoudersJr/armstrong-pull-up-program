@@ -18,7 +18,7 @@ export const DAYS = [
   {
     path: '/program/day-three',
     label: 'DAY 3',
-    name: 'three training sets with three grips',
+    name: '3 training sets with 3 grips',
     number: 3,
     heading2: '3 TRAINING SETS / 3 GRIPS',
     heading3: '60 SECONDS RECOVERY'

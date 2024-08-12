@@ -33,7 +33,13 @@ const Pyramid = ({ dayNumber }: PyramidProps) => {
         <section className={styles.pyramidSectionContainer}>
           <PyramidDisplay repsArray={repsArray} />
           {dayComplete ? (
-            <DayComplete />
+            <DayComplete
+              dayData={{
+                dayAbbreviation: "PYRA",
+                dayNumber: 5,
+                sets: repsArray
+              }}
+            />
           ) : (
             <>
               <h3 className={styles.doRepsText}>
@@ -121,7 +127,13 @@ const Pyramid = ({ dayNumber }: PyramidProps) => {
           <section className={styles.pyramidSectionContainer}>
             <PyramidDisplay repsArray={repsArray} />
             {dayComplete ? (
-              <DayComplete />
+              <DayComplete
+                dayData={{
+                  dayAbbreviation: "PYRA",
+                  dayNumber: 2,
+                  sets: repsArray
+                }}
+              />
             ) : (
               <>
                 <h3 className={styles.doRepsText}>
