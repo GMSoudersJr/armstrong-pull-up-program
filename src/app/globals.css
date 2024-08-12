@@ -41,16 +41,15 @@
 }
 
 html {
-  font-family: var(--font-pontanoSans);
+  font-family: var(--font-ptSans);
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-domine);
+  font-family: var(--font-nunito);
 }
 
 p {
-
-  font-family: var(--font-pontanoSans);
+  font-family: var(--font-ptSans);
 }
 
 ul > li {

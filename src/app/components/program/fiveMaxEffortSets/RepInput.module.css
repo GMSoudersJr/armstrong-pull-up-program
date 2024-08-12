@@ -1,7 +1,7 @@
 .repInput {
   padding: 0.5rem 0.8rem;
   font-size: 1.5rem;
-  font-family: var(--font-pontanoSans);
+  font-family: var(--font-ptSans);
   text-align: center;
   width: min-content;
 }
