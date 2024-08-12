@@ -1,6 +1,4 @@
 import { Metadata } from 'next';
-import styles from './page.module.css';
-import { DAYS } from '@/const';
 import FiveMaxEffortSets from '@/components/program/fiveMaxEffortSets/FiveMaxEffortSets';
 import Pyramid from '@/components/program/pyramid/Pyramid';
 import ThreeTrainingSetsThreeGrips from '@/components/program/threeTrainingSetsThreeGrips/ThreeTrainingSetsThreeGrips';
@@ -14,7 +12,6 @@ export const metadata: Metadata = {
 
 const DayNumberPage = ({ params }: { params: { day: string } }) => {
 
-  console.log("dayNumber", params);
   const { day } = params;
   const dayNumber = Number(day);
 
