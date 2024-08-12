@@ -5,6 +5,7 @@ import {
   useId,
   SyntheticEvent
 } from 'react';
+
 import styles from './RepInput.module.css';
 
 interface RepInputProps {
@@ -51,9 +52,9 @@ const RepInput = ({
   return (
     <section className={styles.repInputContainer}>
       <label className={styles.repInputLabel} htmlFor={repInputId}>
-        <h4>
-          REPS
-        </h4>
+        <h3>
+          {`SET ${repsArrayState.length + 1} REPS`}
+        </h3>
       </label>
       <input
         id={repInputId}

@@ -6,7 +6,7 @@ import {
   SyntheticEvent
 } from 'react';
 
-import styles from '@/components/program//TrainingSetRepsInput.module.css';
+import styles from './TrainingSetRepsInput.module.css';
 
 interface TrainingSetRepsInputProps {
   setStateForTrainingSetReps: Dispatch<SetStateAction<number>>;

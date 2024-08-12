@@ -1,4 +1,4 @@
-import { oncomingFistEmoji } from "@/emojis";
+import { oncomingFistEmoji, floppyDiskEmoji } from "@/emojis";
 import styles from './DayComplete.module.css';
 
 const DayComplete = () => {
@@ -9,9 +9,9 @@ const DayComplete = () => {
         {oncomingFistEmoji}
       </span>
        DAY COMPLETE
-      <span className={styles.emoji}>
-        {oncomingFistEmoji}
-      </span>
+      <button className={`${styles.saveButton} ${styles.emoji}`}>
+        {floppyDiskEmoji}
+      </button>
     </h1>
   )
 };
