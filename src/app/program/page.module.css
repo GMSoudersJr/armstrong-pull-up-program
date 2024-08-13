@@ -11,5 +11,4 @@
   display: flex;
   flex-direction: column;
   gap: 1.75rem;
-  place-self: bottom;
 }
