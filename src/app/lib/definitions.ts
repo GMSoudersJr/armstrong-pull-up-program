@@ -6,7 +6,7 @@ type TDailyInstruction = {
   link?: string
 }
 
-type TDayAbrreviation = '5MES' | 'PYRA' | '3S3G' | 'MXSS';
+type TDayAbrreviation = '5MES' | 'PYRA' | '3S3G' | 'MXTS';
 
 export type TGrip = 'neutral' | 'wide' | 'close' | 'pronated' | 'supinated' | string;
 

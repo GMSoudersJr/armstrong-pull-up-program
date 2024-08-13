@@ -23,9 +23,10 @@ const MaxTrainingSets = ({ dayNumber }: MaxTrainingSetsProps) => {
           {dayComplete ? (
             <DayComplete
               dayData={{
-                dayAbbreviation: 'MXSS',
+                dayAbbreviation: 'MXTS',
                 dayNumber: 5,
                 trainingSetsCount: completedTrainingSets,
+                trainingSetReps: trainingSetReps,
                 success: completedTrainingSets >= 9
               }}
             />
@@ -53,9 +54,10 @@ const MaxTrainingSets = ({ dayNumber }: MaxTrainingSetsProps) => {
             {dayComplete ? (
               <DayComplete
                 dayData={{
-                  dayAbbreviation: 'MXSS',
+                  dayAbbreviation: 'MXTS',
                   dayNumber: 4,
                   trainingSetsCount: completedTrainingSets,
+                trainingSetReps: trainingSetReps,
                   sets: [ completedTrainingSets ],
                   success: completedTrainingSets >= 9
                 }}
