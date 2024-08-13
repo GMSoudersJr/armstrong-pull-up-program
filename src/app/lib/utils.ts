@@ -1,3 +1,5 @@
+import type { TDailyInstruction } from "./definitions";
+
 export async function getAllDailyInstructions(): Promise<TDailyInstruction[]>  {
 
   const response = await fetch('http://localhost:3000/api/getStarted');

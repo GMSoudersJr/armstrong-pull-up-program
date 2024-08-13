@@ -11,6 +11,10 @@ const ProgramPage = () => {
 
   return (
     <main className={styles.main}>
+      <h1>
+        GET STARTED!
+      </h1>
+      <div className={styles.pageLinksContainer}>
       {DAYS.map((day) => {
       return (
           <PageLink
@@ -20,6 +24,7 @@ const ProgramPage = () => {
           />
       )
       })}
+      </div>
     </main>
   )
 }

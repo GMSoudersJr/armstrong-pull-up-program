@@ -1,4 +1,4 @@
-type TDailyInstruction = {
+export type TDailyInstruction = {
   id: number;
   day: number;
   title: string;
