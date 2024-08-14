@@ -9,10 +9,12 @@ import MaxTrainingSets from '@/components/program/maxTrainingSets/MaxTrainingSet
 import { DAYS } from '@/const';
 import ChooseProgramDayButton from '@/components/program/ChooseProgramDayButton';
 import RepeatDay from './repeatDay/RepeatDay';
+import IDB from '@/data/indexedDB';
 
 const Program = () => {
 
   const [programDayNumber, setProgramDayNumber] = useState(0);
+  IDB();
 
   return (
     <>

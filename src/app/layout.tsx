@@ -19,11 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={
-          `${nunito.variable}
-        ${ptSans.variable}
-        ${notoColorEmoji.variable}`
-        }
+        className={`
+          ${nunito.variable}
+          ${ptSans.variable}
+          ${notoColorEmoji.variable}
+        `}
       >
         {children}
       </body>
