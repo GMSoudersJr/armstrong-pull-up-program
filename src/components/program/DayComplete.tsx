@@ -1,12 +1,16 @@
 import { oncomingFistEmoji, floppyDiskEmoji } from "@/emojis";
 import styles from './DayComplete.module.css';
 import type {TDayComplete} from "@/app/lib/definitions";
+
 import {
-  addCompletedDay,
   getIncompleteWeek,
-  getWeekNumber,
-  allWeeksComplete
-} from "@/data/indexedDB";
+  getCurrentWeekNumber,
+  addCompletedDayToWorkoutsStore,
+  shouldStartNewWeek,
+  addNewWeek,
+  updateThisWeekWithWorkoutNumber,
+  getWeekDataForWeekNumber,
+} from '@/indexedDBActions';
 
 interface DayCompleteProps {
   dayData: TDayComplete
@@ -23,20 +27,26 @@ const DayComplete = ({ dayData }: DayCompleteProps) => {
 
 
   async function handleClick() {
+    const startNewWeek = await shouldStartNewWeek();
+    let currentWeekNumber = await getCurrentWeekNumber();
+
+    if (startNewWeek) {
+      currentWeekNumber++;
+      addNewWeek(currentWeekNumber);
+    }
+
     const inProgessWeekNumber = await getIncompleteWeek();
-
-    console.log(await allWeeksComplete());
-
     console.log(inProgessWeekNumber);
-    const weekNumber = await getWeekNumber();
 
     dayData.date =
       new Date(Date.now()).toLocaleDateString('en-US', dateFormatOptions);
 
-    dayData.weekNumber = weekNumber;
+    dayData.weekNumber = currentWeekNumber;
 
     dayData.id = `${dayData.weekNumber}-${dayData.dayNumber}`
-    addCompletedDay('workoutsStore', dayData);
+    addCompletedDayToWorkoutsStore(dayData);
+    const weekDataToUpdate = await getWeekDataForWeekNumber(currentWeekNumber);
+    updateThisWeekWithWorkoutNumber(weekDataToUpdate, dayData.dayNumber);
   }
 
   return (

@@ -11,6 +11,7 @@ export type TStoreName = 'weeksStore' | 'workoutsStore';
 export type TWeek = {
   number: number;
   lastCompletedDay: number;
+  completedDays: number[];
 };
 
 type TDayAbrreviation = '5MES' | 'PYRA' | '3S3G' | 'MXTS';

@@ -18,11 +18,14 @@
       }
     ],
     "paths": {
+      "@/indexedDBActions": ["./src/app/lib/data/indexedDB/actions.ts"],
+      "@/indexedDBConstants": ["./src/app/lib/data/indexedDB/constants.ts"],
+      "@/definitions": ["./src/app/lib/definitions.ts"],
       "@/const": ["./src/app/lib/const.ts"],
       "@/emojis": ["./src/app/lib/emojis.ts"],
       "@/utils": ["./src/app/lib/utils.ts"],
       "@/data/*": ["./src/app/lib/data/*"],
-      "@/components/*": ["./src/app/components/*"],
+      "@/components/*": ["./src/components/*"],
       "@/fonts": ["./src/app/fonts"],
       "@/*": ["./src/*"]
     }
