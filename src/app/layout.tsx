@@ -1,4 +1,8 @@
-import { pontanoSans, domine, notoColorEmoji } from "@/fonts";
+import {
+  notoColorEmoji,
+  nunito,
+  ptSans
+} from "@/fonts";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -15,11 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={
-          `${domine.variable}
-        ${pontanoSans.variable}
-        ${notoColorEmoji.variable}`
-        }
+        className={`
+          ${nunito.variable}
+          ${ptSans.variable}
+          ${notoColorEmoji.variable}
+        `}
       >
         {children}
       </body>

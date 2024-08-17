@@ -1,25 +1,22 @@
-import { Metadata } from 'next';
+'use client';
+
 import {PageLink} from '@/components/PageLink';
 import styles from './page.module.css';
 import { DAYS } from '@/const';
+import { initializeIDB } from '@/data/indexedDB';
+import Program from '@/components/program/Program';
 
-export const metadata: Metadata = {
-  title: "Program | Armstrong Pull-up Program",
-  description: "Choose which day of the program to begin."
-}
 const ProgramPage = () => {
-
+  initializeIDB();
+  // TODO Get the next day
   return (
     <main className={styles.main}>
-      {DAYS.map((day) => {
-      return (
-          <PageLink
-            key={day.path}
-            path={day.path}
-            label={day.label}
-          />
-      )
-      })}
+      <h1>
+        GET STARTED!
+      </h1>
+      <div className={styles.pageLinksContainer}>
+        <Program />
+      </div>
     </main>
   )
 }

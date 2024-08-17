@@ -1,0 +1,39 @@
+.dayComplete {
+  width: 20rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+}
+
+.emoji {
+  font-family: var(--font-notoColorEmoji);
+}
+
+.saveButton {
+  background: none;
+  background-color: none;
+  border: none;
+  font-size: inherit;
+  position: relative;
+  animation: pulse 2s infinite;
+}
+
+.saveButton:hover {
+  cursor: pointer;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+
+
+}

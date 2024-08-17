@@ -1,0 +1,5 @@
+.numberedButton {
+  padding: 1rem;
+  font-family: var(--font-ptSans);
+  border-radius: 0.75rem;
+}

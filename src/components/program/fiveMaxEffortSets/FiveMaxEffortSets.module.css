@@ -7,8 +7,17 @@
   min-height: 100vh;
 }
 
-.pageLinksContainer {
+.headingContainer {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.repInfoSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  width: 20rem;
 }

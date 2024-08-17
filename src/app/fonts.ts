@@ -1,20 +1,20 @@
 import {
-  Pontano_Sans,
-  Domine,
-  Noto_Color_Emoji
+  Noto_Color_Emoji,
+  Nunito,
+  PT_Sans
 } from 'next/font/google';
 
-export const pontanoSans = Pontano_Sans({
-  subsets: ["latin"],
+export const nunito = Nunito({
+  subsets: ['latin'],
   weight: "variable",
-  variable: "--font-pontanoSans",
+  variable: "--font-nunito",
   display: "swap"
 });
 
-export const domine = Domine({
+export const ptSans = PT_Sans({
   subsets: ['latin'],
-  weight: "variable",
-  variable: "--font-domine",
+  weight: "400",
+  variable: "--font-ptSans",
   display: "swap"
 });
 
@@ -23,3 +23,4 @@ export const notoColorEmoji = Noto_Color_Emoji({
   subsets: ['emoji'],
   variable: "--font-notoColorEmoji",
 });
+
