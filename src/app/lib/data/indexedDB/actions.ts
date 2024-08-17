@@ -37,14 +37,7 @@ export function addNewWeek(weekNumber: number) {
       console.warn('error adding new week', err)
     }
 
-    request.onsuccess = () => {
-      console.log('successfully added a week')
-    }
-
-    transaction.oncomplete = () => {
-      console.log("Add a new week transaction complete.")
-      db?.close();
-    }
+    transaction.oncomplete = () => db?.close();
   }
 };
 //}}}
@@ -102,12 +95,7 @@ export function updateThisWeekWithWorkoutNumber(week: TWeek, workoutDayNumber: n
 
       request.onerror = (err) => console.warn(err)
 
-      request.onsuccess = () => console.log("successfully updated the week");
-
-      transaction.oncomplete = () => {
-        console.log("updated week transaction complete")
-        db?.close();
-      }
+      transaction.oncomplete = () => db?.close();
     }
   }
 };
@@ -129,10 +117,7 @@ export const addCompletedDayToWorkoutsStore = (payload: TDayComplete): void => {
 
       request.onerror = (err) => console.warn(err)
 
-      transaction.oncomplete = () => {
-        console.log("successfully added a day")
-        db?.close();
-      }
+      transaction.oncomplete = () => db?.close();
     }
   }
 };
@@ -211,20 +196,13 @@ export const shouldStartNewWeek = async (): Promise<boolean> => {
 
       const allWeeksRequest = objectStore.count();
       allWeeksRequest.onerror = () => reject(allWeeksRequest.error);
-      allWeeksRequest.onsuccess = () => {
-        console.log("all weeks count", allWeeksRequest.result);
-      }
 
       let range = IDBKeyRange.only(5);
       const lastCompletedDayIDX = objectStore.index('lastCompletedDayIDX');
       const completeWeeksRequest = lastCompletedDayIDX.count(range);
       completeWeeksRequest.onerror = () => reject(completeWeeksRequest.error);
-      completeWeeksRequest.onsuccess = () => {
-        console.log("completed weeks count", completeWeeksRequest.result);
-      }
 
       transaction.oncomplete = () => {
-        console.log("Should start a new week?", allWeeksRequest.result === completeWeeksRequest.result);
         resolve(allWeeksRequest.result === completeWeeksRequest.result);
         db?.close();
       }

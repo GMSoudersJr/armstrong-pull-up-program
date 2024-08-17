@@ -1,14 +1,11 @@
 'use client';
 
-import {PageLink} from '@/components/PageLink';
 import styles from './page.module.css';
-import { DAYS } from '@/const';
-import { initializeIDB } from '@/data/indexedDB';
+import { initializeIDB } from '@/data/indexedDB/index';
 import Program from '@/components/program/Program';
 
 const ProgramPage = () => {
   initializeIDB();
-  // TODO Get the next day
   return (
     <main className={styles.main}>
       <h1>

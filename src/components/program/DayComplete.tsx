@@ -3,7 +3,6 @@ import styles from './DayComplete.module.css';
 import type {TDayComplete} from "@/app/lib/definitions";
 
 import {
-  getIncompleteWeek,
   getCurrentWeekNumber,
   addCompletedDayToWorkoutsStore,
   shouldStartNewWeek,
@@ -34,9 +33,6 @@ const DayComplete = ({ dayData }: DayCompleteProps) => {
       currentWeekNumber++;
       addNewWeek(currentWeekNumber);
     }
-
-    const inProgessWeekNumber = await getIncompleteWeek();
-    console.log(inProgessWeekNumber);
 
     dayData.date =
       new Date(Date.now()).toLocaleDateString('en-US', dateFormatOptions);
