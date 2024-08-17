@@ -1,15 +1,9 @@
-import type {
-  TDayComplete,
-  TWeek,
-  TStoreName,
-} from "@/definitions";
-
-import {
-  dbName
-} from "@/indexedDBConstants";
+import type { TDayComplete, TWeek, TStoreName, } from "@/definitions";
+import { dbName } from "@/indexedDBConstants";
 
 let db: IDBDatabase | null = null;
 
+// MAKE_TRANSACTION {{{
 export function makeTransaction(storeName: TStoreName, mode: IDBTransactionMode) {
   if(!db) return;
 
@@ -21,7 +15,8 @@ export function makeTransaction(storeName: TStoreName, mode: IDBTransactionMode)
 
   return transaction;
 }
-
+//}}}
+// ADD_NEW_WEEK {{{
 export function addNewWeek(weekNumber: number) {
   const weekData: TWeek = {
     number: weekNumber,
@@ -52,7 +47,8 @@ export function addNewWeek(weekNumber: number) {
     }
   }
 };
-
+//}}}
+// GET_WEEK_DATA {{{
 export function getWeekDataForWeekNumber(weekNumber: number): Promise<TWeek> {
   const open = indexedDB.open(dbName);
   const storeName: TStoreName = 'weeksStore';
@@ -80,9 +76,10 @@ export function getWeekDataForWeekNumber(weekNumber: number): Promise<TWeek> {
     }
 
   });
-  
-}
 
+}
+//}}}
+// UPDATE_WEEK {{{
 export function updateThisWeekWithWorkoutNumber(week: TWeek, workoutDayNumber: number) {
   const open = indexedDB.open(dbName);
   const storeName: TStoreName = 'weeksStore';
@@ -114,7 +111,8 @@ export function updateThisWeekWithWorkoutNumber(week: TWeek, workoutDayNumber: n
     }
   }
 };
-
+//}}}
+// ADD_COMPLETED_DAY {{{
 export const addCompletedDayToWorkoutsStore = (payload: TDayComplete): void => {
   const open = indexedDB.open(dbName);
   const storeName: TStoreName = 'workoutsStore';
@@ -138,8 +136,8 @@ export const addCompletedDayToWorkoutsStore = (payload: TDayComplete): void => {
     }
   }
 };
-
-
+//}}}
+// GET_CURRENT_WEEK_NUMBER {{{
 export const getCurrentWeekNumber = (): Promise<number> => {
   const open = indexedDB.open(dbName);
   return new Promise<number>((resolve, reject) => {
@@ -167,7 +165,8 @@ export const getCurrentWeekNumber = (): Promise<number> => {
 
   });
 };
-
+//}}}
+// GET_INCOMPLETE_WEEK {{{
 export function getIncompleteWeek(): Promise<TWeek[]> {
   const open = indexedDB.open(dbName);
   return new Promise<TWeek[]>((resolve, reject) => {
@@ -195,7 +194,8 @@ export function getIncompleteWeek(): Promise<TWeek[]> {
   });
 
 };
-
+//}}}
+// SHOULD_START_NEW_WEEK? {{{
 export const shouldStartNewWeek = async (): Promise<boolean> => {
   const open = indexedDB.open(dbName);
 
@@ -234,56 +234,41 @@ export const shouldStartNewWeek = async (): Promise<boolean> => {
   });
 
 };
-
-export const getCurrentDay = (): Promise<number> => {
+//}}}
+// GET_LAST_COMPLETED_DAY {{{
+export const getLastCompletedDay = (): Promise<number> => {
   const open = indexedDB.open(dbName);
+  const storeName: TStoreName = 'weeksStore';
+
   return new Promise<number>((resolve, reject) => {
 
     open.onsuccess = () => {
       db = open.result;
-      let transaction = makeTransaction('weeksStore', 'readonly');
+      let transaction = makeTransaction(storeName, 'readonly');
       if (!transaction) return;
 
-      const objectStore = transaction.objectStore('weeksStore');
-      const request = objectStore.getAllKeys();
+      const objectStore = transaction.objectStore(storeName);
 
-      request.onerror = () => reject(request.error);
+      let range = IDBKeyRange.upperBound(4, false);
+      const lastCompletedDayIDX = objectStore.index('lastCompletedDayIDX');
+      const lastCompletedDayRequest: IDBRequest<TWeek[]> = lastCompletedDayIDX.getAll(range);
 
-      request.onsuccess = () => resolve(Number(request.result.at(-1)));
 
-      transaction.oncomplete = () => db?.close();
+      lastCompletedDayRequest.onerror = () => reject(lastCompletedDayRequest.error);
+
+      if (!lastCompletedDayRequest) return;
+      transaction.oncomplete = () => {
+        if (lastCompletedDayRequest.result === undefined || lastCompletedDayRequest.result.length === 0) {
+          resolve(0);
+        } else {
+          resolve(lastCompletedDayRequest.result[0].lastCompletedDay);
+        }
+        db?.close();
+      }
 
     }
 
   });
 
 };
-
-export const addWeek = (storeName: TStoreName, payload: TWeek) => {
-  const open = indexedDB.open(dbName);
-  open.onsuccess = () => {
-    db = open.result;
-    if ([db.objectStoreNames].find((storeName) => storeName === storeName)) {
-      const transaction = makeTransaction(storeName, 'readwrite');
-
-      if (!transaction) return;
-
-      const objectStore = transaction.objectStore(storeName);
-      const serialized = JSON.parse(JSON.stringify(payload));
-      const request = objectStore.add(serialized);
-
-      request.onerror = (err) => console.warn(err);
-
-      transaction.oncomplete = () => {
-        console.log("successfully added a week");
-        db?.close();
-      }
-    }
-  }
-
-};
-
-export const updateWeek = () => {
-
-};
-
+//}}}

@@ -1,10 +1,20 @@
-//import { WEEK_TEST_DATA } from "./testWeekData";
+import type { TStoreName } from "@/definitions";
+import { WEEK_TEST_DATA } from "./testWeekData";
 import { openRequest } from "@/indexedDBConstants";
-
-import { makeTransaction } from "./indexedDB/actions";
 
 let db: IDBDatabase | null = null;
 
+export function makeTransaction(storeName: TStoreName, mode: IDBTransactionMode) {
+  if(!db) return;
+
+  let transaction = db.transaction(storeName, mode);
+
+  transaction.onerror = (err) => {
+    console.warn(err);
+  }
+
+  return transaction;
+}
 
 //{{{ initializeIDB
 export const initializeIDB = (): void => {
@@ -39,7 +49,6 @@ export const initializeIDB = (): void => {
     db = openRequest.result;
     console.log("successfully opened the database", db);
 
-    // @ts-expect-error might not be imported
     if (typeof WEEK_TEST_DATA !== 'undefined') {
       let transaction = makeTransaction('weeksStore', 'readwrite');
       if (!transaction) return;
@@ -52,7 +61,6 @@ export const initializeIDB = (): void => {
       request.onerror = (err) => console.warn(err);
       request.onsuccess = () => {
         if (request.result.length === 0) {
-          // @ts-expect-error might not be imported
           WEEK_TEST_DATA.forEach((entry) => {
             const request = store.add(entry);
             request.onerror = (err) => console.warn(err);

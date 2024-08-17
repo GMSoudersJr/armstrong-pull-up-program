@@ -1,20 +1,23 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Program.module.css';
-import FiveMaxEffortSets from '@/components/program/fiveMaxEffortSets/FiveMaxEffortSets';
-import Pyramid from '@/components/program/pyramid/Pyramid';
-import ThreeTrainingSetsThreeGrips from '@/components/program/threeTrainingSetsThreeGrips/ThreeTrainingSetsThreeGrips';
-import MaxTrainingSets from '@/components/program/maxTrainingSets/MaxTrainingSets';
 import { DAYS } from '@/const';
-import ChooseProgramDayButton from '@/components/program/ChooseProgramDayButton';
-import RepeatDay from './repeatDay/RepeatDay';
-import IDB from '@/data/indexedDB';
+import {PageLink} from '../PageLink';
+import { getLastCompletedDay } from '@/indexedDBActions';
 
 const Program = () => {
 
   const [programDayNumber, setProgramDayNumber] = useState(0);
-  IDB();
+  const lastCompletedDay = getLastCompletedDay();
+
+  useEffect(() => {
+    lastCompletedDay
+    .then(value => setProgramDayNumber(value + 1))
+    .catch(error => console.warn(error));
+  }, []);
+
+  const onlyDay = DAYS.filter((day) => day.number === programDayNumber);
 
   return (
     <>
@@ -26,11 +29,10 @@ const Program = () => {
           <div className={styles.chooseProgramDayButtonContainer}>
             {DAYS.map((day) => {
               return(
-                <ChooseProgramDayButton
+                <PageLink
                   key={day.name}
-                  name={day.name}
-                  dayNumber={day.number}
-                  setStateForProgramDayNumber={setProgramDayNumber}
+                  path={`/program/${day.number}`}
+                  label={day.label}
                 />
               )
             })}
@@ -38,16 +40,16 @@ const Program = () => {
         </>
       ) : (
         <>
-          <div className={styles.headingContainer}>
-            <h1>{DAYS.filter((day) => day.number === programDayNumber)[0].label}</h1>
-            <h2>{DAYS.filter((day) => day.number === programDayNumber)[0].heading2}</h2>
-            <h3>{DAYS.filter((day) => day.number === programDayNumber)[0].heading3}</h3>
-          </div>
-          {programDayNumber === 1 && <FiveMaxEffortSets />}
-          {programDayNumber === 2 && <Pyramid />}
-          {programDayNumber === 3 && <ThreeTrainingSetsThreeGrips />}
-          {programDayNumber === 4 && <MaxTrainingSets />}
-          {programDayNumber === 5 && <RepeatDay />}
+          {onlyDay.map(day => {
+            return (
+              <PageLink
+                key={day.name}
+                path={`/program/${day.number}`}
+                label={day.label}
+              />
+            )
+          }
+          )}
         </>
       )}
     </>
