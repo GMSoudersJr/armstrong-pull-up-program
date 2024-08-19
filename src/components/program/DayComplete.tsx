@@ -13,6 +13,7 @@ import {
   updateThisWeekWithWorkoutNumber,
   getWeekDataForWeekNumber,
 } from '@/indexedDBActions';
+import TotalReps from "./TotalReps";
 
 interface DayCompleteProps {
   dayData: TDayComplete
@@ -51,24 +52,31 @@ const DayComplete = ({ dayData }: DayCompleteProps) => {
   }
 
   return (
-    <h1 className={styles.dayComplete}>
-      <span className={styles.emoji}>
+    <div className={styles.dayCompleteContainer}>
+      <h1 className={`${styles.oncomingFist} ${styles.emoji}`}>
         {oncomingFistEmoji}
-      </span>
-      {isDataSaved ? 'DAY COMPLETE' : 'SAVE PROGRESS'}
-      {isDataSaved ? (
-         <span className={styles.emoji}>
-         {checkMarkEmoji}
-        </span>
-      ) : (
-        <button
-          className={`${styles.saveButton} ${styles.emoji}`}
-          onClick={handleClick}
-        >
-          {floppyDiskEmoji}
-        </button>
-      )}
-    </h1>
+      </h1>
+      <div className={styles.totalReps}>
+        <TotalReps sets={dayData.sets} />
+      </div>
+      <h1 className={styles.message}>
+        {isDataSaved ? 'DAY COMPLETE' : 'SAVE PROGRESS'}
+      </h1>
+      <h1 className={styles.takeAction}>
+        {isDataSaved ? (
+           <span className={styles.emoji}>
+             {checkMarkEmoji}
+          </span>
+        ) : (
+          <button
+            className={`${styles.saveButton} ${styles.emoji}`}
+            onClick={handleClick}
+          >
+            {floppyDiskEmoji}
+          </button>
+        )}
+      </h1>
+    </div>
   )
 };
 

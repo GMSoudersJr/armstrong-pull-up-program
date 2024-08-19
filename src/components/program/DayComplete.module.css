@@ -1,12 +1,37 @@
-.dayComplete {
+.dayCompleteContainer {
   width: 20rem;
+  display: grid;
+  grid-template-columns: 1fr 4.836fr 1fr;
+  grid-template-rows: repeat(2, min-content);
+  align-items: center;
+  grid-template-areas:
+  "oncomingFist totalReps takeAction"
+  "oncomingFist message takeAction";
+}
+
+.oncomingFist {
+  grid-area: oncomingFist;
+}
+
+.totalReps {
+  place-self: center;
+  grid-area: totalReps;
+}
+
+.takeAction {
+  grid-area: takeAction;
+}
+
+.message {
   display: flex;
   justify-content: space-around;
   align-items: baseline;
+  grid-area: message;
 }
 
 .emoji {
   font-family: var(--font-notoColorEmoji);
+  font-size: 2rem;
 }
 
 .saveButton {
@@ -28,7 +53,7 @@
   }
 
   50% {
-    transform: scale(1.1);
+    transform: scale(1.3);
   }
 
   100% {

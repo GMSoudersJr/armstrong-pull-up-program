@@ -26,7 +26,7 @@ export type TDayComplete = {
   weekNumber?: number;
   dayNumber: TDayNumber;
   dayAbbreviation: TDayAbrreviation;
-  sets?: number[]
+  sets: number[]
   grips?: TGrip[];
   success?: boolean;
   trainingSetReps?: number;

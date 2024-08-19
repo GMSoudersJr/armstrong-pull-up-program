@@ -69,7 +69,6 @@ const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsP
             <h3>{DAYS.filter((day) => day.number === dayNumber)[0].heading3}</h3>
           </div>
           <section>
-
             {dayComplete ? (
               <DayComplete
                 dayData={{
