@@ -9,6 +9,8 @@ interface SetInfoProps {
   trainingSetReps: number;
   currentGrip: TGrip;
   completedGrips: TGrip[];
+  totalSets: number[];
+  updateTotalSets: Dispatch<SetStateAction<number[]>>;
   updateCurrentGrip: Dispatch<SetStateAction<TGrip>>;
   updateCompletedGrips: Dispatch<SetStateAction<TGrip[]>>;
 }
@@ -18,7 +20,9 @@ const recoveryTime = 60;
 const SetInfo = ({
   trainingSetReps,
   currentGrip,
+  totalSets,
   completedGrips,
+  updateTotalSets,
   updateCurrentGrip,
   updateCompletedGrips
 }: SetInfoProps) => {
@@ -40,6 +44,7 @@ const SetInfo = ({
     }
     if (completedSetCount <= 2) {
       setCompletedSetCount(completedSetCount => completedSetCount + 1);
+      updateTotalSets([...totalSets, trainingSetReps]);
       setShowTimerModal(true);
     } else {
       updateCompletedGrips([

@@ -16,10 +16,12 @@ interface ThreeTrainingSetsThreeGripsProps {
 const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsProps) => {
   let initialCompletedGrips: TGrip[] = [];
   let initalGrip: TGrip = '';
+  const initialTotalSets: number[] = [];
 
   const [trainingSetReps, setTrainingSetReps] = useState(0);
   const [currentGrip, setCurrentGrip] = useState(initalGrip);
   const [completedGrips, setCompletedGrips] = useState(initialCompletedGrips);
+  const [totalSets, setTotalSets] = useState(initialTotalSets);
 
   const dayComplete = completedGrips.length === 3;
 
@@ -34,6 +36,7 @@ const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsP
                 dayAbbreviation: '3S3G',
                 trainingSetsCount: 9,
                 grips: completedGrips,
+                sets: totalSets,
                 trainingSetReps: trainingSetReps,
               }}
             />
@@ -48,6 +51,8 @@ const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsP
               />
           ) : (
               <SetInfo
+                totalSets={totalSets}
+                updateTotalSets={setTotalSets}
                 trainingSetReps={trainingSetReps}
                 currentGrip={currentGrip}
                 completedGrips={completedGrips}
@@ -72,6 +77,7 @@ const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsP
                   dayAbbreviation: '3S3G',
                   trainingSetsCount: 9,
                   grips: completedGrips,
+                  sets: totalSets,
                   trainingSetReps: trainingSetReps,
                 }}
               />
@@ -86,6 +92,8 @@ const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsP
                 />
             ) : (
                 <SetInfo
+                  totalSets={totalSets}
+                  updateTotalSets={setTotalSets}
                   trainingSetReps={trainingSetReps}
                   currentGrip={currentGrip}
                   completedGrips={completedGrips}
