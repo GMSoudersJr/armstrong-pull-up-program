@@ -8,3 +8,4 @@ export const oncomingFistEmoji = '👊';
 export const counterClockwiseArrowsButtonEmoji = '🔄';
 export const nextTrackButtonEmoji = '⏭️';
 export const floppyDiskEmoji = '💾';
+export const checkMarkEmoji = '✔️';

@@ -1,4 +1,7 @@
-import { oncomingFistEmoji, floppyDiskEmoji } from "@/emojis";
+"use client";
+
+import { useState } from "react";
+import { oncomingFistEmoji, floppyDiskEmoji, checkMarkEmoji } from "@/emojis";
 import styles from './DayComplete.module.css';
 import type {TDayComplete} from "@/app/lib/definitions";
 
@@ -24,6 +27,7 @@ const dateFormatOptions: Intl.DateTimeFormatOptions = {
 
 const DayComplete = ({ dayData }: DayCompleteProps) => {
 
+  const [isDataSaved, setIsDataSaved] = useState(false);
 
   async function handleClick() {
     const startNewWeek = await shouldStartNewWeek();
@@ -40,9 +44,10 @@ const DayComplete = ({ dayData }: DayCompleteProps) => {
     dayData.weekNumber = currentWeekNumber;
 
     dayData.id = `${dayData.weekNumber}-${dayData.dayNumber}`
-    addCompletedDayToWorkoutsStore(dayData);
+    const dataSavedInIndexedDB = await addCompletedDayToWorkoutsStore(dayData);
     const weekDataToUpdate = await getWeekDataForWeekNumber(currentWeekNumber);
     updateThisWeekWithWorkoutNumber(weekDataToUpdate, dayData.dayNumber);
+    setIsDataSaved(dataSavedInIndexedDB);
   }
 
   return (
@@ -50,13 +55,19 @@ const DayComplete = ({ dayData }: DayCompleteProps) => {
       <span className={styles.emoji}>
         {oncomingFistEmoji}
       </span>
-       DAY COMPLETE
-      <button
-        className={`${styles.saveButton} ${styles.emoji}`}
-        onClick={handleClick}
-      >
-        {floppyDiskEmoji}
-      </button>
+      {isDataSaved ? 'DAY COMPLETE' : 'SAVE PROGRESS'}
+      {isDataSaved ? (
+         <span className={styles.emoji}>
+         {checkMarkEmoji}
+        </span>
+      ) : (
+        <button
+          className={`${styles.saveButton} ${styles.emoji}`}
+          onClick={handleClick}
+        >
+          {floppyDiskEmoji}
+        </button>
+      )}
     </h1>
   )
 };

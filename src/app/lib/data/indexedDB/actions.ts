@@ -45,6 +45,7 @@ export function addNewWeek(weekNumber: number) {
 export function getWeekDataForWeekNumber(weekNumber: number): Promise<TWeek> {
   const open = indexedDB.open(dbName);
   const storeName: TStoreName = 'weeksStore';
+
   return new Promise<TWeek>((resolve, reject) => {
 
     open.onsuccess = () => {
@@ -101,30 +102,37 @@ export function updateThisWeekWithWorkoutNumber(week: TWeek, workoutDayNumber: n
 };
 //}}}
 // ADD_COMPLETED_DAY {{{
-export const addCompletedDayToWorkoutsStore = (payload: TDayComplete): void => {
+export const addCompletedDayToWorkoutsStore = (payload: TDayComplete): Promise<boolean> => {
   const open = indexedDB.open(dbName);
   const storeName: TStoreName = 'workoutsStore';
-  open.onsuccess = () => {
-    db = open.result;
-    if ([db.objectStoreNames].find((storeName) => storeName === storeName)) {
-      const transaction = makeTransaction(storeName, 'readwrite');
 
-      if (!transaction) return;
+  return new Promise<boolean>((resolve, reject) => {
+    open.onsuccess = () => {
+      db = open.result;
+      if ([db.objectStoreNames].find((storeName) => storeName === storeName)) {
+        const transaction = makeTransaction(storeName, 'readwrite');
 
-      const objectStore = transaction.objectStore(storeName);
-      const serialized = JSON.parse(JSON.stringify(payload));
-      const request = objectStore.add(serialized);
+        if (!transaction) return;
 
-      request.onerror = (err) => console.warn(err)
+        const objectStore = transaction.objectStore(storeName);
+        const serialized = JSON.parse(JSON.stringify(payload));
+        const request = objectStore.add(serialized);
 
-      transaction.oncomplete = () => db?.close();
+        request.onerror = (err) => reject(err)
+
+        request.onsuccess = () => resolve(true);
+
+        transaction.oncomplete = () => db?.close();
+      }
     }
-  }
+
+  });
 };
 //}}}
 // GET_CURRENT_WEEK_NUMBER {{{
 export const getCurrentWeekNumber = (): Promise<number> => {
   const open = indexedDB.open(dbName);
+
   return new Promise<number>((resolve, reject) => {
 
     open.onsuccess = () => {
