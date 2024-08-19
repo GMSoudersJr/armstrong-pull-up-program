@@ -12,9 +12,10 @@ interface MaxTrainingSetsProps {
 }
 
 const MaxTrainingSets = ({ dayNumber }: MaxTrainingSetsProps) => {
+  const initialCompletedTrainingSets: number[] = [];
   const [trainingSetReps, setTrainingSetReps] = useState(0);
   const [dayComplete, setDayComplete] = useState(false);
-  const [completedTrainingSets, setCompletedTrainingSets] = useState(0);
+  const [completedTrainingSets, setCompletedTrainingSets] = useState(initialCompletedTrainingSets);
 
   return (
     <>
@@ -25,9 +26,10 @@ const MaxTrainingSets = ({ dayNumber }: MaxTrainingSetsProps) => {
               dayData={{
                 dayAbbreviation: 'MXTS',
                 dayNumber: 5,
-                trainingSetsCount: completedTrainingSets,
+                trainingSetsCount: completedTrainingSets.length,
+                sets: completedTrainingSets,
                 trainingSetReps: trainingSetReps,
-                success: completedTrainingSets >= 9
+                success: completedTrainingSets.length >= 9
               }}
             />
           ) : !trainingSetReps ? (
@@ -56,10 +58,10 @@ const MaxTrainingSets = ({ dayNumber }: MaxTrainingSetsProps) => {
                 dayData={{
                   dayAbbreviation: 'MXTS',
                   dayNumber: 4,
-                  trainingSetsCount: completedTrainingSets,
-                trainingSetReps: trainingSetReps,
-                  sets: [ completedTrainingSets ],
-                  success: completedTrainingSets >= 9
+                  trainingSetsCount: completedTrainingSets.length,
+                  trainingSetReps: trainingSetReps,
+                  sets: completedTrainingSets,
+                  success: completedTrainingSets.length >= 9
                 }}
               />
             ) : !trainingSetReps ? (

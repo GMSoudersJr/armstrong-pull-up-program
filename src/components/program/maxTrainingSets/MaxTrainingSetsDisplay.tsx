@@ -7,9 +7,9 @@ import TimerModal from "../TimerModal";
 
 interface MaxTrainingSetsDisplayProps {
   trainingSetReps: number;
-  updateCompletedTrainingSets: Dispatch<SetStateAction<number>>;
+  updateCompletedTrainingSets: Dispatch<SetStateAction<number[]>>;
   updateDayComplete: Dispatch<SetStateAction<boolean>>;
-  completedTrainingSets: number;
+  completedTrainingSets: number[];
 }
 
 const recoveryTime = 60;
@@ -24,7 +24,9 @@ const MaxTrainingSetsDisplay = ({
   const [showTimerModal, setShowTimerModal] = useState(false);
 
   function handleComplete() {
-    updateCompletedTrainingSets(completedTrainingSets => completedTrainingSets + 1);
+    updateCompletedTrainingSets(
+      [...completedTrainingSets, trainingSetReps]
+    );
     setShowTimerModal(true);
   }
 
@@ -36,13 +38,13 @@ const MaxTrainingSetsDisplay = ({
     <section className={styles.maxTrainingSetsContainer}>
       <div className={styles.completeSetsDisplay}>
         <h3>
-          COMPLETED {completedTrainingSets} {isSingular(completedTrainingSets) ? 'SET' : 'SETS'}
+          COMPLETED {completedTrainingSets.length} {isSingular(completedTrainingSets.length) ? 'SET' : 'SETS'}
         </h3>
       </div>
       <h3 className={styles.maxSetsText}>
-        {completedTrainingSets < 9 ? (
-          `ONLY ${9 - completedTrainingSets} MORE ${isSingular(9 - completedTrainingSets) ? 'SET' : 'SETS'} OF ${trainingSetReps}`
-        ) : completedTrainingSets === 9 ? (
+        {completedTrainingSets.length < 9 ? (
+          `ONLY ${9 - completedTrainingSets.length} MORE ${isSingular(9 - completedTrainingSets.length) ? 'SET' : 'SETS'} OF ${trainingSetReps}`
+        ) : completedTrainingSets.length === 9 ? (
         `DO ANOTHER`
         ) : (
         `... AND ANOTHER!`
