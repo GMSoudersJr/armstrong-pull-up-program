@@ -20,6 +20,7 @@ const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsP
   const [currentGrip, setCurrentGrip] = useState(initalGrip);
   const [completedGrips, setCompletedGrips] = useState(initialCompletedGrips);
   const [totalSets, setTotalSets] = useState(initialTotalSets);
+  const [savedDay, setSavedDay] = useState(false);
 
   const dayComplete = completedGrips.length === 3;
 
@@ -27,6 +28,7 @@ const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsP
     <section>
       {dayComplete ? (
         <DayComplete
+          setStateForSavedDay={setSavedDay}
           dayData={{
             dayNumber: dayNumber,
             dayAbbreviation: '3S3G',

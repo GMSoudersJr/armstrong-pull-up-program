@@ -15,11 +15,13 @@ const MaxTrainingSets = ({ dayNumber }: MaxTrainingSetsProps) => {
   const [trainingSetReps, setTrainingSetReps] = useState(0);
   const [dayComplete, setDayComplete] = useState(false);
   const [completedTrainingSets, setCompletedTrainingSets] = useState(initialCompletedTrainingSets);
+  const [savedDay, setSavedDay] = useState(false);
 
   return (
     <section>
       {dayComplete ? (
         <DayComplete
+          setStateForSavedDay={setSavedDay}
           dayData={{
             dayAbbreviation: 'MXTS',
             dayNumber: dayNumber,

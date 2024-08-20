@@ -23,15 +23,27 @@ const FiveMaxEffortSets = ({ dayNumber }: FiveMaxEffortSetsProps) => {
   const [reps, setReps] = useState(0);
   const [repsArray, setRepsArray] = useState(initialRepsArray);
   const [showTimerModal, setShowTimerModal] = useState(false);
+  const [savedDay, setSavedDay] = useState(false);
 
   const dayComplete = repsArray.length === 5;
 
 
   return (
     <section className={styles.repInfoSection}>
-      <SetsTable repsArray={repsArray}/>
+      {repsArray.length > 0 &&
+      <div className={styles.setInfo}>
+        <SetsTable repsArray={repsArray}/>
+        <RepsRemoveButton
+          repsArrayState={repsArray}
+          setStateForRepsArray={setRepsArray}
+          showTimerModalState={showTimerModal}
+          savedDay={savedDay}
+        />
+      </div>
+      }
       {dayComplete ? (
         <DayComplete
+          setStateForSavedDay={setSavedDay}
           dayData={{
             dayNumber: dayNumber,
             dayAbbreviation: '5MES',
@@ -40,13 +52,6 @@ const FiveMaxEffortSets = ({ dayNumber }: FiveMaxEffortSetsProps) => {
         />
       ) : (
         <>
-          {repsArray.length > 0 &&
-            <RepsRemoveButton
-              repsArrayState={repsArray}
-              setStateForRepsArray={setRepsArray}
-              showTimerModalState={showTimerModal}
-            />
-          }
           {repsArray.length < 5 &&
             <>
               <RepInput

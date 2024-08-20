@@ -26,12 +26,14 @@ const Pyramid = ({ dayNumber }: PyramidProps) => {
   const [dayComplete, setDayComplete] = useState(false);
   const [showMaxoutNumbers, setShowMaxoutNumbers] = useState(false);
   const [showTimerModal, setShowTimerModal] = useState(false);
+  const [savedDay, setSavedDay] = useState(false);
 
   return (
     <section className={styles.pyramidSectionContainer}>
       <PyramidDisplay repsArray={repsArray} />
       {dayComplete ? (
         <DayComplete
+          setStateForSavedDay={setSavedDay}
           dayData={{
             dayAbbreviation: "PYRA",
             dayNumber: dayNumber,

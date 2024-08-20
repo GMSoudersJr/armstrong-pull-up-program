@@ -7,5 +7,6 @@ export const rightFacingFistEmoji = '🤜';
 export const oncomingFistEmoji = '👊';
 export const counterClockwiseArrowsButtonEmoji = '🔄';
 export const nextTrackButtonEmoji = '⏭️';
+export const lastTrackButtonEmoji = '⏮️';
 export const floppyDiskEmoji = '💾';
 export const checkMarkEmoji = '✔️';

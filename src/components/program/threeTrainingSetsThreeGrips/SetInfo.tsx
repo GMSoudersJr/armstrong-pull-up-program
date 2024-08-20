@@ -31,6 +31,26 @@ const SetInfo = ({
   const [showTimerModal, setShowTimerModal] = useState(false);
 
   function handleMiss(): void {
+    if (completedSetCount == 2 && completedGrips.length == 2) {
+      updateCompletedGrips([
+        ...completedGrips,
+        currentGrip
+      ]);
+
+      updateCurrentGrip('');
+    }
+    if (completedSetCount <= 2) {
+      setCompletedSetCount(completedSetCount => completedSetCount + 1);
+      updateTotalSets([...totalSets, 0]);
+      setShowTimerModal(true);
+    } else {
+      updateCompletedGrips([
+        ...completedGrips,
+        currentGrip
+      ]);
+
+      updateCurrentGrip('');
+    }
   }
 
   function handleDone(): void {
@@ -77,7 +97,7 @@ const SetInfo = ({
         <button
           className={styles.actionButton}
           onClick={handleMiss}
-          disabled={showTimerModal}
+          disabled={showTimerModal || completedSetCount === 3}
         >
           {crossMarkButtonEmoji}
         </button>

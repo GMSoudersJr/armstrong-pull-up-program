@@ -5,3 +5,13 @@
   align-items: center;
   width: 20rem;
 }
+
+.setInfo {
+  display: grid;
+  grid-template-columns: 1fr 4.836fr 1fr;
+  grid-template-rows: min-content;
+  justify-items: center;
+  align-items: center;
+  grid-template-areas:
+  "back table .";
+}

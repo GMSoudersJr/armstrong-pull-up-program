@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { oncomingFistEmoji, floppyDiskEmoji, checkMarkEmoji } from "@/emojis";
 import styles from './DayComplete.module.css';
 import type {TDayComplete} from "@/app/lib/definitions";
@@ -16,7 +16,8 @@ import {
 import TotalReps from "./TotalReps";
 
 interface DayCompleteProps {
-  dayData: TDayComplete
+  dayData: TDayComplete;
+  setStateForSavedDay: Dispatch<SetStateAction<boolean>>;
 }
 
 const dateFormatOptions: Intl.DateTimeFormatOptions = {
@@ -26,7 +27,7 @@ const dateFormatOptions: Intl.DateTimeFormatOptions = {
   day: 'numeric'
 };
 
-const DayComplete = ({ dayData }: DayCompleteProps) => {
+const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
 
   const [isDataSaved, setIsDataSaved] = useState(false);
 
@@ -49,6 +50,7 @@ const DayComplete = ({ dayData }: DayCompleteProps) => {
     const weekDataToUpdate = await getWeekDataForWeekNumber(currentWeekNumber);
     updateThisWeekWithWorkoutNumber(weekDataToUpdate, dayData.dayNumber);
     setIsDataSaved(dataSavedInIndexedDB);
+    setStateForSavedDay(true);
   }
 
   return (

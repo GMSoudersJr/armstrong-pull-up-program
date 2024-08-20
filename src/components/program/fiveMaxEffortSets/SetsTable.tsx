@@ -10,15 +10,17 @@ const SetsTable = ({ repsArray }: SetsTableProps) => {
     <table className={styles.table}>
       <tbody className={styles.tableBody}>
         <tr className={styles.tableRow}>
+          <th className={styles.tableHead}>SET</th>
           {repsArray.map((reps, i) => {
             return (
               <th key={`${reps} in set ${i}`} className={styles.tableHead}>
-                {`SET ${(i + 1)}`}
+                {`${(i + 1)}`}
               </th>
             )
           })}
         </tr>
         <tr className={styles.tableRow}>
+          <td className={styles.tableData}>REPS</td>
           {repsArray.map((reps, i) => {
             return (
               <td key={`${reps} in set ${i}`} className={styles.tableData}>{reps}</td>

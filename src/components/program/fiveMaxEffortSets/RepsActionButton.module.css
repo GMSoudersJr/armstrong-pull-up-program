@@ -12,4 +12,5 @@
   font-family: var(--font-notoColorEmoji);
   padding: 0;
   margin: 0;
+  grid-area: back;
 }
