@@ -1,16 +1,14 @@
 'use client';
 
-import styles from './ThreeTrainingSetsThreeGrips.module.css';
 import { useState } from "react";
 import TrainingSetRepsInput from "@/components/program/TrainingSetRepsInput";
 import GripSelector from "@/components/program/threeTrainingSetsThreeGrips/GripSelector";
 import SetInfo from "@/components/program/threeTrainingSetsThreeGrips/SetInfo";
 import DayComplete from "@/components/program/DayComplete";
-import { DAYS } from "@/const";
-import {TGrip} from '@/app/lib/definitions';
+import {TDayNumber, TGrip} from '@/app/lib/definitions';
 
 interface ThreeTrainingSetsThreeGripsProps {
-  dayNumber: number;
+  dayNumber: TDayNumber;
 };
 
 const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsProps) => {
@@ -26,84 +24,39 @@ const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsP
   const dayComplete = completedGrips.length === 3;
 
   return (
-    <>
-      {dayNumber === 5 ? (
-        <section>
-          {dayComplete ? (
-            <DayComplete
-              dayData={{
-                dayNumber: 5,
-                dayAbbreviation: '3S3G',
-                trainingSetsCount: 9,
-                grips: completedGrips,
-                sets: totalSets,
-                trainingSetReps: trainingSetReps,
-              }}
-            />
-          ) : !trainingSetReps ? (
-            <TrainingSetRepsInput
-              setStateForTrainingSetReps={setTrainingSetReps}
-            />
-          ) : !currentGrip ? (
-              <GripSelector
-                completedGripsState={completedGrips}
-                setStateForCurrentGrip={setCurrentGrip}
-              />
-          ) : (
-              <SetInfo
-                totalSets={totalSets}
-                updateTotalSets={setTotalSets}
-                trainingSetReps={trainingSetReps}
-                currentGrip={currentGrip}
-                completedGrips={completedGrips}
-                updateCurrentGrip={setCurrentGrip}
-                updateCompletedGrips={setCompletedGrips}
-              />
-          )}
-        </section>
+    <section>
+      {dayComplete ? (
+        <DayComplete
+          dayData={{
+            dayNumber: dayNumber,
+            dayAbbreviation: '3S3G',
+            trainingSetsCount: 9,
+            grips: completedGrips,
+            sets: totalSets,
+            trainingSetReps: trainingSetReps,
+          }}
+        />
+      ) : !trainingSetReps ? (
+        <TrainingSetRepsInput
+          setStateForTrainingSetReps={setTrainingSetReps}
+        />
+      ) : !currentGrip ? (
+          <GripSelector
+            completedGripsState={completedGrips}
+            setStateForCurrentGrip={setCurrentGrip}
+          />
       ) : (
-        <main className={styles.main}>
-          <div className={styles.headingContainer}>
-            <h1>{DAYS.filter((day) => day.number === dayNumber)[0].label}</h1>
-            <h2>{DAYS.filter((day) => day.number === dayNumber)[0].heading2}</h2>
-            <h3>{DAYS.filter((day) => day.number === dayNumber)[0].heading3}</h3>
-          </div>
-          <section>
-            {dayComplete ? (
-              <DayComplete
-                dayData={{
-                  dayNumber: 3,
-                  dayAbbreviation: '3S3G',
-                  trainingSetsCount: 9,
-                  grips: completedGrips,
-                  sets: totalSets,
-                  trainingSetReps: trainingSetReps,
-                }}
-              />
-            ) : !trainingSetReps ? (
-              <TrainingSetRepsInput
-                setStateForTrainingSetReps={setTrainingSetReps}
-              />
-            ) : !currentGrip ? (
-                <GripSelector
-                  completedGripsState={completedGrips}
-                  setStateForCurrentGrip={setCurrentGrip}
-                />
-            ) : (
-                <SetInfo
-                  totalSets={totalSets}
-                  updateTotalSets={setTotalSets}
-                  trainingSetReps={trainingSetReps}
-                  currentGrip={currentGrip}
-                  completedGrips={completedGrips}
-                  updateCurrentGrip={setCurrentGrip}
-                  updateCompletedGrips={setCompletedGrips}
-                />
-            )}
-          </section>
-        </main>
+          <SetInfo
+            totalSets={totalSets}
+            updateTotalSets={setTotalSets}
+            trainingSetReps={trainingSetReps}
+            currentGrip={currentGrip}
+            completedGrips={completedGrips}
+            updateCurrentGrip={setCurrentGrip}
+            updateCompletedGrips={setCompletedGrips}
+          />
       )}
-    </>
+    </section>
   )
 };
 

@@ -8,28 +8,25 @@ import ThreeTrainingSetsThreeGrips from '@/components/program/threeTrainingSetsT
 import MaxTrainingSets from '@/components/program/maxTrainingSets/MaxTrainingSets';
 import { DAYS } from '@/const';
 import RepeatDayButton from '@/components/program/repeatDay/RepeatDayButton';
+import {TDayNumber} from '@/definitions';
+import DayHeadings from '../DayHeadings';
 
 interface RepeatDayProps {
-  dayNumber: number;
+  dayNumber: TDayNumber;
 }
 
 const RepeatDay = ({ dayNumber }: RepeatDayProps) => {
 
-  const repeatableDays = DAYS.slice(0, 4);
+  const REPEATABLE_DAYS = DAYS.slice(0, 4);
   const [mostDifficultDay, setMostDifficultDay] = useState(0);
 
   return (
     <main className={styles.main}>
       {!mostDifficultDay ? (
         <>
-          <div className={styles.headingContainer}>
-            <h1>{DAYS.filter((day) => day.number === dayNumber)[0].label}</h1>
-            <h2>{DAYS.filter((day) => day.number === dayNumber)[0].heading2}</h2>
-            <h3>{DAYS.filter((day) => day.number === dayNumber)[0].heading3}</h3>
-          </div>
-
+          <DayHeadings dayNumber={dayNumber} />
           <div className={styles.repeatButtonContainer}>
-            {repeatableDays.map((day, i) => {
+            {REPEATABLE_DAYS.map((day, i) => {
               return (
                 <RepeatDayButton
                   key={day.path}
@@ -43,11 +40,10 @@ const RepeatDay = ({ dayNumber }: RepeatDayProps) => {
         </>
       ) : (
         <>
-          <div className={styles.headingContainer}>
-            <h1>{DAYS.filter((day) => day.number === dayNumber)[0].label}</h1>
-            <h2>{DAYS.filter((day) => day.number === mostDifficultDay)[0].heading2}</h2>
-            <h3>{DAYS.filter((day) => day.number === mostDifficultDay)[0].heading3}</h3>
-          </div>
+          <DayHeadings
+            dayNumber={dayNumber}
+            mostDifficultDay={mostDifficultDay}
+          />
 
           <div className={styles.mostDifficultDayContainer}>
             {mostDifficultDay === 1 && <FiveMaxEffortSets dayNumber={dayNumber}/>}

@@ -18,7 +18,7 @@ type TDayAbrreviation = '5MES' | 'PYRA' | '3S3G' | 'MXTS';
 
 export type TGrip = 'neutral' | 'wide' | 'close' | 'pronated' | 'supinated' | string;
 
-type TDayNumber = 1 | 2 | 3 | 4 | 5;
+export type TDayNumber = 1 | 2 | 3 | 4 | 5;
 
 export type TDayComplete = {
   id?: string;

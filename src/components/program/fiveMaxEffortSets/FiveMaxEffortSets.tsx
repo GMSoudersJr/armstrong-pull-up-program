@@ -8,13 +8,13 @@ import RepsRemoveButton from "@/components/program/fiveMaxEffortSets/RepsRemoveB
 import SetsTable from "@/components/program/fiveMaxEffortSets/SetsTable";
 import {createPortal} from "react-dom";
 import TimerModal from "../TimerModal";
-import { DAYS } from "@/const";
 import DayComplete from "../DayComplete";
+import {TDayNumber} from "@/definitions";
 
 const recoveryTime = 90;
 
 interface FiveMaxEffortSetsProps {
-  dayNumber: number
+  dayNumber: TDayNumber;
 }
 
 const FiveMaxEffortSets = ({ dayNumber }: FiveMaxEffortSetsProps) => {
@@ -28,114 +28,54 @@ const FiveMaxEffortSets = ({ dayNumber }: FiveMaxEffortSetsProps) => {
 
 
   return (
-    <>
-    {dayNumber === 5 ? (
-      <section className={styles.repInfoSection}>
-        <SetsTable repsArray={repsArray}/>
-        {dayComplete ? (
-          <DayComplete
-            dayData={{
-              dayNumber: 5,
-              dayAbbreviation: '5MES',
-              sets: repsArray
-            }}
-          />
-        ) : (
-          <>
-            {repsArray.length > 0 &&
-              <RepsRemoveButton
+    <section className={styles.repInfoSection}>
+      <SetsTable repsArray={repsArray}/>
+      {dayComplete ? (
+        <DayComplete
+          dayData={{
+            dayNumber: dayNumber,
+            dayAbbreviation: '5MES',
+            sets: repsArray
+          }}
+        />
+      ) : (
+        <>
+          {repsArray.length > 0 &&
+            <RepsRemoveButton
+              repsArrayState={repsArray}
+              setStateForRepsArray={setRepsArray}
+              showTimerModalState={showTimerModal}
+            />
+          }
+          {repsArray.length < 5 &&
+            <>
+              <RepInput
+                onChange={setReps}
+                onEnter={setRepsArray}
                 repsArrayState={repsArray}
-                setStateForRepsArray={setRepsArray}
+                setStateForShowTimerModal={setShowTimerModal}
                 showTimerModalState={showTimerModal}
               />
-            }
-            {repsArray.length < 5 &&
-              <>
-                <RepInput
-                  onChange={setReps}
-                  onEnter={setRepsArray}
-                  repsArrayState={repsArray}
-                  setStateForShowTimerModal={setShowTimerModal}
-                  showTimerModalState={showTimerModal}
-                />
-                <RepsCompleteButton
-                  reps={reps}
-                  repsArrayState={repsArray}
-                  setStateForRepsArray={setRepsArray}
-                  setStateForShowTimerModal={setShowTimerModal}
-                  showTimerModalState={showTimerModal}
-                />
-              </>
-            }
-            {showTimerModal && createPortal(
-              <TimerModal
-                onClose={() => setShowTimerModal(false)}
-                recoveryTime={recoveryTime}
-                setStateForShowTimerModal={setShowTimerModal}
-              />,
-              document.body
-            )}
-          </>
-        )}
-      </section>
-    ) : (
-    <main className={styles.main}>
-      <div className={styles.headingContainer}>
-        <h1>{DAYS.filter((day) => day.number === dayNumber)[0].label}</h1>
-        <h2>{DAYS.filter((day) => day.number === dayNumber)[0].heading2}</h2>
-        <h3>{DAYS.filter((day) => day.number === dayNumber)[0].heading3}</h3>
-      </div>
-      <section className={styles.repInfoSection}>
-        <SetsTable repsArray={repsArray}/>
-        {dayComplete ? (
-          <DayComplete
-            dayData={{
-              dayNumber: 1,
-              dayAbbreviation: '5MES',
-              sets: repsArray
-            }}
-          />
-        ) : (
-          <>
-            {repsArray.length > 0 &&
-              <RepsRemoveButton
+              <RepsCompleteButton
+                reps={reps}
                 repsArrayState={repsArray}
                 setStateForRepsArray={setRepsArray}
+                setStateForShowTimerModal={setShowTimerModal}
                 showTimerModalState={showTimerModal}
               />
-            }
-            {repsArray.length < 5 &&
-              <>
-                <RepInput
-                  onChange={setReps}
-                  onEnter={setRepsArray}
-                  repsArrayState={repsArray}
-                  setStateForShowTimerModal={setShowTimerModal}
-                  showTimerModalState={showTimerModal}
-                />
-                <RepsCompleteButton
-                  reps={reps}
-                  repsArrayState={repsArray}
-                  setStateForRepsArray={setRepsArray}
-                  setStateForShowTimerModal={setShowTimerModal}
-                  showTimerModalState={showTimerModal}
-                />
-              </>
-            }
-            {showTimerModal && createPortal(
-              <TimerModal
-                onClose={() => setShowTimerModal(false)}
-                recoveryTime={recoveryTime}
-                setStateForShowTimerModal={setShowTimerModal}
-              />,
-              document.body
-            )}
-          </>
-        )}
-      </section>
-    </main>
-        )}
-    </>
+            </>
+          }
+          {showTimerModal && createPortal(
+            <TimerModal
+              onClose={() => setShowTimerModal(false)}
+              recoveryTime={recoveryTime}
+              setStateForShowTimerModal={setShowTimerModal}
+            />,
+            document.body
+          )}
+        </>
+      )}
+    </section>
   )
 }
 
