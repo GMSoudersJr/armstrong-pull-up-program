@@ -2,14 +2,14 @@
 
 import styles from './RepeatDay.module.css';
 import { useState } from 'react';
-import FiveMaxEffortSets from '@/components/program/fiveMaxEffortSets/FiveMaxEffortSets';
-import Pyramid from '@/components/program/pyramid/Pyramid';
-import ThreeTrainingSetsThreeGrips from '@/components/program/threeTrainingSetsThreeGrips/ThreeTrainingSetsThreeGrips';
-import MaxTrainingSets from '@/components/program/maxTrainingSets/MaxTrainingSets';
 import { DAYS } from '@/const';
 import RepeatDayButton from '@/components/program/repeatDay/RepeatDayButton';
 import {TDayNumber} from '@/definitions';
 import DayHeadings from '../DayHeadings';
+import DayOneOrFive from '../fiveMaxEffortSets/DayOneOrFive';
+import DayTwoOrFive from '../pyramid/DayTwoOrFive';
+import DayThreeOrFive from '../threeTrainingSetsThreeGrips/DayThreeOrFive';
+import DayFourOrFive from '../maxTrainingSets/DayFourOrFive';
 
 interface RepeatDayProps {
   dayNumber: TDayNumber;
@@ -44,12 +44,11 @@ const RepeatDay = ({ dayNumber }: RepeatDayProps) => {
             dayNumber={dayNumber}
             mostDifficultDay={mostDifficultDay}
           />
-
           <div className={styles.mostDifficultDayContainer}>
-            {mostDifficultDay === 1 && <FiveMaxEffortSets dayNumber={dayNumber}/>}
-            {mostDifficultDay === 2 && <Pyramid dayNumber={dayNumber}/>}
-            {mostDifficultDay === 3 && <ThreeTrainingSetsThreeGrips dayNumber={dayNumber}/>}
-            {mostDifficultDay === 4 && <MaxTrainingSets dayNumber={dayNumber}/>}
+            {mostDifficultDay === 1 && <DayOneOrFive dayNumber={dayNumber}/>}
+            {mostDifficultDay === 2 && <DayTwoOrFive dayNumber={dayNumber}/>}
+            {mostDifficultDay === 3 && <DayThreeOrFive dayNumber={dayNumber}/>}
+            {mostDifficultDay === 4 && <DayFourOrFive dayNumber={dayNumber}/>}
           </div>
         </>
 
