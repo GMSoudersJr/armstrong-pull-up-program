@@ -1,7 +1,8 @@
 import type { TStoreName } from "@/definitions";
-import { openRequest } from "@/indexedDBConstants";
+import { dbName, dbVersion } from "@/indexedDBConstants";
 
 let db: IDBDatabase | null = null;
+const openRequest = window.indexedDB.open(dbName, dbVersion);
 
 // MAKE_TRANSACTION {{{
 export function makeTransaction(storeName: TStoreName, mode: IDBTransactionMode) {

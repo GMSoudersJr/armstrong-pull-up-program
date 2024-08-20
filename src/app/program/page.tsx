@@ -1,5 +1,9 @@
+'use client';
+
 import styles from './page.module.css';
-import Program from '@/components/program/Program';
+import dynamic from 'next/dynamic';
+
+const Program = dynamic(() => import('@/components/program/Program'), { ssr: false });
 
 const ProgramPage = () => {
 
