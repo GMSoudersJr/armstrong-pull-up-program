@@ -86,6 +86,7 @@ const Pyramid = ({ dayNumber }: PyramidProps) => {
                       repsArrayState={repsArray}
                       setStateForRepsArray={setRepsArray}
                       setStateForDayComplete={setDayComplete}
+                      showTimerModalState={showTimerModal}
                     />
                   )
                 })}

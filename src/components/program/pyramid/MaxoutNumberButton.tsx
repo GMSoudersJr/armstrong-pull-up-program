@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction } from 'react';
 interface MaxoutNumberButtonProps {
   repCount: number;
   repsArrayState: number[];
+  showTimerModalState: boolean;
   setStateForRepsArray: Dispatch<SetStateAction<number[]>>;
   setStateForDayComplete: Dispatch<SetStateAction<boolean>>;
 }
@@ -12,6 +13,7 @@ const MaxoutNumberButton = ({
   repCount,
   setStateForRepsArray,
   repsArrayState,
+  showTimerModalState,
   setStateForDayComplete
 }: MaxoutNumberButtonProps) => {
 
@@ -30,6 +32,7 @@ const MaxoutNumberButton = ({
     <button
       className={styles.numberedButton}
       onClick={handleClick}
+      disabled={showTimerModalState}
     >
       {repCount}
     </button>
