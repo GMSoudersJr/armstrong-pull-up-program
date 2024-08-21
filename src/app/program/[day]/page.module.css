@@ -7,7 +7,7 @@
   min-height: 100vh;
 }
 
-.headingContainer {
+.heading {
   display: flex;
   flex-direction: column;
   text-align: center;

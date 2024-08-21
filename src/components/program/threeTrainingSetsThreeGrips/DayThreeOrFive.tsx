@@ -1,4 +1,4 @@
-import styles from './DayTwoOrFive.module.css';
+import styles from './DayThreeOrFive.module.css';
 import ThreeTrainingSetsThreeGrips from '@/components/program/threeTrainingSetsThreeGrips/ThreeTrainingSetsThreeGrips';
 import DayHeadings from "@/components/program/DayHeadings";
 import {TDayNumber} from '@/definitions';

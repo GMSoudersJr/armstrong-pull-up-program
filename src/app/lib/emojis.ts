@@ -10,3 +10,5 @@ export const nextTrackButtonEmoji = '⏭️';
 export const lastTrackButtonEmoji = '⏮️';
 export const floppyDiskEmoji = '💾';
 export const checkMarkEmoji = '✔️';
+export const raisedFist = '✊';
+export const raisedBackOfHand = '🤚';
