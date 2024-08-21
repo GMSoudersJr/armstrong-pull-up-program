@@ -1,5 +1,6 @@
 export type TDailyInstruction = {
   id: number;
+  emoji: string;
   day: number;
   title: string;
   instructions: string[] | [];

@@ -12,3 +12,4 @@ export const floppyDiskEmoji = '💾';
 export const checkMarkEmoji = '✔️';
 export const raisedFist = '✊';
 export const raisedBackOfHand = '🤚';
+export const calendarEmoji = '📅';

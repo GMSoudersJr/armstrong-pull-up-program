@@ -9,9 +9,15 @@ interface AccordionProps {
   buttonText: string;
   panelText: string[];
   link?: string;
+  emoji: string;
 }
 
-export const Accordion = ({ buttonText, panelText, link }: AccordionProps) => {
+export const Accordion = ({
+  buttonText,
+  panelText,
+  link,
+  emoji
+}: AccordionProps) => {
 
   const [active, setActive] = useState(false);
 
@@ -44,9 +50,10 @@ export const Accordion = ({ buttonText, panelText, link }: AccordionProps) => {
         ref={accordionButtonRef}
         onClick={handleClick}
       >
-        <h1>
-          {buttonText}
-        </h1>
+        <div className={styles.buttonText}>
+          <div className={styles.emoji}>{emoji}</div>
+          <h1>{buttonText}</h1>
+        </div>
       </button>
       <div
         ref={panelRef}
