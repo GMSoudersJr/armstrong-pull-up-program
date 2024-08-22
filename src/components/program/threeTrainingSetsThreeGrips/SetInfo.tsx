@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import {createPortal} from 'react-dom';
 import TimerModal from '../TimerModal';
 import {TGrip} from '@/app/lib/definitions';
+import {notoColorEmoji, nunito} from '@/fonts';
 
 interface SetInfoProps {
   trainingSetReps: number;
@@ -78,24 +79,30 @@ const SetInfo = ({
 
   return (
     <section className={styles.setInfoContainer}>
-      <h2>
+      <h2 style={nunito.style}>
         COMPLETED SETS:
-        <span className={styles.setCount}>
+        <span
+          className={styles.setCount}
+          style={nunito.style}
+        >
           {` ${completedSetCount}`}
         </span>
       </h2>
 
       {completedSetCount < 3 ? (
-        <h3>{trainingSetReps} {currentGrip?.toUpperCase()} PULL-UPS</h3>
+        <h3 style={nunito.style}>
+          {trainingSetReps} {currentGrip?.toUpperCase()} PULL-UPS
+        </h3>
       ) : completedGrips.length < 2 ? (
-        <h3>CHOOSE NEXT GRIP</h3>
+        <h3 style={nunito.style}>CHOOSE NEXT GRIP</h3>
       ) : (
-        <h3>TAP NEXT COMPLETE</h3>
+        <h3 style={nunito.style}>TAP NEXT COMPLETE</h3>
       )}
 
       <div className={styles.buttonsContainer}>
         <button
           className={styles.actionButton}
+          style={notoColorEmoji.style}
           onClick={handleMiss}
           disabled={showTimerModal || completedSetCount === 3}
         >
@@ -103,6 +110,7 @@ const SetInfo = ({
         </button>
         <button
           className={styles.actionButton}
+          style={notoColorEmoji.style}
           onClick={handleDone}
           disabled={showTimerModal}
         >

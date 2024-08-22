@@ -1,5 +1,6 @@
 import styles from './ActionButton.module.css';
 import {crossMarkButtonEmoji} from "@/emojis";
+import {notoColorEmoji} from '@/fonts';
 import { Dispatch, SetStateAction } from "react";
 
 interface MissSetButtonProps {
@@ -21,6 +22,7 @@ const MissSetButton = ({
       onClick={handleMiss}
       disabled={showTimerModalState}
       className={styles.pyramidActionButton}
+      style={notoColorEmoji.style}
     >
       {crossMarkButtonEmoji}
     </button>

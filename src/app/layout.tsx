@@ -1,8 +1,3 @@
-import {
-  notoColorEmoji,
-  nunito,
-  ptSans
-} from "@/fonts";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -18,15 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`
-          ${nunito.variable}
-          ${ptSans.variable}
-          ${notoColorEmoji.variable}
-        `}
-      >
-        {children}
-      </body>
+      <body> {children}</body>
     </html>
   );
 }

@@ -7,6 +7,7 @@ import {
 } from 'react';
 
 import styles from './TrainingSetRepsInput.module.css';
+import {nunito, ptSans} from '@/fonts';
 
 interface TrainingSetRepsInputProps {
   setStateForTrainingSetReps: Dispatch<SetStateAction<number>>;
@@ -38,7 +39,7 @@ const TrainingSetRepsInput = ({ setStateForTrainingSetReps }: TrainingSetRepsInp
   return (
     <section className={styles.repInputContainer}>
       <label className={styles.repInputLabel} htmlFor={repInputId}>
-        <h3>
+        <h3 style={nunito.style}>
           TRAINING SET REPS
         </h3>
       </label>
@@ -46,6 +47,7 @@ const TrainingSetRepsInput = ({ setStateForTrainingSetReps }: TrainingSetRepsInp
         id={repInputId}
         name='reps'
         className={styles.repInput}
+        style={ptSans.style}
         type="number"
         min={0}
         max={100}
@@ -55,6 +57,7 @@ const TrainingSetRepsInput = ({ setStateForTrainingSetReps }: TrainingSetRepsInp
       />
       <button
         className={styles.repsSubmitButton}
+        style={nunito.style}
         onClick={handleClick}
       >
         SUBMIT

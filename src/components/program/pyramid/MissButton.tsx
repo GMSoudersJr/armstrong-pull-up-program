@@ -1,6 +1,7 @@
 import {crossMarkButtonEmoji} from '@/emojis';
 import styles from './MissButton.module.css';
 import {Dispatch, SetStateAction} from "react";
+import {notoColorEmoji} from '@/fonts';
 
 interface MissButtonProps {
   setStateForShowModal: Dispatch<SetStateAction<boolean>>;
@@ -15,6 +16,7 @@ const MissButton = ({ setStateForShowModal }: MissButtonProps) => {
   return (
     <button
       className={styles.missButton}
+      style={notoColorEmoji.style}
       onClick={handleClick}>
       {crossMarkButtonEmoji}
     </button>

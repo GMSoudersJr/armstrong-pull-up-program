@@ -4,6 +4,7 @@ import styles from './Accordion.module.css';
 import { useState, useRef } from 'react';
 import { flushSync } from 'react-dom';
 import {PageLink} from '../PageLink';
+import {notoColorEmoji, nunito, ptSans} from '@/fonts';
 
 interface AccordionProps {
   buttonText: string;
@@ -51,8 +52,13 @@ export const Accordion = ({
         onClick={handleClick}
       >
         <div className={styles.buttonText}>
-          <div className={styles.emoji}>{emoji}</div>
-          <h1>{buttonText}</h1>
+          <div
+            className={styles.emoji}
+            style={notoColorEmoji.style}
+          >
+            {emoji}
+          </div>
+          <h1 style={nunito.style}>{buttonText}</h1>
         </div>
       </button>
       <div
@@ -63,7 +69,12 @@ export const Accordion = ({
         {panelText.map((text, i) => {
           return (
             <li key={i} className={styles.panelListitem}>
-              <p className={styles.panelText}>{text}</p>
+              <p
+                className={styles.panelText}
+                style={ptSans.style}
+              >
+                {text}
+              </p>
             </li>
           )
         })}

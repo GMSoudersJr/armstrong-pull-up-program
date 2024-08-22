@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
 import styles from './RepsActionButton.module.css';
 import {lastTrackButtonEmoji} from "@/emojis";
+import {notoColorEmoji} from "@/fonts";
 
 interface RepsRemoveButtonProps {
   setStateForRepsArray: Dispatch<SetStateAction<number[]>>;
@@ -25,6 +26,7 @@ const RepsRemoveButton = ({
       type='button'
       onClick={handleRemove}
       className={`${styles.button} ${styles.removeButton}`}
+      style={notoColorEmoji.style}
       disabled={showTimerModalState || savedDay}
     >
       {lastTrackButtonEmoji}

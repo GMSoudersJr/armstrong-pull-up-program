@@ -1,3 +1,4 @@
+import {ptSans} from '@/fonts';
 import styles from './MaxoutNumberButton.module.css';
 import { Dispatch, SetStateAction } from 'react';
 
@@ -31,6 +32,7 @@ const MaxoutNumberButton = ({
   return (
     <button
       className={styles.numberedButton}
+      style={ptSans.style}
       onClick={handleClick}
       disabled={showTimerModalState}
     >

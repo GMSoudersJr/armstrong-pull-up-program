@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import styles from './RepsActionButton.module.css';
 import {checkMarkButtonEmoji} from "@/emojis";
+import {notoColorEmoji} from "@/fonts";
 
 interface RepsCompleteButtonProps {
   reps: number;
@@ -37,6 +38,7 @@ const RepsCompleteButton = ({
         type='button'
         onClick={handleComplete}
         className={`${styles.button} ${styles.completeButton}`}
+        style={notoColorEmoji.style}
         disabled={showTimerModalState}
       >
         {checkMarkButtonEmoji}

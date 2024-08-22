@@ -2,6 +2,7 @@ import {Dispatch, SetStateAction} from "react";
 import styles from './GripSelector.module.css';
 import type {TGrip} from "@/app/lib/definitions";
 import {leftFacingFistEmoji, raisedBackOfHand, raisedFist, rightFacingFistEmoji} from "@/emojis";
+import {notoColorEmoji, nunito} from "@/fonts";
 
 interface GripSelectorProps {
   completedGripsState: TGrip[];
@@ -44,7 +45,10 @@ const GripSelector = ({ completedGripsState, setStateForCurrentGrip }: GripSelec
 
   return (
     <section className={styles.gripSelectorContainer}>
-      <h3 className={styles.gripSelectorLabel}>
+      <h3
+        className={styles.gripSelectorLabel}
+        style={nunito.style}
+      >
         SELECT GRIP
       </h3>
       <ul className={styles.gripSelectorButtonList}>
@@ -65,16 +69,19 @@ const GripSelector = ({ completedGripsState, setStateForCurrentGrip }: GripSelec
             >
               <div
                 className={`${styles.emoji} ${styles[leftEmojiClassName]}`}
+                style={notoColorEmoji.style}
               >
                 {grip.emoji.at(0)}
               </div>
-              <div
+              <h4
                 className={`${styles.gripName}`}
+                style={nunito.style}
               >
                 {grip.name.toUpperCase()}
-              </div>
+              </h4>
               <div
                 className={`${styles.emoji} ${styles[rightEmojiClassName]}`}
+                style={notoColorEmoji.style}
               >
                 {grip.emoji.at(1)}
               </div>

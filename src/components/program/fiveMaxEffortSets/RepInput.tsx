@@ -7,6 +7,7 @@ import {
 } from 'react';
 
 import styles from './RepInput.module.css';
+import {nunito, ptSans} from '@/fonts';
 
 interface RepInputProps {
   onChange: Dispatch<SetStateAction<number>>;
@@ -52,7 +53,7 @@ const RepInput = ({
   return (
     <section className={styles.repInputContainer}>
       <label className={styles.repInputLabel} htmlFor={repInputId}>
-        <h3>
+        <h3 style={nunito.style}>
           {`SET ${repsArrayState.length + 1} REPS`}
         </h3>
       </label>
@@ -60,6 +61,7 @@ const RepInput = ({
         id={repInputId}
         name='reps'
         className={styles.repInput}
+        style={ptSans.style}
         type="number"
         min={0}
         max={100}

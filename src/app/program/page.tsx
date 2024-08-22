@@ -1,5 +1,6 @@
 'use client';
 
+import {nunito} from '@/fonts';
 import styles from './page.module.css';
 import dynamic from 'next/dynamic';
 
@@ -9,7 +10,7 @@ const ProgramPage = () => {
 
   return (
     <main className={styles.main}>
-      <h1>
+      <h1 style={nunito.style}>
         GET STARTED!
       </h1>
       <div className={styles.pageLinksContainer}>

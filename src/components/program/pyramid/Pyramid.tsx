@@ -12,6 +12,7 @@ import NumberedMissRepButton from "./NumberedMissRepButton";
 import TimerModal from "@/components/program/TimerModal";
 import {createPortal} from "react-dom";
 import {TDayNumber} from "@/definitions";
+import {nunito} from "@/fonts";
 
 interface PyramidProps {
   dayNumber: TDayNumber;
@@ -42,7 +43,10 @@ const Pyramid = ({ dayNumber }: PyramidProps) => {
         />
       ) : (
         <>
-          <h3 className={styles.doRepsText}>
+          <h3
+            className={styles.doRepsText}
+            style={nunito.style}
+          >
             {missed ? (
               `How many did you do?`
             ) : showMaxoutNumbers ? (

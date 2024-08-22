@@ -21,7 +21,6 @@
 
 .gripSelectorButton {
   padding: 0.5rem 0.8rem;
-  font-family: var(--font-nunito);
   width: 100%;
   height: 3rem;
   border-radius: 0.75rem;
@@ -68,7 +67,6 @@
 }
 
 .emoji {
-  font-family: var(--font-notoColorEmoji);
   font-size: 1.5rem;
 }
 

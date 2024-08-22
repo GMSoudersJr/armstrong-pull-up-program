@@ -1,3 +1,5 @@
+import {nunito} from "@/fonts";
+
 interface TotalRepsProps {
   sets: number[];
 }
@@ -9,7 +11,7 @@ const TotalReps = ({ sets }: TotalRepsProps) => {
   }, initialValue);
 
   return (
-    <h3>
+    <h3 style={nunito.style}>
       {totalRepsCount} TOTAL PULL-UPS
     </h3>
   )

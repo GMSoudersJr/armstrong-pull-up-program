@@ -1,6 +1,7 @@
 import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import styles from './TimerModal.module.css';
 import {isSingular} from '@/utils';
+import {ptSans} from '@/fonts';
 
 interface TimerModalProps {
   onClose: React.MouseEventHandler<HTMLButtonElement>;
@@ -42,7 +43,7 @@ const TimerModal = ({
           &times;
         </button>
         <div>
-          <p>
+          <p style={ptSans.style}>
             {secondsLeft > 0 && `Next set in ${secondsLeft} ${isSingular(secondsLeft) ? 'second!' : 'seconds'}`}
           </p>
         </div>

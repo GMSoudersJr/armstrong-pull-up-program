@@ -4,6 +4,7 @@ import styles from './MaxTrainingSetsDisplay.module.css';
 import {isSingular} from "@/utils";
 import {createPortal} from "react-dom";
 import TimerModal from "../TimerModal";
+import {notoColorEmoji, nunito} from "@/fonts";
 
 interface MaxTrainingSetsDisplayProps {
   trainingSetReps: number;
@@ -37,11 +38,11 @@ const MaxTrainingSetsDisplay = ({
   return (
     <section className={styles.maxTrainingSetsContainer}>
       <div className={styles.completeSetsDisplay}>
-        <h3>
+        <h3 style={nunito.style}>
           COMPLETED {completedTrainingSets.length} {isSingular(completedTrainingSets.length) ? 'SET' : 'SETS'}
         </h3>
       </div>
-      <h3 className={styles.maxSetsText}>
+      <h3 className={styles.maxSetsText} style={nunito.style}>
         {completedTrainingSets.length < 9 ? (
           `ONLY ${9 - completedTrainingSets.length} MORE ${isSingular(9 - completedTrainingSets.length) ? 'SET' : 'SETS'} OF ${trainingSetReps}`
         ) : completedTrainingSets.length === 9 ? (
@@ -53,6 +54,7 @@ const MaxTrainingSetsDisplay = ({
       <div className={styles.actionButtonsContainer}>
         <button
           className={styles.actionButton}
+          style={notoColorEmoji.style}
           onClick={handleMiss}
           disabled={showTimerModal}
         >
@@ -60,6 +62,7 @@ const MaxTrainingSetsDisplay = ({
         </button>
         <button
           className={styles.actionButton}
+          style={notoColorEmoji.style}
           onClick={handleComplete}
           disabled={showTimerModal}
         >
