@@ -10,7 +10,7 @@ const ProgramPage = () => {
 
   return (
     <main className={styles.main}>
-      <h1 style={nunito.style}>
+      <h1 style={nunito.style} className={styles.text}>
         GET STARTED!
       </h1>
       <div className={styles.pageLinksContainer}>

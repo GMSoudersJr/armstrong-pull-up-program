@@ -7,6 +7,10 @@
   min-height: 100vh;
 }
 
+.text {
+  text-align: center;
+}
+
 .pageLinksContainer {
   display: flex;
   flex-direction: column;
