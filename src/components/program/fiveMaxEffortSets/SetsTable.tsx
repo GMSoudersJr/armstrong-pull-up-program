@@ -11,12 +11,6 @@ const SetsTable = ({ repsArray }: SetsTableProps) => {
     <table className={styles.table}>
       <tbody className={styles.tableBody}>
         <tr className={styles.tableRow}>
-          <th
-            className={styles.tableHead}
-            style={nunito.style}
-          >
-            SET
-          </th>
           {repsArray.map((reps, i) => {
             return (
               <th
@@ -30,12 +24,6 @@ const SetsTable = ({ repsArray }: SetsTableProps) => {
           })}
         </tr>
         <tr className={styles.tableRow}>
-          <td
-            className={styles.tableData}
-            style={ptSans.style}
-          >
-            REPS
-          </td>
           {repsArray.map((reps, i) => {
             return (
               <td

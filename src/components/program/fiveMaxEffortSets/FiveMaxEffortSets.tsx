@@ -7,8 +7,8 @@ import RepsCompleteButton from "@/components/program/fiveMaxEffortSets/RepsCompl
 import RepsRemoveButton from "@/components/program/fiveMaxEffortSets/RepsRemoveButton";
 import SetsTable from "@/components/program/fiveMaxEffortSets/SetsTable";
 import {createPortal} from "react-dom";
-import TimerModal from "../TimerModal";
-import DayComplete from "../DayComplete";
+import TimerModal from "@/components/program/TimerModal";
+import DayComplete from "@/components/program/DayComplete";
 import {TDayNumber} from "@/definitions";
 
 const recoveryTime = 90;

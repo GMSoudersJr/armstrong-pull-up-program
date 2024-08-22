@@ -3,11 +3,12 @@
   flex-direction: column;
   gap: 2rem;
   align-items: center;
-  width: 20rem;
+  border: 1px solid green;
 }
 
 .setInfo {
   display: grid;
+  padding: 0 0.5rem;
   grid-template-columns: 1fr 4.836fr 1fr;
   grid-template-rows: min-content;
   justify-items: center;

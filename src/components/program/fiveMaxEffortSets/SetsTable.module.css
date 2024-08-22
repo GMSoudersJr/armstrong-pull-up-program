@@ -17,4 +17,5 @@
 
 .table {
   grid-area: table;
+  place-self: center;
 }
