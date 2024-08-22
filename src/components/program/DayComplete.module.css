@@ -2,6 +2,7 @@
   width: 90vw;
   min-width: 20rem;
   max-width: 25rem;
+  padding: 0 0.5rem;
   display: grid;
   grid-template-columns: 1fr 4.836fr 1fr;
   grid-template-rows: repeat(2, min-content);
@@ -22,6 +23,7 @@
 
 .takeAction {
   grid-area: takeAction;
+  place-self: center;
 }
 
 .message {
