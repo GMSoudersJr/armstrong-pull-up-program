@@ -63,7 +63,6 @@
 
 .emoji {
   display: grid;
-  font-family: var(--font-notoColorEmoji);
   place-self: center;
   font-size: 1.25rem;
 }
