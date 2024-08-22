@@ -8,11 +8,11 @@
 
 .setInfo {
   display: grid;
-  padding: 0 0.5rem;
-  grid-template-columns: 1fr 4.836fr 1fr;
+  grid-template-columns: var(--button-emoji-font-size) 10rem var(--button-emoji-font-size);
   grid-template-rows: min-content;
   justify-items: center;
   align-items: center;
+  column-gap: 1rem;
   grid-template-areas:
   "back table .";
 }

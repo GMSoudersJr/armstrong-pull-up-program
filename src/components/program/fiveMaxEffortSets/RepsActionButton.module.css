@@ -1,14 +1,12 @@
 .button {
   background: transparent;
   border: none;
-  width: 3.5rem;
-  height: 3.5rem;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   justify-content: center;
-  align-content: center;
-  font-size: 2.625rem;
+  align-items: center;
+  font-size: var(--button-emoji-font-size);
   padding: 0;
   margin: 0;
   grid-area: back;
