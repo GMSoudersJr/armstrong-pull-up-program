@@ -1,16 +1,17 @@
-.main {
+.pricingContainer {
   display: flex;
-  background-image: linear-gradient(#0074D9, #2ECC40);
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   min-height: 100vh;
+  width: 100%;
 }
 
-.pageLinkFlex {
+.pricingCardList {
+  justify-self: center;
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
-  gap: 3rem;
-
+  gap: 0.5rem;
 }
+

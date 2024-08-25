@@ -13,3 +13,6 @@ export const checkMarkEmoji = '✔️';
 export const raisedFist = '✊';
 export const raisedBackOfHand = '🤚';
 export const calendarEmoji = '📅';
+export const timerEmoji = '⏲️';
+export const mobilePhoneWithArrowEmoji = '📲';
+export const spiralNotepadEmoji = '🗒️';

@@ -1,0 +1,26 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 25vw;
+  align-items: center;
+  background-image: linear-gradient(30deg, #0074D9, #2ECC40);
+}
+
+.card h1 {
+  font-size: 2.5rem;
+  transform: translateY(-4rem);
+}
+
+.card p {
+  transform: translateY(-3rem);
+}
+
+.icon {
+  padding: 2rem;
+  border-radius: 50%;
+  background-image: linear-gradient(#0074D9, #2ECC40);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(-4rem);
+}

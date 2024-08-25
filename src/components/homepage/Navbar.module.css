@@ -1,0 +1,24 @@
+.navList {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+}
+
+.navListitem {
+  float: left;
+  display: inline;
+  font-weight: 600;
+  text-align: center;
+  border-right: 1px solid #bbb;
+  border-top: 1px solid #bbb;
+}
+
+.navListitem a {
+  display: block;
+  padding: 0.875rem 1rem;
+}
+
+.navListitem a:hover {
+  background-color: #259;
+}

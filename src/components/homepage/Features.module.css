@@ -1,0 +1,22 @@
+.features {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.features h1 {
+  font-size: 3rem;
+}
+
+.featuresList {
+  display: flex;
+  gap: 3rem;
+}
+
+.featuresListitem {
+  display: inline;
+  float: left;
+}
