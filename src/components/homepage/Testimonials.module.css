@@ -1,4 +1,18 @@
 .testimonials {
   width: 100%;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.testimonyList {
+  display: flex;
+  gap: 3rem;
+}
+
+.testimonyListitem {
+  display: inline;
+  float: left;
 }

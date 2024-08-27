@@ -1,13 +1,7 @@
 import {nunito} from '@/fonts';
 import styles from './Features.module.css';
 import FeatureCard from '@/components/homepage/FeatureCard';
-import dynamicIconImports from 'lucide-react/dynamicIconImports';
-
-type TFeature = {
-  iconName: keyof typeof dynamicIconImports;
-  heading: string;
-  text: string;
-}
+import type { TFeature } from '@/definitions';
 
 const FEATURES: TFeature[] = [
   {

@@ -1,0 +1,55 @@
+.card {
+  width: 15rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 2fr;
+  border-radius: 0.4rem;
+  background-image: linear-gradient(#0000FF, #87CEEB);
+  grid-template-areas:
+  "header"
+  "body";
+}
+
+.header {
+  grid-area: header;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: repeat(2, min-content);
+  align-items: center;
+  justify-items: center;
+  padding: 0.5rem;
+  grid-template-areas:
+  "avatar name icon"
+  "avatar duration icon";
+}
+
+.icon {
+  grid-area: icon;
+}
+
+.card h6 {
+  grid-area: duration;
+}
+
+.card p {
+  grid-area: name;
+}
+
+.avatar {
+  grid-area: avatar;
+  border-radius: 50%;
+  border: 2px solid #87CEEB;
+  align-self: center;
+  padding: 0.25rem;
+}
+
+
+.body {
+  grid-area: body;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem;
+}

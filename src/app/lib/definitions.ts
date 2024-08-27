@@ -1,3 +1,11 @@
+import dynamicIconImports from 'lucide-react/dynamicIconImports';
+
+export type TFeature = {
+  iconName: keyof typeof dynamicIconImports;
+  heading: string;
+  text: string;
+}
+
 export type TDailyInstruction = {
   id: number;
   emoji: string;

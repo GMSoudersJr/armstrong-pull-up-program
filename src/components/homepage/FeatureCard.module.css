@@ -1,9 +1,11 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: 25vw;
+  width: 19rem;
   align-items: center;
+  text-align: center;
   background-image: linear-gradient(30deg, #0074D9, #2ECC40);
+  flex: 1;
 }
 
 .card h1 {
@@ -13,6 +15,8 @@
 
 .card p {
   transform: translateY(-3rem);
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
 }
 
 .icon {
