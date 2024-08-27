@@ -38,9 +38,9 @@ const Testimonials = () => {
     <section id='testimonials' className={styles.testimonials}>
       <h1 style={nunito.style}>TESTIMONIALS</h1>
       <ul className={styles.testimonyList}>
-        {TESTIMONIALS.map((testimony) => {
+        {TESTIMONIALS.map((testimony, i) => {
           return (
-            <li key={testimony.avatar} className={styles.testimonyListitem}>
+            <li key={`${testimony.name}-${i}`} className={styles.testimonyListitem}>
               <TestimonyCard
                 body={testimony.body}
                 name={testimony.name}

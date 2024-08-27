@@ -9,7 +9,11 @@
 
 .testimonyList {
   display: flex;
+  flex-wrap: wrap;
   gap: 3rem;
+  justify-content: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .testimonyListitem {

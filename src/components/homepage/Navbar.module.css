@@ -1,7 +1,11 @@
-.navList {
+.navbar {
   width: 100%;
+  background-color: #FFF;
   position: fixed;
   top: 0;
+  z-index: 1;
+}
+.navList {
   overflow: hidden;
 }
 
@@ -12,6 +16,7 @@
   text-align: center;
   border-right: 1px solid #bbb;
   border-top: 1px solid #bbb;
+  place-self: center;
 }
 
 .navListitem a {

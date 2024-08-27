@@ -11,7 +11,7 @@ const FEATURES: TFeature[] = [
   },
   {
     iconName: 'hourglass',
-    heading: 'Build-in Timer',
+    heading: 'Built-in Timer',
     text: 'Proper rest between sets is important.',
   },
   {

@@ -4,7 +4,7 @@
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 2fr;
   border-radius: 0.4rem;
-  background-image: linear-gradient(#0000FF, #87CEEB);
+  background-image: linear-gradient(#D1D1D1, #0000FF);
   grid-template-areas:
   "header"
   "body";

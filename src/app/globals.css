@@ -8,6 +8,48 @@
 
 html {
   scroll-behavior: smooth;
+
+  --baseNavFontSize: 0.698rem;
+  --baseFontSize: 1rem;
+  --baseNavSize: 0.68rem;
+  --smallestFontSize: 0.694rem;
+  --smallFontSize: 0.833rem;
+
+  --xtra-xtra-massive-heading: 3.5rem;
+  --xtra-xtra-large-heading: 2.986rem;
+  --xtra-large-heading: 2.488rem;
+  --large-heading: 2.074rem;
+  --heading-1: 1.728rem;
+  --heading-2: 1.44rem;
+  --heading-3: 1.2rem;
+  --heading-4: var(--baseFontSize);
+  --heading-5: var(--smallFontSize);
+  --heading-6: var(--smallestFontSize);
+
+  h1 {
+    font-size: clamp(var(--large-heading), calc(10vw + 0.25rem), var(--xtra-xtra-large-heading));
+  }
+
+  h2 {
+    font-size: clamp(var(--heading-2), calc(2.5vw + 1rem), var(--xtra-large-heading));
+  }
+
+  h3 {
+    font-size: clamp(var(--heading-3), calc(2vw + 0.5rem), var(--heading-1));
+  }
+
+  h4 {
+    font-size: clamp(var(--heading-4), calc(1vw + 0.5rem), var(--heading-2));
+  }
+
+  h5 {
+    font-size: clamp(var(--heading-5), calc(1vw + 0.25rem), var(--heading-3));
+  }
+
+  h6 {
+    font-size: clamp(var(--heading-6), calc(1vw + 0.1rem), var(--heading-4));
+  }
+
 }
 
 ul > li {
@@ -29,10 +71,15 @@ body {
   overflow-x: hidden;
 }
 
-body 
-
 a {
   color: inherit;
   text-decoration: none;
 }
 
+nav {
+  font-size: var(--baseNavFontSize);
+}
+
+section h2.landing-page-heading1 {
+  font-size: clamp();
+}

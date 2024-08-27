@@ -8,9 +8,9 @@ const Hero = () => {
       <button
         className={styles.button}
       >
-        <h1 style={nunito.style}>
+        <h2 style={nunito.style}>
           GET STARTED!
-        </h1>
+        </h2>
       </button>
     </div>
   )

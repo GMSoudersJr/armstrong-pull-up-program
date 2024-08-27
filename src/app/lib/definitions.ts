@@ -6,6 +6,12 @@ export type TFeature = {
   text: string;
 }
 
+export type TProgramOverview = {
+  iconName: keyof typeof dynamicIconImports;
+  heading: string;
+  body: string[];
+}
+
 export type TDailyInstruction = {
   id: number;
   emoji: string;

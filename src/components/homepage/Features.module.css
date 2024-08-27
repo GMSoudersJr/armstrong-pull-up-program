@@ -7,16 +7,23 @@
   align-items: center;
 }
 
-.features h1 {
-  font-size: 3rem;
-}
-
 .featuresList {
   display: flex;
+  flex-wrap: wrap;
   gap: 3rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .featuresListitem {
   display: inline;
   float: left;
+  flex: 1;
+}
+
+@media(max-width: 600px) {
+  .featuresList {
+    flex-direction: column;
+    gap: 5rem;
+  }
 }

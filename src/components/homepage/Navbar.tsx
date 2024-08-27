@@ -1,6 +1,7 @@
 import {nunito} from '@/fonts';
 import styles from './Navbar.module.css';
 import Link from "next/link";
+import Icon from '../Icon';
 
 const SECTIONS = [
   {
@@ -23,24 +24,33 @@ const SECTIONS = [
 
 const LandingNavbar = () => {
   return (
-    <ul className={styles.navList}>
-      {SECTIONS.map((section) => {
-        return (
-          <li
-            key={section.path}
-            className={styles.navListitem}
-            style={nunito.style}
-          >
-            <Link
-              href={section.path}
-              scroll={true}
+    <nav className={styles.navbar}>
+      <ul className={styles.navList}>
+        {SECTIONS.map((section) => {
+          return (
+            <li
+              key={section.path}
+              className={styles.navListitem}
+              style={nunito.style}
             >
-              {section.label.toUpperCase()}
-            </Link>
-          </li>
-        )
-      })}
-    </ul>
+              <Link
+                href={section.path}
+                scroll={true}
+              >
+                {section.path === '/' ? (
+                  <Icon
+                    size={'0.698rem'}
+                    name='biceps-flexed'
+                  />
+                ) : (
+                  section.label.toUpperCase()
+                )}
+              </Link>
+            </li>
+          )
+        })}
+      </ul>
+    </nav>
   )
 };
 
