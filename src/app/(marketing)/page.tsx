@@ -6,17 +6,7 @@ import Features from "@/components/homepage/Features";
 import Footer from "@/components/homepage/Footer";
 import Testimonials from "@/components/homepage/Testimonials";
 import ProgramOverview from "@/components/homepage/ProgramOverview";
-
-const PAGES = [
-  {
-    label: 'overview',
-    path: '/overview'
-  },
-  {
-    label: 'program',
-    path: '/program'
-  }
-];
+import FaqAccordion from "@/components/homepage/FAQ";
 
 export default function Home() {
   return (
@@ -26,18 +16,11 @@ export default function Home() {
       <Features />
       <Testimonials />
       <ProgramOverview />
-      <div className={styles.pageLinkFlex}>
-        {PAGES.map((page) => {
-          return (
-            <PageLink
-              key={page.path}
-              path={page.path}
-              label={page.label}
-            />
-          );
-        })}
-
-      </div>
+      <FaqAccordion />
+      <PageLink
+        path='/program'
+        label='program'
+      />
       <Footer />
     </main>
   );

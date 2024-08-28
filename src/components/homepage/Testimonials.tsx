@@ -36,7 +36,7 @@ const TESTIMONIALS = [
 const Testimonials = () => {
   return (
     <section id='testimonials' className={styles.testimonials}>
-      <h1 style={nunito.style}>TESTIMONIALS</h1>
+      <h1 style={nunito.style}>Testimonials</h1>
       <ul className={styles.testimonyList}>
         {TESTIMONIALS.map((testimony, i) => {
           return (

@@ -21,6 +21,14 @@ export type TDailyInstruction = {
   link?: string
 };
 
+export type TFAQ = {
+  id: number;
+  iconName: keyof typeof dynamicIconImports;
+  day: number;
+  heading: string;
+  body: string[] | [];
+}
+
 export type TStoreName = 'weeksStore' | 'workoutsStore';
 
 export type TWeek = {
