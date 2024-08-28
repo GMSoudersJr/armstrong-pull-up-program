@@ -16,7 +16,6 @@ export default function Home() {
       <Features />
       <Testimonials />
       <ProgramOverview />
-      <FaqAccordion />
       <PageLink
         path='/program'
         label='program'
