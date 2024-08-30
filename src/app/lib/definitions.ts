@@ -30,7 +30,7 @@ export type TDailyInstruction = {
 
 export type TFAQ = {
   id: number;
-  iconName: keyof typeof dynamicIconImports;
+  Icon: LucideIcon;
   day: number;
   heading: string;
   body: string[] | [];

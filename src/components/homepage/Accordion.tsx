@@ -4,20 +4,15 @@ import styles from './Accordion.module.css';
 import { useState, useRef } from 'react';
 import { flushSync } from 'react-dom';
 import {nunito, ptSans} from '@/fonts';
-import dynamicIconImports from 'lucide-react/dynamicIconImports';
-import Icon from '../Icon';
-
-interface AccordionProps {
-  heading: string;
-  body: string[];
-  iconName: keyof typeof dynamicIconImports;
-}
+import {TFAQ} from '@/definitions';
 
 const Accordion = ({
   heading,
   body,
-  iconName,
-}: AccordionProps) => {
+  Icon,
+  id,
+  day
+}: TFAQ) => {
 
   const [active, setActive] = useState(false);
 
@@ -51,10 +46,8 @@ const Accordion = ({
         onClick={handleClick}
       >
         <div className={styles.buttonText}>
-          <div
-            className={styles.icon}
-          >
-            <Icon name={iconName}/>
+          <div className={styles.iconWrapper} >
+            <Icon className={styles.icon}/>
           </div>
           <h4 style={nunito.style}>{heading}</h4>
         </div>

@@ -1,7 +1,11 @@
+'use client';
+
 import styles from './FaqAccordion.module.css';
 import { FAQ } from "@/data/faq";
 import {nunito} from '@/fonts';
-import Accordion from '@/components/homepage/Accordion';
+import dynamic from 'next/dynamic';
+
+const Accordion = dynamic(() => import('@/components/homepage/Accordion'));
 
 const FaqAccordion = () => {
 
@@ -15,7 +19,9 @@ const FaqAccordion = () => {
         return (
           <li key={faq.id}>
             <Accordion
-              iconName={faq.iconName}
+              day={faq.day}
+              id={faq.id}
+              Icon={faq.Icon}
               heading={faq.heading}
               body={faq.body}
             />

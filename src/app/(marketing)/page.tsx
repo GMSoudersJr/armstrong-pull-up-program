@@ -1,4 +1,3 @@
-import LandingNavbar from "@/components/homepage/Navbar";
 import styles from "./page.module.css";
 import {PageLink} from "@/components/PageLink";
 import Hero from "@/components/homepage/Hero";
@@ -15,6 +14,7 @@ export default function Home() {
       <Features />
       <Testimonials />
       <ProgramOverview />
+      <FaqAccordion />
       <PageLink
         path='/program'
         label='program'
