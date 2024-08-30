@@ -1,5 +1,5 @@
 .hero {
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   text-align: center;
   display: flex;
@@ -8,8 +8,9 @@
   align-items: center;
 }
 
-.heroLeft, .heroRight {
-  height: 100%;
+.heroLeft,
+.heroRight {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -23,7 +24,7 @@
 }
 
 .heroRight {
-  background-color: #DDD;
+  background-image: linear-gradient( #0074D9, #2ECC40);
 }
 
 .button {

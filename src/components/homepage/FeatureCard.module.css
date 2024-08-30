@@ -1,30 +1,26 @@
 .card {
   height: 100%;
-  max-width: 20rem;
+  width: 20rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   background-image: linear-gradient(30deg, #0074D9, #2ECC40);
+  padding: 0.5rem;
 }
 
-.card h3 {
-  transform: translateY(-3rem);
-}
 
 .card p {
-  transform: translateY(-2rem);
   padding-left: 0.25rem;
   padding-right: 0.25rem;
 }
 
 .icon {
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 50%;
-  border: 0.25rem solid #FFF;
+  border: 0.125rem solid #FFF;
   background-image: linear-gradient(#0074D9, #2ECC40);
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateY(-4rem);
 }

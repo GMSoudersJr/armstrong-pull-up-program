@@ -16,7 +16,6 @@ const FeatureCard = ({ iconName, heading, text }: FeatureCardProps) => {
       <div className={styles.icon}>
         <Icon
           name={iconName}
-          size={64}
         />
       </div>
       <h3 style={nunito.style}>{heading}</h3>

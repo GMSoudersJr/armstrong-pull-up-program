@@ -11,7 +11,6 @@ import FaqAccordion from "@/components/homepage/FAQ";
 export default function Home() {
   return (
     <main className={styles.main}>
-      <LandingNavbar />
       <Hero />
       <Features />
       <Testimonials />

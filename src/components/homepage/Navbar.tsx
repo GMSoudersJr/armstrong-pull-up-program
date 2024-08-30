@@ -5,7 +5,7 @@ import Icon from '../Icon';
 
 const SECTIONS = [
   {
-    path: '/',
+    path: '/#home',
     label: 'Armstrong Pull-up program',
   },
   {
@@ -37,7 +37,7 @@ const LandingNavbar = () => {
                 href={section.path}
                 scroll={true}
               >
-                {section.path === '/' ? (
+                {section.path === '/#home' ? (
                   <Icon
                     size={'0.698rem'}
                     name='biceps-flexed'
