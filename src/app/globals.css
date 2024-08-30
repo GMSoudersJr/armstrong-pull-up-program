@@ -79,7 +79,3 @@ a {
 nav {
   font-size: var(--baseNavFontSize);
 }
-
-section h2.landing-page-heading1 {
-  font-size: clamp();
-}

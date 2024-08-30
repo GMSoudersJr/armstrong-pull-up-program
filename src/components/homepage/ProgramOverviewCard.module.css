@@ -7,3 +7,15 @@
   padding: 0.5rem;
   text-align: center;
 }
+
+.iconWrapper {
+  font-size: clamp(1.5rem, 7vw + 1rem, 4rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  height: 1em;
+  width: 1em;
+}

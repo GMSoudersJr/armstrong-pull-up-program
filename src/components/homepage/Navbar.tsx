@@ -1,7 +1,7 @@
 import {nunito} from '@/fonts';
 import styles from './Navbar.module.css';
 import Link from "next/link";
-import Icon from '../Icon';
+import {BicepsFlexedIcon} from 'lucide-react';
 
 const SECTIONS = [
   {
@@ -38,10 +38,7 @@ const LandingNavbar = () => {
                 scroll={true}
               >
                 {section.path === '/#home' ? (
-                  <Icon
-                    size={'0.698rem'}
-                    name='biceps-flexed'
-                  />
+                  <BicepsFlexedIcon size={'0.698rem'} />
                 ) : (
                   section.label.toUpperCase()
                 )}

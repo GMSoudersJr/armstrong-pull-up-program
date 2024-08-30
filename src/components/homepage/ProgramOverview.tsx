@@ -1,7 +1,8 @@
 import {nunito} from '@/fonts';
 import styles from './ProgramOverview.module.css';
 import ProgramOverviewCard from '@/components/homepage/ProgramOverviewCard';
-import { TProgramOverview } from '@/definitions';
+import {TCardProps} from '@/definitions';
+import {ScaleIcon, ShapesIcon, Tally5Icon} from 'lucide-react';
 
 const ProgramOverview = () => {
 
@@ -13,7 +14,7 @@ const ProgramOverview = () => {
           return (
             <li key={key} className={styles.programOverviewListitem}>
               <ProgramOverviewCard
-                iconName={point.iconName}
+                Icon={point.Icon}
                 heading={point.heading}
                 body={point.body}
               />
@@ -27,9 +28,9 @@ const ProgramOverview = () => {
 
 export default ProgramOverview;
 
-const PROGRAM_OVERVIEW_POINTS: TProgramOverview[] = [
+const PROGRAM_OVERVIEW_POINTS: TCardProps[] = [
   {
-    iconName: 'tally-5',
+    Icon: Tally5Icon,
     heading: 'DAILY',
     body: [
       'Weekday => Workout!',
@@ -38,7 +39,7 @@ const PROGRAM_OVERVIEW_POINTS: TProgramOverview[] = [
     ]
   },
   {
-    iconName: 'scale',
+    Icon: ScaleIcon,
     heading: 'BALANCE',
     body: [
       'Wake up => Push-ups',
@@ -47,7 +48,7 @@ const PROGRAM_OVERVIEW_POINTS: TProgramOverview[] = [
     ]
   },
   {
-    iconName: 'shapes',
+    Icon: ShapesIcon,
     heading: 'VARIETY',
     body: [
       '4 different daily workouts!',

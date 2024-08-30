@@ -1,25 +1,31 @@
-import Icon from '@/components/Icon';
 import styles from './FeatureCard.module.css';
-import dynamicIconImports from 'lucide-react/dynamicIconImports';
 import {nunito, ptSans} from '@/fonts';
+import {LucideIcon} from 'lucide-react';
+import type { TCardProps } from '@/definitions';
 
-interface FeatureCardProps {
-  iconName: keyof typeof dynamicIconImports;
+interface FeatureCardProps extends TCardProps {
+  Icon: LucideIcon;
   heading: string;
-  text: string;
+  body: string[];
 };
 
-const FeatureCard = ({ iconName, heading, text }: FeatureCardProps) => {
+const FeatureCard = ({heading, body, Icon }: FeatureCardProps) => {
 
   return (
     <div className={styles.card}>
-      <div className={styles.icon}>
-        <Icon
-          name={iconName}
-        />
+      <div className={styles.iconWrapper}>
+        <Icon className={styles.icon}/>
       </div>
       <h3 style={nunito.style}>{heading}</h3>
-      <p style={ptSans.style}>{text}</p>
+      <ul>
+        {body.map((sentence, i) => {
+          return (
+            <li key={`${sentence}-${i}`}>
+              <p style={ptSans.style}>{sentence}</p>
+            </li>
+          )
+        })}
+      </ul>
     </div>
   )
 };

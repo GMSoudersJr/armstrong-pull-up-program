@@ -1,23 +1,24 @@
 import {nunito} from '@/fonts';
 import styles from './Features.module.css';
 import FeatureCard from '@/components/homepage/FeatureCard';
-import type { TFeature } from '@/definitions';
+import {DatabaseIcon, HourglassIcon, NotepadTextIcon} from 'lucide-react';
+import type { TCardProps } from '@/definitions';
 
-const FEATURES: TFeature[] = [
+const FEATURES: TCardProps[] = [
   {
-    iconName: 'database',
+    Icon: DatabaseIcon,
     heading: 'Local First',
-    text: 'Your data stays on your phone. Offline availability.',
+    body: ['Your data stays on your phone. Offline availability.'],
   },
   {
-    iconName: 'hourglass',
+    Icon: HourglassIcon,
     heading: 'Built-in Timer',
-    text: 'Proper rest between sets is important.',
+    body: ['Proper rest between sets is important.'],
   },
   {
-    iconName: 'notepad-text',
+    Icon: NotepadTextIcon,
     heading: 'Track Progress',
-    text: 'Keep track of your max as it increases.',
+    body: ['Keep track of your max as it increases.'],
   },
 ];
 
@@ -30,9 +31,9 @@ const Features = () => {
         return (
           <li key={feature.heading} className={styles.featuresListitem}>
             <FeatureCard
-              iconName={feature.iconName}
+              Icon={feature.Icon}
               heading={feature.heading}
-              text={feature.text}
+              body={feature.body}
             />
           </li>
         )

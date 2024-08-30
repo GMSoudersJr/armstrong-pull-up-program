@@ -1,4 +1,11 @@
+import {LucideIcon} from 'lucide-react';
 import dynamicIconImports from 'lucide-react/dynamicIconImports';
+
+export type TCardProps = {
+  Icon: LucideIcon;
+  heading: string;
+  body: string[];
+}
 
 export type TFeature = {
   iconName: keyof typeof dynamicIconImports;

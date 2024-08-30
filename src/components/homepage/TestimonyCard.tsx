@@ -1,6 +1,6 @@
 import styles from './TestimonyCard.module.css';
-import Icon from "@/components/Icon";
 import {nunito, ptSans} from '@/fonts';
+import {QuoteIcon, StarIcon, UserRoundCheckIcon} from 'lucide-react';
 import Image from "next/image";
 
 interface TestimonyCardProps {
@@ -22,12 +22,9 @@ const TestimonyCard = ({
   return (
     <div className={styles.card}>
       <section className={styles.header}>
+        <div className={styles.avatarIconWrapper}>
         {avatar === '' ? (
-          <Icon
-            className={styles.avatar}
-            name='user-round-check'
-            size={'2.5rem'}
-          />
+          <UserRoundCheckIcon className={styles.userIcon} />
         ) : (
           <Image
             className={ styles.avatar }
@@ -37,18 +34,29 @@ const TestimonyCard = ({
             width={40}
           />
         )}
-        <h4 style={nunito.style}>{name}</h4>
-        <h6 style={ptSans.style}>{duration}</h6>
-        <div className={styles.icon}>
-          <Icon
-            name="quote"
-          />
+        </div>
+        <h3 style={nunito.style}>{name}</h3>
+        <h5 style={ptSans.style}>{duration}</h5>
+        <div className={styles.quoteIconWrapper}>
+          <QuoteIcon className={styles.quoteIcon}/>
         </div>
       </section>
       <div className={styles.body}>
         <blockquote>{body}</blockquote>
+      </div>
+      <div className={styles.footer}>
         <ul className={styles.rating}>
-          {Array.from({length: stars}, () => <Icon name='star' fill='#FFFF00' size={'0.75rem'}/>)}
+          {Array.from({length: stars}, (x, i) => {
+            return (
+              <li key={i}>
+                <StarIcon
+                  fill='#FFFF00'
+                  size={'0.75rem'}
+                  className={styles.starIcon}
+                />
+              </li>
+            )
+          })}
         </ul>
       </div>
     </div>
