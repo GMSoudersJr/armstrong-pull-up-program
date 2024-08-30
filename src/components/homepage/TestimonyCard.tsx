@@ -26,7 +26,7 @@ const TestimonyCard = ({
           <Icon
             className={styles.avatar}
             name='user-round-check'
-            size={'3rem'}
+            size={'2.5rem'}
           />
         ) : (
           <Image
@@ -42,9 +42,6 @@ const TestimonyCard = ({
         <div className={styles.icon}>
           <Icon
             name="quote"
-            size={'3rem'}
-            color='#87CEEB'
-            strokeWidth={1.5}
           />
         </div>
       </section>

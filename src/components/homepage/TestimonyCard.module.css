@@ -1,10 +1,11 @@
 .card {
+  place-self: center;
   width: 15rem;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 2fr;
   border-radius: 0.4rem;
-  background-image: linear-gradient(#D1D1D1, #0000FF);
+  background-image: linear-gradient( #0074D9, #2ECC40);
   grid-template-areas:
   "header"
   "body";
@@ -38,7 +39,6 @@
 .avatar {
   grid-area: avatar;
   border-radius: 50%;
-  border: 2px solid #87CEEB;
   align-self: center;
   padding: 0.25rem;
 }

@@ -1,3 +1,7 @@
+'use client';
+
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css';
 import {nunito} from '@/fonts';
 import styles from './Testimonials.module.css';
 import TestimonyCard from './TestimonyCard';
@@ -37,10 +41,21 @@ const Testimonials = () => {
   return (
     <section id='testimonials' className={styles.testimonials}>
       <h1 style={nunito.style}>Testimonials</h1>
-      <ul className={styles.testimonyList}>
+        <Splide
+          className={styles.splide}
+          tag='section'
+          aria-label="User Testimonials"
+          options={{
+            rewind: true,
+            width: '80%',
+          }}
+        >
         {TESTIMONIALS.map((testimony, i) => {
           return (
-            <li key={`${testimony.name}-${i}`} className={styles.testimonyListitem}>
+            <SplideSlide
+              className={styles.splideSlide}
+              key={`${testimony.name}-${i}`}
+            >
               <TestimonyCard
                 body={testimony.body}
                 name={testimony.name}
@@ -48,10 +63,10 @@ const Testimonials = () => {
                 duration={testimony.programDuration}
                 stars={testimony.stars}
               />
-            </li>
+            </SplideSlide>
           )
         })}
-      </ul>
+        </Splide>
     </section>
   )
 };
