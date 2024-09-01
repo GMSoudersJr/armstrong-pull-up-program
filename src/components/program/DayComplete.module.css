@@ -8,12 +8,12 @@
   grid-template-rows: repeat(2, min-content);
   align-items: center;
   grid-template-areas:
-  "oncomingFist totalReps takeAction"
-  "oncomingFist message takeAction";
+  "thumbsUpIconWrapper totalReps takeAction"
+  "thumbsUpIconWrapper message takeAction";
 }
 
-.oncomingFist {
-  grid-area: oncomingFist;
+.thumbsUpIconWrapper {
+  grid-area: thumbsUpIconWrapper;
 }
 
 .totalReps {
@@ -34,11 +34,13 @@
 }
 
 .emoji {
-  font-family: var(--font-notoColorEmoji);
   font-size: 2rem;
 }
 
 .saveButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: none;
   background-color: none;
   border: none;

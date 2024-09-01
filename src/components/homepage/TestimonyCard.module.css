@@ -1,7 +1,7 @@
 .card {
   place-self: center;
   width: clamp(20rem, 4vh + 3rem, 25rem);
-  aspect-ratio: 1 / 1.618;
+  aspect-ratio: 1 / 0.859;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: min-content 1fr min-content;
@@ -11,7 +11,6 @@
   "header"
   "body"
   "footer";
-  font-size: clamp(1.5rem, 7vw + 1rem, 4rem);
 }
 
 .header {
@@ -27,6 +26,7 @@
   grid-template-areas:
   "avatar name quoteIcon"
   "avatar duration quoteIcon";
+  font-size: clamp(1.5rem, 7vw + 1rem, 4rem);
 }
 
 .quoteIconWrapper {
@@ -36,11 +36,11 @@
   align-items: center;
 }
 
-.card h6 {
+.card h5 {
   grid-area: duration;
 }
 
-.card h4 {
+.card h3 {
   grid-area: name;
 }
 
@@ -81,12 +81,17 @@
   padding: 0.5rem;
 }
 
+.body blockquote {
+  font-size: 1em;
+}
+
 .rating {
   display: flex;
   gap: 0.25rem;
 }
 
 .footer {
+  font-size: clamp(1.5rem, 7vw + 1rem, 4rem);
   grid-area: footer;
   display: flex;
   justify-content: center;

@@ -42,7 +42,9 @@ const TestimonyCard = ({
         </div>
       </section>
       <div className={styles.body}>
-        <blockquote>{body}</blockquote>
+        <blockquote style={ptSans.style}>
+          {body}
+        </blockquote>
       </div>
       <div className={styles.footer}>
         <ul className={styles.rating}>

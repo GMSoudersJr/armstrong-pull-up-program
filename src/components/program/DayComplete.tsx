@@ -15,6 +15,7 @@ import {
 } from '@/indexedDBActions';
 import TotalReps from "./TotalReps";
 import {notoColorEmoji, nunito} from "@/fonts";
+import {CheckIcon, SaveIcon, ThumbsUpIcon} from "lucide-react";
 
 interface DayCompleteProps {
   dayData: TDayComplete;
@@ -56,42 +57,35 @@ const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
 
   return (
     <div className={styles.dayCompleteContainer}>
-      <h1
-        className={`${styles.oncomingFist} ${styles.emoji}`}
-        style={notoColorEmoji.style}
-      >
-        {oncomingFistEmoji}
-      </h1>
+      <div className={styles.thumbsUpIconWrapper} >
+        <ThumbsUpIcon />
+      </div>
       <div className={styles.totalReps}>
         <TotalReps sets={dayData.sets} />
       </div>
-      <h1
+      <h3
         className={styles.message}
         style={nunito.style}
       >
         {isDataSaved ? 'DAY COMPLETE' : 'SAVE PROGRESS'}
-      </h1>
-      <h1
+      </h3>
+      <div
         className={styles.takeAction}
         style={nunito.style}
       >
         {isDataSaved ? (
-           <span
-             className={styles.emoji}
-             style={notoColorEmoji.style}
-           >
-             {checkMarkEmoji}
+           <span className={styles.checkIconWrapper} >
+             <CheckIcon />
           </span>
         ) : (
           <button
-            className={`${styles.saveButton} ${styles.emoji}`}
-            style={notoColorEmoji.style}
+            className={styles.saveButton}
             onClick={handleClick}
           >
-            {floppyDiskEmoji}
+            <SaveIcon />
           </button>
         )}
-      </h1>
+      </div>
     </div>
   )
 };

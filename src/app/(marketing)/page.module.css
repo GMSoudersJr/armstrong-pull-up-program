@@ -5,11 +5,3 @@
   align-items: center;
   height: auto;
 }
-
-.pageLinkFlex {
-  justify-content: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 3rem;
-
-}

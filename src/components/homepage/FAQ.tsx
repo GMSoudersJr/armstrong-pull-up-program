@@ -11,9 +11,9 @@ const FaqAccordion = () => {
 
   return (
     <section id="faq" className={styles.faq}>
-      <h2 style={nunito.style}>
+      <h3 style={nunito.style}>
         FAQ
-      </h2>
+      </h3>
       <ul className={styles.faqList}>
       {FAQ.map((faq) => {
         return (
