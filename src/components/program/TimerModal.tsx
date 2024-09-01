@@ -2,6 +2,7 @@ import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import styles from './TimerModal.module.css';
 import {isSingular} from '@/utils';
 import {ptSans} from '@/fonts';
+import {XIcon} from 'lucide-react';
 
 interface TimerModalProps {
   onClose: React.MouseEventHandler<HTMLButtonElement>;
@@ -36,18 +37,18 @@ const TimerModal = ({
   return (
     <div id="timerModal" className={styles.modal}>
       <div className={styles.modalContent}>
+        <div className={styles.timer}>
+          <p style={ptSans.style}>
+            {secondsLeft > 0 && `Next set in ${secondsLeft} ${isSingular(secondsLeft) ? 'second!' : 'seconds'}`}
+          </p>
+        </div>
         <button
           type='button'
           className={styles.closeButton}
           onClick={onClose}
         >
-          &times;
+          <XIcon className={styles.icon} />
         </button>
-        <div>
-          <p style={ptSans.style}>
-            {secondsLeft > 0 && `Next set in ${secondsLeft} ${isSingular(secondsLeft) ? 'second!' : 'seconds'}`}
-          </p>
-        </div>
       </div>
     </div>
   )
