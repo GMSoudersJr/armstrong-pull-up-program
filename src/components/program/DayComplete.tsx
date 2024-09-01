@@ -1,7 +1,6 @@
 "use client";
 
 import { Dispatch, SetStateAction, useState } from "react";
-import { oncomingFistEmoji, floppyDiskEmoji, checkMarkEmoji } from "@/emojis";
 import styles from './DayComplete.module.css';
 import type {TDayComplete} from "@/app/lib/definitions";
 
@@ -14,8 +13,8 @@ import {
   getWeekDataForWeekNumber,
 } from '@/indexedDBActions';
 import TotalReps from "./TotalReps";
-import {notoColorEmoji, nunito} from "@/fonts";
-import {CheckIcon, SaveIcon, ThumbsUpIcon} from "lucide-react";
+import {nunito} from "@/fonts";
+import {CircleCheckBigIcon, SaveIcon, ThumbsUpIcon} from "lucide-react";
 
 interface DayCompleteProps {
   dayData: TDayComplete;
@@ -58,7 +57,7 @@ const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
   return (
     <div className={styles.dayCompleteContainer}>
       <div className={styles.thumbsUpIconWrapper} >
-        <ThumbsUpIcon />
+        <ThumbsUpIcon className={styles.icon}/>
       </div>
       <div className={styles.totalReps}>
         <TotalReps sets={dayData.sets} />
@@ -74,15 +73,16 @@ const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
         style={nunito.style}
       >
         {isDataSaved ? (
-           <span className={styles.checkIconWrapper} >
-             <CheckIcon />
-          </span>
+           <div className={styles.checkIconWrapper} >
+             <CircleCheckBigIcon className={styles.icon}/>
+          </div>
         ) : (
           <button
+            type="button"
             className={styles.saveButton}
             onClick={handleClick}
           >
-            <SaveIcon />
+            <SaveIcon className={styles.icon}/>
           </button>
         )}
       </div>

@@ -31,6 +31,7 @@ const MaxoutNumberButton = ({
 
   return (
     <button
+      type='button'
       className={styles.numberedButton}
       style={ptSans.style}
       onClick={handleClick}

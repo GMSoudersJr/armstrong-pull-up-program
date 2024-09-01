@@ -47,6 +47,7 @@ const NumberedMissRepButton = ({
   return (
     <>
       <button
+        type='button'
         className={styles.repButton}
         style={ptSans.style}
         onClick={handleClick}

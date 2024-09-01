@@ -1,6 +1,5 @@
-import {brickEmoji} from '@/emojis';
 import styles from './PyramidDisplay.module.css';
-import {notoColorEmoji} from '@/fonts';
+import {BrickWallIcon} from 'lucide-react';
 
 interface PyramidDisplayProps {
   repsArray: number[];
@@ -15,9 +14,12 @@ const PyramidDisplay = ({ repsArray }: PyramidDisplayProps) => {
               <li
                 key={i}
                 className={styles.pyramidListItem}
-                style={notoColorEmoji.style}
               >
-                {brickEmoji.repeat(reps)}
+                {Array.from({length: reps}, (x, i) => {
+                  return (
+                    <BrickWallIcon key={i} className={styles.icon}/>
+                  )
+                })}
               </li>
           )
       })}

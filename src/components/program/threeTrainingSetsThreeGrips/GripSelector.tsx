@@ -62,6 +62,7 @@ const GripSelector = ({ completedGripsState, setStateForCurrentGrip }: GripSelec
             className={styles.gripSelectorButtonListitem}
           >
             <button
+              type="button"
               className={styles.gripSelectorButton}
               onClick={handleClick}
               value={grip.name}

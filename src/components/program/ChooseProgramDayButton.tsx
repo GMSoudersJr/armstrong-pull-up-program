@@ -19,6 +19,7 @@ const ChooseProgramDayButton = ({
 
   return (
     <button
+      type="button"
       className={styles.chooseProgramDayButton}
       onClick={handleClick}
     >

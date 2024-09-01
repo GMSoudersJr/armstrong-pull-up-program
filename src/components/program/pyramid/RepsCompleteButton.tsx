@@ -1,7 +1,6 @@
 import {Dispatch, SetStateAction} from "react";
 import styles from './ActionButton.module.css';
-import {checkMarkButtonEmoji} from "@/emojis";
-import {notoColorEmoji} from "@/fonts";
+import {CircleCheckIcon} from "lucide-react";
 
 interface RepsCompleteButtonProps {
   repsState: number;
@@ -38,12 +37,12 @@ const RepsCompleteButton = ({
 
   return (
     <button
+      type="button"
       className={styles.pyramidActionButton}
-      style={notoColorEmoji.style}
       onClick={handleClick}
       disabled={showTimerModalState}
     >
-      {checkMarkButtonEmoji}
+      <CircleCheckIcon className={styles.icon}/>
     </button>
   )
 };

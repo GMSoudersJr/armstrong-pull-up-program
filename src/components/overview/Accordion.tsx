@@ -47,6 +47,7 @@ export const Accordion = ({
   return (
     <>
       <button
+        type='button'
         className={`${styles.accordion} ${active && styles.active}`}
         ref={accordionButtonRef}
         onClick={handleClick}

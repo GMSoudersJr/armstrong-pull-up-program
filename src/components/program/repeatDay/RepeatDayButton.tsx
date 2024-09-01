@@ -20,6 +20,7 @@ const RepeatDayButton = ({
 
   return (
     <button
+      type="button"
       className={styles.repeatDayButton}
       onClick={handleClick}
     >

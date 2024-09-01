@@ -56,6 +56,7 @@ const TrainingSetRepsInput = ({ setStateForTrainingSetReps }: TrainingSetRepsInp
         onKeyUp={handleKeyUp}
       />
       <button
+        type='button'
         className={styles.repsSubmitButton}
         style={nunito.style}
         onClick={handleClick}

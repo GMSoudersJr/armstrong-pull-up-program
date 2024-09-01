@@ -5,6 +5,7 @@ import {isSingular} from "@/utils";
 import {createPortal} from "react-dom";
 import TimerModal from "../TimerModal";
 import {notoColorEmoji, nunito} from "@/fonts";
+import {CircleCheckIcon, CircleXIcon} from "lucide-react";
 
 interface MaxTrainingSetsDisplayProps {
   trainingSetReps: number;
@@ -53,20 +54,20 @@ const MaxTrainingSetsDisplay = ({
       </h3>
       <div className={styles.actionButtonsContainer}>
         <button
+          type="button"
           className={styles.actionButton}
-          style={notoColorEmoji.style}
           onClick={handleMiss}
           disabled={showTimerModal}
         >
-          {crossMarkButtonEmoji}
+          <CircleXIcon className={styles.icon} />
         </button>
         <button
+          type='button'
           className={styles.actionButton}
-          style={notoColorEmoji.style}
           onClick={handleComplete}
           disabled={showTimerModal}
         >
-          {checkMarkButtonEmoji}
+          <CircleCheckIcon className={styles.icon} />
         </button>
         {showTimerModal && createPortal(
         <TimerModal

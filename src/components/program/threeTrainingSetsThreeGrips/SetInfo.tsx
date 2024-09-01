@@ -5,6 +5,7 @@ import {createPortal} from 'react-dom';
 import TimerModal from '../TimerModal';
 import {TGrip} from '@/app/lib/definitions';
 import {notoColorEmoji, nunito} from '@/fonts';
+import {ArrowRightToLineIcon, CircleCheckIcon, CircleXIcon} from 'lucide-react';
 
 interface SetInfoProps {
   trainingSetReps: number;
@@ -101,20 +102,20 @@ const SetInfo = ({
 
       <div className={styles.buttonsContainer}>
         <button
+          type='button'
           className={styles.actionButton}
-          style={notoColorEmoji.style}
           onClick={handleMiss}
           disabled={showTimerModal || completedSetCount === 3}
         >
-          {crossMarkButtonEmoji}
+          <CircleXIcon className={styles.icon}/>
         </button>
         <button
+          type='button'
           className={styles.actionButton}
-          style={notoColorEmoji.style}
           onClick={handleDone}
           disabled={showTimerModal}
         >
-          {completedSetCount === 3 ? nextTrackButtonEmoji : checkMarkButtonEmoji}
+          {completedSetCount === 3 ? <ArrowRightToLineIcon className={styles.icon} /> : <CircleCheckIcon className={styles.icon} />}
         </button>
         {showTimerModal && createPortal(
           <TimerModal

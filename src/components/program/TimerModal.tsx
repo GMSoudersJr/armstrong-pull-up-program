@@ -37,6 +37,7 @@ const TimerModal = ({
     <div id="timerModal" className={styles.modal}>
       <div className={styles.modalContent}>
         <button
+          type='button'
           className={styles.closeButton}
           onClick={onClose}
         >

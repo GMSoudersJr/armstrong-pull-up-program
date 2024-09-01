@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import styles from './RepsActionButton.module.css';
-import {lastTrackButtonEmoji} from "@/emojis";
-import {notoColorEmoji} from "@/fonts";
+import {EraserIcon} from "lucide-react";
 
 interface RepsRemoveButtonProps {
   setStateForRepsArray: Dispatch<SetStateAction<number[]>>;
@@ -26,10 +25,9 @@ const RepsRemoveButton = ({
       type='button'
       onClick={handleRemove}
       className={`${styles.button} ${styles.removeButton}`}
-      style={notoColorEmoji.style}
       disabled={showTimerModalState || savedDay}
     >
-      {lastTrackButtonEmoji}
+      <EraserIcon className={styles.icon}/>
     </button>
   )
 };
