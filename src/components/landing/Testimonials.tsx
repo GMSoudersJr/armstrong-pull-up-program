@@ -1,7 +1,7 @@
 'use client';
 
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import '@splidejs/react-splide/css';
+import { Splide, SplideSlide } from 'react-splide-ts';
+import 'react-splide-ts/css';
 import {nunito} from '@/fonts';
 import styles from './Testimonials.module.css';
 import TestimonyCard from '@/components/landing/TestimonyCard';
