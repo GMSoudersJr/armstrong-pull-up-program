@@ -1,5 +1,6 @@
 import {Dispatch, SetStateAction} from "react";
 import styles from './RepeatDayButton.module.css';
+import {nunito} from "@/fonts";
 
 interface RepeatDayButtonProps {
   name?: string;
@@ -19,13 +20,14 @@ const RepeatDayButton = ({
 
   return (
     <button
+      type="button"
       className={styles.repeatDayButton}
       onClick={handleClick}
     >
-      <h3>
+      <h3 style={nunito.style}>
         {`Day ${dayNumber}`}
       </h3>
-      <h4>
+      <h4 style={nunito.style}>
         {`${name?.toUpperCase()}`}
       </h4>
     </button>

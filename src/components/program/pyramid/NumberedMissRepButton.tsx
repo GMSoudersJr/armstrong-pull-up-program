@@ -1,3 +1,4 @@
+import {ptSans} from '@/fonts';
 import styles from './NumberedMissRepButton.module.css';
 import {
   Dispatch,
@@ -46,7 +47,9 @@ const NumberedMissRepButton = ({
   return (
     <>
       <button
+        type='button'
         className={styles.repButton}
+        style={ptSans.style}
         onClick={handleClick}
         disabled={showTimerModalState}
       >

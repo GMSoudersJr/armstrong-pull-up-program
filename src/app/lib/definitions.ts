@@ -1,10 +1,40 @@
+import {LucideIcon} from 'lucide-react';
+import dynamicIconImports from 'lucide-react/dynamicIconImports';
+
+export type TCardProps = {
+  Icon: LucideIcon;
+  heading: string;
+  body: string[];
+}
+
+export type TFeature = {
+  iconName: keyof typeof dynamicIconImports;
+  heading: string;
+  text: string;
+}
+
+export type TProgramOverview = {
+  iconName: keyof typeof dynamicIconImports;
+  heading: string;
+  body: string[];
+}
+
 export type TDailyInstruction = {
   id: number;
+  emoji: string;
   day: number;
   title: string;
   instructions: string[] | [];
   link?: string
 };
+
+export type TFAQ = {
+  id: number;
+  Icon: LucideIcon;
+  day: number;
+  heading: string;
+  body: string[] | [];
+}
 
 export type TStoreName = 'weeksStore' | 'workoutsStore';
 
@@ -18,7 +48,7 @@ type TDayAbrreviation = '5MES' | 'PYRA' | '3S3G' | 'MXTS';
 
 export type TGrip = 'neutral' | 'wide' | 'close' | 'pronated' | 'supinated' | string;
 
-type TDayNumber = 1 | 2 | 3 | 4 | 5;
+export type TDayNumber = 1 | 2 | 3 | 4 | 5;
 
 export type TDayComplete = {
   id?: string;
@@ -26,7 +56,7 @@ export type TDayComplete = {
   weekNumber?: number;
   dayNumber: TDayNumber;
   dayAbbreviation: TDayAbrreviation;
-  sets?: number[]
+  sets: number[]
   grips?: TGrip[];
   success?: boolean;
   trainingSetReps?: number;

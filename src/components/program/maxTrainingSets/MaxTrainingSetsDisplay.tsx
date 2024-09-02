@@ -4,12 +4,14 @@ import styles from './MaxTrainingSetsDisplay.module.css';
 import {isSingular} from "@/utils";
 import {createPortal} from "react-dom";
 import TimerModal from "../TimerModal";
+import {notoColorEmoji, nunito} from "@/fonts";
+import {CircleCheckIcon, CircleXIcon} from "lucide-react";
 
 interface MaxTrainingSetsDisplayProps {
   trainingSetReps: number;
-  updateCompletedTrainingSets: Dispatch<SetStateAction<number>>;
+  updateCompletedTrainingSets: Dispatch<SetStateAction<number[]>>;
   updateDayComplete: Dispatch<SetStateAction<boolean>>;
-  completedTrainingSets: number;
+  completedTrainingSets: number[];
 }
 
 const recoveryTime = 60;
@@ -24,7 +26,9 @@ const MaxTrainingSetsDisplay = ({
   const [showTimerModal, setShowTimerModal] = useState(false);
 
   function handleComplete() {
-    updateCompletedTrainingSets(completedTrainingSets => completedTrainingSets + 1);
+    updateCompletedTrainingSets(
+      [...completedTrainingSets, trainingSetReps]
+    );
     setShowTimerModal(true);
   }
 
@@ -35,14 +39,14 @@ const MaxTrainingSetsDisplay = ({
   return (
     <section className={styles.maxTrainingSetsContainer}>
       <div className={styles.completeSetsDisplay}>
-        <h3>
-          COMPLETED {completedTrainingSets} {isSingular(completedTrainingSets) ? 'SET' : 'SETS'}
+        <h3 style={nunito.style}>
+          COMPLETED {completedTrainingSets.length} {isSingular(completedTrainingSets.length) ? 'SET' : 'SETS'}
         </h3>
       </div>
-      <h3 className={styles.maxSetsText}>
-        {completedTrainingSets < 9 ? (
-          `ONLY ${9 - completedTrainingSets} MORE ${isSingular(9 - completedTrainingSets) ? 'SET' : 'SETS'} OF ${trainingSetReps}`
-        ) : completedTrainingSets === 9 ? (
+      <h3 className={styles.maxSetsText} style={nunito.style}>
+        {completedTrainingSets.length < 9 ? (
+          `ONLY ${9 - completedTrainingSets.length} MORE ${isSingular(9 - completedTrainingSets.length) ? 'SET' : 'SETS'} OF ${trainingSetReps}`
+        ) : completedTrainingSets.length === 9 ? (
         `DO ANOTHER`
         ) : (
         `... AND ANOTHER!`
@@ -50,18 +54,20 @@ const MaxTrainingSetsDisplay = ({
       </h3>
       <div className={styles.actionButtonsContainer}>
         <button
+          type="button"
           className={styles.actionButton}
           onClick={handleMiss}
           disabled={showTimerModal}
         >
-          {crossMarkButtonEmoji}
+          <CircleXIcon className={styles.icon} />
         </button>
         <button
+          type='button'
           className={styles.actionButton}
           onClick={handleComplete}
           disabled={showTimerModal}
         >
-          {checkMarkButtonEmoji}
+          <CircleCheckIcon className={styles.icon} />
         </button>
         {showTimerModal && createPortal(
         <TimerModal

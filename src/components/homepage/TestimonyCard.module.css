@@ -1,0 +1,99 @@
+.card {
+  place-self: center;
+  width: clamp(20rem, 4vh + 3rem, 25rem);
+  aspect-ratio: 1 / 0.859;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr min-content;
+  border-radius: 0.4rem;
+  background-image: linear-gradient( #0074D9, #2ECC40);
+  grid-template-areas:
+  "header"
+  "body"
+  "footer";
+}
+
+.header {
+  grid-area: header;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: repeat(2, min-content);
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  align-content: center;
+  padding: 0.5rem;
+  grid-template-areas:
+  "avatar name quoteIcon"
+  "avatar duration quoteIcon";
+  font-size: clamp(1.5rem, 7vw + 1rem, 4rem);
+}
+
+.quoteIconWrapper {
+  grid-area: quoteIcon;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card h5 {
+  grid-area: duration;
+}
+
+.card h3 {
+  grid-area: name;
+}
+
+.avatarIconWrapper {
+  grid-area: avatar;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1em;
+}
+
+.userIcon,
+.quoteIcon {
+  height: 1em;
+  width: 1em;
+}
+
+.starIcon {
+  height: 0.5em;
+  width: 0.5em;
+}
+
+.avatar {
+  border-radius: 50%;
+  align-self: center;
+  justify-self: center;
+  padding: 0.25rem;
+}
+
+
+.body {
+  grid-area: body;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.body blockquote {
+  font-size: 1em;
+}
+
+.rating {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.footer {
+  font-size: clamp(1.5rem, 7vw + 1rem, 4rem);
+  grid-area: footer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

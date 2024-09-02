@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import styles from './RepsActionButton.module.css';
-import {checkMarkButtonEmoji} from "@/emojis";
+import {CircleCheckIcon} from "lucide-react";
 
 interface RepsCompleteButtonProps {
   reps: number;
@@ -39,7 +39,7 @@ const RepsCompleteButton = ({
         className={`${styles.button} ${styles.completeButton}`}
         disabled={showTimerModalState}
       >
-        {checkMarkButtonEmoji}
+        <CircleCheckIcon className={styles.icon} />
       </button>
     </>
   );

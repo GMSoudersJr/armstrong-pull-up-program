@@ -1,3 +1,4 @@
+import {nunito, ptSans} from '@/fonts';
 import styles from './SetsTable.module.css';
 
 interface SetsTableProps {
@@ -12,8 +13,12 @@ const SetsTable = ({ repsArray }: SetsTableProps) => {
         <tr className={styles.tableRow}>
           {repsArray.map((reps, i) => {
             return (
-              <th key={`${reps} in set ${i}`} className={styles.tableHead}>
-                {`SET ${(i + 1)}`}
+              <th
+                key={`${reps} in set ${i}`}
+                className={styles.tableHead}
+                style={nunito.style}
+              >
+                {`${(i + 1)}`}
               </th>
             )
           })}
@@ -21,7 +26,13 @@ const SetsTable = ({ repsArray }: SetsTableProps) => {
         <tr className={styles.tableRow}>
           {repsArray.map((reps, i) => {
             return (
-              <td key={`${reps} in set ${i}`} className={styles.tableData}>{reps}</td>
+              <td
+                key={`${reps} in set ${i}`}
+                className={styles.tableData}
+                style={ptSans.style}
+              >
+                {reps}
+              </td>
             )
           })}
         </tr>

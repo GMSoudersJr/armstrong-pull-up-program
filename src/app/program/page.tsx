@@ -1,17 +1,16 @@
 'use client';
 
-import {PageLink} from '@/components/PageLink';
+import {nunito} from '@/fonts';
 import styles from './page.module.css';
-import { DAYS } from '@/const';
-import { initializeIDB } from '@/data/indexedDB';
-import Program from '@/components/program/Program';
+import dynamic from 'next/dynamic';
+
+const Program = dynamic(() => import('@/components/program/Program'), { ssr: false });
 
 const ProgramPage = () => {
-  initializeIDB();
-  // TODO Get the next day
+
   return (
     <main className={styles.main}>
-      <h1>
+      <h1 style={nunito.style} className={styles.text}>
         GET STARTED!
       </h1>
       <div className={styles.pageLinksContainer}>

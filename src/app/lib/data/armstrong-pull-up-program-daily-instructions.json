@@ -2,6 +2,7 @@
   {
     "id": 0,
     "day": 0,
+    "emoji": "🤔",
     "title": "INTRODUCTION",
     "instructions": [
       "This program was developed by Major Charles Lewis Armstrong. Major Armstrong developed this workout to prepare him to set a new world record in number of pull-ups completed in a single exercise session.",
@@ -11,6 +12,7 @@
   {
     "id": 1,
     "day": 0,
+    "emoji": "🌄",
     "title": "MORNING ROUTINE",
     "instructions": [
       "Each morning, perform 3 maximum effort sets of normal push-ups. This is very important!! The push-up is one of the best exercises for strengthening the entire set of muscles making up the shoulder girdle. Major Armstrong described this morning routine in the following manner: After rising, I would drop to the deck and do my first set of push-ups. I would then move into the head and start my morning toilet. I would return after a few minutes and do my second maximum effort set after which, I would go back into the head and shave. After shaving I would return to the bedroom and complete the third and final set. Having completed all of the push-ups, I was awake and ready for a relaxing shower.",
@@ -20,6 +22,7 @@
   {
     "id": 2,
     "day": 0,
+    "emoji": "🔰",
     "title": "TRAINING REGIMEN",
     "instructions": [
       "The following represents the heart of the training program. I recommend that you do not attempt the pull-ups until two to three hours after the push-up routine is completed. The program is conveniently divided into five training days. This is easily translated into a Monday to Friday training schedule. It is important to cease the pull-ups for two days, Saturday and Sunday. Further it is necessary to use consecutive days (not to skip days) when on the pull-up routine. Finally, it is obviously more important to do the pull-ups than the push-ups.",
@@ -29,6 +32,7 @@
   {
     "id": 3,
     "day": 1,
+    "emoji": "🗓️",
     "title": "DAY 1",
     "instructions": [
       "Five maximum effort sets.",
@@ -42,6 +46,7 @@
   {
     "id": 4,
     "day": 2,
+    "emoji": "🗓️",
     "title": "DAY 2",
     "instructions": [
       "Pyramid day.",
@@ -55,6 +60,7 @@
   {
     "id": 5,
     "day": 3,
+    "emoji": "🗓️",
     "title": "DAY 3",
     "instructions": [
       "Do three training sets (training sets are defined later) with a normal grip (palms away or toward you, hands slightly wider than shoulder width).",
@@ -67,6 +73,7 @@
   {
     "id": 6,
     "day": 4,
+    "emoji": "🗓️",
     "title": "DAY 4",
     "instructions": [
       "Do the maximum number of training sets that you can accomplish.",
@@ -80,6 +87,7 @@
   {
     "id": 7,
     "day": 5,
+    "emoji": "🗓️",
     "title": "DAY 5",
     "instructions": [
       "Repeat the day that you found to be the hardest in the previous four days.",
@@ -91,6 +99,7 @@
   {
     "id": 8,
     "day": 6,
+    "emoji": "😴",
     "title": "DAY 6",
     "instructions": [
       "REST!"
@@ -99,6 +108,7 @@
   {
     "id": 9,
     "day": 7,
+    "emoji": "😴",
     "title": "DAY 7",
     "instructions": [
       "REST!"
@@ -107,10 +117,31 @@
   {
     "id": 10,
     "day": 0,
+    "emoji": "🎛️",
     "title": "TRAINING SETS",
     "instructions": [
       "Training sets are easy to define, but require some experimentation to determine for the individual participating in the program. A training set has a specified number of repetitions. That means that one individual may have seven repetitions in his training set, but another could have more or less. The key to determining the proper number of repetitions in a training set comes on day 3. You must perform 9 training sets that day. If you only do 12 repetitions on a max effort set, then your training set would probably only be 1-3 repetitions. Remember, it is much more important that you complete all nine sets than doing an extra rep and only completing 6 or 7 sets. Day 3 calls for you to do nine training sets. Adjust your training set so that you can complete this routine properly.  The best gauge for the number of repetitions in a training set comes on day 4. If you successfully complete day 3, try increasing the number of repetitions in your training set by one when you do day 4. If you complete at least 9 training sets, then you know your training set should be that higher number. If you do less than nine sets, stick with the number you used for day 3. ",
       "It is important that you do not change the repetitions in a training set in midstream. When you schedule yourself to do the day’s routine using three repetitions in your training set, do not change it to two when the exercises get hard. If you miss, you miss. There is always tomorrow."
+    ]
+  },
+  {
+    "id": 11,
+    "day": 0,
+    "emoji": "〽️",
+    "title": "MODIFICATIONS",
+    "instructions": [
+      "Ladies will find that this program adapts well to the flexed arm hang. Training sets are simply translated into hang times.",
+      "Chin-ups may be substituted for those who prefer this technique, however, day 3 must still be completed exactly as described with 6 sets done with the overhand grip.",
+      "It is highly recommended that you follow this program using overhand grip as most of the obstacles that you will have to get over at OCS require an overhand grip."
+    ]
+  },
+  {
+    "id": 12,
+    "day": 0,
+    "emoji": "⚕️",
+    "title": "DISCLAIMER",
+    "instructions": [
+      "This program will work for anyone who makes a sincere effort. You may notice a drop in your maximum effort set. This is a normal physiological reaction called 'tear down'. As you continue, you will improve. Most of my midshipmen were able to reach the 20- repetition level in a short period of time. They started the program able to do only twelve to fifteen repetitions. If you are not at this level, it will take longer than four weeks to reach 20 repetitions. However, if you stay with the program, you will reach this goal.  Disclaimer: It is very important to note that none of these physical training programs should be started by anyone until you have consulted a licensed physician and you are told you are medically qualified to begin this specific type of physical training."
     ]
   }
 ]

@@ -1,18 +1,21 @@
 .table, .tableHead, .tableData {
-  border: 1px solid #c0c0c0;
+  border: 1px solid #C0C0C0;
   border-collapse: collapse;
-  max-width: max-content;
+  max-width: fit-content;
   align-self: center;
 }
 
 .tableHead {
   padding: 0.5rem;
-  font-family: var(--font-nunito);
 }
 
 .tableData {
   text-align: center;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  font-family: var(--font-ptSans);
+}
+
+.table {
+  grid-area: table;
+  place-self: center;
 }

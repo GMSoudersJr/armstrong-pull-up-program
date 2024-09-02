@@ -37,14 +37,7 @@ export function addNewWeek(weekNumber: number) {
       console.warn('error adding new week', err)
     }
 
-    request.onsuccess = () => {
-      console.log('successfully added a week')
-    }
-
-    transaction.oncomplete = () => {
-      console.log("Add a new week transaction complete.")
-      db?.close();
-    }
+    transaction.oncomplete = () => db?.close();
   }
 };
 //}}}
@@ -52,6 +45,7 @@ export function addNewWeek(weekNumber: number) {
 export function getWeekDataForWeekNumber(weekNumber: number): Promise<TWeek> {
   const open = indexedDB.open(dbName);
   const storeName: TStoreName = 'weeksStore';
+
   return new Promise<TWeek>((resolve, reject) => {
 
     open.onsuccess = () => {
@@ -102,44 +96,43 @@ export function updateThisWeekWithWorkoutNumber(week: TWeek, workoutDayNumber: n
 
       request.onerror = (err) => console.warn(err)
 
-      request.onsuccess = () => console.log("successfully updated the week");
-
-      transaction.oncomplete = () => {
-        console.log("updated week transaction complete")
-        db?.close();
-      }
+      transaction.oncomplete = () => db?.close();
     }
   }
 };
 //}}}
 // ADD_COMPLETED_DAY {{{
-export const addCompletedDayToWorkoutsStore = (payload: TDayComplete): void => {
+export const addCompletedDayToWorkoutsStore = (payload: TDayComplete): Promise<boolean> => {
   const open = indexedDB.open(dbName);
   const storeName: TStoreName = 'workoutsStore';
-  open.onsuccess = () => {
-    db = open.result;
-    if ([db.objectStoreNames].find((storeName) => storeName === storeName)) {
-      const transaction = makeTransaction(storeName, 'readwrite');
 
-      if (!transaction) return;
+  return new Promise<boolean>((resolve, reject) => {
+    open.onsuccess = () => {
+      db = open.result;
+      if ([db.objectStoreNames].find((storeName) => storeName === storeName)) {
+        const transaction = makeTransaction(storeName, 'readwrite');
 
-      const objectStore = transaction.objectStore(storeName);
-      const serialized = JSON.parse(JSON.stringify(payload));
-      const request = objectStore.add(serialized);
+        if (!transaction) return;
 
-      request.onerror = (err) => console.warn(err)
+        const objectStore = transaction.objectStore(storeName);
+        const serialized = JSON.parse(JSON.stringify(payload));
+        const request = objectStore.add(serialized);
 
-      transaction.oncomplete = () => {
-        console.log("successfully added a day")
-        db?.close();
+        request.onerror = (err) => reject(err)
+
+        request.onsuccess = () => resolve(true);
+
+        transaction.oncomplete = () => db?.close();
       }
     }
-  }
+
+  });
 };
 //}}}
 // GET_CURRENT_WEEK_NUMBER {{{
 export const getCurrentWeekNumber = (): Promise<number> => {
   const open = indexedDB.open(dbName);
+
   return new Promise<number>((resolve, reject) => {
 
     open.onsuccess = () => {
@@ -211,20 +204,13 @@ export const shouldStartNewWeek = async (): Promise<boolean> => {
 
       const allWeeksRequest = objectStore.count();
       allWeeksRequest.onerror = () => reject(allWeeksRequest.error);
-      allWeeksRequest.onsuccess = () => {
-        console.log("all weeks count", allWeeksRequest.result);
-      }
 
       let range = IDBKeyRange.only(5);
       const lastCompletedDayIDX = objectStore.index('lastCompletedDayIDX');
       const completeWeeksRequest = lastCompletedDayIDX.count(range);
       completeWeeksRequest.onerror = () => reject(completeWeeksRequest.error);
-      completeWeeksRequest.onsuccess = () => {
-        console.log("completed weeks count", completeWeeksRequest.result);
-      }
 
       transaction.oncomplete = () => {
-        console.log("Should start a new week?", allWeeksRequest.result === completeWeeksRequest.result);
         resolve(allWeeksRequest.result === completeWeeksRequest.result);
         db?.close();
       }

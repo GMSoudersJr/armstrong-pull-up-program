@@ -4,14 +4,21 @@ import styles from './Accordion.module.css';
 import { useState, useRef } from 'react';
 import { flushSync } from 'react-dom';
 import {PageLink} from '../PageLink';
+import {notoColorEmoji, nunito, ptSans} from '@/fonts';
 
 interface AccordionProps {
   buttonText: string;
   panelText: string[];
   link?: string;
+  emoji: string;
 }
 
-export const Accordion = ({ buttonText, panelText, link }: AccordionProps) => {
+export const Accordion = ({
+  buttonText,
+  panelText,
+  link,
+  emoji
+}: AccordionProps) => {
 
   const [active, setActive] = useState(false);
 
@@ -40,13 +47,20 @@ export const Accordion = ({ buttonText, panelText, link }: AccordionProps) => {
   return (
     <>
       <button
+        type='button'
         className={`${styles.accordion} ${active && styles.active}`}
         ref={accordionButtonRef}
         onClick={handleClick}
       >
-        <h1>
-          {buttonText}
-        </h1>
+        <div className={styles.buttonText}>
+          <div
+            className={styles.emoji}
+            style={notoColorEmoji.style}
+          >
+            {emoji}
+          </div>
+          <h1 style={nunito.style}>{buttonText}</h1>
+        </div>
       </button>
       <div
         ref={panelRef}
@@ -56,7 +70,12 @@ export const Accordion = ({ buttonText, panelText, link }: AccordionProps) => {
         {panelText.map((text, i) => {
           return (
             <li key={i} className={styles.panelListitem}>
-              <p className={styles.panelText}>{text}</p>
+              <p
+                className={styles.panelText}
+                style={ptSans.style}
+              >
+                {text}
+              </p>
             </li>
           )
         })}

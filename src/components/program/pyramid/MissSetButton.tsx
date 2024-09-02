@@ -1,5 +1,5 @@
 import styles from './ActionButton.module.css';
-import {crossMarkButtonEmoji} from "@/emojis";
+import {CircleXIcon} from 'lucide-react';
 import { Dispatch, SetStateAction } from "react";
 
 interface MissSetButtonProps {
@@ -18,11 +18,12 @@ const MissSetButton = ({
 
   return (
     <button
+      type='button'
       onClick={handleMiss}
       disabled={showTimerModalState}
       className={styles.pyramidActionButton}
     >
-      {crossMarkButtonEmoji}
+      <CircleXIcon className={styles.icon} />
     </button>
   )
 };

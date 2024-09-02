@@ -3,14 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem;
+  padding: 6rem 1rem;
   min-height: 100vh;
-}
-
-.heading {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  gap: 0.5rem;
 }
 

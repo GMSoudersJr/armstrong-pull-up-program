@@ -26,7 +26,7 @@
       "@/utils": ["./src/app/lib/utils.ts"],
       "@/data/*": ["./src/app/lib/data/*"],
       "@/components/*": ["./src/components/*"],
-      "@/fonts": ["./src/app/fonts"],
+      "@/fonts": ["./src/app/styles/fonts"],
       "@/*": ["./src/*"]
     }
   },

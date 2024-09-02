@@ -1,23 +1,17 @@
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
-}
-
-.headingContainer {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  gap: 0.5rem;
-}
-
 .repInfoSection {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   align-items: center;
-  width: 20rem;
+}
+
+.setInfo {
+  display: grid;
+  grid-template-columns: var(--button-emoji-font-size) 10rem var(--button-emoji-font-size);
+  grid-template-rows: min-content;
+  justify-items: center;
+  align-items: center;
+  column-gap: 1rem;
+  grid-template-areas:
+  "back table .";
 }

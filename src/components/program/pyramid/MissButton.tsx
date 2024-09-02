@@ -1,6 +1,8 @@
 import {crossMarkButtonEmoji} from '@/emojis';
 import styles from './MissButton.module.css';
 import {Dispatch, SetStateAction} from "react";
+import {notoColorEmoji} from '@/fonts';
+import {CircleXIcon} from 'lucide-react';
 
 interface MissButtonProps {
   setStateForShowModal: Dispatch<SetStateAction<boolean>>;
@@ -14,9 +16,11 @@ const MissButton = ({ setStateForShowModal }: MissButtonProps) => {
 
   return (
     <button
+      type='button'
       className={styles.missButton}
+      style={notoColorEmoji.style}
       onClick={handleClick}>
-      {crossMarkButtonEmoji}
+      <CircleXIcon className={styles.icon}/>
     </button>
   )
 }

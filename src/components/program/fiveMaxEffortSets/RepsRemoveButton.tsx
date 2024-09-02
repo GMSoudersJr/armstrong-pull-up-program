@@ -1,16 +1,18 @@
 import { Dispatch, SetStateAction } from "react";
 import styles from './RepsActionButton.module.css';
-import {counterClockwiseArrowsButtonEmoji} from "@/emojis";
+import {EraserIcon} from "lucide-react";
 
 interface RepsRemoveButtonProps {
   setStateForRepsArray: Dispatch<SetStateAction<number[]>>;
   repsArrayState: number[];
   showTimerModalState: boolean;
+  savedDay: boolean;
 }
 
 const RepsRemoveButton = ({
   setStateForRepsArray,
   repsArrayState,
+  savedDay,
   showTimerModalState
 }: RepsRemoveButtonProps) => {
 
@@ -23,9 +25,9 @@ const RepsRemoveButton = ({
       type='button'
       onClick={handleRemove}
       className={`${styles.button} ${styles.removeButton}`}
-      disabled={showTimerModalState}
+      disabled={showTimerModalState || savedDay}
     >
-      {counterClockwiseArrowsButtonEmoji}
+      <EraserIcon className={styles.icon}/>
     </button>
   )
 };

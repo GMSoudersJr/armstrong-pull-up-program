@@ -7,14 +7,14 @@ import RepsCompleteButton from "@/components/program/fiveMaxEffortSets/RepsCompl
 import RepsRemoveButton from "@/components/program/fiveMaxEffortSets/RepsRemoveButton";
 import SetsTable from "@/components/program/fiveMaxEffortSets/SetsTable";
 import {createPortal} from "react-dom";
-import TimerModal from "../TimerModal";
-import { DAYS } from "@/const";
-import DayComplete from "../DayComplete";
+import TimerModal from "@/components/program/TimerModal";
+import DayComplete from "@/components/program/DayComplete";
+import {TDayNumber} from "@/definitions";
 
 const recoveryTime = 90;
 
 interface FiveMaxEffortSetsProps {
-  dayNumber: number
+  dayNumber: TDayNumber;
 }
 
 const FiveMaxEffortSets = ({ dayNumber }: FiveMaxEffortSetsProps) => {
@@ -23,119 +23,64 @@ const FiveMaxEffortSets = ({ dayNumber }: FiveMaxEffortSetsProps) => {
   const [reps, setReps] = useState(0);
   const [repsArray, setRepsArray] = useState(initialRepsArray);
   const [showTimerModal, setShowTimerModal] = useState(false);
+  const [savedDay, setSavedDay] = useState(false);
 
   const dayComplete = repsArray.length === 5;
 
 
   return (
-    <>
-    {dayNumber === 5 ? (
-      <section className={styles.repInfoSection}>
+    <section className={styles.repInfoSection}>
+      {repsArray.length > 0 &&
+      <div className={styles.setInfo}>
         <SetsTable repsArray={repsArray}/>
-        {dayComplete ? (
-          <DayComplete
-            dayData={{
-              dayNumber: 5,
-              dayAbbreviation: '5MES',
-              sets: repsArray
-            }}
-          />
-        ) : (
-          <>
-            {repsArray.length > 0 &&
-              <RepsRemoveButton
-                repsArrayState={repsArray}
-                setStateForRepsArray={setRepsArray}
-                showTimerModalState={showTimerModal}
-              />
-            }
-            {repsArray.length < 5 &&
-              <>
-                <RepInput
-                  onChange={setReps}
-                  onEnter={setRepsArray}
-                  repsArrayState={repsArray}
-                  setStateForShowTimerModal={setShowTimerModal}
-                  showTimerModalState={showTimerModal}
-                />
-                <RepsCompleteButton
-                  reps={reps}
-                  repsArrayState={repsArray}
-                  setStateForRepsArray={setRepsArray}
-                  setStateForShowTimerModal={setShowTimerModal}
-                  showTimerModalState={showTimerModal}
-                />
-              </>
-            }
-            {showTimerModal && createPortal(
-              <TimerModal
-                onClose={() => setShowTimerModal(false)}
-                recoveryTime={recoveryTime}
-                setStateForShowTimerModal={setShowTimerModal}
-              />,
-              document.body
-            )}
-          </>
-        )}
-      </section>
-    ) : (
-    <main className={styles.main}>
-      <div className={styles.headingContainer}>
-        <h1>{DAYS.filter((day) => day.number === dayNumber)[0].label}</h1>
-        <h2>{DAYS.filter((day) => day.number === dayNumber)[0].heading2}</h2>
-        <h3>{DAYS.filter((day) => day.number === dayNumber)[0].heading3}</h3>
+        <RepsRemoveButton
+          repsArrayState={repsArray}
+          setStateForRepsArray={setRepsArray}
+          showTimerModalState={showTimerModal}
+          savedDay={savedDay}
+        />
       </div>
-      <section className={styles.repInfoSection}>
-        <SetsTable repsArray={repsArray}/>
-        {dayComplete ? (
-          <DayComplete
-            dayData={{
-              dayNumber: 1,
-              dayAbbreviation: '5MES',
-              sets: repsArray
-            }}
-          />
-        ) : (
-          <>
-            {repsArray.length > 0 &&
-              <RepsRemoveButton
+      }
+      {dayComplete ? (
+        <DayComplete
+          setStateForSavedDay={setSavedDay}
+          dayData={{
+            dayNumber: dayNumber,
+            dayAbbreviation: '5MES',
+            sets: repsArray
+          }}
+        />
+      ) : (
+        <>
+          {repsArray.length < 5 &&
+            <>
+              <RepInput
+                onChange={setReps}
+                onEnter={setRepsArray}
                 repsArrayState={repsArray}
-                setStateForRepsArray={setRepsArray}
+                setStateForShowTimerModal={setShowTimerModal}
                 showTimerModalState={showTimerModal}
               />
-            }
-            {repsArray.length < 5 &&
-              <>
-                <RepInput
-                  onChange={setReps}
-                  onEnter={setRepsArray}
-                  repsArrayState={repsArray}
-                  setStateForShowTimerModal={setShowTimerModal}
-                  showTimerModalState={showTimerModal}
-                />
-                <RepsCompleteButton
-                  reps={reps}
-                  repsArrayState={repsArray}
-                  setStateForRepsArray={setRepsArray}
-                  setStateForShowTimerModal={setShowTimerModal}
-                  showTimerModalState={showTimerModal}
-                />
-              </>
-            }
-            {showTimerModal && createPortal(
-              <TimerModal
-                onClose={() => setShowTimerModal(false)}
-                recoveryTime={recoveryTime}
+              <RepsCompleteButton
+                reps={reps}
+                repsArrayState={repsArray}
+                setStateForRepsArray={setRepsArray}
                 setStateForShowTimerModal={setShowTimerModal}
-              />,
-              document.body
-            )}
-          </>
-        )}
-      </section>
-    </main>
-        )}
-    </>
+                showTimerModalState={showTimerModal}
+              />
+            </>
+          }
+          {showTimerModal && createPortal(
+            <TimerModal
+              onClose={() => setShowTimerModal(false)}
+              recoveryTime={recoveryTime}
+              setStateForShowTimerModal={setShowTimerModal}
+            />,
+            document.body
+          )}
+        </>
+      )}
+    </section>
   )
 }
 

@@ -1,9 +1,10 @@
 import type { TStoreName } from "@/definitions";
-import { WEEK_TEST_DATA } from "./testWeekData";
-import { openRequest } from "@/indexedDBConstants";
+import { dbName, dbVersion } from "@/indexedDBConstants";
 
 let db: IDBDatabase | null = null;
+const openRequest = window.indexedDB.open(dbName, dbVersion);
 
+// MAKE_TRANSACTION {{{
 export function makeTransaction(storeName: TStoreName, mode: IDBTransactionMode) {
   if(!db) return;
 
@@ -15,8 +16,8 @@ export function makeTransaction(storeName: TStoreName, mode: IDBTransactionMode)
 
   return transaction;
 }
-
-//{{{ initializeIDB
+//}}}
+//{{{ INITIALIZE_IDB
 export const initializeIDB = (): void => {
 
   openRequest.onerror = (err) => {
@@ -47,25 +48,24 @@ export const initializeIDB = (): void => {
 
   openRequest.onsuccess = () => {
     db = openRequest.result;
-    console.log("successfully opened the database", db);
 
+    // @ts-expect-error might not be imported
     if (typeof WEEK_TEST_DATA !== 'undefined') {
       let transaction = makeTransaction('weeksStore', 'readwrite');
       if (!transaction) return;
-      transaction.oncomplete = () => {
-        console.log('Finished adding data.')
-      }
+      transaction.oncomplete = () => console.log('Finished adding data.')
       const store = transaction.objectStore('weeksStore');
       const request = store.getAll();
 
       request.onerror = (err) => console.warn(err);
       request.onsuccess = () => {
         if (request.result.length === 0) {
+          // @ts-expect-error might not be imported
           WEEK_TEST_DATA.forEach((entry) => {
             const request = store.add(entry);
             request.onerror = (err) => console.warn(err);
             request.onsuccess = () => {
-              console.log(`successfully added a week ${entry.number} of test data`)
+              console.log(`successfully added week ${entry.number} of test data`)
             }
           })
         }
@@ -74,7 +74,7 @@ export const initializeIDB = (): void => {
 
     }
 
-    };
+  };
 
 };
-// }}}
+//}}}

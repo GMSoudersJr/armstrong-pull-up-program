@@ -3,13 +3,16 @@
   border: none;
   width: 3.5rem;
   height: 3.5rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
+  display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   font-size: 3.125rem;
   padding: 0;
   margin: 0;
-  font-family: var(--font-notoColorEmoji);
+  font-size: clamp(1.5rem, 7vw + 1rem, 4rem);
+}
+
+.icon {
+  height: 1em;
+  width: 1em;
 }

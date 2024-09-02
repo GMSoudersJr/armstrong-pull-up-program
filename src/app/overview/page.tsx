@@ -19,6 +19,7 @@ const GetStartedPage = async () => {
             key={dailyInstruction.id}
           >
           <Accordion
+            emoji={dailyInstruction.emoji}
             key={dailyInstruction.id}
             buttonText={dailyInstruction.title}
             panelText={dailyInstruction.instructions}
