@@ -21,6 +21,8 @@ const TimerModal = ({
 
   useEffect(() => {
     if (secondsLeft === 0) {
+      const beep = new Audio('/audio/timer-beep.mp3');
+      beep.play();
       setStateForShowTimerModal(false);
       return;
     }
