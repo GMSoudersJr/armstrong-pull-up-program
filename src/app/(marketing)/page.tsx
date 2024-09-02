@@ -4,7 +4,7 @@ import Hero from "@/components/homepage/Hero";
 import Features from "@/components/homepage/Features";
 import Footer from "@/components/homepage/Footer";
 import Testimonials from "@/components/homepage/Testimonials";
-import ProgramOverview from "@/components/homepage/ProgramOverview";
+import Overview from "@/components/homepage/Overview";
 import FaqAccordion from "@/components/homepage/FAQ";
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
       <Hero />
       <Features />
       <Testimonials />
-      <ProgramOverview />
+      <Overview />
       <FaqAccordion />
       <PageLink
         path='/program'

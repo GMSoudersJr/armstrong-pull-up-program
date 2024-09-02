@@ -1,14 +1,17 @@
 .testimonials {
   width: 100%;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 3.236fr;
+  justify-items: center;
+  justify-content: center;
   align-items: center;
 }
 
 .splide {
   align-content: center;
+
 }
 
 .splideSlide {

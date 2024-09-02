@@ -16,7 +16,8 @@ const Testimonials = () => {
           aria-label="User Testimonials"
           options={{
             rewind: true,
-            width: '80%',
+            autoplay: true,
+            width: '80vw',
           }}
         >
         {TESTIMONIALS.map((testimony, i) => {

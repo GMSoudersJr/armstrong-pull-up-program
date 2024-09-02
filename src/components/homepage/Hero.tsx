@@ -2,6 +2,7 @@ import {nunito} from '@/fonts';
 import styles from './Hero.module.css';
 import PullupSVG from '@/components/PullupSVG';
 import LandingNavbar from './Navbar';
+import {PageLink} from '../PageLink';
 
 const Hero = () => {
   return (
@@ -12,14 +13,10 @@ const Hero = () => {
         <h3 style={nunito.style}>
           Use the Armstrong Pull-up Program to achieve your pull-up goals!
         </h3>
-        <button
-          type='button'
-          className={styles.button}
-        >
-          <h3 style={nunito.style}>
-            GET STARTED!
-          </h3>
-        </button>
+        <PageLink
+          label='GET STARTED!'
+          path='/program'
+        />
       </div>
 
       <div className={styles.heroRight}>

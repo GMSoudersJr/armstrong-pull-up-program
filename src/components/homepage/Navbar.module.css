@@ -21,9 +21,9 @@
 
 .navListitem a {
   display: block;
-  padding: 0.875rem 1rem;
+  padding: 0.6125rem 0.7rem;
 }
 
 .navListitem a:hover {
-  background-color: #259;
+  background-color: #0074D9;
 }

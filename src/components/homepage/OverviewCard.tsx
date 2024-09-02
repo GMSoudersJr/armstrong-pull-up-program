@@ -1,5 +1,5 @@
 import {ptSans} from '@/fonts';
-import styles from './ProgramOverviewCard.module.css';
+import styles from './OverviewCard.module.css';
 import { nunito } from '@/fonts';
 import {TCardProps} from '@/definitions';
 
