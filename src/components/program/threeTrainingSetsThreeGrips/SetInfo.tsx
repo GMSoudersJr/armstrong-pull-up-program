@@ -1,10 +1,9 @@
-import {checkMarkButtonEmoji, crossMarkButtonEmoji, nextTrackButtonEmoji} from '@/emojis';
 import styles from './SetInfo.module.css';
 import { Dispatch, SetStateAction, useState } from 'react';
 import {createPortal} from 'react-dom';
 import TimerModal from '../TimerModal';
 import {TGrip} from '@/app/lib/definitions';
-import {notoColorEmoji, nunito} from '@/fonts';
+import {nunito} from '@/fonts';
 import {ArrowRightToLineIcon, CircleCheckIcon, CircleXIcon} from 'lucide-react';
 
 interface SetInfoProps {

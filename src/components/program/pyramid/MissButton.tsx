@@ -1,4 +1,3 @@
-import {crossMarkButtonEmoji} from '@/emojis';
 import styles from './MissButton.module.css';
 import {Dispatch, SetStateAction} from "react";
 import {notoColorEmoji} from '@/fonts';

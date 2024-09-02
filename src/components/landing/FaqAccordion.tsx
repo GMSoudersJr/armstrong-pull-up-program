@@ -5,7 +5,7 @@ import { FAQ } from "@/data/faq";
 import {nunito} from '@/fonts';
 import dynamic from 'next/dynamic';
 
-const Accordion = dynamic(() => import('@/components/homepage/Accordion'));
+const Accordion = dynamic(() => import('@/components/landing/Accordion'));
 
 const FaqAccordion = () => {
 

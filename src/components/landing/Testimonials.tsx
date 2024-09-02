@@ -1,10 +1,10 @@
 'use client';
 
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import '@splidejs/react-splide/css';
+import { Splide, SplideSlide } from 'react-splide-ts';
+import 'react-splide-ts/css';
 import {nunito} from '@/fonts';
 import styles from './Testimonials.module.css';
-import TestimonyCard from './TestimonyCard';
+import TestimonyCard from '@/components/landing/TestimonyCard';
 
 const Testimonials = () => {
   return (
@@ -16,7 +16,9 @@ const Testimonials = () => {
           aria-label="User Testimonials"
           options={{
             rewind: true,
-            width: '80%',
+            autoplay: true,
+            width: '80vw',
+            gap: '1rem',
           }}
         >
         {TESTIMONIALS.map((testimony, i) => {

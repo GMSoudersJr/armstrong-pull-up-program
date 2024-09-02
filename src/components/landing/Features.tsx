@@ -1,6 +1,6 @@
 import {nunito} from '@/fonts';
 import styles from './Features.module.css';
-import FeatureCard from '@/components/homepage/FeatureCard';
+import FeatureCard from '@/components/landing/FeatureCard';
 import {DatabaseIcon, HourglassIcon, NotepadTextIcon} from 'lucide-react';
 import type { TCardProps } from '@/definitions';
 

@@ -1,11 +1,11 @@
 import styles from "./page.module.css";
 import {PageLink} from "@/components/PageLink";
-import Hero from "@/components/homepage/Hero";
-import Features from "@/components/homepage/Features";
-import Footer from "@/components/homepage/Footer";
-import Testimonials from "@/components/homepage/Testimonials";
-import ProgramOverview from "@/components/homepage/ProgramOverview";
-import FaqAccordion from "@/components/homepage/FAQ";
+import Hero from "@/components/landing/Hero";
+import Features from "@/components/landing/Features";
+import Footer from "@/components/landing/Footer";
+import Testimonials from "@/components/landing/Testimonials";
+import Overview from "@/components/landing/Overview";
+import FaqAccordion from "@/components/landing/FaqAccordion";
 
 export default function Home() {
   return (
@@ -13,11 +13,11 @@ export default function Home() {
       <Hero />
       <Features />
       <Testimonials />
-      <ProgramOverview />
+      <Overview />
       <FaqAccordion />
       <PageLink
         path='/program'
-        label='program'
+        label='GET Started!'
       />
       <Footer />
     </main>

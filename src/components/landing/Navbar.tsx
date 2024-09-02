@@ -17,8 +17,8 @@ const SECTIONS = [
     label: 'testimonials'
   },
   {
-    path: '/#program',
-    label: 'program'
+    path: '/#overview',
+    label: 'overview'
   },
 ];
 

@@ -3,7 +3,7 @@
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 4fr;
+  grid-template-rows: 1fr 3.236fr;
   justify-items: center;
   align-items: center;
 }
