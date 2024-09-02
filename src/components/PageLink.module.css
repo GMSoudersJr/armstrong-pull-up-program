@@ -7,3 +7,7 @@
   border-radius: 0.75rem;
   background-color: #D1D1D1;
 }
+
+.pageLink:hover {
+  color: #0074D9;
+}

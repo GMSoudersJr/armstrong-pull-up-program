@@ -1,6 +1,6 @@
 import {nunito} from '@/fonts';
 import styles from './Overview.module.css';
-import OverviewCard from '@/components/homepage/OverviewCard';
+import OverviewCard from '@/components/landing/OverviewCard';
 import {TCardProps} from '@/definitions';
 import {ScaleIcon, ShapesIcon, Tally5Icon} from 'lucide-react';
 
@@ -33,8 +33,8 @@ const OVERVIEW_POINTS: TCardProps[] = [
     Icon: Tally5Icon,
     heading: 'DAILY',
     body: [
-      'Weekday => Workout!',
-      'Weekend => Rest!',
+      `Weekday → Workout!`,
+      'Weekend → Rest!',
       'Days and weeks fly by!',
     ]
   },
@@ -42,8 +42,8 @@ const OVERVIEW_POINTS: TCardProps[] = [
     Icon: ScaleIcon,
     heading: 'BALANCE',
     body: [
-      'Wake up => Push-ups',
-      'Later on => Pull-ups',
+      'Wake up → Push-ups',
+      'Later on → Pull-ups',
       'Full upper body workout!',
     ]
   },

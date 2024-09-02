@@ -1,8 +1,8 @@
 import {nunito} from '@/fonts';
 import styles from './Hero.module.css';
 import PullupSVG from '@/components/PullupSVG';
-import LandingNavbar from './Navbar';
-import {PageLink} from '../PageLink';
+import LandingNavbar from '@/components/landing/Navbar';
+import {PageLink} from '@/components/PageLink';
 
 const Hero = () => {
   return (
