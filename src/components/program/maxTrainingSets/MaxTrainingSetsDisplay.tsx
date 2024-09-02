@@ -1,10 +1,9 @@
-import {checkMarkButtonEmoji, crossMarkButtonEmoji} from "@/emojis";
 import { Dispatch, SetStateAction, useState } from "react";
 import styles from './MaxTrainingSetsDisplay.module.css';
 import {isSingular} from "@/utils";
 import {createPortal} from "react-dom";
 import TimerModal from "../TimerModal";
-import {notoColorEmoji, nunito} from "@/fonts";
+import {nunito} from "@/fonts";
 import {CircleCheckIcon, CircleXIcon} from "lucide-react";
 
 interface MaxTrainingSetsDisplayProps {
