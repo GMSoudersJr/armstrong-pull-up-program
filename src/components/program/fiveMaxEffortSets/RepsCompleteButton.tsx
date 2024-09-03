@@ -20,6 +20,7 @@ const RepsCompleteButton = ({
 }: RepsCompleteButtonProps) => {
 
   function handleComplete() {
+    console.log(reps);
     setStateForRepsArray(
       [
         ...repsArrayState,
