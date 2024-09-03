@@ -19,16 +19,6 @@
   text-align: center;
 }
 
-.repInputLabel + input::-webkit-outer-spin-button,
-.repInputLabel + input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
-
-.repInputLabel + input[type=number] {
-  appearance: textfield;
-  -moz-appearance: textfield;
-}
-
 .numericInputContainer {
   display: flex;
   align-self: center;

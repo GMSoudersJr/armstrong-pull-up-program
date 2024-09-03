@@ -10,7 +10,7 @@
   font-family: var(--font-ptSans);
   text-align: center;
   align-self: center;
-  width: min-content;
+  width: 12rem;
 }
 
 .repInputLabel {
@@ -18,19 +18,43 @@
   text-align: center;
 }
 
-.repInputLabel + input::-webkit-outer-spin-button,
-.repInputLabel + input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-}
-
-.repInputLabel + input[type=number] {
-  appearance: textfield;
-  -moz-appearance: textfield;
-}
-
 .repsSubmitButton {
   padding: 0.5rem 0.8rem;
   font-family: var(--font-nunito);
   border-radius: 0.75rem;
+}
+
+.numericInputContainer {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  gap: 1rem;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  border-width: 1px;
+  top: 2px;
+  bottom: 2px;
+  position: absolute;
+  aspect-ratio: 1 / 1;
+  box-shadow: none;
+}
+
+.spanInput {
+  position: relative;
+  display: block;
+  align-content: center;
+}
+
+.decrement {
+  left: 2px;
+}
+
+.increment {
+  right: 2px;
 }
 
