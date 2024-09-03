@@ -8,6 +8,7 @@ import {
 
 import styles from './TrainingSetRepsInput.module.css';
 import {nunito, ptSans} from '@/fonts';
+import {MinusIcon, PlusIcon} from 'lucide-react';
 
 interface TrainingSetRepsInputProps {
   setStateForTrainingSetReps: Dispatch<SetStateAction<number>>;
@@ -32,7 +33,20 @@ const TrainingSetRepsInput = ({ setStateForTrainingSetReps }: TrainingSetRepsInp
     }
   }
 
-  function handleClick() {
+  function handleDecrement(event: React.MouseEvent<HTMLButtonElement>) {
+    const { value } = event.currentTarget;
+    const number = Number(value);
+    setReps(number);
+  }
+
+  function handleIncrement(event: React.MouseEvent<HTMLButtonElement>) {
+    const { value } = event.currentTarget;
+    const number = Number(value);
+    setReps(number);
+  }
+
+
+  function handleSubmit() {
     setStateForTrainingSetReps(reps);
   };
 
@@ -43,26 +57,48 @@ const TrainingSetRepsInput = ({ setStateForTrainingSetReps }: TrainingSetRepsInp
           TRAINING SET REPS
         </h3>
       </label>
-      <input
-        id={repInputId}
-        name='reps'
-        className={styles.repInput}
-        style={ptSans.style}
-        type="number"
-        min={0}
-        max={100}
-        value={reps}
-        onChange={handleChange}
-        onKeyUp={handleKeyUp}
-      />
-      <button
-        type='button'
-        className={styles.repsSubmitButton}
-        style={nunito.style}
-        onClick={handleClick}
-      >
-        SUBMIT
-      </button>
+      <div className={styles.numericInputContainer}>
+        <div className={styles.spanInput}>
+          <button
+            type='button'
+            onClick={handleDecrement}
+            className={`${styles.button} ${styles.decrement}`}
+            disabled={reps <= 0}
+            value={reps - 1}
+          >
+            <MinusIcon />
+          </button>
+          <input
+            id={repInputId}
+            name='reps'
+            className={styles.repInput}
+            style={ptSans.style}
+            type="number"
+            min={0}
+            max={100}
+            value={reps}
+            onChange={handleChange}
+            onKeyUp={handleKeyUp}
+          />
+          <button
+            type='button'
+            onClick={handleIncrement}
+            className={`${styles.button} ${styles.increment}`}
+            disabled={reps >= 100}
+            value={reps + 1}
+          >
+            <PlusIcon />
+          </button>
+        </div>
+        <button
+          type='button'
+          className={styles.repsSubmitButton}
+          style={nunito.style}
+          onClick={handleSubmit}
+        >
+          SUBMIT
+        </button>
+      </div>
     </section>
 
   )

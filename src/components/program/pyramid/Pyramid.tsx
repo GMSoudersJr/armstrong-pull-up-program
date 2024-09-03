@@ -43,7 +43,7 @@ const Pyramid = ({ dayNumber }: PyramidProps) => {
         />
       ) : (
         <>
-          <h3
+          <h2
             className={styles.doRepsText}
             style={nunito.style}
           >
@@ -54,7 +54,7 @@ const Pyramid = ({ dayNumber }: PyramidProps) => {
             ) : (
             `DO ${completedReps + 1} ${isSingular(completedReps + 1) ? 'REP' : 'REPS'}`
             )}
-          </h3>
+          </h2>
 
           <div className={ styles.actionButtonContainer }>
             {repsArray.length > 0 && !missed && !showMaxoutNumbers && (
