@@ -1,0 +1,15 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem 1rem;
+  min-height: 100vh;
+}
+
+@media(max-width: 20rem) {
+  .main {
+    padding: 2rem 1rem;
+  }
+}
+
