@@ -7,7 +7,7 @@
 
 .setInfo {
   display: grid;
-  grid-template-columns: var(--button-emoji-font-size) 10rem var(--button-emoji-font-size);
+  grid-template-columns: var(--button-action-font-size) 10rem var(--button-action-font-size);
   grid-template-rows: min-content;
   justify-items: center;
   align-items: center;
