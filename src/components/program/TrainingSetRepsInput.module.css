@@ -20,15 +20,16 @@
 
 .repsSubmitButton {
   padding: 0.5rem 0.8rem;
-  font-family: var(--font-nunito);
   border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .numericInputContainer {
   display: flex;
   flex-direction: column;
   align-self: center;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .button {
