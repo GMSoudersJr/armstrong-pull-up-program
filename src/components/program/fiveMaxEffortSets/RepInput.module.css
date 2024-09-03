@@ -11,14 +11,7 @@
   font-family: var(--font-ptSans);
   text-align: center;
   align-self: center;
-  width: min-content;
-}
-.repInput {
-  padding: 0.5rem 0.8rem;
-  font-size: 1.5rem;
-  font-family: var(--font-ptSans);
-  text-align: center;
-  width: min-content;
+  width: 12rem;
 }
 
 .repInputLabel {
@@ -34,4 +27,36 @@
 .repInputLabel + input[type=number] {
   appearance: textfield;
   -moz-appearance: textfield;
+}
+
+.numericInputContainer {
+  display: flex;
+  align-self: center;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  border-width: 1px;
+  top: 2px;
+  bottom: 2px;
+  position: absolute;
+  aspect-ratio: 1 / 1;
+  box-shadow: none;
+}
+
+.spanInput {
+  position: relative;
+  display: block;
+  align-content: center;
+}
+
+.decrement {
+  left: 2px;
+}
+
+.increment {
+  right: 2px;
 }

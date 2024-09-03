@@ -20,6 +20,7 @@ const RepsCompleteButton = ({
 }: RepsCompleteButtonProps) => {
 
   function handleComplete() {
+    console.log(reps);
     setStateForRepsArray(
       [
         ...repsArrayState,
@@ -36,7 +37,7 @@ const RepsCompleteButton = ({
       <button
         type='button'
         onClick={handleComplete}
-        className={`${styles.button} ${styles.completeButton}`}
+        className={`${styles.button} ${styles.completeButton} action`}
         disabled={showTimerModalState}
       >
         <CircleCheckIcon className={styles.icon} />
