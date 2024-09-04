@@ -50,6 +50,10 @@ html {
     font-size: clamp(var(--heading-6), calc(1vw + 0.1rem), var(--heading-4));
   }
 
+  p {
+    line-height: 1.5;
+  }
+
 }
 
 ul > li {
