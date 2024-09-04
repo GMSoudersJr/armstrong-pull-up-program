@@ -48,7 +48,7 @@ const TestimonyCard = ({
       </div>
       <div className={styles.footer}>
         <ul className={styles.rating}>
-          {Array.from({length: stars}, (x, i) => {
+          {Array.from({length: stars}, (_, i) => {
             return (
               <li key={i}>
                 <StarIcon
