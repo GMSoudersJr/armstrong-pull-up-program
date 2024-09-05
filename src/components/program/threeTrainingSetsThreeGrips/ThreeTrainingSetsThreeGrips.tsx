@@ -19,7 +19,7 @@ const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsP
   const [trainingSetReps, setTrainingSetReps] = useState(0);
   const [currentGrip, setCurrentGrip] = useState(initalGrip);
   const [completedGrips, setCompletedGrips] = useState(initialCompletedGrips);
-  const [totalSets, setTotalSets] = useState(initialTotalSets);
+  const [trainingSets, setTrainingSets] = useState(initialTotalSets);
   const [savedDay, setSavedDay] = useState(false);
 
   const dayComplete = completedGrips.length === 3;
@@ -34,7 +34,7 @@ const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsP
             dayAbbreviation: '3S3G',
             trainingSetsCount: 9,
             grips: completedGrips,
-            sets: totalSets,
+            sets: trainingSets,
             trainingSetReps: trainingSetReps,
           }}
         />
@@ -49,8 +49,8 @@ const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsP
           />
       ) : (
           <SetInfo
-            totalSets={totalSets}
-            updateTotalSets={setTotalSets}
+            trainingSets={trainingSets}
+            updateTrainingSets={setTrainingSets}
             trainingSetReps={trainingSetReps}
             currentGrip={currentGrip}
             completedGrips={completedGrips}

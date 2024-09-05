@@ -5,13 +5,15 @@ import TimerModal from '../TimerModal';
 import {TGrip} from '@/app/lib/definitions';
 import {nunito} from '@/fonts';
 import {ArrowRightToLineIcon, CircleCheckIcon, CircleXIcon} from 'lucide-react';
+import NumberedMissRepButton from '@/components/program/NumberedMissRepButton';
+import MissSetButton from '../MissSetButton';
 
 interface SetInfoProps {
   trainingSetReps: number;
   currentGrip: TGrip;
   completedGrips: TGrip[];
-  totalSets: number[];
-  updateTotalSets: Dispatch<SetStateAction<number[]>>;
+  trainingSets: number[];
+  updateTrainingSets: Dispatch<SetStateAction<number[]>>;
   updateCurrentGrip: Dispatch<SetStateAction<TGrip>>;
   updateCompletedGrips: Dispatch<SetStateAction<TGrip[]>>;
 }
@@ -21,38 +23,16 @@ const recoveryTime = 60;
 const SetInfo = ({
   trainingSetReps,
   currentGrip,
-  totalSets,
+  trainingSets,
   completedGrips,
-  updateTotalSets,
+  updateTrainingSets,
   updateCurrentGrip,
   updateCompletedGrips
 }: SetInfoProps) => {
 
   const [completedSetCount, setCompletedSetCount] = useState(0);
   const [showTimerModal, setShowTimerModal] = useState(false);
-
-  function handleMiss(): void {
-    if (completedSetCount == 2 && completedGrips.length == 2) {
-      updateCompletedGrips([
-        ...completedGrips,
-        currentGrip
-      ]);
-
-      updateCurrentGrip('');
-    }
-    if (completedSetCount <= 2) {
-      setCompletedSetCount(completedSetCount => completedSetCount + 1);
-      updateTotalSets([...totalSets, 0]);
-      setShowTimerModal(true);
-    } else {
-      updateCompletedGrips([
-        ...completedGrips,
-        currentGrip
-      ]);
-
-      updateCurrentGrip('');
-    }
-  }
+  const [missedSet, setMissedSet] = useState(false);
 
   function handleDone(): void {
     if (completedSetCount == 2 && completedGrips.length == 2) {
@@ -65,7 +45,7 @@ const SetInfo = ({
     }
     if (completedSetCount <= 2) {
       setCompletedSetCount(completedSetCount => completedSetCount + 1);
-      updateTotalSets([...totalSets, trainingSetReps]);
+      updateTrainingSets([...trainingSets, trainingSetReps]);
       setShowTimerModal(true);
     } else {
       updateCompletedGrips([
@@ -89,33 +69,66 @@ const SetInfo = ({
         </span>
       </h2>
 
-      {completedSetCount < 3 ? (
-        <h3 style={nunito.style}>
-          {trainingSetReps} {currentGrip?.toUpperCase()} PULL-UPS
-        </h3>
-      ) : completedGrips.length < 2 ? (
-        <h3 style={nunito.style}>CHOOSE NEXT GRIP</h3>
-      ) : (
-        <h3 style={nunito.style}>TAP NEXT COMPLETE</h3>
-      )}
+      <h3 style={nunito.style}>
+        {missedSet ? (
+          <>How many did you do?</>
+        ) : completedSetCount < 3 ? (
+          <>
+            {trainingSetReps} {currentGrip?.toUpperCase()} PULL-UPS
+          </>
+        ) : completedGrips.length < 2 ? (
+          <>CHOOSE NEXT GRIP</>
+        ) : (
+          <>How did we get here?</>
+        )}
+      </h3>
 
       <div className={styles.buttonsContainer}>
-        <button
-          type='button'
-          className={styles.actionButton}
-          onClick={handleMiss}
-          disabled={showTimerModal || completedSetCount === 3}
-        >
-          <CircleXIcon className={styles.icon}/>
-        </button>
-        <button
-          type='button'
-          className={styles.actionButton}
-          onClick={handleDone}
-          disabled={showTimerModal}
-        >
-          {completedSetCount === 3 ? <ArrowRightToLineIcon className={styles.icon} /> : <CircleCheckIcon className={styles.icon} />}
-        </button>
+        {missedSet ? (
+          <>
+            {Array.from({length: trainingSetReps}, (_, i) => {
+              return (
+                <NumberedMissRepButton
+                  dayAbbreviation='3S3G'
+                  key={i}
+                  onMissed={setMissedSet}
+                  repCount={i}
+                  showTimerModalState={showTimerModal}
+                  setStateForShowTimerModal={setShowTimerModal}
+                  completedSetCount={completedSetCount}
+                  completedGrips={completedGrips}
+                  updateCompletedGrips={updateCompletedGrips}
+                  currentGrip={currentGrip}
+                  updateCurrentGrip={updateCurrentGrip}
+                  updateCompletedSetCount={setCompletedSetCount}
+                  updateTrainingSets={updateTrainingSets}
+                  trainingSets={trainingSets}
+                />
+              )
+            })}
+          </>
+        ) : (
+          <>
+            <MissSetButton
+              dayAbbreviation='3S3G'
+              onMissedSet={setMissedSet}
+              showTimerModalState={showTimerModal}
+              completedSetCount={completedSetCount}
+            />
+            <button
+              type='button'
+              className={styles.actionButton}
+              onClick={handleDone}
+              disabled={showTimerModal}
+            >
+              {completedSetCount === 3 ? (
+                <ArrowRightToLineIcon className={styles.icon} />
+              ) : (
+                <CircleCheckIcon className={styles.icon} />
+              )}
+            </button>
+          </>
+        )}
         {showTimerModal && createPortal(
           <TimerModal
             onClose={() => setShowTimerModal(false)}

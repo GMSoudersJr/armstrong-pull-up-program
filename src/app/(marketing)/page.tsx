@@ -6,6 +6,7 @@ import Footer from "@/components/landing/Footer";
 import Testimonials from "@/components/landing/Testimonials";
 import Overview from "@/components/landing/Overview";
 import FaqAccordion from "@/components/landing/FaqAccordion";
+import {TransitionLink} from "@/components/TransitionLink";
 
 export default function Home() {
   return (
@@ -15,10 +16,7 @@ export default function Home() {
       <Testimonials />
       <Overview />
       <FaqAccordion />
-      <PageLink
-        path='/program'
-        label='GET Started!'
-      />
+      <TransitionLink href='/program'>GET STARTED!</TransitionLink>
       <Footer />
     </main>
   );

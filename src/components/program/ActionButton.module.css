@@ -1,0 +1,18 @@
+.pyramidActionButton {
+  background: transparent;
+  border: none;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.125rem;
+  padding: 0;
+  margin: 0;
+  font-size: var(--button-action-font-size);
+}
+
+.icon {
+  height: 1em;
+  width: 1em;
+}

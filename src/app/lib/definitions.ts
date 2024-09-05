@@ -44,7 +44,7 @@ export type TWeek = {
   completedDays: number[];
 };
 
-type TDayAbrreviation = '5MES' | 'PYRA' | '3S3G' | 'MXTS';
+export type TDayAbbreviation = '5MES' | 'PYRA' | '3S3G' | 'MXTS';
 
 export type TGrip = 'neutral' | 'wide' | 'close' | 'pronated' | 'supinated' | string;
 
@@ -55,7 +55,7 @@ export type TDayComplete = {
   date?: string;
   weekNumber?: number;
   dayNumber: TDayNumber;
-  dayAbbreviation: TDayAbrreviation;
+  dayAbbreviation: TDayAbbreviation;
   sets: number[]
   grips?: TGrip[];
   success?: boolean;

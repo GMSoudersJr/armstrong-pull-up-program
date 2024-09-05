@@ -32,7 +32,7 @@ const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
 
   const [isDataSaved, setIsDataSaved] = useState(false);
 
-  async function handleClick() {
+  async function handleSave() {
     const startNewWeek = await shouldStartNewWeek();
     let currentWeekNumber = await getCurrentWeekNumber();
 
@@ -80,7 +80,7 @@ const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
           <button
             type="button"
             className={styles.saveButton}
-            onClick={handleClick}
+            onClick={handleSave}
           >
             <SaveIcon className={styles.icon}/>
           </button>

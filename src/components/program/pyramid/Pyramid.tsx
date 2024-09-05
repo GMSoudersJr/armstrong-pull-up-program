@@ -7,11 +7,11 @@ import {isSingular} from "@/utils";
 import MaxoutNumberButton from "@/components/program/pyramid/MaxoutNumberButton";
 import DayComplete from "@/components/program/DayComplete";
 import PyramidDisplay from "@/components/program/pyramid/PyramidDisplay";
-import MissSetButton from "./MissSetButton";
-import NumberedMissRepButton from "./NumberedMissRepButton";
+import NumberedMissRepButton from "@/components/program/NumberedMissRepButton";
 import TimerModal from "@/components/program/TimerModal";
+import MissSetButton from "@/components/program/MissSetButton";
 import {createPortal} from "react-dom";
-import {TDayNumber} from "@/definitions";
+import {TDayAbbreviation, TDayNumber} from "@/definitions";
 import {nunito} from "@/fonts";
 
 interface PyramidProps {
@@ -20,6 +20,7 @@ interface PyramidProps {
 
 const Pyramid = ({ dayNumber }: PyramidProps) => {
   let initialRepsArray: number[] = [];
+  const dayAbbreviation: TDayAbbreviation = 'PYRA';
 
   const [completedReps, setCompletedReps] = useState(0);
   const [repsArray, setRepsArray] = useState(initialRepsArray);
@@ -59,8 +60,9 @@ const Pyramid = ({ dayNumber }: PyramidProps) => {
           <div className={ styles.actionButtonContainer }>
             {repsArray.length > 0 && !missed && !showMaxoutNumbers && (
               <MissSetButton
+                dayAbbreviation={dayAbbreviation}
                 showTimerModalState={showTimerModal}
-                onMissed={setMissed}
+                onMissedSet={setMissed}
               />
             )}
 
@@ -69,6 +71,7 @@ const Pyramid = ({ dayNumber }: PyramidProps) => {
                   {repsArray.map((reps, i) => {
                     return (
                       <NumberedMissRepButton
+                        dayAbbreviation={dayAbbreviation}
                         key={`${i}-${reps}`}
                         repCount={reps}
                         repsArrayState={repsArray}

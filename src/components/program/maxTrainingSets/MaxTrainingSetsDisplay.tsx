@@ -5,6 +5,9 @@ import {createPortal} from "react-dom";
 import TimerModal from "../TimerModal";
 import {nunito} from "@/fonts";
 import {CircleCheckIcon, CircleXIcon} from "lucide-react";
+import {TDayAbbreviation} from "@/definitions";
+import MissSetButton from "../MissSetButton";
+import NumberedMissRepButton from "../NumberedMissRepButton";
 
 interface MaxTrainingSetsDisplayProps {
   trainingSetReps: number;
@@ -14,6 +17,7 @@ interface MaxTrainingSetsDisplayProps {
 }
 
 const recoveryTime = 60;
+const dayAbbreviation: TDayAbbreviation = 'MXTS';
 
 const MaxTrainingSetsDisplay = ({
   trainingSetReps,
@@ -23,6 +27,7 @@ const MaxTrainingSetsDisplay = ({
 }: MaxTrainingSetsDisplayProps) => {
 
   const [showTimerModal, setShowTimerModal] = useState(false);
+  const [missedSet, setMissedSet] = useState(false);
 
   function handleComplete() {
     updateCompletedTrainingSets(
@@ -52,22 +57,38 @@ const MaxTrainingSetsDisplay = ({
         )}
       </h3>
       <div className={styles.actionButtonsContainer}>
-        <button
-          type="button"
-          className={styles.actionButton}
-          onClick={handleMiss}
-          disabled={showTimerModal}
-        >
-          <CircleXIcon className={styles.icon} />
-        </button>
-        <button
-          type='button'
-          className={styles.actionButton}
-          onClick={handleComplete}
-          disabled={showTimerModal}
-        >
-          <CircleCheckIcon className={styles.icon} />
-        </button>
+        {missedSet ? (
+          <>
+            {Array.from({length: trainingSetReps}, (_, i) => {
+              return (
+                <NumberedMissRepButton
+                  key={i}
+                  dayAbbreviation={dayAbbreviation}
+                  onMissed={setMissedSet}
+                  repCount={i}
+                  updateCompletedTrainingSets={updateCompletedTrainingSets}
+                  completedTrainingSets={completedTrainingSets}
+                  updateDayComplete={updateDayComplete}
+                />
+              )
+            })}
+          </>
+        ) : (
+          <>
+            <MissSetButton
+              dayAbbreviation={dayAbbreviation}
+              onMissedSet={setMissedSet}
+            />
+            <button
+              type='button'
+              className={styles.actionButton}
+              onClick={handleComplete}
+              disabled={showTimerModal}
+            >
+              <CircleCheckIcon className={styles.icon} />
+            </button>
+          </>
+        )}
         {showTimerModal && createPortal(
         <TimerModal
           onClose={() => setShowTimerModal(false)}

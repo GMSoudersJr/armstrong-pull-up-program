@@ -1,7 +1,7 @@
 import { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import styles from './TimerModal.module.css';
 import {isSingular} from '@/utils';
-import {ptSans} from '@/fonts';
+import {nunito, ptSans} from '@/fonts';
 import {XIcon} from 'lucide-react';
 
 interface TimerModalProps {
@@ -41,9 +41,12 @@ const TimerModal = ({
     <div id="timerModal" className={styles.modal}>
       <div className={styles.modalContent}>
         <div className={styles.timer}>
-          <p style={ptSans.style}>
+          <h1 style={nunito.style}>
+            Recovery
+          </h1>
+          <h2 style={ptSans.style}>
             {secondsLeft > 0 && `Next set in ${secondsLeft} ${isSingular(secondsLeft) ? 'second!' : 'seconds'}`}
-          </p>
+          </h2>
         </div>
         <button
           type='button'
