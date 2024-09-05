@@ -9,8 +9,8 @@ import {TGrip} from '@/definitions';
 interface NumberedMissRepButtonProps {
   dayAbbreviation: 'PYRA' | '3S3G' | 'MXTS';
   onMissed: Dispatch<SetStateAction<boolean>>;
-  showTimerModalState: boolean;
-  setStateForShowTimerModal: Dispatch<SetStateAction<boolean>>;
+  showTimerModalState?: boolean;
+  setStateForShowTimerModal?: Dispatch<SetStateAction<boolean>>;
   repCount: number;
   // PYRA
   repsArrayState?: number[];
@@ -26,6 +26,10 @@ interface NumberedMissRepButtonProps {
   updateCompletedSetCount?: Dispatch<SetStateAction<number>>;
   updateTrainingSets?: Dispatch<SetStateAction<number[]>>;
   trainingSets?: number[];
+  // MXTS
+  updateDayComplete?: Dispatch<SetStateAction<boolean>>;
+  updateCompletedTrainingSets?: Dispatch<SetStateAction<number[]>>;
+  completedTrainingSets?: number[];
 }
 
 const NumberedMissRepButton = ({
@@ -45,8 +49,10 @@ const NumberedMissRepButton = ({
   updateCurrentGrip,
   updateCompletedSetCount,
   updateTrainingSets,
-  trainingSets
-
+  trainingSets,
+  updateDayComplete,
+  updateCompletedTrainingSets,
+  completedTrainingSets
 }: NumberedMissRepButtonProps) => {
 
   function handleClick() {
@@ -60,7 +66,7 @@ const NumberedMissRepButton = ({
         ]);
       }
 
-      setStateForShowTimerModal(true);
+      setStateForShowTimerModal && setStateForShowTimerModal(true);
 
       onMissed(false);
 
@@ -96,7 +102,7 @@ const NumberedMissRepButton = ({
 
         if (updateTrainingSets && trainingSets) updateTrainingSets([...trainingSets, repCount]);
 
-        setStateForShowTimerModal(true);
+        setStateForShowTimerModal && setStateForShowTimerModal(true);
         onMissed(false);
 
       } else {
@@ -117,6 +123,14 @@ const NumberedMissRepButton = ({
 
     if (dayAbbreviation === 'MXTS') {
 
+      if (updateCompletedTrainingSets && completedTrainingSets) {
+        updateCompletedTrainingSets(
+          [...completedTrainingSets, repCount]
+        );
+      }
+
+      updateDayComplete && updateDayComplete(true);
+      onMissed(false);
     }
 
   };

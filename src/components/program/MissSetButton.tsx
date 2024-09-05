@@ -6,7 +6,7 @@ import { Dispatch, SetStateAction } from "react";
 interface MissSetButtonProps {
   dayAbbreviation: TDayAbbreviation,
   onMissedSet: Dispatch<SetStateAction<boolean>>;
-  showTimerModalState: boolean;
+  showTimerModalState?: boolean;
   completedSetCount?: number;
 };
 

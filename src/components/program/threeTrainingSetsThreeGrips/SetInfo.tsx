@@ -34,10 +34,6 @@ const SetInfo = ({
   const [showTimerModal, setShowTimerModal] = useState(false);
   const [missedSet, setMissedSet] = useState(false);
 
-  function handleMiss(): void {
-    setMissedSet(true);
-  }
-
   function handleDone(): void {
     if (completedSetCount == 2 && completedGrips.length == 2) {
       updateCompletedGrips([
