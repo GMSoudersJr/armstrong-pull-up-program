@@ -36,10 +36,6 @@ const MaxTrainingSetsDisplay = ({
     setShowTimerModal(true);
   }
 
-  function handleMiss() {
-    updateDayComplete(true);
-  }
-
   return (
     <section className={styles.maxTrainingSetsContainer}>
       <div className={styles.completeSetsDisplay}>
@@ -48,7 +44,9 @@ const MaxTrainingSetsDisplay = ({
         </h3>
       </div>
       <h3 className={styles.maxSetsText} style={nunito.style}>
-        {completedTrainingSets.length < 9 ? (
+        {missedSet ? (
+          <>How many did you do?</>
+        ) : completedTrainingSets.length < 9 ? (
           `ONLY ${9 - completedTrainingSets.length} MORE ${isSingular(9 - completedTrainingSets.length) ? 'SET' : 'SETS'} OF ${trainingSetReps}`
         ) : completedTrainingSets.length === 9 ? (
         `DO ANOTHER`
