@@ -15,6 +15,7 @@ import {
 import TotalReps from "./TotalReps";
 import {nunito} from "@/fonts";
 import {CircleCheckBigIcon, SaveIcon, ThumbsUpIcon} from "lucide-react";
+import Link from "next/link";
 
 interface DayCompleteProps {
   dayData: TDayComplete;
@@ -57,7 +58,7 @@ const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
   return (
     <div className={styles.dayCompleteContainer}>
       <div className={styles.thumbsUpIconWrapper} >
-        <ThumbsUpIcon className={styles.icon}/>
+        <ThumbsUpIcon className={`${styles.icon} ${styles.thumbsUpIcon}`}/>
       </div>
       <div className={styles.totalReps}>
         <TotalReps sets={dayData.sets} />
@@ -73,16 +74,20 @@ const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
         style={nunito.style}
       >
         {isDataSaved ? (
+          <Link
+            href={'/program'}
+          >
            <div className={styles.checkIconWrapper} >
-             <CircleCheckBigIcon className={styles.icon}/>
+             <CircleCheckBigIcon className={`${styles.icon} ${styles.circleCheckBigIcon}`}/>
           </div>
+          </Link>
         ) : (
           <button
             type="button"
             className={styles.saveButton}
             onClick={handleSave}
           >
-            <SaveIcon className={styles.icon}/>
+            <SaveIcon className={`${styles.icon} ${styles.saveIcon}`}/>
           </button>
         )}
       </div>

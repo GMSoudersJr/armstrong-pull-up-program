@@ -41,6 +41,29 @@ export function addNewWeek(weekNumber: number) {
   }
 };
 //}}}
+// GET_OVERALL_PROGESS {{{
+export function getOverallProgess(): Promise<TDayComplete[]> {
+  const open = indexedDB.open(dbName);
+  const storeName: TStoreName = 'workoutsStore';
+
+  return new Promise((resolve, reject) => {
+    open.onsuccess = () => {
+      db = open.result;
+      let transaction = makeTransaction(storeName, 'readonly');
+      if (!transaction) return;
+      const objectStore = transaction.objectStore(storeName);
+      const getAllWorkoutsRequest = objectStore.getAll();
+      getAllWorkoutsRequest.onerror = () => reject(getAllWorkoutsRequest.error);
+
+      transaction.oncomplete = () => {
+        resolve(getAllWorkoutsRequest.result);
+
+        db?.close();
+      }
+    }
+  });
+}
+// }}}
 // GET_WEEK_DATA {{{
 export function getWeekDataForWeekNumber(weekNumber: number): Promise<TWeek> {
   const open = indexedDB.open(dbName);

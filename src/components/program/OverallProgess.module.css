@@ -1,0 +1,29 @@
+.overallProgressSection {
+  width: 17rem;
+  overflow-y: scroll;
+}
+
+.overallProgressSection::-webkit-scrollbar {
+  display: none;
+}
+
+.progressListItem {
+  margin-bottom: 0.25rem;
+}
+
+.progressListItem:last-child {
+  margin-bottom: 0rem;
+}
+
+.progressListItem > details > summary {
+  padding: 0.25rem;
+  background-color: #EEEEEE;
+  border: none;
+  cursor: pointer;
+}
+
+.progressListItem > details > p {
+  background-color: #EEEEEE;
+  padding: 0.25rem;
+  padding-left: 1rem;
+}

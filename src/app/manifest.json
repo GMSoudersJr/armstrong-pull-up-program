@@ -1,0 +1,74 @@
+{
+  "version": "1",
+  "manifest_version": 2,
+  "name": "Armstrong Pull-up Program App",
+  "short_name": "Pull-up App",
+  "description": "A PWA based on the Armstrong Pull-up Program. A program that increases your max through a 5 consecutive day routine of push-ups and pull-ups.",
+  "start_url": "/program",
+  "display": "standalone",
+  "background_color": "#2ECC40",
+  "icons": [
+    {
+      "src": "/images/Icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/Icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "orientation": "portrait",
+  "categories": [
+    "health",
+    "health & fitness",
+    "fitness",
+    "lifestyle"
+  ],
+  "screenshots": [
+    {
+      "src": "/images/Day1.png",
+      "label": "Day 1",
+      "sizes": "512x1109",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/images/Day2.png",
+      "label": "Day 2",
+      "sizes": "512x1109",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/images/Day3.png",
+      "label": "Day 3",
+      "sizes": "512x1109",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/images/Day4.png",
+      "label": "Day 4",
+      "sizes": "512x1109",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/images/Day5.png",
+      "label": "Day 5",
+      "sizes": "512x1109",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/images/Recovery.png",
+      "label": "Recovery",
+      "sizes": "512x1109",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ]
+}

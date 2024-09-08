@@ -1,5 +1,4 @@
 import styles from "./page.module.css";
-import {PageLink} from "@/components/PageLink";
 import Hero from "@/components/landing/Hero";
 import Features from "@/components/landing/Features";
 import Footer from "@/components/landing/Footer";

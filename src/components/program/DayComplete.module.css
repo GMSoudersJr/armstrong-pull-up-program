@@ -18,10 +18,23 @@
   font-size: clamp(1.5rem, 7vw + 1rem, 4rem);
 }
 
+.thumbsUpIcon {
+  color: var(--green);
+}
+
 .checkIconWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.saveIcon {
+  color: var(--blue);
+}
+
+.circleCheckBigIcon {
+  color: var(--blue);
+  animation: wiggle 2s infinite;
 }
 
 .totalReps {
@@ -66,6 +79,18 @@
 
 .saveButton:hover {
   cursor: pointer;
+}
+
+@keyframes wiggle {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  50% {
+    transform: rotateZ(-90deg);
+  }
+  100% {
+    transform: rotateZ(0deg);
+  }
 }
 
 @keyframes pulse {

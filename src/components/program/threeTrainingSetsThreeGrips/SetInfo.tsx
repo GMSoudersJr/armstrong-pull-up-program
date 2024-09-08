@@ -59,17 +59,8 @@ const SetInfo = ({
 
   return (
     <section className={styles.setInfoContainer}>
-      <h2 style={nunito.style}>
-        COMPLETED SETS:
-        <span
-          className={styles.setCount}
-          style={nunito.style}
-        >
-          {` ${completedSetCount}`}
-        </span>
-      </h2>
 
-      <h3 style={nunito.style}>
+      <h2 style={nunito.style}>
         {missedSet ? (
           <>How many did you do?</>
         ) : completedSetCount < 3 ? (
@@ -80,6 +71,22 @@ const SetInfo = ({
           <>CHOOSE NEXT GRIP</>
         ) : (
           <>How did we get here?</>
+        )}
+      </h2>
+
+      <h3 style={nunito.style}>
+        {missedSet ? (
+          `Rep Count`
+        ) : (
+          <>
+        {currentGrip?.toUpperCase()} SETS:
+        <span
+          className={styles.setCount}
+          style={nunito.style}
+        >
+          {` ${completedSetCount}`}
+        </span>
+          </>
         )}
       </h3>
 
