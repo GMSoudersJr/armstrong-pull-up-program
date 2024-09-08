@@ -3,13 +3,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem 1rem;
-  min-height: 100vh;
+  padding: 2rem 1rem;
+  min-height: 100%;
 }
-
-@media(max-width: 20rem) {
-  .main {
-    padding: 2rem 1rem;
-  }
-}
-

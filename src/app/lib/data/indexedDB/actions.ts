@@ -139,7 +139,7 @@ export const addCompletedDayToWorkoutsStore = (payload: TDayComplete): Promise<b
 
         const objectStore = transaction.objectStore(storeName);
         const serialized = JSON.parse(JSON.stringify(payload));
-        const request = objectStore.add(serialized);
+        const request = objectStore.put(serialized);
 
         request.onerror = (err) => reject(err)
 

@@ -1,0 +1,27 @@
+.headerSection {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr max-content 1fr;
+  grid-template-rows: min-content;
+  justify-items: center;
+  align-items: center;
+  background-image: linear-gradient(var(--blue), var(--green));
+}
+
+.iconWrapper {
+  font-size: clamp(1.5rem, 7vw + 1rem, 4rem);
+}
+
+.icon {
+  height: 1em;
+  width: 1em;
+}
+
+.headerText {
+  font-size: 1.3em;
+}
+
+.rightIcon {
+  transform: rotateY(180deg);
+}
+
