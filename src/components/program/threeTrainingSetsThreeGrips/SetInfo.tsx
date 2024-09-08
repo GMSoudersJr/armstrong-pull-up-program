@@ -75,6 +75,10 @@ const SetInfo = ({
       </h2>
 
       <h3 style={nunito.style}>
+        {missedSet ? (
+          `Rep Count`
+        ) : (
+          <>
         {currentGrip?.toUpperCase()} SETS:
         <span
           className={styles.setCount}
@@ -82,6 +86,8 @@ const SetInfo = ({
         >
           {` ${completedSetCount}`}
         </span>
+          </>
+        )}
       </h3>
 
       <div className={styles.buttonsContainer}>

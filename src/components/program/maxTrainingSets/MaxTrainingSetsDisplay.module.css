@@ -6,10 +6,6 @@
   align-items: center;
 }
 
-.maxSetsText {
-  font-size: 1.5rem;
-}
-
 .actionButtonsContainer {
   display: flex;
   width: 100%;

@@ -4,7 +4,7 @@ import {isSingular} from "@/utils";
 import {createPortal} from "react-dom";
 import TimerModal from "../TimerModal";
 import {nunito} from "@/fonts";
-import {CircleCheckIcon, CircleXIcon} from "lucide-react";
+import {CircleCheckIcon} from "lucide-react";
 import {TDayAbbreviation} from "@/definitions";
 import MissSetButton from "../MissSetButton";
 import NumberedMissRepButton from "../NumberedMissRepButton";
@@ -38,22 +38,28 @@ const MaxTrainingSetsDisplay = ({
 
   return (
     <section className={styles.maxTrainingSetsContainer}>
-      <div className={styles.completeSetsDisplay}>
-        <h3 style={nunito.style}>
-          COMPLETED {completedTrainingSets.length} {isSingular(completedTrainingSets.length) ? 'SET' : 'SETS'}
-        </h3>
-      </div>
-      <h3 className={styles.maxSetsText} style={nunito.style}>
+      <h2 style={nunito.style}>
         {missedSet ? (
           <>How many did you do?</>
         ) : completedTrainingSets.length < 9 ? (
-          `ONLY ${9 - completedTrainingSets.length} MORE ${isSingular(9 - completedTrainingSets.length) ? 'SET' : 'SETS'} OF ${trainingSetReps}`
+          `${9 - completedTrainingSets.length} MORE ${isSingular(9 - completedTrainingSets.length) ? 'SET' : 'SETS'} OF ${trainingSetReps}`
         ) : completedTrainingSets.length === 9 ? (
         `DO ANOTHER`
         ) : (
         `... AND ANOTHER!`
         )}
-      </h3>
+      </h2>
+      <div>
+        <h3 style={nunito.style}>
+          {missedSet ? (
+            `Rep Count`
+          ) : (
+            <>
+              COMPLETED {completedTrainingSets.length} {isSingular(completedTrainingSets.length) ? 'SET' : 'SETS'}
+            </>
+          )}
+        </h3>
+      </div>
       <div className={styles.actionButtonsContainer}>
         {missedSet ? (
           <>

@@ -75,13 +75,6 @@ const NumberedMissRepButton = ({
 
     if (dayAbbreviation === '3S3G') {
 
-      console.table({
-        completedGrips,
-        completedSetCount,
-        currentGrip,
-        trainingSets,
-      });
-
       if (completedSetCount == 2 && completedGrips?.length == 2) {
         if (updateCompletedGrips && currentGrip) {
           updateCompletedGrips([
@@ -96,7 +89,6 @@ const NumberedMissRepButton = ({
       }
 
       if (completedSetCount === 0 || completedSetCount && completedSetCount <= 2) {
-        console.log("Here because less than 2 completed sets");
 
         if (updateCompletedSetCount) updateCompletedSetCount(completedSetCount => completedSetCount + 1);
 

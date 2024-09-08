@@ -4,8 +4,6 @@ const urlsToCache = [
   "/program",
 ];
 
-console.log("Hello from the service worker");
-
 self.addEventListener("install", (event) => {
   console.log("Service worker installed", event);
   async function addFilesToCache() {
@@ -62,6 +60,7 @@ self.addEventListener("fetch", (event) => {
 })
 
 self.addEventListener("message", (event) => {
+  console.log("there's a message");
   if(event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
   }

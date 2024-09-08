@@ -13,21 +13,36 @@ const ProgramPage = () => {
   useEffect(() => {
     if ('serviceWorker' in navigator) {
       registerServiceWorker();
+      detectServiceWorkerUpdate();
     }
   }, []);
 
-  async function registerServiceWorker() {
-    const registration = await navigator.serviceWorker.register('/service-worker.js',{
+  async function registerServiceWorker(): Promise<void> {
+    await navigator.serviceWorker.register('/service-worker.js',{
       scope: '/program',
     });
-
-    let deferredPromt;
-    window.addEventListener('beforeinstallprompt', (event) => {
-      event.preventDefault();
-
-      deferredPromt = event;
-    });
   }
+
+  async function detectServiceWorkerUpdate(): Promise<void> {
+    const registration = await navigator.serviceWorker.ready;
+
+    registration.addEventListener("updatefound", () => {
+      const newServiceWorker = registration.installing;
+      if (newServiceWorker) {
+        newServiceWorker.addEventListener("statechange", () => {
+          if (newServiceWorker.state === "installed") {
+            updateServiceWorker(newServiceWorker);
+          }
+        });
+      }
+    });
+  };
+
+  function updateServiceWorker(newServiceWorker: ServiceWorker) {
+    newServiceWorker.postMessage({ type: 'SKIP_WAITING' });
+    window.location.reload();
+  }
+
 
   return (
     <main className={styles.main}>
