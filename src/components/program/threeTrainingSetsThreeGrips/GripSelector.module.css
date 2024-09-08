@@ -25,14 +25,14 @@
   height: 3rem;
   border-radius: 0.75rem;
   display: grid;
-  grid-template-columns: 1fr 5rem 1fr;
+  grid-template-columns: 1fr min-content 1fr;
   grid-template-rows: min-content;
   align-content: center;
   align-items: center;
 }
 
 .gripName {
-  width: 100%;
+  text-align: center;
 }
 
 .leftEmoji-close {

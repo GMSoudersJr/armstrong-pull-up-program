@@ -1,0 +1,25 @@
+.overallProgressSection {
+  overflow-y: auto;
+}
+
+.progressListItem {
+  margin-bottom: 0.25rem;
+}
+
+.progressListItem:last-child {
+  margin-bottom: 0rem;
+}
+
+.progressListItem > details > summary {
+  font-size: clamp(var(--heading-4), calc(1vw + 0.5rem), var(--heading-2));
+  padding: 0.25rem;
+  background-color: #EEEEEE;
+  border: none;
+  cursor: pointer;
+}
+
+.progressListItem > details > p {
+  background-color: #EEEEEE;
+  padding: 0.25rem;
+  padding-left: 1rem;
+}
