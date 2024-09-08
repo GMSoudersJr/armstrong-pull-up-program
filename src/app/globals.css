@@ -1,6 +1,8 @@
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
+  --blue: #0074D9;
+  --green: #2ECC40;
 
   --button-action-font-size: clamp(2.625rem, 10vw + 1rem, 4rem);
 

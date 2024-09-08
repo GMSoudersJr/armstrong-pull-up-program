@@ -24,7 +24,7 @@ const OverallProgess = () => {
           <li key={day.id} className={styles.progressListItem}>
             <details>
               <summary style={nunito.style}>
-                WK{day.weekNumber} D{day.dayNumber} TOTAL {day.sets.reduce((a, b ) => a + b)}
+                WK{day.weekNumber} D{day.dayNumber} - {day.dayAbbreviation} - TOTAL {day.sets.reduce((a, b ) => a + b)}
               </summary>
               <p style={ptSans.style}>
                 {day.date}

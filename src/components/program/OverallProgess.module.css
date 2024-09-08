@@ -1,5 +1,10 @@
 .overallProgressSection {
-  overflow-y: auto;
+  width: 17rem;
+  overflow-y: scroll;
+}
+
+.overallProgressSection::-webkit-scrollbar {
+  display: none;
 }
 
 .progressListItem {
@@ -11,7 +16,6 @@
 }
 
 .progressListItem > details > summary {
-  font-size: clamp(var(--heading-4), calc(1vw + 0.5rem), var(--heading-2));
   padding: 0.25rem;
   background-color: #EEEEEE;
   border: none;
