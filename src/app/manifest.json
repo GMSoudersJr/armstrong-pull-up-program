@@ -1,6 +1,7 @@
 {
   "version": "1",
   "manifest_version": 2,
+  "id": "/program",
   "name": "Armstrong Pull-up Program App",
   "short_name": "Pull-up App",
   "description": "A PWA based on the Armstrong Pull-up Program. A program that increases your max through a 5 consecutive day routine of push-ups and pull-ups.",
