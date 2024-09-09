@@ -27,7 +27,6 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== 'GET') return;
-  console.log("fetch", event.request.url);
   async function respond () {
     const url = new URL(event.request.url);
     const cache = await caches.open(CACHE);
