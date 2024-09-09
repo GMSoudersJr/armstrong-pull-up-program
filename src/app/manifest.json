@@ -12,13 +12,8 @@
     {
       "src": "/images/512x512-icon-maskable.png",
       "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
-      "src": "/images/512x512-icon-maskable.png",
-      "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     }
   ],
   "orientation": "portrait",
