@@ -1,6 +1,9 @@
 'use client';
 
 import {DownloadIcon} from "lucide-react";
+import {useEffect} from "react";
+import styles from './InstallPWAButton.module.css';
+import {nunito, ptSans} from "@/fonts";
 
 interface BeforeInstallPromptEvent extends Event {
   readonly platforms: Array<string>;
@@ -15,10 +18,16 @@ const InstallPWAButton = () => {
 
   let deferredPrompt: BeforeInstallPromptEvent | null;
 
-  window.addEventListener('beforeinstallprompt', (event: Event) => {
-    event.preventDefault();
-    deferredPrompt = event as BeforeInstallPromptEvent;
-  });
+  useEffect(() => {
+
+    if ("BeforeInstallPromptEvent" in window) console.log("BeforeInstallPromptEvent exists");
+
+    window.addEventListener('beforeinstallprompt', (event: Event) => {
+      event.preventDefault();
+      deferredPrompt = event as BeforeInstallPromptEvent;
+    });
+
+  }, []);
 
   async function handleInstall() {
     if (deferredPrompt) {
@@ -36,8 +45,14 @@ const InstallPWAButton = () => {
     <button
       type='button'
       onClick={handleInstall}
+      className={styles.installButton}
     >
-      <DownloadIcon />
+      <span className={styles.iconWrapper}>
+        <DownloadIcon className={styles.downloadIcon}/>
+      </span>
+      <h5 style={nunito.style}>
+        INSTALL THE APP!
+      </h5>
     </button>
   )
 };
