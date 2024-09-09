@@ -10,7 +10,7 @@
   "background_color": "#2ECC40",
   "icons": [
     {
-      "src": "/images/512x512-icon-maskable.png",
+      "src": "/images/Icon.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -65,6 +65,20 @@
       "sizes": "512x1109",
       "type": "image/png",
       "form_factor": "narrow"
+    },
+    {
+      "src": "/images/Day2-wide.png",
+      "label": "Day 2",
+      "sizes": "910x512",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/images/Day3-wide.png",
+      "label": "Day 3",
+      "sizes": "910x512",
+      "type": "image/png",
+      "form_factor": "wide"
     }
   ]
 }
