@@ -6,10 +6,13 @@
   justify-items: center;
   align-items: center;
   background-image: linear-gradient(var(--blue), var(--green));
+  padding: 0.5rem;
 }
 
 .iconWrapper {
   font-size: clamp(1.5rem, 7vw + 1rem, 4rem);
+  display: flex;
+  align-items: center;
 }
 
 .icon {
