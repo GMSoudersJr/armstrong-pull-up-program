@@ -8,6 +8,7 @@
   "start_url": "/program",
   "display": "standalone",
   "background_color": "#2ECC40",
+  "theme_color": "#2ECC40",
   "icons": [
     {
       "src": "/images/Icon.png",
