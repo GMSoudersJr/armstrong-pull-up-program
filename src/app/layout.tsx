@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { defaultMetadata } from "@/seo";
 
-export const metadata: Metadata = {
-  title: "Armstrong Pull-up Program",
-  description: "A program to increase your pull-ups!",
-};
+export const metadata: Metadata = defaultMetadata;
 
 export default function RootLayout({
   children,
