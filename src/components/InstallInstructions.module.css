@@ -1,0 +1,44 @@
+.installInstructionsSection {
+  display: none;
+  justify-self: center;
+}
+
+@media (display-mode: browser) {
+  .installInstructionsSection {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, min-content);
+    justify-items: center;
+    align-items: center;
+    row-gap: 1rem;
+  }
+
+  .intstallInstructions > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .list {
+    list-style-position: inside;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    justify-content: center;
+    align-content: center;
+    gap: 1rem;
+  }
+
+  .listitemSpan {
+    display: inline-flex;
+    gap: 0.5rem;
+  }
+
+  .intstallInstructions {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+
+  }
+}

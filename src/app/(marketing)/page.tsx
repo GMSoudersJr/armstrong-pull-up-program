@@ -6,7 +6,7 @@ import Testimonials from "@/components/landing/Testimonials";
 import Overview from "@/components/landing/Overview";
 import FaqAccordion from "@/components/landing/FaqAccordion";
 import {TransitionLink} from "@/components/TransitionLink";
-import InstallPWAButton from "@/components/InstallPWAButton";
+import InstallInstructions from "@/components/InstallInstructions";
 
 export default function Home() {
   return (
@@ -17,7 +17,7 @@ export default function Home() {
       <Overview />
       <FaqAccordion />
       <TransitionLink href='/program'>GET STARTED!</TransitionLink>
-      <InstallPWAButton />
+      <InstallInstructions />
       <Footer />
     </main>
   );
