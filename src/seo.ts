@@ -6,8 +6,8 @@ export const defaultMetadata: Metadata = {
     canonical: '/',
   },
   title: {
-    default: 'Armstrong Pull-up Program',
-    template: '%s | Armstrong Pull-up Program'
+    default: 'Armstrong Pull-up Program App',
+    template: '%s | Armstrong Pull-up Program App'
   },
   description: 'A progressive web app that is based on the Armstrong Pull-up Program. It increases your maximum number of pullups with a 5-day training routine.',
   applicationName: 'Armstrong Pull-up Program',
