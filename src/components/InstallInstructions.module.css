@@ -20,6 +20,10 @@
     gap: 1rem;
   }
 
+  .installInstructionsSection > h1 {
+    text-align: center;
+  }
+
   .list {
     list-style-position: inside;
     display: flex;
