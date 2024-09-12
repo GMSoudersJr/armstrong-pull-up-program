@@ -3,7 +3,7 @@
 import {DownloadIcon} from "lucide-react";
 import {useEffect} from "react";
 import styles from './InstallPWAButton.module.css';
-import {nunito, ptSans} from "@/fonts";
+import {nunito} from "@/fonts";
 
 interface BeforeInstallPromptEvent extends Event {
   readonly platforms: Array<string>;
