@@ -2,7 +2,6 @@
 
 import styles from './InstallInstructions.module.css';
 import {nunito, ptSans} from "@/fonts";
-import { useEffect } from "react";
 import InstallPWAButton from './InstallPWAButton';
 import {
   ChromeIcon,
@@ -13,28 +12,11 @@ import {
   ShareIcon
 } from 'lucide-react';
 
-interface BeforeInstallPromptEvent extends Event {
-  readonly platforms: Array<string>;
-  readonly userChoice: Promise<{
-    outcome: 'accepted' | 'dismissed';
-    platform: string;
-  }>
-  prompt(): Promise<void>;
-}
-
 const InstallInstructions = () => {
-
-  let deferredPrompt: BeforeInstallPromptEvent | null;
-
-  useEffect(() => {
-
-    if ("BeforeInstallPromptEvent" in window) console.log("BeforeInstallPromptEvent exists");
-
-  }, []);
 
   return (
     <section className={styles.installInstructionsSection}>
-      <h1 style={nunito.style}>PWA INSTALLATION</h1>
+      <h1 style={nunito.style}>APP INSTALLATION</h1>
       <div className={styles.intstallInstructions}>
         <div id='mostDevices'>
           <h2 style={nunito.style}>MOST DEVICES</h2>
