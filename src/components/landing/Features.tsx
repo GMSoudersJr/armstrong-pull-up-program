@@ -33,7 +33,7 @@ const FEATURES: TCardProps[] = [
     heading: 'Local First',
     body: [
       'Your data stays on your phone.',
-      'Offline availability.'
+      'Offline availability coming soon.'
     ],
   },
   {
