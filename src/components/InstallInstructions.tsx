@@ -6,6 +6,7 @@ import InstallPWAButton from './InstallPWAButton';
 import {
   ChromeIcon,
   CompassIcon,
+  DockIcon,
   MonitorDownIcon,
   MoveDownIcon,
   PlusSquareIcon,
@@ -55,7 +56,12 @@ const InstallInstructions = () => {
             </li>
             <li style={ptSans.style}>
               <span className={styles.listitemSpan}>
-                Add to Home Screen <PlusSquareIcon />
+                Add to Home Screen <PlusSquareIcon /> or
+              </span>
+            </li>
+            <li style={ptSans.style}>
+              <span className={styles.listitemSpan}>
+                Add to Dock <DockIcon />
               </span>
             </li>
           </ol>
