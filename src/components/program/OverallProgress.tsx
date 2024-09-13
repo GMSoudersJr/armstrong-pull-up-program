@@ -27,7 +27,9 @@ const OverallProgess = () => {
                 WK{day.weekNumber} D{day.dayNumber} - {day.dayAbbreviation} - TOTAL {day.sets.reduce((a, b ) => a + b)}
               </summary>
               <p style={ptSans.style}>
-                {day.date}
+                <time dateTime={day.date}>
+                  {day.date}
+                </time>
               </p>
               {day.grips && (
               <p style={ptSans.style}>
