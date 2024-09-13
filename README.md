@@ -1,20 +1,46 @@
-# 🦾 Armstrong Pull-up Program
+# [Armstrong Pull-up Program App](https://armstrong-pull-up-program.vercel.app) 🦾
+Live link: https://armstrong-pull-up-program.vercel.app
 
-A 5-day program to increase your pull-up ability drastically within 6-8 weeks.
+The information in the FAQ section came from [this PDF](https://www.savannahstate.edu/cost/nrotc/documents/Inform2010-thearmstrongworkout_Enclosure15_5-2-10.pdf)
 
-I have personally used this program to go from a max of 3 pull-ups to 27 along with 5 muscle ups!
-It is recommended to do it for at least 6 weeks to reap the rewards. I did mine for about 5 months.
+## Background 📖
+About 10 years ago, I decided to put the pull-up bar in my house to better use than a dry wrack for my towels.
 
-## PROBLEM
-I used to do pullups at a park and had to memorize my rep and set numbers during the walk home. This will allow me to keep track when I do them and have them saved locally.
+I came across this program called "The Armstrong Pull-up Program". I gave it a try. It was quite simple to follow.
 
-After doing pull-ups, dexterity can be a problem, so the buttons should be large. The fonts should be easy to read and the input should be intuitive.
+5 consecutive days of push-ups and pull-ups. After a few months, my max went from 3 to 27 and I was able to do 5 muscle ups!
 
-This is my solution!
+## Problems 😠
 
-## PLAN
-- Have this be a local-first app.
+### Tracking / Recording Progress 🧾
+- Easily forget previous week's max and training set numbers.
+- During workouts, I would lose track of set counts, get frustrated with myself, then lose focus!
+- I recorded my progess in tiny spiral notepads 🗒️, notebooks 📓, and on the dry-erase like doors of my closest.
+  - Lost the notebooks and had to erase sections of the door to write more data.
+- At the park 🏞️, nothing to write on, had to memorize everything if I wanted to keep track of it.
+  - Resorted to breaking twigs and keeping them in my pocket.
 
-- Most likely a Progressive Web App like Suit Yourself.
+### Recovery Timers ⏲️
+- Three types: 90s, 60s, and 10s / rep
+  - My running watch was too much of a hassle to set a new timer after each set or keep track of how many times the 10s timer went off.
+  - My other digital watch's timer could only do 1-minute increments.
 
-- Follow the program while I develop it to better understand the needs of users.
+## Solutions 😂
+### Tracking / Recording Progress 🧾
+- Record completed workouts in IndexedDB. I want to keep the user's data with them. I do not need to know how many pull-ups someone can do!
+- The app keeps track of which day the user last completed and guides them through the program.
+- Each day is as simple as inputing your number of pull-ups and then clicking that you have completed the set.
+- Users are shown their progress for the day and a tally of how many pull-ups they accomplished in the workout.
+- Users are shown details about their previous days and weeks of workouts upon openning the app.
+
+### Recovery Timers ⏲️
+- Users do not need to set any timers.
+- The recovery timers are automatic. Sit back and relax! You deserved it.
+
+## Goals 🚀
+Local First - I want this to work offline and keep user's data on their devices, not on anywhere else.
+
+## This App
+This was my project for LMT2 Cohort #2
+Built with React and Nextjs using TypeScript.
+I am trying to keep the dependencies to a minimum.
