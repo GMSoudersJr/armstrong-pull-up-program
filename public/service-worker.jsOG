@@ -1,7 +1,31 @@
-const version = 1;
+const version = 3;
 const CACHE  = `cache-${version}`;
 const urlsToCache = [
-  "/program",
+  //"/_next/static/css/app/layout.css",
+  //"/_next/static/css/app/(app)/program/error.css",
+  //"/_next/static/css/app/(app)/program/layout.css",
+  //"/_next/static/css/app/(app)/program/page.css",
+  //"/_next/static/css/app/(app)/program/[day]/page.css",
+  //"/_next/static/css/_app-pages-browser_src_components_program_Program_tsx.css",
+  //"/_next/static/css/_app-pages-browser_src_components_landing_Accordion_tsx.css",
+  //"/_next/static/css/_app-pages-browser_src_components_program_OverallProgress_tsx.css",
+  //"/_next/static/chunks/main-app.js",
+  //"/_next/static/chunks/webpack.js",
+  //"/_next/static/chunks/polyfills.js",
+  //"/_next/static/chunks/app-pages-internals.js",
+  //"/_next/static/chunks/_app-pages-browser_src_components_program_Program_tsx.js",
+  //"/_next/static/chunks/_app-pages-browser_src_components_landing_Accordion_tsx.js",
+  //"/_next/static/chunks/_app-pages-browser_src_components_program_OverallProgress_tsx.js",
+  //"/_next/static/chunks/app/layout.js",
+  //"/_next/static/chunks/app/(app)/program/error.js",
+  //"/_next/static/chunks/app/(app)/program/layout.js",
+  //"/_next/static/chunks/app/(app)/program/page.js",
+  //"/_next/static/chunks/app/(app)/program/[day]/page.js",
+  //"/program/1",
+  //"/program/2",
+  //"/program/3",
+  //"/program/4",
+  //"/program/5",
 ];
 
 self.addEventListener("install", (event) => {
@@ -61,6 +85,7 @@ self.addEventListener("fetch", (event) => {
 self.addEventListener("message", (event) => {
   console.log("there's a message");
   if(event.data && event.data.type === 'SKIP_WAITING') {
+    console.log("Skipping that SHIT!!!!!!");
     self.skipWaiting();
   }
 });
