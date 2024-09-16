@@ -25,7 +25,7 @@ const Program = () => {
         return (
           <PageLink
             key={day.name}
-            path={`/program/${day.number}`}
+            path={day.path}
             label={day.label}
           />
         )

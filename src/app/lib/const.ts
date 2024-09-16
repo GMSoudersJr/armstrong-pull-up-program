@@ -1,6 +1,6 @@
 export const DAYS = [
   {
-    path: '/program/1',
+    path: '/program/day-one',
     label: 'DAY 1',
     name: 'five maximum effort sets',
     number: 1,
@@ -8,7 +8,7 @@ export const DAYS = [
     heading3: '90s RECOVERY'
   },
   {
-    path: '/program/2',
+    path: '/program/day-two',
     label: 'DAY 2',
     name: 'pyramid',
     number: 2,
@@ -16,7 +16,7 @@ export const DAYS = [
     heading3: '10s RECOVERY / REP'
   },
   {
-    path: '/program/3',
+    path: '/program/day-three',
     label: 'DAY 3',
     name: '3 training sets with 3 grips',
     number: 3,
@@ -24,7 +24,7 @@ export const DAYS = [
     heading3: '60s RECOVERY'
   },
   {
-    path: '/program/4',
+    path: '/program/day-four',
     label: 'DAY 4',
     name: 'max training sets',
     number: 4,
@@ -32,7 +32,7 @@ export const DAYS = [
     heading3: '60s RECOVERY'
   },
   {
-    path: '/program/5',
+    path: '/program/day-five',
     label: 'DAY 5',
     name: 'repeat the most difficult day (1-4)',
     number: 5,
