@@ -26,6 +26,7 @@ module.exports = async (phase) => {
       swDest: "public/sw.js",
       reloadOnOnline: true,
       additionalPrecacheEntries: [
+        "/program",
         "/program/day-one",
         "/program/day-two",
         "/program/day-three",
