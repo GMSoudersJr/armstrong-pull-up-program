@@ -10,6 +10,7 @@ const OverallProgess = dynamic(() => import('@/components/program/OverallProgres
 
 const ProgramPage = () => {
 
+  /*
   useEffect(() => {
     if ('serviceWorker' in navigator) {
       registerServiceWorker();
@@ -47,6 +48,7 @@ const ProgramPage = () => {
     window.location.reload();
   }
 
+   */
 
   return (
     <main className={styles.main}>
