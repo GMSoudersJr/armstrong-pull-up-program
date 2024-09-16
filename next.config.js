@@ -25,6 +25,13 @@ module.exports = async (phase) => {
       swSrc: "src/app/sw.ts",
       swDest: "public/sw.js",
       reloadOnOnline: true,
+      additionalPrecacheEntries: [
+        "/program/day-one",
+        "/program/day-two",
+        "/program/day-three",
+        "/program/day-four",
+        "/program/day-five",
+      ]
     });
     return withSerwist(nextConfig);
   }
