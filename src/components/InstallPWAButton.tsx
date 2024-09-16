@@ -20,8 +20,6 @@ const InstallPWAButton = () => {
 
   useEffect(() => {
 
-    if ("BeforeInstallPromptEvent" in window) console.log("BeforeInstallPromptEvent exists");
-
     window.addEventListener('beforeinstallprompt', (event: Event) => {
       event.preventDefault();
       deferredPrompt = event as BeforeInstallPromptEvent;

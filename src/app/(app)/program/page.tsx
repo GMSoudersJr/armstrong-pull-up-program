@@ -10,6 +10,7 @@ const OverallProgess = dynamic(() => import('@/components/program/OverallProgres
 
 const ProgramPage = () => {
 
+  /*
   useEffect(() => {
     if ('serviceWorker' in navigator) {
       registerServiceWorker();
@@ -18,7 +19,7 @@ const ProgramPage = () => {
   }, []);
 
   async function registerServiceWorker(): Promise<void> {
-    await navigator.serviceWorker.register('/service-worker.js',{
+    await navigator.serviceWorker.register('/sw.js',{
       scope: '/program',
     });
   }
@@ -26,10 +27,13 @@ const ProgramPage = () => {
   async function detectServiceWorkerUpdate(): Promise<void> {
     const registration = await navigator.serviceWorker.ready;
 
+    console.log("Detecting Service Worker Update...");
+
     registration.addEventListener("updatefound", () => {
       const newServiceWorker = registration.installing;
       if (newServiceWorker) {
         newServiceWorker.addEventListener("statechange", () => {
+          console.log("SW Update found");
           if (newServiceWorker.state === "installed") {
             updateServiceWorker(newServiceWorker);
           }
@@ -39,10 +43,12 @@ const ProgramPage = () => {
   };
 
   function updateServiceWorker(newServiceWorker: ServiceWorker) {
+    console.log("Updating the service worker!")
     newServiceWorker.postMessage({ type: 'SKIP_WAITING' });
     window.location.reload();
   }
 
+   */
 
   return (
     <main className={styles.main}>

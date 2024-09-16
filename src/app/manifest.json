@@ -6,9 +6,10 @@
   "short_name": "Pull-up App",
   "description": "A PWA based on the Armstrong Pull-up Program. A program that increases your max through a 5 consecutive day routine of push-ups and pull-ups.",
   "start_url": "/program",
+  "scope": "/",
   "display": "standalone",
-  "background_color": "#2ECC40",
-  "theme_color": "#2ECC40",
+  "background_color": "#0074D9",
+  "theme_color": "#0074D9",
   "icons": [
     {
       "src": "/images/Icon.png",
