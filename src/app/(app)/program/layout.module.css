@@ -2,6 +2,6 @@
   display: grid;
   grid-template-columns: 100vw;
   grid-template-rows: min-content 1fr;
-  height: 100vh;
+  height: 100svh;
   justify-content: center;
 }
