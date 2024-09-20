@@ -78,7 +78,7 @@ const MaxTrainingSetsDisplay = ({
             })}
           </>
         ) : (
-          <>
+          <section className={styles.missOrHitButtonsContainer}>
             <MissSetButton
               dayAbbreviation={dayAbbreviation}
               onMissedSet={setMissedSet}
@@ -91,7 +91,7 @@ const MaxTrainingSetsDisplay = ({
             >
               <CircleCheckIcon className={styles.icon} />
             </button>
-          </>
+          </section>
         )}
         {showTimerModal && createPortal(
         <TimerModal
