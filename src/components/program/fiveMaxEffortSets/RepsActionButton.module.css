@@ -4,13 +4,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0;
+  padding: 0.5rem;
   margin: 0;
   grid-area: back;
   font-size: var(--button-action-font-size);
+  width: 100%;
+  height: 100%;
 }
 
 .icon {
   height: 1em;
   width: 1em;
+}
+
+.removeButton {
+  background-color: var(--blue);
+}
+
+.completeButton {
+  background-color: var(--green);
 }

@@ -36,7 +36,7 @@ const RepsCompleteButton = ({
       <button
         type='button'
         onClick={handleComplete}
-        className={`${styles.button} ${styles.completeButton} action`}
+        className={`${styles.button} ${styles.completeButton}`}
         disabled={showTimerModalState}
       >
         <CircleCheckIcon className={styles.icon} />

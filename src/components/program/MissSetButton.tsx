@@ -1,4 +1,4 @@
-import {TDayAbbreviation, TGrip} from '@/definitions';
+import {TDayAbbreviation} from '@/definitions';
 import styles from './ActionButton.module.css';
 import {CircleXIcon} from 'lucide-react';
 import { Dispatch, SetStateAction } from "react";
@@ -17,6 +17,7 @@ const MissSetButton = ({
   completedSetCount,
 }: MissSetButtonProps) => {
 
+  const disabledAtPyramidBeginning = dayAbbreviation === 'PYRA' && completedSetCount === 0;
   const disableForGripSelection = dayAbbreviation === '3S3G' && completedSetCount === 3;
 
   function handleMiss(): void {
@@ -27,7 +28,7 @@ const MissSetButton = ({
     <button
       type='button'
       onClick={handleMiss}
-      disabled={showTimerModalState || disableForGripSelection}
+      disabled={showTimerModalState || disableForGripSelection || disabledAtPyramidBeginning}
       className={styles.pyramidActionButton}
     >
       <CircleXIcon className={styles.icon} />
