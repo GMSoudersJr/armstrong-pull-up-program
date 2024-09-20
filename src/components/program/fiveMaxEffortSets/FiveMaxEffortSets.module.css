@@ -7,11 +7,18 @@
 
 .setInfo {
   display: grid;
-  grid-template-columns: var(--button-action-font-size) 10rem var(--button-action-font-size);
+  grid-template-columns: 1fr;
   grid-template-rows: min-content;
   justify-items: center;
   align-items: center;
   column-gap: 1rem;
   grid-template-areas:
   "back table .";
+}
+
+.actionButtonsContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: min-content;
 }

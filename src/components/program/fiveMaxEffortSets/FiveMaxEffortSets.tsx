@@ -33,12 +33,6 @@ const FiveMaxEffortSets = ({ dayNumber }: FiveMaxEffortSetsProps) => {
       {repsArray.length > 0 &&
       <div className={styles.setInfo}>
         <SetsTable repsArray={repsArray}/>
-        <RepsRemoveButton
-          repsArrayState={repsArray}
-          setStateForRepsArray={setRepsArray}
-          showTimerModalState={showTimerModal}
-          savedDay={savedDay}
-        />
       </div>
       }
       {dayComplete ? (
@@ -61,13 +55,25 @@ const FiveMaxEffortSets = ({ dayNumber }: FiveMaxEffortSetsProps) => {
                 setStateForShowTimerModal={setShowTimerModal}
                 showTimerModalState={showTimerModal}
               />
-              <RepsCompleteButton
-                reps={reps}
-                repsArrayState={repsArray}
-                setStateForRepsArray={setRepsArray}
-                setStateForShowTimerModal={setShowTimerModal}
-                showTimerModalState={showTimerModal}
-              />
+              <section className={styles.actionButtonsContainer}>
+                <div>
+                  <RepsRemoveButton
+                    repsArrayState={repsArray}
+                    setStateForRepsArray={setRepsArray}
+                    showTimerModalState={showTimerModal}
+                    savedDay={savedDay}
+                  />
+                </div>
+                <div>
+                  <RepsCompleteButton
+                    reps={reps}
+                    repsArrayState={repsArray}
+                    setStateForRepsArray={setRepsArray}
+                    setStateForShowTimerModal={setShowTimerModal}
+                    showTimerModalState={showTimerModal}
+                  />
+                </div>
+              </section>
             </>
           }
           {showTimerModal && createPortal(
