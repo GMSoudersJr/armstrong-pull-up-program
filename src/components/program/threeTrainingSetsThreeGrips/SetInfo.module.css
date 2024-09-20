@@ -17,16 +17,16 @@
 }
 
 .actionButton {
-  background: transparent;
+  background-color: var(--green);
   border: none;
-  width: 3.5rem;
-  height: 3.5rem;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 3.125rem;
   font-family: var(--font-notoColorEmoji);
-  padding: 0;
+  padding: 0.25rem;
   margin: 0;
   font-size: var(--button-action-font-size);
 }
@@ -34,4 +34,13 @@
 .icon {
   height: 1em;
   width: 1em;
+}
+
+.actionButtonsContainer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: min-content;
+  justify-items: center;
+  align-content: center;
 }

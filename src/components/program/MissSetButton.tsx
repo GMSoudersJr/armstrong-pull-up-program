@@ -1,4 +1,4 @@
-import {TDayAbbreviation, TGrip} from '@/definitions';
+import {TDayAbbreviation} from '@/definitions';
 import styles from './ActionButton.module.css';
 import {CircleXIcon} from 'lucide-react';
 import { Dispatch, SetStateAction } from "react";

@@ -4,7 +4,7 @@ import {createPortal} from 'react-dom';
 import TimerModal from '../TimerModal';
 import {TGrip} from '@/app/lib/definitions';
 import {nunito} from '@/fonts';
-import {ArrowRightToLineIcon, CircleCheckIcon, CircleXIcon} from 'lucide-react';
+import {ArrowRightToLineIcon, CircleCheckIcon} from 'lucide-react';
 import NumberedMissRepButton from '@/components/program/NumberedMissRepButton';
 import MissSetButton from '../MissSetButton';
 
@@ -115,7 +115,7 @@ const SetInfo = ({
             })}
           </>
         ) : (
-          <>
+          <section className={styles.actionButtonsContainer}>
             <MissSetButton
               dayAbbreviation='3S3G'
               onMissedSet={setMissedSet}
@@ -134,7 +134,7 @@ const SetInfo = ({
                 <CircleCheckIcon className={styles.icon} />
               )}
             </button>
-          </>
+          </section>
         )}
         {showTimerModal && createPortal(
           <TimerModal
