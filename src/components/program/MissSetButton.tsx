@@ -17,6 +17,7 @@ const MissSetButton = ({
   completedSetCount,
 }: MissSetButtonProps) => {
 
+  const disabledAtPyramidBeginning = completedSetCount === 0;
   const disableForGripSelection = dayAbbreviation === '3S3G' && completedSetCount === 3;
 
   function handleMiss(): void {
@@ -27,7 +28,7 @@ const MissSetButton = ({
     <button
       type='button'
       onClick={handleMiss}
-      disabled={showTimerModalState || disableForGripSelection}
+      disabled={showTimerModalState || disableForGripSelection || disabledAtPyramidBeginning}
       className={styles.pyramidActionButton}
     >
       <CircleXIcon className={styles.icon} />

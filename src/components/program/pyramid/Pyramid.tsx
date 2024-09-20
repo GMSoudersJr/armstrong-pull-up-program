@@ -58,13 +58,6 @@ const Pyramid = ({ dayNumber }: PyramidProps) => {
           </h2>
 
           <div className={ styles.actionButtonContainer }>
-            {repsArray.length > 0 && !missed && !showMaxoutNumbers && (
-              <MissSetButton
-                dayAbbreviation={dayAbbreviation}
-                showTimerModalState={showTimerModal}
-                onMissedSet={setMissed}
-              />
-            )}
 
             {missed ? (
                 <div className={styles.missedSetNumberContainer}>
@@ -101,14 +94,22 @@ const Pyramid = ({ dayNumber }: PyramidProps) => {
                 })}
               </div>
             ) : (
-            <RepsCompleteButton
-              repsState={completedReps}
-              repsArrayState={repsArray}
-              setStateForReps={setCompletedReps}
-              setStateForRepsArray={setRepsArray}
-              setStateForShowTimerModal={setShowTimerModal}
-              showTimerModalState={showTimerModal}
-            />
+              <section className={styles.actionButtonsContainer}>
+                <MissSetButton
+                  dayAbbreviation={dayAbbreviation}
+                  showTimerModalState={showTimerModal}
+                  onMissedSet={setMissed}
+                  completedSetCount={repsArray.length}
+                />
+                <RepsCompleteButton
+                  repsState={completedReps}
+                  repsArrayState={repsArray}
+                  setStateForReps={setCompletedReps}
+                  setStateForRepsArray={setRepsArray}
+                  setStateForShowTimerModal={setShowTimerModal}
+                  showTimerModalState={showTimerModal}
+                />
+              </section>
             )}
           </div>
           {showTimerModal && createPortal(
