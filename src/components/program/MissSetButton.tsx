@@ -17,7 +17,7 @@ const MissSetButton = ({
   completedSetCount,
 }: MissSetButtonProps) => {
 
-  const disabledAtPyramidBeginning = completedSetCount === 0;
+  const disabledAtPyramidBeginning = dayAbbreviation === 'PYRA' && completedSetCount === 0;
   const disableForGripSelection = dayAbbreviation === '3S3G' && completedSetCount === 3;
 
   function handleMiss(): void {
