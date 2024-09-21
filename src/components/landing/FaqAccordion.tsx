@@ -4,6 +4,7 @@ import styles from './FaqAccordion.module.css';
 import { FAQ } from "@/data/faq";
 import {nunito} from '@/fonts';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 
 const Accordion = dynamic(() => import('@/components/landing/Accordion'));
 
@@ -14,6 +15,12 @@ const FaqAccordion = () => {
       <h3 style={nunito.style}>
         FAQ
       </h3>
+      <Link
+        href={'https://www.savannahstate.edu/cost/nrotc/documents/Inform2010-thearmstrongworkout_Enclosure15_5-2-10.pdf'}
+        referrerPolicy='no-referrer'
+      >
+        https://www.savannahstate.edu/cost/nrotc/documents/Inform2010-thearmstrongworkout_Enclosure15_5-2-10.pdf
+      </Link>
       <ul className={styles.faqList}>
       {FAQ.map((faq) => {
         return (
