@@ -77,7 +77,7 @@ const RepInput = ({
           <button
             type='button'
             onClick={handleDecrement}
-            className={`${styles.button} ${styles.decrement}`}
+            className={`${styles.button} ${styles.decrement} actionButton`}
             disabled={reps <= 0}
             value={reps - 1}
           >
@@ -99,7 +99,7 @@ const RepInput = ({
           <button
             type='button'
             onClick={handleIncrement}
-            className={`${styles.button} ${styles.increment}`}
+            className={`${styles.button} ${styles.increment} actionButton`}
             disabled={reps >= 100}
             value={reps + 1}
           >

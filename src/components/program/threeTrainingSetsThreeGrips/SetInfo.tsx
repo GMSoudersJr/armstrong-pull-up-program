@@ -124,7 +124,7 @@ const SetInfo = ({
             />
             <button
               type='button'
-              className={styles.actionButton}
+              className={`${styles.completeButton} actionButton`}
               onClick={handleDone}
               disabled={showTimerModal}
             >

@@ -85,7 +85,7 @@ const MaxTrainingSetsDisplay = ({
             />
             <button
               type='button'
-              className={styles.actionButton}
+              className={`${styles.actionButton} actionButton`}
               onClick={handleComplete}
               disabled={showTimerModal}
             >

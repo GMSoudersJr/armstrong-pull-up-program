@@ -24,7 +24,7 @@ const RepsRemoveButton = ({
     <button
       type='button'
       onClick={handleRemove}
-      className={`${styles.button} ${styles.removeButton}`}
+      className={`${styles.button} ${styles.removeButton} actionButton`}
       disabled={showTimerModalState || savedDay || repsArrayState.length === 0}
     >
       <EraserIcon className={styles.icon}/>

@@ -38,7 +38,7 @@ const RepsCompleteButton = ({
   return (
     <button
       type="button"
-      className={styles.pyramidActionButton}
+      className={`${styles.pyramidActionButton} actionButton`}
       onClick={handleClick}
       disabled={showTimerModalState}
     >
