@@ -20,7 +20,7 @@ const ChooseProgramDayButton = ({
   return (
     <button
       type="button"
-      className={styles.chooseProgramDayButton}
+      className={`${styles.chooseProgramDayButton} actionButton`}
       onClick={handleClick}
     >
       {`D-${dayNumber} ${name?.toUpperCase()}`}

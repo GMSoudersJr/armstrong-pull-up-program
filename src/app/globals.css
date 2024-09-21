@@ -109,3 +109,10 @@ nav {
   font-size: var(--baseNavFontSize);
 }
 
+button.actionButton:active {
+  filter: brightness(90%);
+}
+
+button.actionButton:disabled:active {
+  filter: brightness(100%);
+}

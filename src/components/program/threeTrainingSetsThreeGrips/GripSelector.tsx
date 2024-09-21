@@ -63,7 +63,7 @@ const GripSelector = ({ completedGripsState, setStateForCurrentGrip }: GripSelec
           >
             <button
               type="button"
-              className={styles.gripSelectorButton}
+              className={`${styles.gripSelectorButton} actionButton`}
               onClick={handleClick}
               value={grip.name}
               disabled={completedGripsState.includes(grip.name)}

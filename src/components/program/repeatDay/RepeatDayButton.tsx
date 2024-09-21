@@ -21,7 +21,7 @@ const RepeatDayButton = ({
   return (
     <button
       type="button"
-      className={styles.repeatDayButton}
+      className={`${styles.repeatDayButton} actionButton`}
       onClick={handleClick}
     >
       <h4 style={nunito.style}>

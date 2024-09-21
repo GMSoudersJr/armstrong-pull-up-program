@@ -29,7 +29,7 @@ const MissSetButton = ({
       type='button'
       onClick={handleMiss}
       disabled={showTimerModalState || disableForGripSelection || disabledAtPyramidBeginning}
-      className={styles.pyramidActionButton}
+      className={`${styles.pyramidActionButton} actionButton`}
     >
       <CircleXIcon className={styles.icon} />
     </button>
