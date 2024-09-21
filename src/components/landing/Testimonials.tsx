@@ -53,7 +53,7 @@ const TESTIMONIALS = [
     stars: 5,
   },
   {
-    body: 'It got me to do 5 muscle ups',
+    body: 'Now I can do 5 muscle-ups',
     name: 'Gerald M.',
     avatar: '',
     programDuration: '5 months',
@@ -61,16 +61,16 @@ const TESTIMONIALS = [
   },
   {
     body: 'Taught me early morning discipline',
-    name: 'Jay S.',
+    name: 'G.S.',
     avatar: '',
-    programDuration: '5 months',
+    programDuration: '4 weeks',
     stars: 3,
   },
   {
-    body: 'I never thought pull-ups could be fun',
-    name: 'Mevlin S.',
+    body: 'Who knew pull-ups could be so fun?',
+    name: 'Melvin S.',
     avatar: '',
-    programDuration: '5 months',
+    programDuration: '3 months',
     stars: 1,
   },
 ];

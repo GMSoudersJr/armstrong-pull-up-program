@@ -33,7 +33,7 @@ const FEATURES: TCardProps[] = [
     heading: 'Local First',
     body: [
       'Your data stays on your phone.',
-      'Offline availability coming soon.'
+      'Available Offline'
     ],
   },
   {
@@ -49,7 +49,7 @@ const FEATURES: TCardProps[] = [
     heading: 'Track Progress',
     body: [
       'See where you started.',
-      "Realize how far you've come.",
+      "Realize how far you've come!",
     ],
   },
 ];
