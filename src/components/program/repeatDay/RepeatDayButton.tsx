@@ -24,12 +24,12 @@ const RepeatDayButton = ({
       className={styles.repeatDayButton}
       onClick={handleClick}
     >
-      <h3 style={nunito.style}>
-        {`Day ${dayNumber}`}
-      </h3>
       <h4 style={nunito.style}>
-        {`${name?.toUpperCase()}`}
+        {`Day ${dayNumber}`}
       </h4>
+      <h5 style={nunito.style}>
+        {`${name?.toUpperCase()}`}
+      </h5>
     </button>
 
   )
