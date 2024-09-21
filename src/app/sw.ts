@@ -28,13 +28,19 @@ const serwist = new Serwist({
 });
 
 self.addEventListener("install", (event) => {
-  const requestPromises = Promise.all(
-    urlsToPrecache.map((entry) => {
-      return serwist.handleRequest({ request: new Request(entry), event })
-    }),
-  );
+  try {
 
-  event.waitUntil(requestPromises);
-})
+    const requestPromises = Promise.all(
+      urlsToPrecache.map((entry) => {
+        return serwist.handleRequest({ request: new Request(entry), event })
+      }),
+    );
+
+    event.waitUntil(requestPromises);
+
+  } catch (error) {
+    console.log("error caching pages", error)
+  }
+});
 
 serwist.addEventListeners();
