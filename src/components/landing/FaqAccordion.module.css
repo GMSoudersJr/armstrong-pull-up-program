@@ -8,3 +8,7 @@
   padding: 1rem;
   border-radius: 0.25rem;
 }
+
+.faq > a {
+  text-align: center;
+}
