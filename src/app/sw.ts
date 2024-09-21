@@ -10,6 +10,15 @@ declare global {
 
 declare const self: ServiceWorkerGlobalScope;
 
+const urlsToPrecache = [
+  "/program",
+  "/program/day-one",
+  "/program/day-two",
+  "/program/day-three",
+  "/program/day-four",
+  "/program/day-five",
+] as const;
+
 const serwist = new Serwist({
   precacheEntries: self.__SW_MANIFEST,
   skipWaiting: true,
@@ -17,5 +26,15 @@ const serwist = new Serwist({
   navigationPreload: true,
   runtimeCaching: defaultCache,
 });
+
+self.addEventListener("install", (event) => {
+  const requestPromises = Promise.all(
+    urlsToPrecache.map((entry) => {
+      return serwist.handleRequest({ request: new Request(entry), event })
+    }),
+  );
+
+  event.waitUntil(requestPromises);
+})
 
 serwist.addEventListeners();
