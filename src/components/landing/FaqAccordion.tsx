@@ -2,7 +2,7 @@
 
 import styles from './FaqAccordion.module.css';
 import { FAQ } from "@/data/faq";
-import {nunito} from '@/fonts';
+import {nunito, ptSans} from '@/fonts';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
@@ -18,8 +18,9 @@ const FaqAccordion = () => {
       <Link
         href={'https://www.savannahstate.edu/cost/nrotc/documents/Inform2010-thearmstrongworkout_Enclosure15_5-2-10.pdf'}
         referrerPolicy='no-referrer'
+        style={ptSans.style}
       >
-        https://www.savannahstate.edu/cost/nrotc/documents/Inform2010-thearmstrongworkout_Enclosure15_5-2-10.pdf
+        PDF Souce Material
       </Link>
       <ul className={styles.faqList}>
       {FAQ.map((faq) => {
