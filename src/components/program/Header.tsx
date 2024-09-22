@@ -1,6 +1,7 @@
 import styles from './Header.module.css';
 import {nunito} from "@/fonts";
 import {BicepsFlexedIcon} from "lucide-react";
+import Link from 'next/link';
 
 export default function Header() {
   return (
@@ -8,11 +9,13 @@ export default function Header() {
       <div className={styles.iconWrapper}>
         <BicepsFlexedIcon className={`${styles.icon} ${styles.leftIcon}`}/>
       </div>
-      <h1 style={nunito.style} className={styles.headerText}>
+      <h2 style={nunito.style}>
         <strong>
-          PULL-UP PROGRAM
+          <Link href={'/'}>
+            PULL-UP PROGRAM
+          </Link>
         </strong>
-      </h1>
+      </h2>
       <div className={styles.iconWrapper}>
         <BicepsFlexedIcon className={`${styles.icon} ${styles.rightIcon}`}/>
       </div>
