@@ -20,7 +20,9 @@ const Hero = () => {
       </div>
 
       <div className={styles.heroRight}>
-        <PullupSVG />
+        <div className={styles.svgWrapper}>
+          <PullupSVG />
+        </div>
       </div>
     </section>
   )
