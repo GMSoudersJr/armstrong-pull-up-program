@@ -100,22 +100,22 @@ const TORSO = {
 const NECK = {
   top: {
     left: {
-      x: (TORSO.shoulder.left.x + TORSO.shoulder.right.x) / 2 - 4.5,
+      x: (TORSO.shoulder.left.x + TORSO.shoulder.right.x) / 2 - 11.5,
       y: (TORSO.shoulder.left.y + TORSO.shoulder.right.y) / 2 - 18,
     },
     right: {
-      x: (TORSO.shoulder.left.x + TORSO.shoulder.right.x) / 2 + 4.5,
+      x: (TORSO.shoulder.left.x + TORSO.shoulder.right.x) / 2 + 11.5,
       y: (TORSO.shoulder.left.y + TORSO.shoulder.right.y) / 2 - 18,
     },
   },
   base: {
     left: {
-      x: (TORSO.shoulder.left.x + TORSO.shoulder.right.x) / 2 - 18,
-      y: (TORSO.shoulder.left.y + TORSO.shoulder.right.y) / 2 - 10,
+      x: TORSO.shoulder.left.x - 5.5,
+      y: TORSO.shoulder.left.y - 5,
     },
     right: {
-      x: (TORSO.shoulder.left.x + TORSO.shoulder.right.x) / 2 + 18,
-      y: (TORSO.shoulder.left.y + TORSO.shoulder.right.y) / 2 - 10,
+      x: TORSO.shoulder.right.x +5.5,
+      y: TORSO.shoulder.right.y -5,
     },
   },
 };
@@ -164,7 +164,13 @@ const ANKLE = {
 const PullupSVG = () => {
 
   return (
-    <svg width={'320'} height={'350'} xmlns="https://www.w3.org/2000/svg" className={styles.svg}>
+    <svg
+      width={'100%'}
+      height={'100%'}
+      viewBox='0 0 320 350'
+      xmlns="https://www.w3.org/2000/svg"
+      className={styles.svg}
+    >
       <polyline
         id='pullupBar'
         points={`
@@ -332,7 +338,7 @@ const PullupSVG = () => {
           ${NECK.base.right.x}, ${NECK.base.right.y}
           ${NECK.base.left.x}, ${NECK.base.left.y}
         `}
-        style={{fill: 'black', stroke: 'black', strokeWidth: 10}}
+        style={{fill: 'black', stroke: 'black', strokeWidth: 1}}
       >
         <animateTransform
           attributeName='transform'

@@ -4,11 +4,13 @@ import styles from './Footer.module.css';
 import {CopyrightIcon} from 'lucide-react';
 import {nunito, ptSans} from '@/fonts';
 import Image from 'next/image';
+import PullupSVG from '../PullupSVG';
 
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <section>
+      <PullupSVG />
+      <section className={styles.otherLinks}>
         <Link
           href={'https://www.savannahstate.edu/cost/nrotc/documents/Inform2010-thearmstrongworkout_Enclosure15_5-2-10.pdf'}
           target='_blank'
