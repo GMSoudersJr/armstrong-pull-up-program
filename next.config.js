@@ -12,7 +12,7 @@ module.exports = async (phase) => {
       remotePatterns: [
         {
           protocol: 'https',
-          hostname: 'photos.google.com',
+          hostname: 'lh3.googleusercontent.com',
           port: ''
         },
       ],
