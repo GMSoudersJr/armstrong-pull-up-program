@@ -8,7 +8,6 @@
   padding: 0.5rem;
 }
 
-
 .card p {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -17,7 +16,7 @@
 .iconWrapper {
   padding: 1rem;
   border-radius: 50%;
-  border: 0.125rem solid #FFF;
+  border: 0.125rem solid #fff;
   display: flex;
   justify-content: center;
   align-items: center;

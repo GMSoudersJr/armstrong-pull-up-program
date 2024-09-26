@@ -12,7 +12,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <script data-goatcounter="https://armstrong-pull-up-program.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+        <script
+          data-goatcounter="https://armstrong-pull-up-program.goatcounter.com/count"
+          async
+          src="//gc.zgo.at/count.js"
+        ></script>
         {children}
       </body>
     </html>

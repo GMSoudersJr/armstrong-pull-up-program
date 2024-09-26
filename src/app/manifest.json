@@ -19,12 +19,7 @@
     }
   ],
   "orientation": "portrait",
-  "categories": [
-    "health",
-    "health & fitness",
-    "fitness",
-    "lifestyle"
-  ],
+  "categories": ["health", "health & fitness", "fitness", "lifestyle"],
   "screenshots": [
     {
       "src": "/images/Day1.png",

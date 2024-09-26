@@ -1,19 +1,21 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import TrainingSetRepsInput from "@/components/program/TrainingSetRepsInput";
 import GripSelector from "@/components/program/threeTrainingSetsThreeGrips/GripSelector";
 import SetInfo from "@/components/program/threeTrainingSetsThreeGrips/SetInfo";
 import DayComplete from "@/components/program/DayComplete";
-import {TDayNumber, TGrip} from '@/app/lib/definitions';
+import { TDayNumber, TGrip } from "@/app/lib/definitions";
 
 interface ThreeTrainingSetsThreeGripsProps {
   dayNumber: TDayNumber;
-};
+}
 
-const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsProps) => {
+const ThreeTrainingSetsThreeGrips = ({
+  dayNumber,
+}: ThreeTrainingSetsThreeGripsProps) => {
   let initialCompletedGrips: TGrip[] = [];
-  let initalGrip: TGrip = '';
+  let initalGrip: TGrip = "";
   const initialTotalSets: number[] = [];
 
   const [trainingSetReps, setTrainingSetReps] = useState(0);
@@ -31,7 +33,7 @@ const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsP
           setStateForSavedDay={setSavedDay}
           dayData={{
             dayNumber: dayNumber,
-            dayAbbreviation: '3S3G',
+            dayAbbreviation: "3S3G",
             trainingSetsCount: 9,
             grips: completedGrips,
             sets: trainingSets,
@@ -39,27 +41,25 @@ const ThreeTrainingSetsThreeGrips = ({ dayNumber }: ThreeTrainingSetsThreeGripsP
           }}
         />
       ) : !trainingSetReps ? (
-        <TrainingSetRepsInput
-          setStateForTrainingSetReps={setTrainingSetReps}
-        />
+        <TrainingSetRepsInput setStateForTrainingSetReps={setTrainingSetReps} />
       ) : !currentGrip ? (
-          <GripSelector
-            completedGripsState={completedGrips}
-            setStateForCurrentGrip={setCurrentGrip}
-          />
+        <GripSelector
+          completedGripsState={completedGrips}
+          setStateForCurrentGrip={setCurrentGrip}
+        />
       ) : (
-          <SetInfo
-            trainingSets={trainingSets}
-            updateTrainingSets={setTrainingSets}
-            trainingSetReps={trainingSetReps}
-            currentGrip={currentGrip}
-            completedGrips={completedGrips}
-            updateCurrentGrip={setCurrentGrip}
-            updateCompletedGrips={setCompletedGrips}
-          />
+        <SetInfo
+          trainingSets={trainingSets}
+          updateTrainingSets={setTrainingSets}
+          trainingSetReps={trainingSetReps}
+          currentGrip={currentGrip}
+          completedGrips={completedGrips}
+          updateCurrentGrip={setCurrentGrip}
+          updateCompletedGrips={setCompletedGrips}
+        />
       )}
     </section>
-  )
+  );
 };
 
 export default ThreeTrainingSetsThreeGrips;

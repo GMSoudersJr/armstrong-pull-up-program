@@ -1,13 +1,10 @@
-import {ptSans} from '@/fonts';
-import styles from './NumberedMissRepButton.module.css';
-import {
-  Dispatch,
-  SetStateAction,
-} from "react";
-import {TGrip} from '@/definitions';
+import { ptSans } from "@/fonts";
+import styles from "./NumberedMissRepButton.module.css";
+import { Dispatch, SetStateAction } from "react";
+import { TGrip } from "@/definitions";
 
 interface NumberedMissRepButtonProps {
-  dayAbbreviation: 'PYRA' | '3S3G' | 'MXTS';
+  dayAbbreviation: "PYRA" | "3S3G" | "MXTS";
   onMissed: Dispatch<SetStateAction<boolean>>;
   showTimerModalState?: boolean;
   setStateForShowTimerModal?: Dispatch<SetStateAction<boolean>>;
@@ -52,18 +49,14 @@ const NumberedMissRepButton = ({
   trainingSets,
   updateDayComplete,
   updateCompletedTrainingSets,
-  completedTrainingSets
+  completedTrainingSets,
 }: NumberedMissRepButtonProps) => {
-
   function handleClick() {
-    if (dayAbbreviation === 'PYRA') {
+    if (dayAbbreviation === "PYRA") {
       if (setStateForReps && repCount) setStateForReps(repCount);
 
       if (setStateForRepsArray && repsArrayState) {
-        setStateForRepsArray([
-          ...repsArrayState,
-          repCount
-        ]);
+        setStateForRepsArray([...repsArrayState, repCount]);
       }
 
       setStateForShowTimerModal && setStateForShowTimerModal(true);
@@ -73,64 +66,52 @@ const NumberedMissRepButton = ({
       if (setStateForMaxNumbers) setStateForMaxNumbers(true);
     }
 
-    if (dayAbbreviation === '3S3G') {
-
+    if (dayAbbreviation === "3S3G") {
       if (completedSetCount == 2 && completedGrips?.length == 2) {
         if (updateCompletedGrips && currentGrip) {
-          updateCompletedGrips([
-            ...completedGrips,
-            currentGrip
-          ]);
+          updateCompletedGrips([...completedGrips, currentGrip]);
         }
 
-        if (updateCurrentGrip) updateCurrentGrip('');
+        if (updateCurrentGrip) updateCurrentGrip("");
         onMissed(false);
-
       }
 
-      if (completedSetCount === 0 || completedSetCount && completedSetCount <= 2) {
+      if (
+        completedSetCount === 0 ||
+        (completedSetCount && completedSetCount <= 2)
+      ) {
+        if (updateCompletedSetCount)
+          updateCompletedSetCount((completedSetCount) => completedSetCount + 1);
 
-        if (updateCompletedSetCount) updateCompletedSetCount(completedSetCount => completedSetCount + 1);
-
-        if (updateTrainingSets && trainingSets) updateTrainingSets([...trainingSets, repCount]);
+        if (updateTrainingSets && trainingSets)
+          updateTrainingSets([...trainingSets, repCount]);
 
         setStateForShowTimerModal && setStateForShowTimerModal(true);
         onMissed(false);
-
       } else {
-
         if (updateCompletedGrips && completedGrips && currentGrip) {
-          updateCompletedGrips([
-            ...completedGrips,
-            currentGrip
-          ]);
+          updateCompletedGrips([...completedGrips, currentGrip]);
         }
 
-        if (updateCurrentGrip) updateCurrentGrip('');
+        if (updateCurrentGrip) updateCurrentGrip("");
         onMissed(false);
       }
     }
 
-
-
-    if (dayAbbreviation === 'MXTS') {
-
+    if (dayAbbreviation === "MXTS") {
       if (updateCompletedTrainingSets && completedTrainingSets) {
-        updateCompletedTrainingSets(
-          [...completedTrainingSets, repCount]
-        );
+        updateCompletedTrainingSets([...completedTrainingSets, repCount]);
       }
 
       updateDayComplete && updateDayComplete(true);
       onMissed(false);
     }
-
-  };
+  }
 
   return (
     <>
       <button
-        type='button'
+        type="button"
         className={styles.repButton}
         style={ptSans.style}
         onClick={handleClick}
@@ -139,7 +120,7 @@ const NumberedMissRepButton = ({
         {repCount}
       </button>
     </>
-  )
+  );
 };
 
 export default NumberedMissRepButton;

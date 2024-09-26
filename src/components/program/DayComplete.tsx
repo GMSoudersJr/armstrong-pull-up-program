@@ -1,8 +1,8 @@
 "use client";
 
 import { Dispatch, SetStateAction, useState } from "react";
-import styles from './DayComplete.module.css';
-import type {TDayComplete} from "@/app/lib/definitions";
+import styles from "./DayComplete.module.css";
+import type { TDayComplete } from "@/app/lib/definitions";
 
 import {
   getCurrentWeekNumber,
@@ -11,10 +11,10 @@ import {
   addNewWeek,
   updateThisWeekWithWorkoutNumber,
   getWeekDataForWeekNumber,
-} from '@/indexedDBActions';
+} from "@/indexedDBActions";
 import TotalReps from "./TotalReps";
-import {nunito} from "@/fonts";
-import {CircleCheckBigIcon, SaveIcon, ThumbsUpIcon} from "lucide-react";
+import { nunito } from "@/fonts";
+import { CircleCheckBigIcon, SaveIcon, ThumbsUpIcon } from "lucide-react";
 import Link from "next/link";
 
 interface DayCompleteProps {
@@ -23,14 +23,13 @@ interface DayCompleteProps {
 }
 
 const dateFormatOptions: Intl.DateTimeFormatOptions = {
-  weekday: 'long',
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
 };
 
 const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
-
   const [isDataSaved, setIsDataSaved] = useState(false);
 
   async function handleSave() {
@@ -42,12 +41,14 @@ const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
       addNewWeek(currentWeekNumber);
     }
 
-    dayData.date =
-      new Date(Date.now()).toLocaleDateString('en-US', dateFormatOptions);
+    dayData.date = new Date(Date.now()).toLocaleDateString(
+      "en-US",
+      dateFormatOptions,
+    );
 
     dayData.weekNumber = currentWeekNumber;
 
-    dayData.id = `${dayData.weekNumber}-${dayData.dayNumber}`
+    dayData.id = `${dayData.weekNumber}-${dayData.dayNumber}`;
     const dataSavedInIndexedDB = await addCompletedDayToWorkoutsStore(dayData);
     const weekDataToUpdate = await getWeekDataForWeekNumber(currentWeekNumber);
     updateThisWeekWithWorkoutNumber(weekDataToUpdate, dayData.dayNumber);
@@ -57,29 +58,23 @@ const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
 
   return (
     <div className={styles.dayCompleteContainer}>
-      <div className={styles.thumbsUpIconWrapper} >
-        <ThumbsUpIcon className={`${styles.icon} ${styles.thumbsUpIcon}`}/>
+      <div className={styles.thumbsUpIconWrapper}>
+        <ThumbsUpIcon className={`${styles.icon} ${styles.thumbsUpIcon}`} />
       </div>
       <div className={styles.totalReps}>
         <TotalReps sets={dayData.sets} />
       </div>
-      <h3
-        className={styles.message}
-        style={nunito.style}
-      >
-        {isDataSaved ? 'DAY COMPLETE' : 'SAVE PROGRESS'}
+      <h3 className={styles.message} style={nunito.style}>
+        {isDataSaved ? "DAY COMPLETE" : "SAVE PROGRESS"}
       </h3>
-      <div
-        className={styles.takeAction}
-        style={nunito.style}
-      >
+      <div className={styles.takeAction} style={nunito.style}>
         {isDataSaved ? (
-          <Link
-            href={'/program'}
-          >
-           <div className={styles.checkIconWrapper} >
-             <CircleCheckBigIcon className={`${styles.icon} ${styles.circleCheckBigIcon}`}/>
-          </div>
+          <Link href={"/program"}>
+            <div className={styles.checkIconWrapper}>
+              <CircleCheckBigIcon
+                className={`${styles.icon} ${styles.circleCheckBigIcon}`}
+              />
+            </div>
           </Link>
         ) : (
           <button
@@ -87,12 +82,12 @@ const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
             className={styles.saveButton}
             onClick={handleSave}
           >
-            <SaveIcon className={`${styles.icon} ${styles.saveIcon}`}/>
+            <SaveIcon className={`${styles.icon} ${styles.saveIcon}`} />
           </button>
         )}
       </div>
     </div>
-  )
+  );
 };
 
 export default DayComplete;

@@ -3,19 +3,20 @@ import {
   SetStateAction,
   useState,
   useId,
-  SyntheticEvent
-} from 'react';
+  SyntheticEvent,
+} from "react";
 
-import styles from './TrainingSetRepsInput.module.css';
-import {nunito, ptSans} from '@/fonts';
-import {MinusIcon, PlusIcon} from 'lucide-react';
+import styles from "./TrainingSetRepsInput.module.css";
+import { nunito, ptSans } from "@/fonts";
+import { MinusIcon, PlusIcon } from "lucide-react";
 
 interface TrainingSetRepsInputProps {
   setStateForTrainingSetReps: Dispatch<SetStateAction<number>>;
 }
 
-const TrainingSetRepsInput = ({ setStateForTrainingSetReps }: TrainingSetRepsInputProps) => {
-
+const TrainingSetRepsInput = ({
+  setStateForTrainingSetReps,
+}: TrainingSetRepsInputProps) => {
   const repInputId = useId();
   const [reps, setReps] = useState(0);
 
@@ -45,22 +46,19 @@ const TrainingSetRepsInput = ({ setStateForTrainingSetReps }: TrainingSetRepsInp
     setReps(number);
   }
 
-
   function handleSubmit() {
     setStateForTrainingSetReps(reps);
-  };
+  }
 
   return (
     <section className={styles.repInputContainer}>
       <label className={styles.repInputLabel} htmlFor={repInputId}>
-        <h3 style={nunito.style}>
-          TRAINING SET REPS
-        </h3>
+        <h3 style={nunito.style}>TRAINING SET REPS</h3>
       </label>
       <div className={styles.numericInputContainer}>
         <div className={styles.spanInput}>
           <button
-            type='button'
+            type="button"
             onClick={handleDecrement}
             className={`${styles.button} ${styles.decrement} actionButton`}
             disabled={reps <= 0}
@@ -70,7 +68,7 @@ const TrainingSetRepsInput = ({ setStateForTrainingSetReps }: TrainingSetRepsInp
           </button>
           <input
             id={repInputId}
-            name='reps'
+            name="reps"
             className={styles.repInput}
             style={ptSans.style}
             type="number"
@@ -81,7 +79,7 @@ const TrainingSetRepsInput = ({ setStateForTrainingSetReps }: TrainingSetRepsInp
             onKeyUp={handleKeyUp}
           />
           <button
-            type='button'
+            type="button"
             onClick={handleIncrement}
             className={`${styles.button} ${styles.increment} actionButton`}
             disabled={reps >= 100}
@@ -91,7 +89,7 @@ const TrainingSetRepsInput = ({ setStateForTrainingSetReps }: TrainingSetRepsInp
           </button>
         </div>
         <button
-          type='button'
+          type="button"
           className={styles.repsSubmitButton}
           style={nunito.style}
           onClick={handleSubmit}
@@ -100,8 +98,7 @@ const TrainingSetRepsInput = ({ setStateForTrainingSetReps }: TrainingSetRepsInp
         </button>
       </div>
     </section>
-
-  )
+  );
 };
 
 export default TrainingSetRepsInput;

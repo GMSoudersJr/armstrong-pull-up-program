@@ -1,26 +1,21 @@
-import {
-  Noto_Color_Emoji,
-  Nunito,
-  PT_Sans
-} from 'next/font/google';
+import { Noto_Color_Emoji, Nunito, PT_Sans } from "next/font/google";
 
 export const nunito = Nunito({
-  subsets: ['latin'],
+  subsets: ["latin"],
   weight: "variable",
   variable: "--font-nunito",
-  display: "swap"
+  display: "swap",
 });
 
 export const ptSans = PT_Sans({
-  subsets: ['latin'],
+  subsets: ["latin"],
   weight: "400",
   variable: "--font-ptSans",
-  display: "swap"
+  display: "swap",
 });
 
 export const notoColorEmoji = Noto_Color_Emoji({
-  weight: '400',
-  subsets: ['emoji'],
+  weight: "400",
+  subsets: ["emoji"],
   variable: "--font-notoColorEmoji",
 });
-

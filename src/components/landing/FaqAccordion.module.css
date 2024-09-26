@@ -4,7 +4,7 @@
   align-items: center;
   gap: 1rem;
   width: clamp(20rem, 95vw + 1rem, 40rem);
-  background-color: #EEE;
+  background-color: #eee;
   padding: 1rem;
   border-radius: 0.25rem;
 }

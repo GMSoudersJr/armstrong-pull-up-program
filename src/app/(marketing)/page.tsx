@@ -5,7 +5,7 @@ import Footer from "@/components/landing/Footer";
 import Testimonials from "@/components/landing/Testimonials";
 import Overview from "@/components/landing/Overview";
 import FaqAccordion from "@/components/landing/FaqAccordion";
-import {TransitionLink} from "@/components/TransitionLink";
+import { TransitionLink } from "@/components/TransitionLink";
 import InstallInstructions from "@/components/InstallInstructions";
 
 export default function Home() {
@@ -16,9 +16,9 @@ export default function Home() {
       <Testimonials />
       <Overview />
       <FaqAccordion />
-      <TransitionLink href='/program'>GET STARTED!</TransitionLink>
+      <TransitionLink href="/program">GET STARTED!</TransitionLink>
       <InstallInstructions />
       <Footer />
     </main>
   );
-};
+}

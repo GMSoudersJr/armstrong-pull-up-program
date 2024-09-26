@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction, useState } from "react";
-import styles from './MaxTrainingSetsDisplay.module.css';
-import {isSingular} from "@/utils";
-import {createPortal} from "react-dom";
+import styles from "./MaxTrainingSetsDisplay.module.css";
+import { isSingular } from "@/utils";
+import { createPortal } from "react-dom";
 import TimerModal from "../TimerModal";
-import {nunito} from "@/fonts";
-import {CircleCheckIcon} from "lucide-react";
-import {TDayAbbreviation} from "@/definitions";
+import { nunito } from "@/fonts";
+import { CircleCheckIcon } from "lucide-react";
+import { TDayAbbreviation } from "@/definitions";
 import MissSetButton from "../MissSetButton";
 import NumberedMissRepButton from "../NumberedMissRepButton";
 
@@ -17,22 +17,19 @@ interface MaxTrainingSetsDisplayProps {
 }
 
 const recoveryTime = 60;
-const dayAbbreviation: TDayAbbreviation = 'MXTS';
+const dayAbbreviation: TDayAbbreviation = "MXTS";
 
 const MaxTrainingSetsDisplay = ({
   trainingSetReps,
   updateCompletedTrainingSets,
   completedTrainingSets,
-  updateDayComplete
+  updateDayComplete,
 }: MaxTrainingSetsDisplayProps) => {
-
   const [showTimerModal, setShowTimerModal] = useState(false);
   const [missedSet, setMissedSet] = useState(false);
 
   function handleComplete() {
-    updateCompletedTrainingSets(
-      [...completedTrainingSets, trainingSetReps]
-    );
+    updateCompletedTrainingSets([...completedTrainingSets, trainingSetReps]);
     setShowTimerModal(true);
   }
 
@@ -42,11 +39,11 @@ const MaxTrainingSetsDisplay = ({
         {missedSet ? (
           <>How many did you do?</>
         ) : completedTrainingSets.length < 9 ? (
-          `${9 - completedTrainingSets.length} MORE ${isSingular(9 - completedTrainingSets.length) ? 'SET' : 'SETS'} OF ${trainingSetReps}`
+          `${9 - completedTrainingSets.length} MORE ${isSingular(9 - completedTrainingSets.length) ? "SET" : "SETS"} OF ${trainingSetReps}`
         ) : completedTrainingSets.length === 9 ? (
-        `DO ANOTHER`
+          `DO ANOTHER`
         ) : (
-        `... AND ANOTHER!`
+          `... AND ANOTHER!`
         )}
       </h2>
       <div>
@@ -55,7 +52,8 @@ const MaxTrainingSetsDisplay = ({
             `Rep Count`
           ) : (
             <>
-              COMPLETED {completedTrainingSets.length} {isSingular(completedTrainingSets.length) ? 'SET' : 'SETS'}
+              COMPLETED {completedTrainingSets.length}{" "}
+              {isSingular(completedTrainingSets.length) ? "SET" : "SETS"}
             </>
           )}
         </h3>
@@ -63,7 +61,7 @@ const MaxTrainingSetsDisplay = ({
       <div className={styles.actionButtonsContainer}>
         {missedSet ? (
           <>
-            {Array.from({length: trainingSetReps}, (_, i) => {
+            {Array.from({ length: trainingSetReps }, (_, i) => {
               return (
                 <NumberedMissRepButton
                   key={i}
@@ -74,7 +72,7 @@ const MaxTrainingSetsDisplay = ({
                   completedTrainingSets={completedTrainingSets}
                   updateDayComplete={updateDayComplete}
                 />
-              )
+              );
             })}
           </>
         ) : (
@@ -84,7 +82,7 @@ const MaxTrainingSetsDisplay = ({
               onMissedSet={setMissedSet}
             />
             <button
-              type='button'
+              type="button"
               className={`${styles.actionButton} actionButton`}
               onClick={handleComplete}
               disabled={showTimerModal}
@@ -93,16 +91,18 @@ const MaxTrainingSetsDisplay = ({
             </button>
           </section>
         )}
-        {showTimerModal && createPortal(
-        <TimerModal
-          onClose={() => setShowTimerModal(false)}
-          recoveryTime={recoveryTime}
-          setStateForShowTimerModal={setShowTimerModal}
-        />,
-        document.body)}
+        {showTimerModal &&
+          createPortal(
+            <TimerModal
+              onClose={() => setShowTimerModal(false)}
+              recoveryTime={recoveryTime}
+              setStateForShowTimerModal={setShowTimerModal}
+            />,
+            document.body,
+          )}
       </div>
     </section>
-  )
+  );
 };
 
 export default MaxTrainingSetsDisplay;
