@@ -82,6 +82,7 @@ const MaxTrainingSetsDisplay = ({
             <MissSetButton
               dayAbbreviation={dayAbbreviation}
               onMissedSet={setMissedSet}
+              showTimerModalState={showTimerModal}
             />
             <button
               type='button'
