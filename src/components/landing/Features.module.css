@@ -16,7 +16,7 @@
   justify-content: space-around;
   align-content: center;
   gap: 3rem;
-  background-image: linear-gradient(#0074D9, #2ECC40);
+  background-image: linear-gradient(#0074d9, #2ecc40);
 }
 
 .featuresListitem {

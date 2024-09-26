@@ -17,13 +17,13 @@
 
 .progressListItem > details > summary {
   padding: 0.25rem;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
   border: none;
   cursor: pointer;
 }
 
 .progressListItem > details > p {
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
   padding: 0.25rem;
   padding-left: 1rem;
 }

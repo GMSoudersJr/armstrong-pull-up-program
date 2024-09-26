@@ -1,12 +1,11 @@
-import {nunito, ptSans} from '@/fonts';
-import styles from './SetsTable.module.css';
+import { nunito, ptSans } from "@/fonts";
+import styles from "./SetsTable.module.css";
 
 interface SetsTableProps {
   repsArray: number[];
 }
 
 const SetsTable = ({ repsArray }: SetsTableProps) => {
-
   return (
     <table className={styles.table}>
       <tbody className={styles.tableBody}>
@@ -18,9 +17,9 @@ const SetsTable = ({ repsArray }: SetsTableProps) => {
                 className={styles.tableHead}
                 style={nunito.style}
               >
-                {`${(i + 1)}`}
+                {`${i + 1}`}
               </th>
-            )
+            );
           })}
         </tr>
         <tr className={styles.tableRow}>
@@ -33,12 +32,12 @@ const SetsTable = ({ repsArray }: SetsTableProps) => {
               >
                 {reps}
               </td>
-            )
+            );
           })}
         </tr>
       </tbody>
     </table>
-  )
-}
+  );
+};
 
 export default SetsTable;

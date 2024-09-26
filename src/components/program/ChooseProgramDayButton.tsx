@@ -1,18 +1,17 @@
-import {Dispatch, SetStateAction} from "react";
-import styles from './ChooseProgramDayButton.module.css';
+import { Dispatch, SetStateAction } from "react";
+import styles from "./ChooseProgramDayButton.module.css";
 
 interface ChooseProgramDayButtonProps {
   name: string;
   dayNumber: number;
   setStateForProgramDayNumber: Dispatch<SetStateAction<number>>;
-};
+}
 
 const ChooseProgramDayButton = ({
   name,
   dayNumber,
-  setStateForProgramDayNumber
+  setStateForProgramDayNumber,
 }: ChooseProgramDayButtonProps) => {
-
   function handleClick() {
     setStateForProgramDayNumber(dayNumber);
   }
@@ -25,10 +24,7 @@ const ChooseProgramDayButton = ({
     >
       {`D-${dayNumber} ${name?.toUpperCase()}`}
     </button>
-
-  )
+  );
 };
 
 export default ChooseProgramDayButton;
-
-

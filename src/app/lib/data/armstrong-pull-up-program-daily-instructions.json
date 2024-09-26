@@ -101,18 +101,14 @@
     "day": 6,
     "emoji": "😴",
     "title": "DAY 6",
-    "instructions": [
-      "REST!"
-    ]
+    "instructions": ["REST!"]
   },
   {
     "id": 9,
     "day": 7,
     "emoji": "😴",
     "title": "DAY 7",
-    "instructions": [
-      "REST!"
-    ]
+    "instructions": ["REST!"]
   },
   {
     "id": 10,

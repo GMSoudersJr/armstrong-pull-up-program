@@ -6,8 +6,8 @@
   grid-template-rows: repeat(2, min-content);
   align-items: center;
   grid-template-areas:
-  "thumbsUpIconWrapper totalReps takeAction"
-  "thumbsUpIconWrapper message takeAction";
+    "thumbsUpIconWrapper totalReps takeAction"
+    "thumbsUpIconWrapper message takeAction";
 }
 
 .thumbsUpIconWrapper {

@@ -1,11 +1,11 @@
-import styles from './PullupSVG.module.css';
+import styles from "./PullupSVG.module.css";
 
 const ARM_LENGTH = 90;
-const TORSO_LENGTH = (ARM_LENGTH * 0.8);
-const SHOULDER_WIDTH = (ARM_LENGTH / 2);
-const WAIST_WIDTH = (SHOULDER_WIDTH * 0.62);
-const LEG_LENGTH = (ARM_LENGTH * 1.25);
-const PULLUP_DURATION = '3s';
+const TORSO_LENGTH = ARM_LENGTH * 0.8;
+const SHOULDER_WIDTH = ARM_LENGTH / 2;
+const WAIST_WIDTH = SHOULDER_WIDTH * 0.62;
+const LEG_LENGTH = ARM_LENGTH * 1.25;
+const PULLUP_DURATION = "3s";
 const FOREARM_ROTATION = 18;
 const UPPEREARM_ROTATION = 120;
 const FOREARM_THICKNESS = 6;
@@ -17,18 +17,18 @@ const PULLUP_BAR = {
   verticalHeight: 336.8,
   startWidth: 60,
   endWidth: 260,
-}
+};
 
 const HAND = {
   left: {
     x: 110,
-    y: PULLUP_BAR.horizontalPosition
+    y: PULLUP_BAR.horizontalPosition,
   },
   right: {
     x: 210,
-    y: PULLUP_BAR.horizontalPosition
+    y: PULLUP_BAR.horizontalPosition,
   },
-  radius: 8
+  radius: 8,
 };
 
 const WRIST = {
@@ -45,19 +45,19 @@ const WRIST = {
 const ELBOW = {
   left: {
     x: WRIST.left.x + 5,
-    y: WRIST.left.y + (ARM_LENGTH / 2),
+    y: WRIST.left.y + ARM_LENGTH / 2,
     joint: {
       cx: WRIST.left.x + 1,
-      cy: WRIST.left.y + (ARM_LENGTH / 2) - 1.5,
+      cy: WRIST.left.y + ARM_LENGTH / 2 - 1.5,
       r: 8,
     },
   },
   right: {
     x: WRIST.right.x - 5,
-    y: WRIST.right.y + (ARM_LENGTH / 2),
+    y: WRIST.right.y + ARM_LENGTH / 2,
     joint: {
       cx: WRIST.right.x - 1,
-      cy: WRIST.right.y + (ARM_LENGTH / 2) + 1.5,
+      cy: WRIST.right.y + ARM_LENGTH / 2 + 1.5,
       r: 8,
     },
   },
@@ -66,11 +66,11 @@ const ELBOW = {
 const SHOULDER = {
   left: {
     x: ELBOW.left.x + 6,
-    y: ELBOW.left.y + (ARM_LENGTH / 2),
+    y: ELBOW.left.y + ARM_LENGTH / 2,
   },
   right: {
     x: ELBOW.right.x - 6,
-    y: ELBOW.right.y + (ARM_LENGTH / 2),
+    y: ELBOW.right.y + ARM_LENGTH / 2,
   },
 };
 
@@ -94,7 +94,7 @@ const TORSO = {
       x: SHOULDER.right.x - 22,
       y: SHOULDER.right.y + TORSO_LENGTH,
     },
-  }
+  },
 };
 
 const NECK = {
@@ -114,8 +114,8 @@ const NECK = {
       y: TORSO.shoulder.left.y - 5,
     },
     right: {
-      x: TORSO.shoulder.right.x +5.5,
-      y: TORSO.shoulder.right.y -5,
+      x: TORSO.shoulder.right.x + 5.5,
+      y: TORSO.shoulder.right.y - 5,
     },
   },
 };
@@ -135,44 +135,42 @@ const HIP = {
   right: {
     x: TORSO.waist.right.x,
     y: TORSO.waist.right.y,
-  }
+  },
 };
 
 const KNEE = {
   left: {
     x: HIP.left.x + 5,
-    y: HIP.left.y + (LEG_LENGTH / 2),
+    y: HIP.left.y + LEG_LENGTH / 2,
   },
   right: {
     x: HIP.right.x - 5,
-    y: HIP.right.y + (LEG_LENGTH / 2),
-  }
+    y: HIP.right.y + LEG_LENGTH / 2,
+  },
 };
 
 const ANKLE = {
   left: {
     x: KNEE.left.x + 2,
-    y: KNEE.left.y + (LEG_LENGTH / 2),
+    y: KNEE.left.y + LEG_LENGTH / 2,
   },
   right: {
     x: KNEE.right.x - 2,
-    y: KNEE.right.y + (LEG_LENGTH / 2),
-  }
+    y: KNEE.right.y + LEG_LENGTH / 2,
+  },
 };
 
-
 const PullupSVG = () => {
-
   return (
     <svg
-      width={'100%'}
-      height={'100%'}
-      viewBox='0 0 320 350'
+      width={"100%"}
+      height={"100%"}
+      viewBox="0 0 320 350"
       xmlns="https://www.w3.org/2000/svg"
       className={styles.svg}
     >
       <polyline
-        id='pullupBar'
+        id="pullupBar"
         points={`
           ${PULLUP_BAR.startWidth},${PULLUP_BAR.verticalHeight}
           ${PULLUP_BAR.startWidth},${PULLUP_BAR.horizontalPosition}
@@ -180,272 +178,251 @@ const PullupSVG = () => {
           ${PULLUP_BAR.endWidth},${PULLUP_BAR.verticalHeight}
         `}
         style={{
-          fill: 'none',
-          stroke: 'yellow',
-          strokeWidth: '8'
+          fill: "none",
+          stroke: "yellow",
+          strokeWidth: "8",
         }}
       />
 
       <circle
-        id='leftHand'
+        id="leftHand"
         cx={HAND.left.x}
         cy={HAND.left.y}
         r={HAND.radius}
-        fill='black'
-        stroke='black'
-        strokeWidth={'2'}
-      >
-      </circle>
+        fill="black"
+        stroke="black"
+        strokeWidth={"2"}
+      ></circle>
 
       <circle
-        id='rightHand'
+        id="rightHand"
         cx={HAND.right.x}
         cy={HAND.right.y}
         r={HAND.radius}
-        fill='black'
-        stroke='black'
-        strokeWidth={'2'}
+        fill="black"
+        stroke="black"
+        strokeWidth={"2"}
       />
       <line
-        id='leftForearm'
+        id="leftForearm"
         x1={WRIST.left.x}
         y1={WRIST.left.y}
         x2={ELBOW.left.x}
         y2={ELBOW.left.y}
-        stroke='black'
+        stroke="black"
         strokeWidth={FOREARM_THICKNESS}
         className={styles.line}
       >
         <animateTransform
-          attributeName='transform'
-          attributeType='XML'
-          type='rotate'
-          values={
-            `0 ${WRIST.left.x} ${WRIST.left.y};
+          attributeName="transform"
+          attributeType="XML"
+          type="rotate"
+          values={`0 ${WRIST.left.x} ${WRIST.left.y};
             ${FOREARM_ROTATION} ${WRIST.left.x} ${WRIST.left.y};
-            0 ${WRIST.left.x} ${WRIST.left.y}`
-          }
+            0 ${WRIST.left.x} ${WRIST.left.y}`}
           dur={PULLUP_DURATION}
-          repeatCount={'indefinite'}
+          repeatCount={"indefinite"}
         />
       </line>
 
       <line
-        id='rightForearm'
+        id="rightForearm"
         x1={WRIST.right.x}
         y1={WRIST.right.y}
         x2={ELBOW.right.x}
         y2={ELBOW.right.y}
-        stroke='black'
+        stroke="black"
         strokeWidth={FOREARM_THICKNESS}
       >
         <animateTransform
-          attributeName='transform'
-          attributeType='XML'
-          type='rotate'
-          values={
-          `0 ${WRIST.right.x} ${WRIST.right.y};
+          attributeName="transform"
+          attributeType="XML"
+          type="rotate"
+          values={`0 ${WRIST.right.x} ${WRIST.right.y};
           -${FOREARM_ROTATION} ${WRIST.right.x} ${WRIST.right.y};
-          0 ${WRIST.right.x} ${WRIST.right.y}`
-          }
+          0 ${WRIST.right.x} ${WRIST.right.y}`}
           dur={PULLUP_DURATION}
-          repeatCount={'indefinite'}
+          repeatCount={"indefinite"}
         />
       </line>
 
       <line
-        id='leftUpperArm'
+        id="leftUpperArm"
         x1={ELBOW.left.x}
         y1={ELBOW.left.y}
         x2={SHOULDER.left.x}
         y2={SHOULDER.left.y}
-        stroke='black'
+        stroke="black"
         strokeWidth={UPPERARM_THICKNESS}
       >
         <animateTransform
-          attributeName='transform'
-          attributeType='XML'
-          type='rotate'
-          values={
-          `0 ${ELBOW.left.x} ${ELBOW.left.y};
+          attributeName="transform"
+          attributeType="XML"
+          type="rotate"
+          values={`0 ${ELBOW.left.x} ${ELBOW.left.y};
           -${UPPEREARM_ROTATION} ${ELBOW.left.x} ${ELBOW.left.y};
-          0 ${ELBOW.left.x} ${ELBOW.left.y}`
-          }
+          0 ${ELBOW.left.x} ${ELBOW.left.y}`}
           dur={PULLUP_DURATION}
-          repeatCount={'indefinite'}
+          repeatCount={"indefinite"}
         />
         <animateMotion
           path={`M0,0 -10,0 0,0`}
           dur={PULLUP_DURATION}
-          repeatCount={'indefinite'}
+          repeatCount={"indefinite"}
         />
       </line>
 
       <line
-        id='rightUpperArm'
+        id="rightUpperArm"
         x1={ELBOW.right.x}
         y1={ELBOW.right.y}
         x2={SHOULDER.right.x}
         y2={SHOULDER.right.y}
-        stroke='black'
+        stroke="black"
         strokeWidth={UPPERARM_THICKNESS}
       >
         <animateTransform
-          attributeName='transform'
-          attributeType='XML'
-          type='rotate'
-          values={
-          `0 ${ELBOW.right.x} ${ELBOW.right.y};
+          attributeName="transform"
+          attributeType="XML"
+          type="rotate"
+          values={`0 ${ELBOW.right.x} ${ELBOW.right.y};
           ${UPPEREARM_ROTATION} ${ELBOW.right.x} ${ELBOW.right.y};
-          0 ${ELBOW.right.x} ${ELBOW.right.y}`
-          }
+          0 ${ELBOW.right.x} ${ELBOW.right.y}`}
           dur={PULLUP_DURATION}
-          repeatCount={'indefinite'}
+          repeatCount={"indefinite"}
         />
         <animateMotion
           path={`M0,0 10,0 0,0`}
           dur={PULLUP_DURATION}
-          repeatCount={'indefinite'}
+          repeatCount={"indefinite"}
         />
       </line>
 
       <polygon
-        id='torso'
+        id="torso"
         points={`
         ${TORSO.shoulder.left.x}, ${TORSO.shoulder.left.y}
         ${TORSO.shoulder.right.x}, ${TORSO.shoulder.right.y}
         ${TORSO.waist.right.x}, ${TORSO.waist.right.y}
         ${TORSO.waist.left.x}, ${TORSO.waist.left.y}
         `}
-        style={{fill: 'black', stroke: 'black', strokeWidth: 10}}
+        style={{ fill: "black", stroke: "black", strokeWidth: 10 }}
       >
         <animateTransform
-          attributeName='transform'
-          attributeType='XML'
-          type='translate'
-          values={ `0; 0, -60; 0;` }
+          attributeName="transform"
+          attributeType="XML"
+          type="translate"
+          values={`0; 0, -60; 0;`}
           dur={PULLUP_DURATION}
-          repeatCount={'indefinite'}
+          repeatCount={"indefinite"}
         />
-
       </polygon>
 
       <polygon
-        id='neck'
+        id="neck"
         points={`
           ${NECK.top.left.x}, ${NECK.top.left.y}
           ${NECK.top.right.x}, ${NECK.top.right.y}
           ${NECK.base.right.x}, ${NECK.base.right.y}
           ${NECK.base.left.x}, ${NECK.base.left.y}
         `}
-        style={{fill: 'black', stroke: 'black', strokeWidth: 1}}
+        style={{ fill: "black", stroke: "black", strokeWidth: 1 }}
       >
         <animateTransform
-          attributeName='transform'
-          attributeType='XML'
-          type='translate'
-          values={ `0; 0, -60; 0;` }
+          attributeName="transform"
+          attributeType="XML"
+          type="translate"
+          values={`0; 0, -60; 0;`}
           dur={PULLUP_DURATION}
-          repeatCount={'indefinite'}
+          repeatCount={"indefinite"}
         />
       </polygon>
 
-      <ellipse
-        id='head'
-        cx={HEAD.cx}
-        cy={HEAD.cy}
-        rx={HEAD.rx}
-        ry={HEAD.ry}
-      >
+      <ellipse id="head" cx={HEAD.cx} cy={HEAD.cy} rx={HEAD.rx} ry={HEAD.ry}>
         <animateTransform
-          attributeName='transform'
-          attributeType='XML'
-          type='translate'
-          values={ `0; 0, -60; 0;` }
+          attributeName="transform"
+          attributeType="XML"
+          type="translate"
+          values={`0; 0, -60; 0;`}
           dur={PULLUP_DURATION}
-          repeatCount={'indefinite'}
+          repeatCount={"indefinite"}
         />
-
       </ellipse>
 
       <line
-        id='leftThigh'
+        id="leftThigh"
         x1={HIP.left.x}
         y1={HIP.left.y}
         x2={KNEE.left.x}
         y2={KNEE.left.y}
-        stroke='black'
+        stroke="black"
         strokeWidth={THIGH_THICKNESS}
       >
         <animateTransform
-          attributeName='transform'
-          attributeType='XML'
-          type='translate'
-          values={ `0; 0, -60; 0;` }
+          attributeName="transform"
+          attributeType="XML"
+          type="translate"
+          values={`0; 0, -60; 0;`}
           dur={PULLUP_DURATION}
-          repeatCount={'indefinite'}
+          repeatCount={"indefinite"}
         />
-
       </line>
       <line
-        id='rightThigh'
+        id="rightThigh"
         x1={HIP.right.x}
         y1={HIP.right.y}
         x2={KNEE.right.x}
         y2={KNEE.right.y}
-        stroke='black'
+        stroke="black"
         strokeWidth={THIGH_THICKNESS}
       >
         <animateTransform
-          attributeName='transform'
-          attributeType='XML'
-          type='translate'
-          values={ `0; 0, -60; 0;` }
+          attributeName="transform"
+          attributeType="XML"
+          type="translate"
+          values={`0; 0, -60; 0;`}
           dur={PULLUP_DURATION}
-          repeatCount={'indefinite'}
+          repeatCount={"indefinite"}
         />
-
       </line>
       <line
-        id='leftCalf'
+        id="leftCalf"
         x1={KNEE.left.x}
         y1={KNEE.left.y}
         x2={ANKLE.left.x}
         y2={ANKLE.left.y}
-        stroke='black'
+        stroke="black"
         strokeWidth={CALF_THICKNESS}
       >
         <animateTransform
-          attributeName='transform'
-          attributeType='XML'
-          type='translate'
-          values={ `0; 0, -60; 0;` }
+          attributeName="transform"
+          attributeType="XML"
+          type="translate"
+          values={`0; 0, -60; 0;`}
           dur={PULLUP_DURATION}
-          repeatCount={'indefinite'}
+          repeatCount={"indefinite"}
         />
-
       </line>
       <line
-        id='rightCalf'
+        id="rightCalf"
         x1={KNEE.right.x}
         y1={KNEE.right.y}
         x2={ANKLE.right.x}
         y2={ANKLE.right.y}
-        stroke='black'
+        stroke="black"
         strokeWidth={CALF_THICKNESS}
       >
         <animateTransform
-          attributeName='transform'
-          attributeType='XML'
-          type='translate'
-          values={ `0; 0, -60; 0;` }
+          attributeName="transform"
+          attributeType="XML"
+          type="translate"
+          values={`0; 0, -60; 0;`}
           dur={PULLUP_DURATION}
-          repeatCount={'indefinite'}
+          repeatCount={"indefinite"}
         />
-
       </line>
     </svg>
-  )
+  );
 };
 
-export default PullupSVG
+export default PullupSVG;

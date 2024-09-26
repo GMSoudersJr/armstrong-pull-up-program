@@ -1,14 +1,14 @@
-import {TDayAbbreviation} from '@/definitions';
-import styles from './ActionButton.module.css';
-import {CircleXIcon} from 'lucide-react';
+import { TDayAbbreviation } from "@/definitions";
+import styles from "./ActionButton.module.css";
+import { CircleXIcon } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
 
 interface MissSetButtonProps {
-  dayAbbreviation: TDayAbbreviation,
+  dayAbbreviation: TDayAbbreviation;
   onMissedSet: Dispatch<SetStateAction<boolean>>;
   showTimerModalState: boolean;
   completedSetCount?: number;
-};
+}
 
 const MissSetButton = ({
   dayAbbreviation,
@@ -16,9 +16,10 @@ const MissSetButton = ({
   showTimerModalState,
   completedSetCount,
 }: MissSetButtonProps) => {
-
-  const disabledAtPyramidBeginning = dayAbbreviation === 'PYRA' && completedSetCount === 0;
-  const disableForGripSelection = dayAbbreviation === '3S3G' && completedSetCount === 3;
+  const disabledAtPyramidBeginning =
+    dayAbbreviation === "PYRA" && completedSetCount === 0;
+  const disableForGripSelection =
+    dayAbbreviation === "3S3G" && completedSetCount === 3;
 
   function handleMiss(): void {
     onMissedSet(true);
@@ -26,14 +27,18 @@ const MissSetButton = ({
 
   return (
     <button
-      type='button'
+      type="button"
       onClick={handleMiss}
-      disabled={showTimerModalState || disableForGripSelection || disabledAtPyramidBeginning}
+      disabled={
+        showTimerModalState ||
+        disableForGripSelection ||
+        disabledAtPyramidBeginning
+      }
       className={`${styles.pyramidActionButton} actionButton`}
     >
       <CircleXIcon className={styles.icon} />
     </button>
-  )
+  );
 };
 
 export default MissSetButton;

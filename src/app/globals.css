@@ -1,11 +1,10 @@
 :root {
   --max-width: 1100px;
   --border-radius: 12px;
-  --blue: #0074D9;
-  --green: #2ECC40;
+  --blue: #0074d9;
+  --green: #2ecc40;
 
   --button-action-font-size: clamp(2.625rem, 10vw + 1rem, 4rem);
-
 }
 
 html {
@@ -29,11 +28,19 @@ html {
   --heading-6: var(--smallestFontSize);
 
   h1 {
-    font-size: clamp(var(--large-heading), calc(10vw + 0.25rem), var(--xtra-xtra-large-heading));
+    font-size: clamp(
+      var(--large-heading),
+      calc(10vw + 0.25rem),
+      var(--xtra-xtra-large-heading)
+    );
   }
 
   h2 {
-    font-size: clamp(var(--heading-2), calc(2.5vw + 1rem), var(--xtra-large-heading));
+    font-size: clamp(
+      var(--heading-2),
+      calc(2.5vw + 1rem),
+      var(--xtra-large-heading)
+    );
   }
 
   h3 {
@@ -55,7 +62,6 @@ html {
   p {
     line-height: 1.5;
   }
-
 }
 
 ul > li {
@@ -69,11 +75,10 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-input[type=number] {
+input[type="number"] {
   appearance: textfield;
   -moz-appearance: textfield;
 }
-
 
 * {
   box-sizing: border-box;
@@ -95,7 +100,7 @@ body {
 
 .page-transition {
   opacity: 0;
-  background: #0074D9;
+  background: #0074d9;
   transform: translateY(40px);
   filter: blur(12px);
 }

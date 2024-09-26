@@ -6,13 +6,13 @@
   padding: 1.5rem;
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 5rem 1fr repeat(2, min-content );
+  grid-template-rows: 5rem 1fr repeat(2, min-content);
   row-gap: 0.5rem;
 }
 
 .footer section {
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .otherLinks {

@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
 import { useState } from "react";
-import styles from './FiveMaxEffortSets.module.css';
+import styles from "./FiveMaxEffortSets.module.css";
 import RepInput from "@/components/program/fiveMaxEffortSets/RepInput";
 import RepsCompleteButton from "@/components/program/fiveMaxEffortSets/RepsCompleteButton";
 import RepsRemoveButton from "@/components/program/fiveMaxEffortSets/RepsRemoveButton";
 import SetsTable from "@/components/program/fiveMaxEffortSets/SetsTable";
-import {createPortal} from "react-dom";
+import { createPortal } from "react-dom";
 import TimerModal from "@/components/program/TimerModal";
 import DayComplete from "@/components/program/DayComplete";
-import {TDayNumber} from "@/definitions";
+import { TDayNumber } from "@/definitions";
 
 const recoveryTime = 90;
 
@@ -27,26 +27,25 @@ const FiveMaxEffortSets = ({ dayNumber }: FiveMaxEffortSetsProps) => {
 
   const dayComplete = repsArray.length === 5;
 
-
   return (
     <section className={styles.repInfoSection}>
-      {repsArray.length > 0 &&
-      <div className={styles.setInfo}>
-        <SetsTable repsArray={repsArray}/>
-      </div>
-      }
+      {repsArray.length > 0 && (
+        <div className={styles.setInfo}>
+          <SetsTable repsArray={repsArray} />
+        </div>
+      )}
       {dayComplete ? (
         <DayComplete
           setStateForSavedDay={setSavedDay}
           dayData={{
             dayNumber: dayNumber,
-            dayAbbreviation: '5MES',
-            sets: repsArray
+            dayAbbreviation: "5MES",
+            sets: repsArray,
           }}
         />
       ) : (
         <>
-          {repsArray.length < 5 &&
+          {repsArray.length < 5 && (
             <>
               <RepInput
                 onChange={setReps}
@@ -75,19 +74,20 @@ const FiveMaxEffortSets = ({ dayNumber }: FiveMaxEffortSetsProps) => {
                 </div>
               </section>
             </>
-          }
-          {showTimerModal && createPortal(
-            <TimerModal
-              onClose={() => setShowTimerModal(false)}
-              recoveryTime={recoveryTime}
-              setStateForShowTimerModal={setShowTimerModal}
-            />,
-            document.body
           )}
+          {showTimerModal &&
+            createPortal(
+              <TimerModal
+                onClose={() => setShowTimerModal(false)}
+                recoveryTime={recoveryTime}
+                setStateForShowTimerModal={setShowTimerModal}
+              />,
+              document.body,
+            )}
         </>
       )}
     </section>
-  )
-}
+  );
+};
 
 export default FiveMaxEffortSets;

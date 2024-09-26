@@ -1,13 +1,12 @@
-import {nunito} from '@/fonts';
-import styles from './Overview.module.css';
-import OverviewCard from '@/components/landing/OverviewCard';
-import {TCardProps} from '@/definitions';
-import {ScaleIcon, ShapesIcon, Tally5Icon} from 'lucide-react';
+import { nunito } from "@/fonts";
+import styles from "./Overview.module.css";
+import OverviewCard from "@/components/landing/OverviewCard";
+import { TCardProps } from "@/definitions";
+import { ScaleIcon, ShapesIcon, Tally5Icon } from "lucide-react";
 
 const ProgramOverview = () => {
-
   return (
-    <section id='overview' className={styles.overviewContainer}>
+    <section id="overview" className={styles.overviewContainer}>
       <h1 style={nunito.style}>Overview</h1>
       <ul className={styles.overviewList}>
         {OVERVIEW_POINTS.map((point, key) => {
@@ -19,41 +18,37 @@ const ProgramOverview = () => {
                 body={point.body}
               />
             </li>
-          )
+          );
         })}
       </ul>
     </section>
-  )
-}
+  );
+};
 
 export default ProgramOverview;
 
 const OVERVIEW_POINTS: TCardProps[] = [
   {
     Icon: Tally5Icon,
-    heading: 'DAILY',
-    body: [
-      `Weekday → Workout!`,
-      'Weekend → Rest!',
-      'Days and weeks fly by!',
-    ]
+    heading: "DAILY",
+    body: [`Weekday → Workout!`, "Weekend → Rest!", "Days and weeks fly by!"],
   },
   {
     Icon: ScaleIcon,
-    heading: 'BALANCE',
+    heading: "BALANCE",
     body: [
-      'Wake up → Push-ups',
-      'Later on → Pull-ups',
-      'Full upper body workout!',
-    ]
+      "Wake up → Push-ups",
+      "Later on → Pull-ups",
+      "Full upper body workout!",
+    ],
   },
   {
     Icon: ShapesIcon,
-    heading: 'VARIETY',
+    heading: "VARIETY",
     body: [
-      '4 different daily workouts!',
-      'Repeat hardest on 5th day!',
-      'Any grip you like!',
-    ]
+      "4 different daily workouts!",
+      "Repeat hardest on 5th day!",
+      "Any grip you like!",
+    ],
   },
 ];

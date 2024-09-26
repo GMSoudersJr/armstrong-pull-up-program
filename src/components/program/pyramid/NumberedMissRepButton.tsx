@@ -1,9 +1,6 @@
-import {ptSans} from '@/fonts';
-import styles from './NumberedMissRepButton.module.css';
-import {
-  Dispatch,
-  SetStateAction,
-} from "react";
+import { ptSans } from "@/fonts";
+import styles from "./NumberedMissRepButton.module.css";
+import { Dispatch, SetStateAction } from "react";
 
 interface NumberedMissRepButtonProps {
   onMissed: Dispatch<SetStateAction<boolean>>;
@@ -24,30 +21,24 @@ const NumberedMissRepButton = ({
   setStateForRepsArray,
   setStateForMaxNumbers,
   showTimerModalState,
-  setStateForShowTimerModal
+  setStateForShowTimerModal,
 }: NumberedMissRepButtonProps) => {
-
   function handleClick() {
-
     setStateForReps(repCount);
 
-    setStateForRepsArray([
-      ...repsArrayState,
-      repCount
-    ]);
+    setStateForRepsArray([...repsArrayState, repCount]);
 
     setStateForShowTimerModal(true);
 
     onMissed(false);
 
     setStateForMaxNumbers(true);
-
-  };
+  }
 
   return (
     <>
       <button
-        type='button'
+        type="button"
         className={styles.repButton}
         style={ptSans.style}
         onClick={handleClick}
@@ -56,7 +47,7 @@ const NumberedMissRepButton = ({
         {repCount}
       </button>
     </>
-  )
+  );
 };
 
 export default NumberedMissRepButton;

@@ -1,4 +1,4 @@
-import {TWeek} from "../definitions";
+import { TWeek } from "../definitions";
 
 export const WEEK_TEST_DATA: TWeek[] = [
   {
@@ -26,5 +26,4 @@ export const WEEK_TEST_DATA: TWeek[] = [
     lastCompletedDay: 2,
     completedDays: [1, 2],
   },
-
 ];

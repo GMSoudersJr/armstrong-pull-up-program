@@ -1,8 +1,7 @@
 const {
   PHASE_DEVELOPMENT_SERVER,
-  PHASE_PRODUCTION_BUILD
+  PHASE_PRODUCTION_BUILD,
 } = require("next/constants");
-
 
 /** @type {(phase: string, defaultConfig: import("next").NextConfig) => Promise<import("next").NextConfig>} */
 module.exports = async (phase) => {
@@ -11,13 +10,13 @@ module.exports = async (phase) => {
     images: {
       remotePatterns: [
         {
-          protocol: 'https',
-          hostname: 'lh3.googleusercontent.com',
-          port: ''
+          protocol: "https",
+          hostname: "lh3.googleusercontent.com",
+          port: "",
         },
       ],
     },
-    transpilePackages: ['lucide-react']
+    transpilePackages: ["lucide-react"],
   };
 
   if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {
@@ -31,4 +30,4 @@ module.exports = async (phase) => {
   }
 
   return nextConfig;
-}
+};

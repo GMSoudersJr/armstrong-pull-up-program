@@ -16,7 +16,7 @@
 
 .active,
 .accordion:hover {
-  background-color: #C0C0C0;
+  background-color: #c0c0c0;
 }
 
 .panelText {
@@ -39,14 +39,14 @@
 }
 
 .accordion:after {
-  content: '\02795';
+  content: "\02795";
   font-size: 0.75rem;
   color: #777;
   float: right;
 }
 
 .active:after {
-  content: '\02796';
+  content: "\02796";
 }
 
 .buttonText {
