@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import {nunito} from '@/fonts';
-import styles from './TransitionLink.module.css';
-import Link, {LinkProps} from "next/link";
-import {ReactNode} from "react";
-import { useRouter } from 'next/navigation';
+import { nunito } from "@/fonts";
+import styles from "./TransitionLink.module.css";
+import Link, { LinkProps } from "next/link";
+import { ReactNode } from "react";
+import { useRouter } from "next/navigation";
 
 interface TransitionLinkProps extends LinkProps {
   children: ReactNode;
   href: string;
 }
 
-function sleep(ms: number): Promise<void>{
+function sleep(ms: number): Promise<void> {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
-  })
+  });
 }
 
 export const TransitionLink = ({
@@ -24,13 +24,14 @@ export const TransitionLink = ({
 }: TransitionLinkProps) => {
   const router = useRouter();
 
-  async function handleTransition(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
-
+  async function handleTransition(
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+  ) {
     event.preventDefault();
 
-    const body = document.querySelector('body');
+    const body = document.querySelector("body");
 
-    body?.classList.add('page-transition');
+    body?.classList.add("page-transition");
 
     await sleep(500);
 
@@ -38,7 +39,7 @@ export const TransitionLink = ({
 
     await sleep(500);
 
-    body?.classList.remove('page-transition');
+    body?.classList.remove("page-transition");
   }
 
   return (
@@ -50,5 +51,5 @@ export const TransitionLink = ({
     >
       {children}
     </Link>
-  )
+  );
 };

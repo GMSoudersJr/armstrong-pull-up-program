@@ -1,6 +1,6 @@
-import {Dispatch, SetStateAction} from "react";
-import styles from './ActionButton.module.css';
-import {CircleCheckIcon} from "lucide-react";
+import { Dispatch, SetStateAction } from "react";
+import styles from "./ActionButton.module.css";
+import { CircleCheckIcon } from "lucide-react";
 
 interface RepsCompleteButtonProps {
   repsState: number;
@@ -17,20 +17,14 @@ const RepsCompleteButton = ({
   setStateForReps,
   showTimerModalState,
   setStateForRepsArray,
-  setStateForShowTimerModal
+  setStateForShowTimerModal,
 }: RepsCompleteButtonProps) => {
-
   function handleClick() {
     const pyramidBrickNumber = repsState + 1;
 
-    setStateForRepsArray(
-      [
-        ...repsArrayState,
-        pyramidBrickNumber
-      ]
-    );
+    setStateForRepsArray([...repsArrayState, pyramidBrickNumber]);
 
-    setStateForReps(repsState => repsState + 1);
+    setStateForReps((repsState) => repsState + 1);
 
     setStateForShowTimerModal(true);
   }
@@ -42,9 +36,9 @@ const RepsCompleteButton = ({
       onClick={handleClick}
       disabled={showTimerModalState}
     >
-      <CircleCheckIcon className={styles.icon}/>
+      <CircleCheckIcon className={styles.icon} />
     </button>
-  )
+  );
 };
 
 export default RepsCompleteButton;

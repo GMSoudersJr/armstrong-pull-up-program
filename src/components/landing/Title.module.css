@@ -4,8 +4,7 @@
   grid-template-columns: min-content max-content min-content;
   grid-template-rows: min-content;
   align-items: center;
-  grid-template-areas:
-  "leftArm text rightArm";
+  grid-template-areas: "leftArm text rightArm";
 }
 
 .leftArm {

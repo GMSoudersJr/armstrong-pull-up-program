@@ -16,7 +16,7 @@
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  background-image: linear-gradient( #0074D9, #2ECC40);
+  background-image: linear-gradient(#0074d9, #2ecc40);
 }
 
 .overviewListitem {
@@ -24,10 +24,9 @@
   flex: 1;
 }
 
-@media(max-width: 40rem) {
+@media (max-width: 40rem) {
   .overviewList {
     flex-direction: column;
     gap: 2rem;
   }
 }
-

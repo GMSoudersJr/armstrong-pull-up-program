@@ -1,4 +1,4 @@
 export enum EStores {
-  Weeks = 'weeksStore',
-  Workouts = 'workoutsStore',
-};
+  Weeks = "weeksStore",
+  Workouts = "workoutsStore",
+}

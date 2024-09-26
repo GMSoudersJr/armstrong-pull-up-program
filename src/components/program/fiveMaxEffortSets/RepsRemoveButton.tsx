@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import styles from './RepsActionButton.module.css';
-import {EraserIcon} from "lucide-react";
+import styles from "./RepsActionButton.module.css";
+import { EraserIcon } from "lucide-react";
 
 interface RepsRemoveButtonProps {
   setStateForRepsArray: Dispatch<SetStateAction<number[]>>;
@@ -13,24 +13,22 @@ const RepsRemoveButton = ({
   setStateForRepsArray,
   repsArrayState,
   savedDay,
-  showTimerModalState
+  showTimerModalState,
 }: RepsRemoveButtonProps) => {
-
   function handleRemove() {
     setStateForRepsArray(repsArrayState.slice(0, -1));
   }
 
   return (
     <button
-      type='button'
+      type="button"
       onClick={handleRemove}
       className={`${styles.button} ${styles.removeButton} actionButton`}
       disabled={showTimerModalState || savedDay || repsArrayState.length === 0}
     >
-      <EraserIcon className={styles.icon}/>
+      <EraserIcon className={styles.icon} />
     </button>
-  )
+  );
 };
 
 export default RepsRemoveButton;
-

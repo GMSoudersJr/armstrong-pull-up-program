@@ -6,11 +6,11 @@
   grid-template-columns: 1fr;
   grid-template-rows: min-content 1fr min-content;
   border-radius: 0.4rem;
-  background-image: linear-gradient( #0074D9, #2ECC40);
+  background-image: linear-gradient(#0074d9, #2ecc40);
   grid-template-areas:
-  "header"
-  "body"
-  "footer";
+    "header"
+    "body"
+    "footer";
 }
 
 .header {
@@ -24,8 +24,8 @@
   align-content: center;
   padding: 0.5rem;
   grid-template-areas:
-  "avatar name quoteIcon"
-  "avatar duration quoteIcon";
+    "avatar name quoteIcon"
+    "avatar duration quoteIcon";
   font-size: clamp(1.5rem, 7vw + 1rem, 4rem);
 }
 
@@ -69,7 +69,6 @@
   justify-self: center;
   padding: 0.25rem;
 }
-
 
 .body {
   grid-area: body;

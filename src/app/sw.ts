@@ -1,6 +1,6 @@
-import { defaultCache } from '@serwist/next/worker';
-import type { PrecacheEntry, SerwistGlobalConfig } from 'serwist';
-import { Serwist } from 'serwist';
+import { defaultCache } from "@serwist/next/worker";
+import type { PrecacheEntry, SerwistGlobalConfig } from "serwist";
+import { Serwist } from "serwist";
 
 declare global {
   interface WorkerGlobalScope extends SerwistGlobalConfig {
@@ -29,17 +29,15 @@ const serwist = new Serwist({
 
 self.addEventListener("install", (event) => {
   try {
-
     const requestPromises = Promise.all(
       urlsToPrecache.map((entry) => {
-        return serwist.handleRequest({ request: new Request(entry), event })
+        return serwist.handleRequest({ request: new Request(entry), event });
       }),
     );
 
     event.waitUntil(requestPromises);
-
   } catch (error) {
-    console.log("error caching pages", error)
+    console.log("error caching pages", error);
   }
 });
 

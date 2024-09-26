@@ -1,6 +1,6 @@
-import {ptSans} from '@/fonts';
-import styles from './MaxoutNumberButton.module.css';
-import { Dispatch, SetStateAction } from 'react';
+import { ptSans } from "@/fonts";
+import styles from "./MaxoutNumberButton.module.css";
+import { Dispatch, SetStateAction } from "react";
 
 interface MaxoutNumberButtonProps {
   repCount: number;
@@ -15,23 +15,17 @@ const MaxoutNumberButton = ({
   setStateForRepsArray,
   repsArrayState,
   showTimerModalState,
-  setStateForDayComplete
+  setStateForDayComplete,
 }: MaxoutNumberButtonProps) => {
-
   function handleClick() {
-
-    setStateForRepsArray([
-      ...repsArrayState,
-      repCount
-    ]);
+    setStateForRepsArray([...repsArrayState, repCount]);
 
     setStateForDayComplete(true);
-
   }
 
   return (
     <button
-      type='button'
+      type="button"
       className={styles.numberedButton}
       style={ptSans.style}
       onClick={handleClick}
@@ -39,7 +33,7 @@ const MaxoutNumberButton = ({
     >
       {repCount}
     </button>
-  )
+  );
 };
 
 export default MaxoutNumberButton;

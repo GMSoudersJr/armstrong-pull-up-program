@@ -1,12 +1,12 @@
-import styles from './SetInfo.module.css';
-import { Dispatch, SetStateAction, useState } from 'react';
-import {createPortal} from 'react-dom';
-import TimerModal from '../TimerModal';
-import {TGrip} from '@/app/lib/definitions';
-import {nunito} from '@/fonts';
-import {ArrowRightToLineIcon, CircleCheckIcon} from 'lucide-react';
-import NumberedMissRepButton from '@/components/program/NumberedMissRepButton';
-import MissSetButton from '../MissSetButton';
+import styles from "./SetInfo.module.css";
+import { Dispatch, SetStateAction, useState } from "react";
+import { createPortal } from "react-dom";
+import TimerModal from "../TimerModal";
+import { TGrip } from "@/app/lib/definitions";
+import { nunito } from "@/fonts";
+import { ArrowRightToLineIcon, CircleCheckIcon } from "lucide-react";
+import NumberedMissRepButton from "@/components/program/NumberedMissRepButton";
+import MissSetButton from "../MissSetButton";
 
 interface SetInfoProps {
   trainingSetReps: number;
@@ -27,39 +27,31 @@ const SetInfo = ({
   completedGrips,
   updateTrainingSets,
   updateCurrentGrip,
-  updateCompletedGrips
+  updateCompletedGrips,
 }: SetInfoProps) => {
-
   const [completedSetCount, setCompletedSetCount] = useState(0);
   const [showTimerModal, setShowTimerModal] = useState(false);
   const [missedSet, setMissedSet] = useState(false);
 
   function handleDone(): void {
     if (completedSetCount == 2 && completedGrips.length == 2) {
-      updateCompletedGrips([
-        ...completedGrips,
-        currentGrip
-      ]);
+      updateCompletedGrips([...completedGrips, currentGrip]);
 
-      updateCurrentGrip('');
+      updateCurrentGrip("");
     }
     if (completedSetCount <= 2) {
-      setCompletedSetCount(completedSetCount => completedSetCount + 1);
+      setCompletedSetCount((completedSetCount) => completedSetCount + 1);
       updateTrainingSets([...trainingSets, trainingSetReps]);
       setShowTimerModal(true);
     } else {
-      updateCompletedGrips([
-        ...completedGrips,
-        currentGrip
-      ]);
+      updateCompletedGrips([...completedGrips, currentGrip]);
 
-      updateCurrentGrip('');
+      updateCurrentGrip("");
     }
   }
 
   return (
     <section className={styles.setInfoContainer}>
-
       <h2 style={nunito.style}>
         {missedSet ? (
           <>How many did you do?</>
@@ -79,13 +71,10 @@ const SetInfo = ({
           `Rep Count`
         ) : (
           <>
-        {currentGrip?.toUpperCase()} SETS:
-        <span
-          className={styles.setCount}
-          style={nunito.style}
-        >
-          {` ${completedSetCount}`}
-        </span>
+            {currentGrip?.toUpperCase()} SETS:
+            <span className={styles.setCount} style={nunito.style}>
+              {` ${completedSetCount}`}
+            </span>
           </>
         )}
       </h3>
@@ -93,10 +82,10 @@ const SetInfo = ({
       <div className={styles.buttonsContainer}>
         {missedSet ? (
           <>
-            {Array.from({length: trainingSetReps}, (_, i) => {
+            {Array.from({ length: trainingSetReps }, (_, i) => {
               return (
                 <NumberedMissRepButton
-                  dayAbbreviation='3S3G'
+                  dayAbbreviation="3S3G"
                   key={i}
                   onMissed={setMissedSet}
                   repCount={i}
@@ -111,19 +100,19 @@ const SetInfo = ({
                   updateTrainingSets={updateTrainingSets}
                   trainingSets={trainingSets}
                 />
-              )
+              );
             })}
           </>
         ) : (
           <section className={styles.actionButtonsContainer}>
             <MissSetButton
-              dayAbbreviation='3S3G'
+              dayAbbreviation="3S3G"
               onMissedSet={setMissedSet}
               showTimerModalState={showTimerModal}
               completedSetCount={completedSetCount}
             />
             <button
-              type='button'
+              type="button"
               className={`${styles.completeButton} actionButton`}
               onClick={handleDone}
               disabled={showTimerModal}
@@ -136,17 +125,18 @@ const SetInfo = ({
             </button>
           </section>
         )}
-        {showTimerModal && createPortal(
-          <TimerModal
-            onClose={() => setShowTimerModal(false)}
-            recoveryTime={recoveryTime}
-            setStateForShowTimerModal={setShowTimerModal}
-          />,
-          document.body
-        )}
+        {showTimerModal &&
+          createPortal(
+            <TimerModal
+              onClose={() => setShowTimerModal(false)}
+              recoveryTime={recoveryTime}
+              setStateForShowTimerModal={setShowTimerModal}
+            />,
+            document.body,
+          )}
       </div>
     </section>
-  )
+  );
 };
 
 export default SetInfo;

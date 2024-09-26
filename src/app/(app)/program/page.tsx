@@ -1,15 +1,19 @@
-'use client';
+"use client";
 
-import {nunito} from '@/fonts';
-import styles from './page.module.css';
-import dynamic from 'next/dynamic';
-import {useEffect} from 'react';
+import { nunito } from "@/fonts";
+import styles from "./page.module.css";
+import dynamic from "next/dynamic";
+import { useEffect } from "react";
 
-const Program = dynamic(() => import('@/components/program/Program'), { ssr: false });
-const OverallProgess = dynamic(() => import('@/components/program/OverallProgress'), { ssr: false });
+const Program = dynamic(() => import("@/components/program/Program"), {
+  ssr: false,
+});
+const OverallProgess = dynamic(
+  () => import("@/components/program/OverallProgress"),
+  { ssr: false },
+);
 
 const ProgramPage = () => {
-
   /*
   useEffect(() => {
     if ('serviceWorker' in navigator) {
@@ -58,7 +62,7 @@ const ProgramPage = () => {
       <OverallProgess />
       <Program />
     </main>
-  )
-}
+  );
+};
 
 export default ProgramPage;

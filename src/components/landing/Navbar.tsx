@@ -1,24 +1,24 @@
-import {nunito} from '@/fonts';
-import styles from './Navbar.module.css';
+import { nunito } from "@/fonts";
+import styles from "./Navbar.module.css";
 import Link from "next/link";
-import {BicepsFlexedIcon} from 'lucide-react';
+import { BicepsFlexedIcon } from "lucide-react";
 
 const SECTIONS = [
   {
-    path: '/#home',
-    label: 'Armstrong Pull-up program',
+    path: "/#home",
+    label: "Armstrong Pull-up program",
   },
   {
-    path: '/#features',
-    label: 'features'
+    path: "/#features",
+    label: "features",
   },
   {
-    path: '/#testimonials',
-    label: 'testimonials'
+    path: "/#testimonials",
+    label: "testimonials",
   },
   {
-    path: '/#overview',
-    label: 'overview'
+    path: "/#overview",
+    label: "overview",
   },
 ];
 
@@ -33,22 +33,19 @@ const LandingNavbar = () => {
               className={styles.navListitem}
               style={nunito.style}
             >
-              <Link
-                href={section.path}
-                scroll={true}
-              >
-                {section.path === '/#home' ? (
-                  <BicepsFlexedIcon size={'0.698rem'} />
+              <Link href={section.path} scroll={true}>
+                {section.path === "/#home" ? (
+                  <BicepsFlexedIcon size={"0.698rem"} />
                 ) : (
                   section.label.toUpperCase()
                 )}
               </Link>
             </li>
-          )
+          );
         })}
       </ul>
     </nav>
-  )
+  );
 };
 
 export default LandingNavbar;

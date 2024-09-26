@@ -4,11 +4,11 @@ import {
   useState,
   useId,
   SyntheticEvent,
-} from 'react';
+} from "react";
 
-import styles from './RepInput.module.css';
-import {nunito, ptSans} from '@/fonts';
-import {MinusIcon, PlusIcon} from 'lucide-react';
+import styles from "./RepInput.module.css";
+import { nunito, ptSans } from "@/fonts";
+import { MinusIcon, PlusIcon } from "lucide-react";
 
 interface RepInputProps {
   onChange: Dispatch<SetStateAction<number>>;
@@ -23,7 +23,7 @@ const RepInput = ({
   onEnter,
   repsArrayState,
   setStateForShowTimerModal,
-  showTimerModalState
+  showTimerModalState,
 }: RepInputProps) => {
   const repInputId = useId();
 
@@ -40,12 +40,7 @@ const RepInput = ({
   function handleKeyUp(event: React.KeyboardEvent<HTMLInputElement>) {
     const { key } = event;
     if (key === "Enter") {
-      onEnter(
-        [
-          ...repsArrayState,
-          reps
-        ]
-      );
+      onEnter([...repsArrayState, reps]);
 
       if (repsArrayState.length < 4) setStateForShowTimerModal(true);
     }
@@ -68,14 +63,12 @@ const RepInput = ({
   return (
     <section className={styles.repInputContainer}>
       <label className={styles.repInputLabel} htmlFor={repInputId}>
-        <h3 style={nunito.style}>
-          {`SET ${repsArrayState.length + 1} REPS`}
-        </h3>
+        <h3 style={nunito.style}>{`SET ${repsArrayState.length + 1} REPS`}</h3>
       </label>
       <div className={styles.numericInputContainer}>
         <span className={styles.spanInput}>
           <button
-            type='button'
+            type="button"
             onClick={handleDecrement}
             className={`${styles.button} ${styles.decrement} actionButton`}
             disabled={reps <= 0}
@@ -85,7 +78,7 @@ const RepInput = ({
           </button>
           <input
             id={repInputId}
-            name='reps'
+            name="reps"
             className={styles.repInput}
             style={ptSans.style}
             type="number"
@@ -97,7 +90,7 @@ const RepInput = ({
             disabled={showTimerModalState}
           />
           <button
-            type='button'
+            type="button"
             onClick={handleIncrement}
             className={`${styles.button} ${styles.increment} actionButton`}
             disabled={reps >= 100}
@@ -108,7 +101,7 @@ const RepInput = ({
         </span>
       </div>
     </section>
-  )
+  );
 };
 
 export default RepInput;
