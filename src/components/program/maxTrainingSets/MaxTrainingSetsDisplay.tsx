@@ -8,6 +8,7 @@ import { CircleCheckIcon } from "lucide-react";
 import { TDayAbbreviation } from "@/definitions";
 import MissSetButton from "../MissSetButton";
 import NumberedMissRepButton from "../NumberedMissRepButton";
+import DayProgessBar from "../DayProgressBar";
 
 interface MaxTrainingSetsDisplayProps {
   trainingSetReps: number;
@@ -35,6 +36,11 @@ const MaxTrainingSetsDisplay = ({
 
   return (
     <section className={styles.maxTrainingSetsContainer}>
+      <DayProgessBar
+        dayAbbreviation="MXTS"
+        currentSetNumber={completedTrainingSets.length}
+        maxSetNumber={9}
+      />
       <h2 style={nunito.style}>
         {missedSet ? (
           <>How many did you do?</>

@@ -7,6 +7,7 @@ import { nunito } from "@/fonts";
 import { ArrowRightToLineIcon, CircleCheckIcon } from "lucide-react";
 import NumberedMissRepButton from "@/components/program/NumberedMissRepButton";
 import MissSetButton from "../MissSetButton";
+import DayProgessBar from "../DayProgressBar";
 
 interface SetInfoProps {
   trainingSetReps: number;
@@ -52,6 +53,11 @@ const SetInfo = ({
 
   return (
     <section className={styles.setInfoContainer}>
+      <DayProgessBar
+        dayAbbreviation="3S3G"
+        currentSetNumber={trainingSets.length}
+        maxSetNumber={9}
+      />
       <h2 style={nunito.style}>
         {missedSet ? (
           <>How many did you do?</>

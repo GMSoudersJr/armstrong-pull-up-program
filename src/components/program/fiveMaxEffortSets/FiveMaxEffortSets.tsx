@@ -10,6 +10,7 @@ import { createPortal } from "react-dom";
 import TimerModal from "@/components/program/TimerModal";
 import DayComplete from "@/components/program/DayComplete";
 import { TDayNumber } from "@/definitions";
+import DayProgessBar from "../DayProgressBar";
 
 const recoveryTime = 90;
 
@@ -47,6 +48,11 @@ const FiveMaxEffortSets = ({ dayNumber }: FiveMaxEffortSetsProps) => {
         <>
           {repsArray.length < 5 && (
             <>
+              <DayProgessBar
+                dayAbbreviation="5MES"
+                currentSetNumber={repsArray.length}
+                maxSetNumber={5}
+              />
               <RepInput
                 onChange={setReps}
                 onEnter={setRepsArray}
