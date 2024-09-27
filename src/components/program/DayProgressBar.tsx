@@ -1,4 +1,5 @@
 import { TDayAbbreviation } from "@/definitions";
+import styles from "./DayProgressBar.module.css";
 
 interface DayProgressBarProps {
   dayAbbreviation: TDayAbbreviation;
@@ -14,6 +15,7 @@ const DayProgessBar = ({
   return (
     <progress
       id="day-progress"
+      className={styles.progress}
       value={currentSetNumber}
       max={maxSetNumber}
       aria-label={`Progress for ${dayAbbreviation}`}
