@@ -15,7 +15,9 @@ const DayProgessBar = ({
   return (
     <progress
       id="day-progress"
-      className={styles.progress}
+      className={
+        currentSetNumber === 0 ? `${styles.progressZero}` : `${styles.progress}`
+      }
       value={currentSetNumber}
       max={maxSetNumber}
       aria-label={`Progress for ${dayAbbreviation}`}

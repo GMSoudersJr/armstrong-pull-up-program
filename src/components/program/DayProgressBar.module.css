@@ -17,3 +17,8 @@
 .progress::-moz-progress-bar {
   background-color: var(--green);
 }
+
+.progressZero::-webkit-progress-bar {
+  background-color: #333333;
+  border-radius: 7px;
+}
