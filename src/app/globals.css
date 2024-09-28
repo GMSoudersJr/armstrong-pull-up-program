@@ -7,6 +7,7 @@
   --green-rgba: rgba(40, 204, 64, 1);
 
   --button-action-font-size: clamp(2.625rem, 10vw + 1rem, 4rem);
+  --modal-close-button-font-size: 1.75rem;
 }
 
 html {
