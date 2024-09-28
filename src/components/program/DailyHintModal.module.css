@@ -49,8 +49,8 @@
   height: var(--modal-close-button-font-size);
   width: var(--modal-close-button-font-size);
   grid-area: svgContainer;
-  padding: 0.25rem;
-  align-self: center;
+  padding: 0.15rem;
+  place-self: center;
 }
 
 .modalText {
@@ -63,6 +63,7 @@
 
 .headerText {
   grid-area: headerText;
+  place-self: center;
 }
 
 .hintList {
@@ -76,7 +77,7 @@
 
 .closeButton {
   grid-area: closeButton;
-  align-self: center;
+  place-self: center;
   color: #aaa;
   font-size: var(--modal-close-button-font-size);
   font-weight: bold;
