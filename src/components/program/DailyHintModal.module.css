@@ -31,7 +31,7 @@
     );
   grid-template-rows: min-content 1fr;
   grid-template-areas:
-    ". headerText closeButton"
+    "svgContainer headerText closeButton"
     "hintList hintList hintList";
   justify-items: center;
   align-items: center;
@@ -41,6 +41,15 @@
   padding: 1.25rem;
   border: 1px solid #888;
   width: 80%;
+}
+
+.svgContainer {
+  background: linear-gradient(var(--blue), var(--green));
+  height: var(--modal-close-button-font-size);
+  width: var(--modal-close-button-font-size);
+  grid-area: svgContainer;
+  padding: 0.25rem;
+  align-self: baseline;
 }
 
 .modalText {

@@ -59,4 +59,8 @@ export const dailyHints: TDailyHint[] = [
       FINAL_STEPS,
     ],
   },
+  {
+    dayNumber: 5,
+    hints: ["Choose your hardest day!"],
+  },
 ];

@@ -36,6 +36,7 @@ const DayHeadings = ({ dayNumber, mostDifficultDay }: DayHeadingsProps) => {
           <h3 style={nunito.style}>
             {DAYS.filter((day) => day.number === dayNumber)[0].heading3}
           </h3>
+          <DailyHintButton dayNumber={dayNumber} />
         </div>
       )}
     </>

@@ -2,6 +2,7 @@ import styles from "./DailyHintModal.module.css";
 import { nunito, ptSans } from "@/fonts";
 import { XIcon } from "lucide-react";
 import { dailyHints } from "@/lib/hints";
+import PullupSVG from "../PullupSVG";
 
 interface DailyHintModalProps {
   onClose: React.MouseEventHandler<HTMLButtonElement>;
@@ -16,6 +17,9 @@ const DailyHintModal = ({ onClose, dayNumber }: DailyHintModalProps) => {
   return (
     <div id="dailyHintModal" className={styles.modal}>
       <div className={styles.modalContent}>
+        <div className={styles.svgContainer}>
+          <PullupSVG />
+        </div>
         <h1 className={styles.headerText} style={nunito.style}>
           Hints
         </h1>
