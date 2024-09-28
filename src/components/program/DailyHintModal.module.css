@@ -33,6 +33,7 @@
   grid-template-areas:
     "svgContainer headerText closeButton"
     "hintList hintList hintList";
+  row-gap: 0.75rem;
   justify-items: center;
   align-items: center;
   background-color: #fefefe;
@@ -49,7 +50,7 @@
   width: var(--modal-close-button-font-size);
   grid-area: svgContainer;
   padding: 0.25rem;
-  align-self: baseline;
+  align-self: center;
 }
 
 .modalText {
@@ -75,7 +76,7 @@
 
 .closeButton {
   grid-area: closeButton;
-  align-self: baseline;
+  align-self: center;
   color: #aaa;
   font-size: var(--modal-close-button-font-size);
   font-weight: bold;

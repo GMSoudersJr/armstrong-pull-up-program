@@ -20,9 +20,9 @@ const DailyHintModal = ({ onClose, dayNumber }: DailyHintModalProps) => {
         <div className={styles.svgContainer}>
           <PullupSVG />
         </div>
-        <h1 className={styles.headerText} style={nunito.style}>
-          Hints
-        </h1>
+        <h2 className={styles.headerText} style={nunito.style}>
+          HOW?
+        </h2>
         <ol className={styles.hintList} style={ptSans.style}>
           {dailyHint.hints.map((hint, i) => {
             return (
