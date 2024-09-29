@@ -10,7 +10,7 @@ export const defaultMetadata: Metadata = {
     template: "%s | Armstrong Pull-up Program App",
   },
   description:
-    "A progressive web app that is based on the Armstrong Pull-up Program. It increases your maximum number of pullups with a 5-day training routine.",
+    "Achieve your pull-up goals with our app! Follow the Armstrong Pull-up Program's 5-day routine, track your progress, and stay motivated. Start your fitness journey today!",
   applicationName: "Armstrong Pull-up Program",
   keywords: [
     "pull-ups",
@@ -20,6 +20,11 @@ export const defaultMetadata: Metadata = {
     "health & fitness",
     "progressive web app",
     "pull-up program",
+    "armstrong pull-up program",
+    "Armstrong pull-up program",
+    "armstrong pull up program",
+    "Armstrong pull up program",
+    "pull-up routine",
   ],
   openGraph: {
     type: "website",
@@ -27,7 +32,7 @@ export const defaultMetadata: Metadata = {
     siteName: "Armstrong Pull-up Program App",
     title: "Armstrong Pull-up Program App",
     description:
-      "A progressive web app that is based on the Armstrong Pull-up Program. It increases your maximum number of pullups with a 5-day training routine.",
+      "Achieve your pull-up goals with our app! Follow the Armstrong Pull-up Program's 5-day routine, track your progress, and stay motivated. Start your fitness journey today!",
     images: [
       {
         url: "/images/opengraph-wide-1080x473.png",

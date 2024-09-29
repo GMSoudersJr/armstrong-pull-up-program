@@ -4,7 +4,7 @@
   "id": "/program",
   "name": "Armstrong Pull-up Program App",
   "short_name": "Pull-up App",
-  "description": "A PWA based on the Armstrong Pull-up Program. A program that increases your max through a 5 consecutive day routine of push-ups and pull-ups.",
+  "description": "Achieve your pull-up goals with our app! Follow the Armstrong Pull-up Program's 5-day routine, track your progress, and stay motivated. Start your fitness journey today!",
   "start_url": "/program",
   "scope": "/",
   "display": "standalone",
