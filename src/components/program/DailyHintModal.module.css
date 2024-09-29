@@ -11,16 +11,16 @@
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.8);
 
-  animation: showDailyHintModal 1s forwards ease-in-out;
+  animation: showDailyHintModal 0.5s forwards ease-in-out;
 }
 
 @keyframes showDailyHintModal {
   from {
-    top: -100%;
+    left: 100%;
   }
 
   to {
-    top: 0%;
+    left: 0%;
   }
 }
 
