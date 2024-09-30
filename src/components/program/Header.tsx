@@ -11,7 +11,7 @@ export default function Header() {
       </div>
       <h2 style={nunito.style}>
         <strong>
-          <Link href={"/"}>PULL-UP PROGRAM</Link>
+          <Link href={"/"}>PULLUP PROGRAM</Link>
         </strong>
       </h2>
       <div className={styles.iconWrapper}>
