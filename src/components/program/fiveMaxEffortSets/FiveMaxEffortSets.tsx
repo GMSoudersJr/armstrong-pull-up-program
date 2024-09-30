@@ -30,11 +30,7 @@ const FiveMaxEffortSets = ({ dayNumber }: FiveMaxEffortSetsProps) => {
 
   return (
     <section className={styles.repInfoSection}>
-      {repsArray.length > 0 && (
-        <div className={styles.setInfo}>
-          <SetsTable repsArray={repsArray} />
-        </div>
-      )}
+      {repsArray.length > 0 && <SetsTable repsArray={repsArray} />}
       {dayComplete ? (
         <DayComplete
           setStateForSavedDay={setSavedDay}
