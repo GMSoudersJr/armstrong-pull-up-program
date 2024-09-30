@@ -1,6 +1,7 @@
 .overallProgressSection {
   width: 17rem;
   overflow-y: scroll;
+  scrollbar-width: none;
 }
 
 .overallProgressSection::-webkit-scrollbar {
