@@ -8,7 +8,7 @@ interface SetsTableProps {
 const SetsTable = ({ repsArray }: SetsTableProps) => {
   return (
     <table className={styles.table}>
-      <tbody className={styles.tableBody}>
+      <thead className={styles.tableHead}>
         <tr className={styles.tableRow}>
           {repsArray.map((reps, i) => {
             return (
@@ -22,6 +22,8 @@ const SetsTable = ({ repsArray }: SetsTableProps) => {
             );
           })}
         </tr>
+      </thead>
+      <tbody className={styles.tableBody}>
         <tr className={styles.tableRow}>
           {repsArray.map((reps, i) => {
             return (
