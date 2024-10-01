@@ -1,7 +1,7 @@
 "use client";
 
 import { DownloadIcon } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import styles from "./InstallPWAButton.module.css";
 import { nunito } from "@/fonts";
 
@@ -15,19 +15,28 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 const InstallPWAButton = () => {
-  let deferredPrompt: BeforeInstallPromptEvent | null;
+  const deferredPrompt = useRef<BeforeInstallPromptEvent | null>(null);
 
   useEffect(() => {
-    window.addEventListener("beforeinstallprompt", (event: Event) => {
+    const handleBeforeInstallPrompt = (event: Event) => {
       event.preventDefault();
-      deferredPrompt = event as BeforeInstallPromptEvent;
-    });
+      deferredPrompt.current = event as BeforeInstallPromptEvent;
+    };
+
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handleBeforeInstallPrompt,
+      );
+    };
   }, []);
 
   async function handleInstall() {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const { outcome } = await deferredPrompt?.userChoice;
+    if (deferredPrompt.current) {
+      deferredPrompt.current.prompt();
+      const { outcome } = await deferredPrompt.current.userChoice;
       if (outcome === "accepted") {
         console.log("User accepted the install prompt");
       } else if (outcome === "dismissed") {
