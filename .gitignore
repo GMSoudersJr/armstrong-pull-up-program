@@ -38,3 +38,8 @@ next-env.d.ts
 # serwist
 public/sw*
 public/swe-worker*
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
