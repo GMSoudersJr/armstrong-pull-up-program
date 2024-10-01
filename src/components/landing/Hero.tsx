@@ -13,7 +13,7 @@ const Hero = () => {
         <h3 style={nunito.style}>
           Use the Armstrong Pull-up Program to achieve your pull-up goals!
         </h3>
-        <PageLink label="GET STARTED!" path="/program" />
+        <PageLink label="learn more" path="/#features" />
       </div>
 
       <div className={styles.heroRight}>

@@ -9,5 +9,5 @@
 }
 
 .pageLink:hover {
-  color: #0074d9;
+  color: var(--blue);
 }
