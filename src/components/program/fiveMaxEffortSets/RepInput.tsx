@@ -68,6 +68,7 @@ const RepInput = ({
       <div className={styles.numericInputContainer}>
         <span className={styles.spanInput}>
           <button
+            id="decrement-button"
             type="button"
             onClick={handleDecrement}
             className={`${styles.button} ${styles.decrement} actionButton`}
@@ -90,6 +91,7 @@ const RepInput = ({
             disabled={showTimerModalState}
           />
           <button
+            id="increment-button"
             type="button"
             onClick={handleIncrement}
             className={`${styles.button} ${styles.increment} actionButton`}

@@ -11,6 +11,9 @@ export class LandingPage {
   readonly featuresHeader: Locator;
   readonly testimonialsHeader: Locator;
   readonly overviewHeader: Locator;
+  readonly appInstallationHeader: Locator;
+  readonly mostDevicesHeader: Locator;
+  readonly iOSDevicesHeader: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -23,6 +26,11 @@ export class LandingPage {
     this.featuresHeader = page.locator("h1", { hasText: "Features" });
     this.testimonialsHeader = page.locator("h1", { hasText: "Testimonials" });
     this.overviewHeader = page.locator("h1", { hasText: "Overview" });
+    this.appInstallationHeader = page.locator("h1", {
+      hasText: "APP INSTALLATION",
+    });
+    this.mostDevicesHeader = page.locator("h2", { hasText: "MOST DEVICES" });
+    this.iOSDevicesHeader = page.locator("h2", { hasText: "iOS DEVICES" });
   }
 
   async goto() {
