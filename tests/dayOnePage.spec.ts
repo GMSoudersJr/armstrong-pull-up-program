@@ -12,6 +12,7 @@ test("expect correct elements", async ({ page }) => {
   await expect(dayOnePage.hintButton).toBeEnabled();
   await expect(dayOnePage.progressBar).toBeVisible();
   await expect(dayOnePage.repInput).toBeVisible();
+  await expect(dayOnePage.repInput).toBeEnabled();
   await expect(dayOnePage.decrementRepButton).toBeVisible();
   await expect(dayOnePage.decrementRepButton).toBeDisabled();
   await expect(dayOnePage.incrementRepButton).toBeVisible();

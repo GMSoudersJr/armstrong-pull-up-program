@@ -3,12 +3,14 @@ import styles from "./RepeatDayButton.module.css";
 import { nunito } from "@/fonts";
 
 interface RepeatDayButtonProps {
+  id: string;
   name?: string;
   dayNumber: number;
   setStateForMostDifficultDay: Dispatch<SetStateAction<number>>;
 }
 
 const RepeatDayButton = ({
+  id,
   name,
   dayNumber,
   setStateForMostDifficultDay,
@@ -19,6 +21,7 @@ const RepeatDayButton = ({
 
   return (
     <button
+      id={id}
       type="button"
       className={`${styles.repeatDayButton} actionButton`}
       onClick={handleClick}

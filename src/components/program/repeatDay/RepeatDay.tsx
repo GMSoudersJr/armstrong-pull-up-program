@@ -28,6 +28,7 @@ const RepeatDay = ({ dayNumber }: RepeatDayProps) => {
             {REPEATABLE_DAYS.map((day, i) => {
               return (
                 <RepeatDayButton
+                  id={day.id}
                   key={day.path}
                   name={day.name}
                   setStateForMostDifficultDay={setMostDifficultDay}
