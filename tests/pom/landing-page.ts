@@ -1,4 +1,8 @@
+import { socials } from "@/lib/socials";
 import { expect, type Locator, type Page } from "@playwright/test";
+
+const githubAlt = socials.filter((social) => (social.id = "github"))[0].alt;
+const linkedInAlt = socials.filter((social) => (social.id = "linkedIn"))[0].alt;
 
 export class LandingPage {
   readonly page: Page;
@@ -14,6 +18,11 @@ export class LandingPage {
   readonly appInstallationHeader: Locator;
   readonly mostDevicesHeader: Locator;
   readonly iOSDevicesHeader: Locator;
+  readonly pdfSourceLink: Locator;
+  readonly suitYourselfLink: Locator;
+  readonly githubIcon: Locator;
+  readonly linkedInIcon: Locator;
+  readonly copyrightSection: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -31,6 +40,11 @@ export class LandingPage {
     });
     this.mostDevicesHeader = page.locator("h2", { hasText: "MOST DEVICES" });
     this.iOSDevicesHeader = page.locator("h2", { hasText: "iOS DEVICES" });
+    this.pdfSourceLink = page.locator("a", { hasText: "pdf source material" });
+    this.suitYourselfLink = page.locator("a", { hasText: "suit yourself" });
+    this.githubIcon = page.getByAltText(githubAlt);
+    this.linkedInIcon = page.getByAltText(linkedInAlt);
+    this.copyrightSection = page.locator("section#copyright");
   }
 
   async goto() {
