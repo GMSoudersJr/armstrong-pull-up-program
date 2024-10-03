@@ -10,10 +10,10 @@ test("expect correct elements", async ({ page }) => {
   await expect(dayThreePage.recoveryHeading).toBeVisible();
   await expect(dayThreePage.hintButton).toBeVisible();
   await expect(dayThreePage.hintButton).toBeEnabled();
-  await expect(dayThreePage.decrementRepButton).toBeVisible();
-  await expect(dayThreePage.decrementRepButton).toBeDisabled();
   await expect(dayThreePage.repInput).toBeVisible();
   await expect(dayThreePage.repInput).toBeEnabled();
+  await expect(dayThreePage.decrementRepButton).toBeVisible();
+  await expect(dayThreePage.decrementRepButton).toBeDisabled();
   await expect(dayThreePage.incrementRepButton).toBeVisible();
   await expect(dayThreePage.incrementRepButton).toBeEnabled();
   await expect(dayThreePage.submitButton).toBeVisible();

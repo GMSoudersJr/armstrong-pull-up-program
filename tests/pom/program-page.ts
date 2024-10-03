@@ -9,11 +9,11 @@ export class ProgramPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.homeLink = page.locator("a", { hasText: "PULLUP PROGRAM" });
-    this.getStartedHeader = page.locator("h1", { hasText: "GET STARTED" });
-    this.dayLink = page.locator("a", { hasText: "DAY" });
+    this.homeLink = page.getByRole("link", { name: "PULLUP PROGRAM" });
+    this.getStartedHeader = page.getByRole("heading", { name: "GET STARTED" });
+    this.dayLink = page.getByRole("link", { name: /DAY [1-5]/ });
     // This is the get started link from the landing page
-    this.getStartedLink = page.locator("a", { hasText: "GET STARTED" });
+    this.getStartedLink = page.getByRole("link", { name: "GET STARTED" });
   }
 
   async goto() {

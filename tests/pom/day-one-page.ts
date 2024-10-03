@@ -13,6 +13,7 @@ export class DayOnePage {
   readonly decrementRepButton: Locator;
   readonly incrementRepButton: Locator;
   readonly repInput: Locator;
+  readonly repInputLabel: Locator;
   readonly repsRemoveButton: Locator;
   readonly repsCompleteButton: Locator;
   readonly setsTable: Locator;
@@ -20,15 +21,16 @@ export class DayOnePage {
 
   constructor(page: Page) {
     this.page = page;
-    this.homeLink = page.locator("a", { hasText: `PULLUP PROGRAM` });
-    this.dayHeading = page.locator("h1", { hasText: `${DAY_ONE.label}` });
-    this.exerciseHeading = page.locator("h2", {
-      hasText: `${DAY_ONE.heading2}`,
+    this.homeLink = page.getByRole("link", { name: `PULLUP PROGRAM` });
+    this.dayHeading = page.getByRole("heading", { name: `${DAY_ONE.label}` });
+    this.exerciseHeading = page.getByRole("heading", {
+      name: `${DAY_ONE.heading2}`,
     });
-    this.recoveryHeading = page.locator("h3", {
-      hasText: `${DAY_ONE.heading3}`,
+    this.recoveryHeading = page.getByRole("heading", {
+      name: `${DAY_ONE.heading3}`,
     });
-    this.repInput = page.locator("input");
+    this.repInputLabel = page.getByRole("heading", { name: /SET [1-5] REPS/ });
+    this.repInput = page.getByLabel(/SET [1-5] REPS/);
     this.hintButton = page.locator("button#hint-button");
     this.decrementRepButton = page.locator("button#decrement-button");
     this.incrementRepButton = page.locator("button#increment-button");
@@ -40,5 +42,21 @@ export class DayOnePage {
 
   async goto() {
     await this.page.goto(`${DAY_ONE.path}`);
+  }
+
+  async pressPlusIcon(numberOfTimes?: number): Promise<void> {
+    await this.incrementRepButton.click({ clickCount: numberOfTimes || 1 });
+  }
+
+  async pressMinusIcon(numberOfTimes?: number): Promise<void> {
+    await this.decrementRepButton.click({ clickCount: numberOfTimes || 1 });
+  }
+
+  async pressEraseSet(numberOfTimes?: number) {
+    await this.repsRemoveButton.click({ clickCount: numberOfTimes || 1 });
+  }
+
+  async pressCompleteSet(numberOfTimes?: number) {
+    await this.repsCompleteButton.click({ clickCount: numberOfTimes || 1 });
   }
 }

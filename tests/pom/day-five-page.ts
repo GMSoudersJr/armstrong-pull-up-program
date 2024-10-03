@@ -1,10 +1,10 @@
 import type { Locator, Page } from "@playwright/test";
 import { DAYS } from "@/const";
 
-const dayOneId = DAYS.filter((day) => day.number === 1)[0].id;
-const dayTwoId = DAYS.filter((day) => day.number === 2)[0].id;
-const dayThreeId = DAYS.filter((day) => day.number === 3)[0].id;
-const dayFourId = DAYS.filter((day) => day.number === 4)[0].id;
+const dayOneLabel = DAYS.filter((day) => day.number === 1)[0].label;
+const dayTwoLabel = DAYS.filter((day) => day.number === 2)[0].label;
+const dayThreeLabel = DAYS.filter((day) => day.number === 3)[0].label;
+const dayFourLabel = DAYS.filter((day) => day.number === 4)[0].label;
 const DAY_FIVE = DAYS.filter((day) => day.number === 5)[0];
 
 export class DayFivePage {
@@ -21,19 +21,19 @@ export class DayFivePage {
 
   constructor(page: Page) {
     this.page = page;
-    this.homeLink = page.locator("a", { hasText: `PULLUP PROGRAM` });
-    this.dayHeading = page.locator("h1", { hasText: `${DAY_FIVE.label}` });
-    this.heading2 = page.locator("h2", {
-      hasText: `${DAY_FIVE.heading2}`,
+    this.homeLink = page.getByRole("link", { name: `PULLUP PROGRAM` });
+    this.dayHeading = page.getByRole("heading", { name: `${DAY_FIVE.label}` });
+    this.heading2 = page.getByRole("heading", {
+      name: `${DAY_FIVE.heading2}`,
     });
-    this.heading3 = page.locator("h3", {
-      hasText: `${DAY_FIVE.heading3}`,
+    this.heading3 = page.getByRole("heading", {
+      name: `${DAY_FIVE.heading3}`,
     });
     this.hintButton = page.locator("button#hint-button");
-    this.dayOneButton = page.locator(`button#${dayOneId}`);
-    this.dayTwoButton = page.locator(`button#${dayTwoId}`);
-    this.dayThreeButton = page.locator(`button#${dayThreeId}`);
-    this.dayFourButton = page.locator(`button#${dayFourId}`);
+    this.dayOneButton = page.getByRole("button", { name: dayOneLabel });
+    this.dayTwoButton = page.getByRole("button", { name: dayTwoLabel });
+    this.dayThreeButton = page.getByRole("button", { name: dayThreeLabel });
+    this.dayFourButton = page.getByRole("button", { name: dayFourLabel });
   }
 
   async goto() {

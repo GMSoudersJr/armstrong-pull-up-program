@@ -20,21 +20,21 @@ export class DayThreePage {
 
   constructor(page: Page) {
     this.page = page;
-    this.homeLink = page.locator("a", { hasText: `PULLUP PROGRAM` });
-    this.dayHeading = page.locator("h1", { hasText: `${DAY_THREE.label}` });
-    this.exerciseHeading = page.locator("h2", {
-      hasText: `${DAY_THREE.heading2}`,
+    this.homeLink = page.getByRole("link", { name: `PULLUP PROGRAM` });
+    this.dayHeading = page.getByRole("heading", { name: `${DAY_THREE.label}` });
+    this.exerciseHeading = page.getByRole("heading", {
+      name: `${DAY_THREE.heading2}`,
     });
-    this.recoveryHeading = page.locator("h3", {
-      hasText: `${DAY_THREE.heading3}`,
+    this.recoveryHeading = page.getByRole("heading", {
+      name: `${DAY_THREE.heading3}`,
     });
-    this.repInput = page.locator("input");
+    this.repInput = page.getByLabel("TRAINING SET REPS");
     this.hintButton = page.locator("button#hint-button");
     this.decrementRepButton = page.locator("button#decrement-button");
     this.incrementRepButton = page.locator("button#increment-button");
     this.repsRemoveButton = page.locator("button#reps-remove-button");
     this.repsCompleteButton = page.locator("button#reps-complete-button");
-    this.submitButton = page.locator("button", { hasText: "Submit" });
+    this.submitButton = page.getByRole("button", { name: "Submit" });
     this.progressBar = page.getByRole("progressbar");
   }
 

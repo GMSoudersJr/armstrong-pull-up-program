@@ -15,7 +15,7 @@ test("should have correct links", async ({ page }) => {
   await expect(landingPage.linkedInIcon).toBeVisible();
 });
 
-test("should have correct headers", async ({ page }) => {
+test("should have correct headers / sections", async ({ page }) => {
   const landingPage = new LandingPage(page);
   await landingPage.goto();
   await expect(landingPage.featuresHeader).toBeVisible();

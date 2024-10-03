@@ -17,17 +17,19 @@ export class DayTwoPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.homeLink = page.locator("a", { hasText: `PULLUP PROGRAM` });
-    this.dayHeading = page.locator("h1", { hasText: `${DAY_TWO.label}` });
-    this.exerciseHeading = page.locator("h2", {
-      hasText: `${DAY_TWO.heading2}`,
+    this.homeLink = page.getByRole("link", { name: `PULLUP PROGRAM` });
+    this.dayHeading = page.getByRole("heading", { name: `${DAY_TWO.label}` });
+    this.exerciseHeading = page.getByRole("heading", {
+      name: `${DAY_TWO.heading2}`,
     });
-    this.recoveryHeading = page.locator("h3", {
-      hasText: `${DAY_TWO.heading3}`,
+    this.recoveryHeading = page.getByRole("heading", {
+      name: `${DAY_TWO.heading3}`,
     });
     this.hintButton = page.locator("button#hint-button");
     this.pyramid = page.getByRole("list");
-    this.repsHeading = page.locator("h2#reps-heading");
+    this.repsHeading = page.getByRole("heading", {
+      name: /DO [1-9][0-9]? REPS?/,
+    });
     this.missSetbutton = page.locator("button#miss-set-button");
     this.repsCompleteButton = page.locator("button#reps-complete-button");
   }
