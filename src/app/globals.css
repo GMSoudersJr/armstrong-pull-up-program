@@ -124,3 +124,14 @@ button.actionButton:active {
 button.actionButton:disabled:active {
   filter: brightness(100%);
 }
+
+.visibly-hidden {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 10px;
+  position: absolute;
+  padding: 0;
+  overflow: hidden;
+  margin: -1px;
+}

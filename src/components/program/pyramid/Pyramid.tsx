@@ -44,7 +44,11 @@ const Pyramid = ({ dayNumber }: PyramidProps) => {
         />
       ) : (
         <>
-          <h2 className={styles.doRepsText} style={nunito.style}>
+          <h2
+            id="reps-heading"
+            className={styles.doRepsText}
+            style={nunito.style}
+          >
             {missed
               ? `How many did you do?`
               : showMaxoutNumbers

@@ -58,6 +58,7 @@ const TrainingSetRepsInput = ({
       <div className={styles.numericInputContainer}>
         <div className={styles.spanInput}>
           <button
+            id="decrement-button"
             type="button"
             onClick={handleDecrement}
             className={`${styles.button} ${styles.decrement} actionButton`}
@@ -79,6 +80,7 @@ const TrainingSetRepsInput = ({
             onKeyUp={handleKeyUp}
           />
           <button
+            id="increment-button"
             type="button"
             onClick={handleIncrement}
             className={`${styles.button} ${styles.increment} actionButton`}
@@ -89,6 +91,7 @@ const TrainingSetRepsInput = ({
           </button>
         </div>
         <button
+          id="submit-button"
           type="button"
           className={styles.repsSubmitButton}
           style={nunito.style}

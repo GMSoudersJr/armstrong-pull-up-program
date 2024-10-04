@@ -9,7 +9,9 @@ const FINAL_STEPS = [
   "Click rotating check icon.",
 ];
 
-export const dailyHints: TDailyHint[] = [
+export const HINT_MODAL_HEADING = "HOW?";
+
+export const DAILY_HINTS: TDailyHint[] = [
   {
     dayNumber: 1,
     hints: [

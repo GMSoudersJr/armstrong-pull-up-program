@@ -3,10 +3,11 @@ import styles from "./Navbar.module.css";
 import Link from "next/link";
 import { BicepsFlexedIcon } from "lucide-react";
 
-const SECTIONS = [
+const NAV_LINKS = [
   {
     path: "/#home",
     label: "Armstrong Pull-up program",
+    sr_only: "home",
   },
   {
     path: "/#features",
@@ -26,18 +27,21 @@ const LandingNavbar = () => {
   return (
     <nav className={styles.navbar}>
       <ul className={styles.navList}>
-        {SECTIONS.map((section) => {
+        {NAV_LINKS.map((navLink) => {
           return (
             <li
-              key={section.path}
+              key={navLink.path}
               className={styles.navListitem}
               style={nunito.style}
             >
-              <Link href={section.path} scroll={true}>
-                {section.path === "/#home" ? (
-                  <BicepsFlexedIcon size={"0.698rem"} />
+              <Link href={navLink.path} scroll={true}>
+                {navLink.path === "/#home" ? (
+                  <>
+                    <BicepsFlexedIcon size={"0.698rem"} />
+                    <span className="visibly-hidden">home</span>
+                  </>
                 ) : (
-                  section.label.toUpperCase()
+                  navLink.label.toUpperCase()
                 )}
               </Link>
             </li>

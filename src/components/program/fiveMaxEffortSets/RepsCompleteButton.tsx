@@ -26,6 +26,7 @@ const RepsCompleteButton = ({
   return (
     <>
       <button
+        id="reps-complete-button"
         type="button"
         onClick={handleComplete}
         className={`${styles.button} ${styles.completeButton} actionButton`}
