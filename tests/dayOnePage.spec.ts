@@ -1,5 +1,6 @@
 import { DayOnePage } from "./pom/day-one-page";
 import { test, expect } from "@playwright/test";
+import { DAY_COMPLETE_MESSAGES } from "@/lib/strings/dayComplete";
 
 test("expect correct elements", async ({ page }) => {
   const dayOnePage = new DayOnePage(page);
@@ -81,4 +82,37 @@ test("timer modal functionality", async ({ page }) => {
   await expect(dayOnePage.repsRemoveButton).toBeEnabled();
   await expect(dayOnePage.repsCompleteButton).toBeVisible();
   await expect(dayOnePage.repsCompleteButton).toBeEnabled();
+});
+
+test("expect timer completes", async ({ page }) => {
+  test.setTimeout(100 * 1_000);
+  const dayOnePage = new DayOnePage(page);
+  await dayOnePage.goto();
+  await dayOnePage.pressCompleteSetButton();
+  await expect(dayOnePage.timerModal).toBeVisible();
+  await dayOnePage.waitForTimerModal();
+  await expect(dayOnePage.timerModal).not.toBeVisible();
+});
+
+test("expect complete day elements", async ({ page }) => {
+  const dayOnePage = new DayOnePage(page);
+  await dayOnePage.goto();
+  await dayOnePage.pressPlusIcon(3);
+  for (let i = 0; i < 4; i++) {
+    await dayOnePage.pressCompleteSetButton();
+    await dayOnePage.timerModalCloseButton.waitFor({ state: "visible" });
+    await dayOnePage.closeTimerModal();
+  }
+  await dayOnePage.pressCompleteSetButton();
+  await expect(dayOnePage.dayCompleteArea).toBeVisible();
+  await expect(dayOnePage.thumbsUpIconWrapper).toBeVisible();
+  await expect(dayOnePage.dayCompleteTotalReps).toBeVisible();
+  await expect(dayOnePage.dayCompleteMessage).toBeHidden();
+  await expect(dayOnePage.dayCompleteSaveProgressMessage).toBeVisible();
+  await expect(dayOnePage.dayCompleteSaveButton).toBeVisible();
+  await expect(dayOnePage.dayCompleteSaveButton).toBeEnabled();
+  await dayOnePage.saveTheWorkout();
+  await expect(dayOnePage.dayCompleteMessage).toBeVisible();
+  await expect(dayOnePage.dayCompleteSaveProgressMessage).toBeHidden();
+  await expect(dayOnePage.dayCompleteGoBackLink).toBeVisible();
 });
