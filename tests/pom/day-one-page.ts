@@ -1,5 +1,6 @@
 import type { Locator, Page } from "@playwright/test";
 import { DAYS } from "@/const";
+import { HINT_MODAL_HEADING } from "@/lib/hints";
 
 const DAY_ONE = DAYS.filter((day) => day.number === 1)[0];
 
@@ -9,7 +10,7 @@ export class DayOnePage {
   readonly dayHeading: Locator;
   readonly exerciseHeading: Locator;
   readonly recoveryHeading: Locator;
-  readonly hintButton: Locator;
+  readonly dailyHintButton: Locator;
   readonly decrementRepButton: Locator;
   readonly incrementRepButton: Locator;
   readonly repInput: Locator;
@@ -18,6 +19,20 @@ export class DayOnePage {
   readonly repsCompleteButton: Locator;
   readonly setsTable: Locator;
   readonly progressBar: Locator;
+
+  readonly dailyHintModal: Locator;
+  readonly dailyHintModalContent: Locator;
+  readonly dailyHintModalSVG: Locator;
+  readonly dailyHintModalCloseButton: Locator;
+  readonly dailyHintModalHeading: Locator;
+  readonly dailyHintModalHintList: Locator;
+
+  readonly timerModal: Locator;
+  readonly timerModalContent: Locator;
+  readonly timerModalTimerContainer: Locator;
+  readonly timerModalHeading: Locator;
+  readonly timerModalTimerMessage: Locator;
+  readonly timerModalCloseButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -31,13 +46,40 @@ export class DayOnePage {
     });
     this.repInputLabel = page.getByRole("heading", { name: /SET [1-5] REPS/ });
     this.repInput = page.getByLabel(/SET [1-5] REPS/);
-    this.hintButton = page.locator("button#hint-button");
+    this.dailyHintButton = page.locator("button#hint-button");
     this.decrementRepButton = page.locator("button#decrement-button");
     this.incrementRepButton = page.locator("button#increment-button");
     this.repsRemoveButton = page.locator("button#reps-remove-button");
     this.repsCompleteButton = page.locator("button#reps-complete-button");
     this.setsTable = page.getByRole("table");
     this.progressBar = page.getByRole("progressbar");
+
+    this.dailyHintModal = page.locator("div#daily-hint-modal");
+    this.dailyHintModalContent = page.locator("div#daily-hint-modal-content");
+    this.dailyHintModalSVG = page.locator("div#daily-hint-modal-svg-container");
+    this.dailyHintModalHeading = page.getByRole("heading", {
+      name: HINT_MODAL_HEADING,
+    });
+    this.dailyHintModalCloseButton = page.locator(
+      "button#daily-hint-modal-close-button",
+    );
+    this.dailyHintModalHintList = page.locator("ol#daily-hint-modal-list");
+
+    this.timerModal = page.locator("div#timer-modal");
+    this.timerModalContent = page.locator("div#timer-modal-content");
+    this.timerModalTimerContainer = page.locator(
+      "div#timer-modal-heading-container",
+    );
+    this.timerModalHeading = page.getByRole("heading", {
+      name: "Recovery",
+      exact: true,
+    });
+    this.timerModalTimerMessage = page.getByRole("heading", {
+      name: /Next set in [1-9][0-9]? second!?s?/,
+    });
+    this.timerModalCloseButton = page.getByRole("button", {
+      name: "close timer",
+    });
   }
 
   async goto() {
@@ -56,7 +98,19 @@ export class DayOnePage {
     await this.repsRemoveButton.click({ clickCount: numberOfTimes || 1 });
   }
 
-  async pressCompleteSet(numberOfTimes?: number) {
+  async pressCompleteSetButton(numberOfTimes?: number) {
     await this.repsCompleteButton.click({ clickCount: numberOfTimes || 1 });
+  }
+
+  async pressDailyHintButton() {
+    await this.dailyHintButton.click();
+  }
+
+  async closeHintModal() {
+    await this.dailyHintModalCloseButton.click();
+  }
+
+  async closeTimerModal() {
+    await this.timerModalCloseButton.click();
   }
 }
