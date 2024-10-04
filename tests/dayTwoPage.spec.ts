@@ -8,8 +8,8 @@ test("expect correct elements", async ({ page }) => {
   await expect(dayTwoPage.dayHeading).toBeVisible();
   await expect(dayTwoPage.exerciseHeading).toBeVisible();
   await expect(dayTwoPage.recoveryHeading).toBeVisible();
-  await expect(dayTwoPage.hintButton).toBeVisible();
-  await expect(dayTwoPage.hintButton).toBeEnabled();
+  await expect(dayTwoPage.dailyHintButton).toBeVisible();
+  await expect(dayTwoPage.dailyHintButton).toBeEnabled();
   await expect(dayTwoPage.pyramid).not.toBeVisible();
   await expect(dayTwoPage.repsHeading).toBeVisible();
   await expect(dayTwoPage.missSetbutton).toBeVisible();
