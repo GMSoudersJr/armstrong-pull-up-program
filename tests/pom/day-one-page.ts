@@ -1,14 +1,14 @@
 import type { Locator, Page } from "@playwright/test";
 import { DAYS } from "@/const";
-import { HINT_MODAL_HEADING } from "@/lib/hints";
 import {
   DAY_COMPLETE_MESSAGES,
   CIRCLE_CHECK_BIG_ICON_MESSAGE,
 } from "@/lib/strings/dayComplete";
+import { CDailyHintModal } from "./daily-hint-modal";
 
 const DAY_ONE = DAYS.filter((day) => day.number === 1)[0];
 
-export class DayOnePage {
+export class DayOnePage extends CDailyHintModal {
   readonly page: Page;
   readonly getStartedLink: Locator;
   readonly dayOneLink: Locator;
@@ -27,13 +27,6 @@ export class DayOnePage {
   readonly setsTable: Locator;
   readonly progressBar: Locator;
 
-  readonly dailyHintModal: Locator;
-  readonly dailyHintModalContent: Locator;
-  readonly dailyHintModalSVG: Locator;
-  readonly dailyHintModalCloseButton: Locator;
-  readonly dailyHintModalHeading: Locator;
-  readonly dailyHintModalHintList: Locator;
-
   readonly timerModal: Locator;
   readonly timerModalContent: Locator;
   readonly timerModalTimerContainer: Locator;
@@ -50,6 +43,7 @@ export class DayOnePage {
   readonly dayCompleteGoBackLink: Locator;
 
   constructor(page: Page) {
+    super(page);
     this.page = page;
     this.getStartedLink = page.getByRole("link", { name: "Get Started!" });
     this.dayOneLink = page.getByRole("link", { name: "DAY 1" });
@@ -71,17 +65,6 @@ export class DayOnePage {
     this.repsCompleteButton = page.locator("button#reps-complete-button");
     this.setsTable = page.getByRole("table");
     this.progressBar = page.getByRole("progressbar");
-
-    this.dailyHintModal = page.locator("div#daily-hint-modal");
-    this.dailyHintModalContent = page.locator("div#daily-hint-modal-content");
-    this.dailyHintModalSVG = page.locator("div#daily-hint-modal-svg-container");
-    this.dailyHintModalHeading = page.getByRole("heading", {
-      name: HINT_MODAL_HEADING,
-    });
-    this.dailyHintModalCloseButton = page.locator(
-      "button#daily-hint-modal-close-button",
-    );
-    this.dailyHintModalHintList = page.locator("ol#daily-hint-modal-list");
 
     this.timerModal = page.locator("div#timer-modal");
     this.timerModalContent = page.locator("div#timer-modal-content");
@@ -117,6 +100,10 @@ export class DayOnePage {
   }
 
   async goto() {
+    await this.page.goto(`${DAY_ONE.path}`);
+  }
+
+  async startUserFlow() {
     await this.page.goto(`/`);
     await this.getStartedLink.click();
     await this.dayOneLink.click();
@@ -142,8 +129,8 @@ export class DayOnePage {
     await this.dailyHintButton.click();
   }
 
-  async closeHintModal(): Promise<void> {
-    await this.dailyHintModalCloseButton.click();
+  async pressGoBackLink(): Promise<void> {
+    await this.dayCompleteGoBackLink.click({ force: true });
   }
 
   async closeTimerModal(): Promise<void> {

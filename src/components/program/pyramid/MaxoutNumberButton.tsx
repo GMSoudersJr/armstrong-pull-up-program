@@ -25,8 +25,9 @@ const MaxoutNumberButton = ({
 
   return (
     <button
+      id={`maxout-${repCount}`}
       type="button"
-      className={styles.numberedButton}
+      className={styles.maxoutNumberedButton}
       style={ptSans.style}
       onClick={handleClick}
       disabled={showTimerModalState}

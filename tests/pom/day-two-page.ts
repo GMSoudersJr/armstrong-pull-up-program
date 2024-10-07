@@ -6,6 +6,9 @@ const DAY_TWO = DAYS.filter((day) => day.number === 2)[0];
 
 export class DayTwoPage {
   readonly page: Page;
+  readonly getStartedLink: Locator;
+  readonly dayTwoLink: Locator;
+
   readonly homeLink: Locator;
   readonly dayHeading: Locator;
   readonly exerciseHeading: Locator;
@@ -15,6 +18,10 @@ export class DayTwoPage {
   readonly missSetbutton: Locator;
   readonly repsCompleteButton: Locator;
   readonly pyramid: Locator;
+  readonly missedSetNumberContainer: Locator;
+  readonly missRepNumberedButtons: Locator;
+  readonly maxoutRepNumberContainer: Locator;
+  readonly maxoutNumberedButtons: Locator;
 
   readonly dailyHintModal: Locator;
   readonly dailyHintModalContent: Locator;
@@ -32,6 +39,9 @@ export class DayTwoPage {
 
   constructor(page: Page) {
     this.page = page;
+    this.getStartedLink = page.getByRole("link", { name: "Get Started!" });
+    this.dayTwoLink = page.getByRole("link", { name: "DAY 2" });
+
     this.homeLink = page.getByRole("link", { name: `PULLUP PROGRAM` });
     this.dayHeading = page.getByRole("heading", { name: `${DAY_TWO.label}` });
     this.exerciseHeading = page.getByRole("heading", {
@@ -47,6 +57,14 @@ export class DayTwoPage {
     });
     this.missSetbutton = page.locator("button#miss-set-button");
     this.repsCompleteButton = page.locator("button#reps-complete-button");
+    this.missedSetNumberContainer = page.locator(
+      "div#pyramid-missed-set-number-container",
+    );
+    this.missRepNumberedButtons = page.getByRole("button", { name: /\d+/ });
+    this.maxoutRepNumberContainer = page.locator(
+      "div#pyramid-maxout-number-container",
+    );
+    this.maxoutNumberedButtons = page.getByRole("button", { name: /\d+/ });
 
     this.dailyHintModal = page.locator("div#daily-hint-modal");
     this.dailyHintModalContent = page.locator("div#daily-hint-modal-content");
@@ -76,27 +94,41 @@ export class DayTwoPage {
     });
   }
 
-  async goto() {
+  async goto(): Promise<void> {
     await this.page.goto(`${DAY_TWO.path}`);
   }
 
-  async pressMissSetButton() {
+  async startUserFlow(): Promise<void> {
+    await this.page.goto(`/`);
+    await this.getStartedLink.click();
+    await this.dayTwoLink.click();
+  }
+
+  async pressMissSetButton(): Promise<void> {
     await this.missSetbutton.click();
   }
 
-  async pressCompleteSetButton(numberOfTimes?: number) {
+  async pressCompleteSetButton(numberOfTimes?: number): Promise<void> {
     await this.repsCompleteButton.click({ clickCount: numberOfTimes || 1 });
   }
 
-  async pressDailyHintButton() {
+  async pressDailyHintButton(): Promise<void> {
     await this.dailyHintButton.click();
   }
 
-  async closeHintModal() {
+  async closeHintModal(): Promise<void> {
     await this.dailyHintModalCloseButton.click();
   }
 
-  async closeTimerModal() {
+  async closeTimerModal(): Promise<void> {
     await this.timerModalCloseButton.click();
+  }
+
+  async pressNumberForMissedSet(repCount: number): Promise<void> {
+    await this.page.locator(`button#miss-${repCount}`).click();
+  }
+
+  async pressNumberForMaxoutSet(repCount: number): Promise<void> {
+    await this.page.locator(`button#maxout-${repCount}`).click();
   }
 }

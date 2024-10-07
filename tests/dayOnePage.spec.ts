@@ -96,7 +96,7 @@ test("expect timer completes", async ({ page }) => {
 
 test("expect complete day elements", async ({ page }) => {
   const dayOnePage = new DayOnePage(page);
-  await dayOnePage.goto();
+  await dayOnePage.startUserFlow();
   await dayOnePage.pressPlusIcon(3);
   for (let i = 0; i < 4; i++) {
     await dayOnePage.pressCompleteSetButton();
@@ -115,4 +115,6 @@ test("expect complete day elements", async ({ page }) => {
   await expect(dayOnePage.dayCompleteMessage).toBeVisible();
   await expect(dayOnePage.dayCompleteSaveProgressMessage).toBeHidden();
   await expect(dayOnePage.dayCompleteGoBackLink).toBeVisible();
+  await dayOnePage.pressGoBackLink();
+  await expect(dayOnePage.dayHeading).not.toBeVisible();
 });
