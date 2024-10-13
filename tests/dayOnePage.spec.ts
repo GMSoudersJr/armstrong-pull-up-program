@@ -1,9 +1,9 @@
 import { DayOnePage } from "./pom/day-one-page";
 import { test, expect } from "@playwright/test";
-import { DAY_COMPLETE_MESSAGES } from "@/lib/strings/dayComplete";
+import { DayOneWorkoutPage } from "./pom/mixins";
 
 test("expect correct elements", async ({ page }) => {
-  const dayOnePage = new DayOnePage(page);
+  const dayOnePage = new DayOneWorkoutPage(page, 1);
   await dayOnePage.goto();
   await expect(dayOnePage.homeLink).toBeVisible();
   await expect(dayOnePage.dayHeading).toBeVisible();
@@ -28,7 +28,7 @@ test("expect correct elements", async ({ page }) => {
 });
 
 test("rep max 100", async ({ page }) => {
-  const dayOnePage = new DayOnePage(page);
+  const dayOnePage = new DayOneWorkoutPage(page, 1);
   await dayOnePage.goto();
   await dayOnePage.pressPlusIcon(100);
   await expect(dayOnePage.repInput).toHaveValue("100");
@@ -37,7 +37,7 @@ test("rep max 100", async ({ page }) => {
 });
 
 test("one set complete", async ({ page }) => {
-  const dayOnePage = new DayOnePage(page);
+  const dayOnePage = new DayOneWorkoutPage(page, 1);
   await dayOnePage.goto();
   await dayOnePage.pressCompleteSetButton();
   await expect(dayOnePage.setsTable).toBeVisible();
@@ -47,7 +47,7 @@ test("one set complete", async ({ page }) => {
 });
 
 test("hint modal functionality", async ({ page }) => {
-  const dayOnePage = new DayOnePage(page);
+  const dayOnePage = new DayOneWorkoutPage(page, 1);
   await dayOnePage.goto();
   await dayOnePage.pressDailyHintButton();
   await expect(dayOnePage.dailyHintModal).toBeVisible();
@@ -62,7 +62,7 @@ test("hint modal functionality", async ({ page }) => {
 });
 
 test("timer modal functionality", async ({ page }) => {
-  const dayOnePage = new DayOnePage(page);
+  const dayOnePage = new DayOneWorkoutPage(page, 1);
   await dayOnePage.goto();
   await dayOnePage.pressCompleteSetButton();
   await expect(dayOnePage.timerModal).toBeVisible();
@@ -86,7 +86,7 @@ test("timer modal functionality", async ({ page }) => {
 
 test("expect timer completes", async ({ page }) => {
   test.setTimeout(100 * 1_000);
-  const dayOnePage = new DayOnePage(page);
+  const dayOnePage = new DayOneWorkoutPage(page, 1);
   await dayOnePage.goto();
   await dayOnePage.pressCompleteSetButton();
   await expect(dayOnePage.timerModal).toBeVisible();
@@ -95,7 +95,7 @@ test("expect timer completes", async ({ page }) => {
 });
 
 test("expect complete day elements", async ({ page }) => {
-  const dayOnePage = new DayOnePage(page);
+  const dayOnePage = new DayOneWorkoutPage(page, 1);
   await dayOnePage.startUserFlow();
   await dayOnePage.pressPlusIcon(3);
   for (let i = 0; i < 4; i++) {
@@ -117,4 +117,9 @@ test("expect complete day elements", async ({ page }) => {
   await expect(dayOnePage.dayCompleteGoBackLink).toBeVisible();
   await dayOnePage.pressGoBackLink();
   await expect(dayOnePage.dayHeading).not.toBeVisible();
+});
+
+test("mixin", async ({ page }) => {
+  const dayOnePage = new DayOneWorkoutPage(page, 2);
+  await dayOnePage.goto();
 });

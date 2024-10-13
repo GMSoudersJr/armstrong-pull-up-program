@@ -23,7 +23,7 @@ test("expect correct elements", async ({ page }) => {
 test("expect pyramid", async ({ page }) => {
   const dayTwoPage = new DayTwoPage(page);
   await dayTwoPage.goto();
-  await expect(dayTwoPage.repsHeading).toHaveText("Do 1 Rep");
+  await expect(dayTwoPage.repsHeading).toHaveText("DO 1 REP");
   await dayTwoPage.pressCompleteSetButton();
   await expect(dayTwoPage.timerModal).toBeVisible();
   await expect(dayTwoPage.timerModalTimerMessage).toHaveText(
@@ -32,7 +32,7 @@ test("expect pyramid", async ({ page }) => {
   await dayTwoPage.closeTimerModal();
   await expect(dayTwoPage.timerModal).not.toBeVisible();
 
-  await expect(dayTwoPage.repsHeading).toHaveText("Do 2 Reps");
+  await expect(dayTwoPage.repsHeading).toHaveText("DO 2 REPS");
   await expect(dayTwoPage.pyramid).toBeVisible();
   await dayTwoPage.pressCompleteSetButton();
   await expect(dayTwoPage.timerModalTimerMessage).toHaveText(
