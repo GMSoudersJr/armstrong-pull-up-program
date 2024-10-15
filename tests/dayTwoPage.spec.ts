@@ -1,8 +1,8 @@
-import { DayTwoPage } from "./pom/day-two-page";
+import { DayTwoWorkoutPage } from "./pom/index";
 import { test, expect } from "@playwright/test";
 
 test("expect correct elements", async ({ page }) => {
-  const dayTwoPage = new DayTwoPage(page);
+  const dayTwoPage = new DayTwoWorkoutPage(page, 2);
   await dayTwoPage.goto();
   await expect(dayTwoPage.homeLink).toBeVisible();
   await expect(dayTwoPage.dayHeading).toBeVisible();
@@ -21,7 +21,7 @@ test("expect correct elements", async ({ page }) => {
 });
 
 test("expect pyramid", async ({ page }) => {
-  const dayTwoPage = new DayTwoPage(page);
+  const dayTwoPage = new DayTwoWorkoutPage(page, 2);
   await dayTwoPage.goto();
   await expect(dayTwoPage.repsHeading).toHaveText("DO 1 REP");
   await dayTwoPage.pressCompleteSetButton();
@@ -43,7 +43,7 @@ test("expect pyramid", async ({ page }) => {
 });
 
 test("expect miss and max rep containers", async ({ page }) => {
-  const dayTwoPage = new DayTwoPage(page);
+  const dayTwoPage = new DayTwoWorkoutPage(page, 2);
   await dayTwoPage.goto();
   for (let i = 0; i < 5; i++) {
     await dayTwoPage.pressCompleteSetButton();

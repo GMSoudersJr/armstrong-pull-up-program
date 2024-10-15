@@ -1,6 +1,5 @@
-import { DayOnePage } from "./pom/day-one-page";
+import { DayOneWorkoutPage } from "./pom/index";
 import { test, expect } from "@playwright/test";
-import { DayOneWorkoutPage } from "./pom/mixins";
 
 test("expect correct elements", async ({ page }) => {
   const dayOnePage = new DayOneWorkoutPage(page, 1);
@@ -117,9 +116,4 @@ test("expect complete day elements", async ({ page }) => {
   await expect(dayOnePage.dayCompleteGoBackLink).toBeVisible();
   await dayOnePage.pressGoBackLink();
   await expect(dayOnePage.dayHeading).not.toBeVisible();
-});
-
-test("mixin", async ({ page }) => {
-  const dayOnePage = new DayOneWorkoutPage(page, 2);
-  await dayOnePage.goto();
 });
