@@ -44,7 +44,11 @@ const Pyramid = ({ dayNumber }: PyramidProps) => {
         />
       ) : (
         <>
-          <h2 className={styles.doRepsText} style={nunito.style}>
+          <h2
+            id="reps-heading"
+            className={styles.doRepsText}
+            style={nunito.style}
+          >
             {missed
               ? `How many did you do?`
               : showMaxoutNumbers
@@ -54,7 +58,10 @@ const Pyramid = ({ dayNumber }: PyramidProps) => {
 
           <div className={styles.actionButtonContainer}>
             {missed ? (
-              <div className={styles.missedSetNumberContainer}>
+              <div
+                id="pyramid-missed-set-number-container"
+                className={styles.missedSetNumberContainer}
+              >
                 {repsArray.map((reps, i) => {
                   return (
                     <NumberedMissRepButton
@@ -73,7 +80,10 @@ const Pyramid = ({ dayNumber }: PyramidProps) => {
                 })}
               </div>
             ) : showMaxoutNumbers ? (
-              <div className={styles.maxoutRepNumberContainer}>
+              <div
+                id="pyramid-maxout-number-container"
+                className={styles.maxoutRepNumberContainer}
+              >
                 {repsArray.slice(0, -1).map((reps, i) => {
                   return (
                     <MaxoutNumberButton
@@ -88,7 +98,7 @@ const Pyramid = ({ dayNumber }: PyramidProps) => {
                 })}
               </div>
             ) : (
-              <section className={styles.actionButtonsContainer}>
+              <section className={styles.makeAndMissButtonsContainer}>
                 <MissSetButton
                   dayAbbreviation={dayAbbreviation}
                   showTimerModalState={showTimerModal}

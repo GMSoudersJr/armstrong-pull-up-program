@@ -19,7 +19,12 @@ const DailyHintButton = ({ dayNumber }: DailyHintButtonProps) => {
 
   return (
     <>
-      <button type="button" onClick={handleClick} className={styles.button}>
+      <button
+        id="hint-button"
+        type="button"
+        onClick={handleClick}
+        className={styles.button}
+      >
         <CircleHelpIcon className={styles.icon} />
       </button>
       {showDailyHintModal &&

@@ -117,18 +117,27 @@ const SetInfo = ({
               showTimerModalState={showTimerModal}
               completedSetCount={completedSetCount}
             />
-            <button
-              type="button"
-              className={`${styles.completeButton} actionButton`}
-              onClick={handleDone}
-              disabled={showTimerModal}
-            >
-              {completedSetCount === 3 ? (
+            {completedSetCount === 3 ? (
+              <button
+                id="next-grip-button"
+                type="button"
+                className={`${styles.completeButton} actionButton`}
+                onClick={handleDone}
+                disabled={showTimerModal}
+              >
                 <ArrowRightToLineIcon className={styles.icon} />
-              ) : (
+              </button>
+            ) : (
+              <button
+                id="complete-set-button"
+                type="button"
+                className={`${styles.completeButton} actionButton`}
+                onClick={handleDone}
+                disabled={showTimerModal}
+              >
                 <CircleCheckIcon className={styles.icon} />
-              )}
-            </button>
+              </button>
+            )}
           </section>
         )}
         {showTimerModal &&

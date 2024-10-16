@@ -31,6 +31,7 @@ const RepsCompleteButton = ({
 
   return (
     <button
+      id="reps-complete-button"
       type="button"
       className={`${styles.pyramidActionButton} actionButton`}
       onClick={handleClick}

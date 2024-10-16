@@ -111,8 +111,9 @@ const NumberedMissRepButton = ({
   return (
     <>
       <button
+        id={`miss-${repCount}`}
         type="button"
-        className={styles.repButton}
+        className={styles.missSetNumberedButton}
         style={ptSans.style}
         onClick={handleClick}
         disabled={showTimerModalState}

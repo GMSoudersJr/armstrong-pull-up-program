@@ -37,7 +37,7 @@ const Footer = () => {
           );
         })}
       </section>
-      <section className={styles.copyright}>
+      <section id="copyright" className={styles.copyright}>
         <CopyrightIcon />
         <p style={ptSans.style}>2024 by Gerald Souders</p>
       </section>
