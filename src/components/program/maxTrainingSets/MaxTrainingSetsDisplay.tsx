@@ -89,6 +89,7 @@ const MaxTrainingSetsDisplay = ({
               showTimerModalState={showTimerModal}
             />
             <button
+              id="complete-set-button"
               type="button"
               className={`${styles.actionButton} actionButton`}
               onClick={handleComplete}

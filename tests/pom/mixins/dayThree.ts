@@ -33,6 +33,12 @@ export function CreateDayThreePOM<
       name: /\w+ SETS: [0-3]/,
     });
     missSetButton = this.page.locator("button#miss-set-button");
+    missSetHeading1 = this.page.getByRole("heading", {
+      name: "How many did you do?",
+    });
+    missSetHeading2 = this.page.getByRole("heading", { name: "Rep Count" });
+    numberedMissRepButtons = this.page.getByRole("button", { name: /\d+/ });
+    zeroMissedRepButton = this.page.getByRole("button", { name: "0" });
     completeSetButton = this.page.locator("button#complete-set-button");
     nextGripButton = this.page.locator("button#next-grip-button");
 
@@ -87,6 +93,10 @@ export function CreateDayThreePOM<
 
     async pressNextGripButton(): Promise<void> {
       await this.nextGripButton.click();
+    }
+
+    async pressZeroRepsButton(): Promise<void> {
+      await this.zeroMissedRepButton.click();
     }
   };
 }

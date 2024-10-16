@@ -139,7 +139,7 @@ test("expect next grip button", async ({ page }) => {
   await expect(dayThreePage.nextGripButton).toBeEnabled();
 });
 
-test("expect miss container", async ({ page }) => {
+test("expect miss section", async ({ page }) => {
   const dayThreePage = new DayThreeWorkoutPage(page, 3);
   await dayThreePage.goto();
   await expect(dayThreePage.repInput).toBeVisible();
@@ -156,7 +156,24 @@ test("expect miss container", async ({ page }) => {
   await expect(dayThreePage.supinatedGripButton).toBeVisible();
   await expect(dayThreePage.supinatedGripButton).toBeEnabled();
   await dayThreePage.pressSupinatedGripButton();
+  await expect(dayThreePage.currentPullupHeading).toBeVisible();
+  await expect(dayThreePage.currentGripSetCount).toBeVisible();
   await dayThreePage.pressMissSetButton();
+  await expect(dayThreePage.missSetHeading1).toBeVisible();
+  await expect(dayThreePage.missSetHeading2).toBeVisible();
+  await expect(dayThreePage.numberedMissRepButtons).toHaveCount(5);
+  await dayThreePage.pressZeroRepsButton();
+  await expect(dayThreePage.timerModal).toBeVisible();
+  await expect(dayThreePage.missSetButton).toBeVisible();
+  await expect(dayThreePage.missSetButton).toBeDisabled();
+  await expect(dayThreePage.completeSetButton).toBeVisible();
+  await expect(dayThreePage.completeSetButton).toBeDisabled();
+  await dayThreePage.closeTimerModal();
+  await expect(dayThreePage.missSetButton).toBeVisible();
+  await expect(dayThreePage.missSetButton).toBeEnabled();
+  await expect(dayThreePage.completeSetButton).toBeVisible();
+  await expect(dayThreePage.completeSetButton).toBeEnabled();
+  await expect(dayThreePage.progressBar).toHaveAttribute("value", "1");
 });
 
 test("expect save workout elements", async ({ page }) => {
