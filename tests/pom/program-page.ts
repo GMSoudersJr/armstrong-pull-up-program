@@ -19,5 +19,10 @@ export class ProgramPage {
   async goto() {
     await this.page.goto("/");
     await this.getStartedLink.click();
+    await this.getStartedHeader.isVisible();
+  }
+
+  async pressDayLink() {
+    await this.dayLink.click();
   }
 }

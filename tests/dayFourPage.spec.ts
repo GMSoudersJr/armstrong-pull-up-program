@@ -9,6 +9,8 @@ test("expect correct input elements", async ({ page }) => {
   await expect(dayFourPage.dayHeading).toBeVisible();
   await expect(dayFourPage.exerciseHeading).toBeVisible();
   await expect(dayFourPage.recoveryHeading).toBeVisible();
+  await expect(dayFourPage.dailyHintButton).toBeVisible();
+  await expect(dayFourPage.dailyHintButton).toBeEnabled();
   await expect(dayFourPage.decrementRepButton).toBeVisible();
   await expect(dayFourPage.decrementRepButton).toBeDisabled();
   await expect(dayFourPage.repInputLabel).toBeVisible();
