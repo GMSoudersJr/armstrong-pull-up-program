@@ -1,4 +1,4 @@
-import { DayTwoWorkoutPage } from "./pom/index";
+import { DayTwoWorkoutPage } from "./pom";
 import { test, expect } from "@playwright/test";
 
 test("expect correct elements", async ({ page }) => {

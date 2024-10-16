@@ -1,4 +1,5 @@
 import { MixinBaseWorkoutPage } from "./mixins/baseWorkoutPage";
+import { CreateDayFivePOM } from "./mixins/dayFive";
 import { CreateDayFourPOM } from "./mixins/dayFour";
 import { CreateDayOnePOM } from "./mixins/dayOne";
 import { CreateDayThreePOM } from "./mixins/dayThree";
@@ -19,5 +20,9 @@ export const DayThreeWorkoutPage = CreateDayThreePOM(
 );
 
 export const DayFourWorkoutPage = CreateDayFourPOM(
+  MixinHintModal(MixinTimerModal(MixinBaseWorkoutPage())),
+);
+
+export const DayFiveWorkoutPage = CreateDayFivePOM(
   MixinHintModal(MixinTimerModal(MixinBaseWorkoutPage())),
 );
