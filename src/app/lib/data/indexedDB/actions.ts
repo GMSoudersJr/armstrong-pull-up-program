@@ -67,6 +67,29 @@ export function getOverallProgess(): Promise<TDayComplete[]> {
   });
 }
 // }}}
+// GET_WEEKLY_PROGESS {{{
+export function getWeeklyProgress(): Promise<TWeek[]> {
+  const open = indexedDB.open(dbName);
+  const storeName: TStoreName = "weeksStore";
+
+  return new Promise((resolve, reject) => {
+    open.onsuccess = () => {
+      db = open.result;
+      let transaction = makeTransaction(storeName, "readonly");
+      if (!transaction) return;
+      const objectStore = transaction.objectStore(storeName);
+      const getAllWeeklyData = objectStore.getAll();
+      getAllWeeklyData.onerror = () => reject(getAllWeeklyData.error);
+
+      transaction.oncomplete = () => {
+        resolve(getAllWeeklyData.result);
+
+        db?.close();
+      };
+    };
+  });
+}
+// }}}
 // GET_WEEK_DATA {{{
 export function getWeekDataForWeekNumber(weekNumber: number): Promise<TWeek> {
   const open = indexedDB.open(dbName);
