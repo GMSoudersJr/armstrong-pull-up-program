@@ -44,6 +44,20 @@ export type TWeek = {
   completedDays: number[];
 };
 
+export type TGetWorkoutById =
+  | {
+      getWorkoutById: string;
+    }
+  | undefined;
+
+export type TGetWorkoutsByWeekNumber = {
+  getWorkoutsByWeekNumber: number;
+};
+
+export type TGetWorkoutsByDayNumber = {
+  getWorkoutsByDayNumber: number;
+};
+
 export type TDayAbbreviation = "5MES" | "PYRA" | "3S3G" | "MXTS";
 
 export type TGrip =
