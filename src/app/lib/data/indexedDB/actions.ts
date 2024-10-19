@@ -91,11 +91,11 @@ export function getWeeklyProgress(): Promise<TWeek[]> {
 }
 // }}}
 // GET_WORKOUT_BY_ID {{{
-export function getWorkoutById(id: string): Promise<TDayComplete> {
+export function getWorkoutById(id: string): Promise<TDayComplete[]> {
   const open = indexedDB.open(dbName);
   const storeName: TStoreName = "workoutsStore";
 
-  return new Promise<TDayComplete>((resolve, reject) => {
+  return new Promise<TDayComplete[]>((resolve, reject) => {
     open.onsuccess = () => {
       db = open.result;
       let transaction = makeTransaction(storeName, "readonly");
@@ -108,7 +108,7 @@ export function getWorkoutById(id: string): Promise<TDayComplete> {
       request.onerror = () => reject(request.error);
 
       transaction.oncomplete = () => {
-        resolve(request.result);
+        resolve([request.result]);
 
         db?.close();
       };
@@ -227,6 +227,34 @@ export const getCurrentWeekNumber = (): Promise<number> => {
     };
   });
 };
+//}}}
+// GET_INCOMPLETE_WEEK {{{
+export function getWorkoutsByDayNumber(
+  dayNumber: number,
+): Promise<TDayComplete[]> {
+  const open = indexedDB.open(dbName);
+  const storeName: TStoreName = "workoutsStore";
+  return new Promise<TDayComplete[]>((resolve, reject) => {
+    open.onsuccess = () => {
+      db = open.result;
+      let transaction = makeTransaction(storeName, "readonly");
+      if (!transaction) return;
+
+      const objectStore = transaction.objectStore(storeName);
+      //const request = objectStore.getAll();
+
+      let range = IDBKeyRange.upperBound(5, true);
+      let index = objectStore.index("day_number");
+
+      let request = index.getAll(dayNumber);
+      request.onerror = () => reject(request.error);
+
+      request.onsuccess = () => resolve(request.result);
+
+      transaction.oncomplete = () => db?.close();
+    };
+  });
+}
 //}}}
 // GET_INCOMPLETE_WEEK {{{
 export function getIncompleteWeek(): Promise<TWeek[]> {

@@ -3,7 +3,7 @@ import styles from "./Modal.module.css";
 import { nunito } from "@/fonts";
 import { XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import { getWorkoutById } from "@/indexedDBActions";
+import { getWorkoutById, getWorkoutsByDayNumber } from "@/indexedDBActions";
 
 interface ModalProps {
   onClose: React.MouseEventHandler<HTMLButtonElement>;
@@ -14,11 +14,7 @@ const DataVisualizationModal = ({
   onClose,
   dataVisualizationToGet,
 }: ModalProps) => {
-  const initialData: TDayComplete = {
-    dayAbbreviation: "5MES",
-    dayNumber: 1,
-    sets: [],
-  };
+  const initialData: TDayComplete[] = [];
   const [dataToGet, setDataToGet] = useState(dataVisualizationToGet);
   const [data, setData] = useState(initialData);
 
@@ -30,6 +26,21 @@ const DataVisualizationModal = ({
       getWorkoutById(id)
         .then((value) => setData(value))
         .catch((error) => console.warn(error));
+    }
+
+    if (dataToGet.getWorkoutsByWeekNumber) {
+      const weekNumber = dataToGet.getWorkoutsByWeekNumber;
+    }
+
+    if (dataToGet.getWorkoutsByDayNumber) {
+      const dayNumber = dataToGet.getWorkoutsByDayNumber;
+      getWorkoutsByDayNumber(dayNumber)
+        .then((value) => {
+          setData(value);
+        })
+        .catch((error) => {
+          console.warn(error);
+        });
     }
   }, [dataToGet]);
 
@@ -43,7 +54,13 @@ const DataVisualizationModal = ({
           {Object.keys(dataToGet)}: {Object.values(dataToGet)}
         </h2>
         <section>
-          <h3 style={nunito.style}>{Object.values(data)}</h3>
+          {data.map((entry) => {
+            return (
+              <h3 style={nunito.style} key={entry.id}>
+                {entry.id}
+              </h3>
+            );
+          })}
         </section>
         <button
           id="daily-hint-modal-close-button"
