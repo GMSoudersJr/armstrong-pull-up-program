@@ -1,6 +1,6 @@
 "use client";
 
-import type { TWeek } from "@/definitions";
+import type { TDataToGet, TWeek } from "@/definitions";
 import styles from "./OverallProgess.module.css";
 import { useEffect, useState } from "react";
 import { getWeeklyProgress } from "@/indexedDBActions";
@@ -21,11 +21,13 @@ const DAY_HEADERS = [
 
 const OverallProgess = () => {
   const initialProgress: TWeek[] = [];
+  const initialDataToGet: TDataToGet = {};
   const [weeklyProgress, setWeeklyProgress] = useState(initialProgress);
 
   const [showModal, setShowModal] = useState(false);
 
-  const [dataVisualizationToGet, setDataVisualizationToGet] = useState({});
+  const [dataVisualizationToGet, setDataVisualizationToGet] =
+    useState(initialDataToGet);
 
   function closeModal() {
     setShowModal(false);

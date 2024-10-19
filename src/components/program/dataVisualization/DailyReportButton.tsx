@@ -1,8 +1,9 @@
+import { TDataToGet } from "@/definitions";
 import { Dispatch, SetStateAction } from "react";
 
 interface DailyReportButtonProps {
   id: string;
-  setDataVisualizationState: Dispatch<SetStateAction<{}>>;
+  setDataVisualizationState: Dispatch<SetStateAction<TDataToGet>>;
   setShowModalState: Dispatch<SetStateAction<boolean>>;
   showModalState: boolean;
 }

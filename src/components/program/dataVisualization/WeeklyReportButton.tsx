@@ -1,9 +1,10 @@
+import { TDataToGet } from "@/definitions";
 import { nunito } from "@/fonts";
 import { Dispatch, SetStateAction } from "react";
 
 interface WeeklyReportButtonProps {
   weekNumber: number;
-  setDataVisualizationState: Dispatch<SetStateAction<{}>>;
+  setDataVisualizationState: Dispatch<SetStateAction<TDataToGet>>;
   setShowModalState: Dispatch<SetStateAction<boolean>>;
   showModalState: boolean;
 }
@@ -16,7 +17,7 @@ export const WeeklyReportButton = ({
 }: WeeklyReportButtonProps) => {
   function showWeeklyReport() {
     setShowModalState(true);
-    setDataVisualizationState({ getWorkoutsByWeek: weekNumber });
+    setDataVisualizationState({ getWorkoutsByWeekNumber: weekNumber });
   }
 
   return (

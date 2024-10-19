@@ -90,6 +90,32 @@ export function getWeeklyProgress(): Promise<TWeek[]> {
   });
 }
 // }}}
+// GET_WORKOUT_BY_ID {{{
+export function getWorkoutById(id: string): Promise<TDayComplete> {
+  const open = indexedDB.open(dbName);
+  const storeName: TStoreName = "workoutsStore";
+
+  return new Promise<TDayComplete>((resolve, reject) => {
+    open.onsuccess = () => {
+      db = open.result;
+      let transaction = makeTransaction(storeName, "readonly");
+      if (!transaction) return;
+
+      const objectStore = transaction.objectStore(storeName);
+
+      const request = objectStore.get(id);
+
+      request.onerror = () => reject(request.error);
+
+      transaction.oncomplete = () => {
+        resolve(request.result);
+
+        db?.close();
+      };
+    };
+  });
+}
+//}}}
 // GET_WEEK_DATA {{{
 export function getWeekDataForWeekNumber(weekNumber: number): Promise<TWeek> {
   const open = indexedDB.open(dbName);
