@@ -33,22 +33,29 @@ export const initializeIDB = (): void => {
     // Upgrade the database if new version
     if (event.newVersion !== event.oldVersion) {
       // If the open request is processing the version change transaction
-      if (openRequest.transaction) {
+      console.log(openRequest.transaction?.objectStoreNames);
+      if (
+        openRequest.transaction &&
+        openRequest.transaction.objectStoreNames.length > 0
+      ) {
         // use its object stores
         workoutsStore = openRequest.transaction.objectStore("workoutsStore");
         weeksStore = openRequest.transaction.objectStore("weeksStore");
       } else {
-        // use the database object stores
-        workoutsStore = db
-          .transaction("workoutsStore")
-          .objectStore("workoutsStore");
-        weeksStore = db.transaction("weeksStore").objectStore("weeksStore");
+        // create new object stores
+        workoutsStore = db.createObjectStore("workoutsStore", {
+          keyPath: "id",
+        });
+        weeksStore = db.createObjectStore("weeksStore", { keyPath: "number" });
       }
     } else {
-      // create new object stores
-      workoutsStore = db.createObjectStore("workoutsStore", { keyPath: "id" });
-      weeksStore = db.createObjectStore("weeksStore", { keyPath: "number" });
+      // use the database object stores
+      workoutsStore = db
+        .transaction("workoutsStore")
+        .objectStore("workoutsStore");
+      weeksStore = db.transaction("weeksStore").objectStore("weeksStore");
     }
+
     // delete these old indexes if they exist
     deleteObjectStoreIndex(workoutsStore, "training_set_reps");
     deleteObjectStoreIndex(workoutsStore, "day_number");
