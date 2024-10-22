@@ -73,7 +73,7 @@ const DataVisualizationModal = ({
         <h2 className={styles.headerText} style={nunito.style}>
           {heading}
         </h2>
-        <section id="d3-section" className={styles.d3Section}>
+        <section id="d3-section" className={styles.dataVisualizationSection}>
           {data.map((entry) => {
             return <DayOneSVG data={entry} key={entry.id} />;
           })}
