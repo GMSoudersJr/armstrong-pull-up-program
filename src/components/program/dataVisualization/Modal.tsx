@@ -3,7 +3,12 @@ import styles from "./Modal.module.css";
 import { nunito } from "@/fonts";
 import { XIcon } from "lucide-react";
 import { useEffect, useState } from "react";
-import { getWorkoutById, getWorkoutsByDayNumber } from "@/indexedDBActions";
+import {
+  getWorkoutById,
+  getWorkoutsByDayNumber,
+  getWorkoutsbyWeekNumber,
+} from "@/indexedDBActions";
+import DayOneSVG from "./DayOneSVG";
 
 interface ModalProps {
   onClose: React.MouseEventHandler<HTMLButtonElement>;
@@ -17,6 +22,7 @@ const DataVisualizationModal = ({
   const initialData: TDayComplete[] = [];
   const [dataToGet, setDataToGet] = useState(dataVisualizationToGet);
   const [data, setData] = useState(initialData);
+  const [heading, setHeading] = useState("");
 
   useEffect(() => {
     setDataToGet(dataVisualizationToGet);
@@ -24,12 +30,25 @@ const DataVisualizationModal = ({
     if (dataToGet.getWorkoutById) {
       const id = dataToGet.getWorkoutById;
       getWorkoutById(id)
-        .then((value) => setData(value))
-        .catch((error) => console.warn(error));
+        .then((value) => {
+          setData(value);
+          setHeading(`W${value[0].weekNumber}-D${value[0].dayNumber} REPORT`);
+        })
+        .catch((error) => {
+          console.warn(error);
+        });
     }
 
     if (dataToGet.getWorkoutsByWeekNumber) {
       const weekNumber = dataToGet.getWorkoutsByWeekNumber;
+      getWorkoutsbyWeekNumber(weekNumber)
+        .then((value) => {
+          setData(value);
+          setHeading(`WEEK ${weekNumber} REPORT`);
+        })
+        .catch((error) => {
+          console.warn(error);
+        });
     }
 
     if (dataToGet.getWorkoutsByDayNumber) {
@@ -37,6 +56,7 @@ const DataVisualizationModal = ({
       getWorkoutsByDayNumber(dayNumber)
         .then((value) => {
           setData(value);
+          setHeading(`DAY ${dayNumber} REPORT`);
         })
         .catch((error) => {
           console.warn(error);
@@ -51,15 +71,11 @@ const DataVisualizationModal = ({
         className={styles.modalContent}
       >
         <h2 className={styles.headerText} style={nunito.style}>
-          {Object.keys(dataToGet)}: {Object.values(dataToGet)}
+          {heading}
         </h2>
-        <section>
+        <section id="d3-section" className={styles.d3Section}>
           {data.map((entry) => {
-            return (
-              <h3 style={nunito.style} key={entry.id}>
-                {entry.id}
-              </h3>
-            );
+            return <DayOneSVG data={entry} key={entry.id} />;
           })}
         </section>
         <button

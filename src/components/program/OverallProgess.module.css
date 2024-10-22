@@ -1,23 +1,18 @@
 .overallProgressSection {
-  width: 20rem;
-  height: 100%;
+  height: 80%;
   overflow-y: scroll;
   scrollbar-width: none;
   display: grid;
-  grid-template-columns: repeat(6, 3rem);
-  grid-template-rows: repeat(auto-fill, 3rem);
-  justify-content: center;
-  justify-items: center;
+  grid-template-columns: repeat(6, 2.65rem);
+  grid-template-rows: repeat(auto-fill, 2.65rem);
   row-gap: 0.325rem;
   column-gap: 0.325rem;
 }
 
 .overallProgressSection > button {
-  height: 42px;
-  width: 42px;
-  display: flex;
+  display: grid;
+  justify-items: center;
   align-items: center;
-  justify-content: center;
 }
 
 .overallProgressSection::-webkit-scrollbar {

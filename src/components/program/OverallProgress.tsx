@@ -31,7 +31,7 @@ const OverallProgess = () => {
 
   function closeModal() {
     setShowModal(false);
-    setDataVisualizationToGet({});
+    setDataVisualizationToGet(initialDataToGet);
   }
 
   useEffect(() => {

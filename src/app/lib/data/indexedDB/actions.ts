@@ -3,6 +3,32 @@ import { dbName } from "@/indexedDBConstants";
 
 let db: IDBDatabase | null = null;
 
+/**
+ * Creates an index in the provided object store if it does not exist
+ */
+export function createObjectStoreIndex(
+  objectStore: IDBObjectStore,
+  indexName: string,
+  keyPath: string,
+  options: { unique: boolean },
+): void {
+  if (!objectStore.indexNames.contains(indexName)) {
+    objectStore.createIndex(indexName, keyPath, options);
+  }
+}
+
+/**
+ * Deletes the provided index from the provided object store if it exists
+ */
+export function deleteObjectStoreIndex(
+  objectStore: IDBObjectStore,
+  indexName: string,
+): void {
+  if (objectStore.indexNames.contains(indexName)) {
+    objectStore.deleteIndex(indexName);
+  }
+}
+
 // MAKE_TRANSACTION {{{
 export function makeTransaction(
   storeName: TStoreName,
@@ -19,6 +45,7 @@ export function makeTransaction(
   return transaction;
 }
 //}}}
+
 // ADD_NEW_WEEK {{{
 export function addNewWeek(weekNumber: number) {
   const weekData: TWeek = {
@@ -44,6 +71,7 @@ export function addNewWeek(weekNumber: number) {
   };
 }
 //}}}
+
 // GET_OVERALL_PROGESS {{{
 export function getOverallProgess(): Promise<TDayComplete[]> {
   const open = indexedDB.open(dbName);
@@ -67,6 +95,7 @@ export function getOverallProgess(): Promise<TDayComplete[]> {
   });
 }
 // }}}
+
 // GET_WEEKLY_PROGESS {{{
 export function getWeeklyProgress(): Promise<TWeek[]> {
   const open = indexedDB.open(dbName);
@@ -90,6 +119,37 @@ export function getWeeklyProgress(): Promise<TWeek[]> {
   });
 }
 // }}}
+
+// GET_WORKOUTS_BY_WEEK_NUMBER {{{
+export function getWorkoutsbyWeekNumber(
+  weekNumber: number,
+): Promise<TDayComplete[]> {
+  const open = indexedDB.open(dbName);
+  const storeName: TStoreName = "workoutsStore";
+
+  return new Promise<TDayComplete[]>((resolve, reject) => {
+    open.onsuccess = () => {
+      db = open.result;
+      let transaction = makeTransaction(storeName, "readonly");
+      if (!transaction) return;
+
+      const objectStore = transaction.objectStore(storeName);
+      let index = objectStore.index("weekNumberIDX");
+
+      const request = index.getAll(weekNumber);
+
+      request.onerror = () => reject(request.error);
+
+      transaction.oncomplete = () => {
+        resolve(request.result);
+
+        db?.close();
+      };
+    };
+  });
+}
+//}}}
+
 // GET_WORKOUT_BY_ID {{{
 export function getWorkoutById(id: string): Promise<TDayComplete[]> {
   const open = indexedDB.open(dbName);
@@ -116,6 +176,7 @@ export function getWorkoutById(id: string): Promise<TDayComplete[]> {
   });
 }
 //}}}
+
 // GET_WEEK_DATA {{{
 export function getWeekDataForWeekNumber(weekNumber: number): Promise<TWeek> {
   const open = indexedDB.open(dbName);
@@ -142,6 +203,7 @@ export function getWeekDataForWeekNumber(weekNumber: number): Promise<TWeek> {
   });
 }
 //}}}
+
 // UPDATE_WEEK {{{
 export function updateThisWeekWithWorkoutNumber(
   week: TWeek,
@@ -173,6 +235,7 @@ export function updateThisWeekWithWorkoutNumber(
   };
 }
 //}}}
+
 // ADD_COMPLETED_DAY {{{
 export const addCompletedDayToWorkoutsStore = (
   payload: TDayComplete,
@@ -202,6 +265,7 @@ export const addCompletedDayToWorkoutsStore = (
   });
 };
 //}}}
+
 // GET_CURRENT_WEEK_NUMBER {{{
 export const getCurrentWeekNumber = (): Promise<number> => {
   const open = indexedDB.open(dbName);
@@ -228,7 +292,8 @@ export const getCurrentWeekNumber = (): Promise<number> => {
   });
 };
 //}}}
-// GET_INCOMPLETE_WEEK {{{
+
+// GET_WORKOUTS_BY_DAY_NUMBER {{{
 export function getWorkoutsByDayNumber(
   dayNumber: number,
 ): Promise<TDayComplete[]> {
@@ -241,10 +306,8 @@ export function getWorkoutsByDayNumber(
       if (!transaction) return;
 
       const objectStore = transaction.objectStore(storeName);
-      //const request = objectStore.getAll();
 
-      let range = IDBKeyRange.upperBound(5, true);
-      let index = objectStore.index("day_number");
+      let index = objectStore.index("dayNumberIDX");
 
       let request = index.getAll(dayNumber);
       request.onerror = () => reject(request.error);
@@ -256,6 +319,7 @@ export function getWorkoutsByDayNumber(
   });
 }
 //}}}
+
 // GET_INCOMPLETE_WEEK {{{
 export function getIncompleteWeek(): Promise<TWeek[]> {
   const open = indexedDB.open(dbName);
@@ -281,6 +345,7 @@ export function getIncompleteWeek(): Promise<TWeek[]> {
   });
 }
 //}}}
+
 // SHOULD_START_NEW_WEEK? {{{
 export const shouldStartNewWeek = async (): Promise<boolean> => {
   const open = indexedDB.open(dbName);
@@ -310,6 +375,7 @@ export const shouldStartNewWeek = async (): Promise<boolean> => {
   });
 };
 //}}}
+
 // GET_LAST_COMPLETED_DAY {{{
 export const getLastCompletedDay = (): Promise<number> => {
   const open = indexedDB.open(dbName);
