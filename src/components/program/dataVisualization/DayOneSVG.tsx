@@ -25,7 +25,7 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
   const marginBottom = 30;
   const marginLeft = horizontalMargin;
 
-  const ref = useRef();
+  const ref = useRef(null);
 
   useEffect((): void => {
     if (ref.current) {
