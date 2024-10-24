@@ -56,8 +56,6 @@ export default function DayTwoSVG({ data }: DayTwoSVGProps) {
       const svgElement = d3.select(ref.current);
       const pyramidData = createPyramidData(data.sets);
       const totalRepsData = setCumulativeRepsTotal(pyramidData);
-      console.log("total rep data", totalRepsData);
-      console.log("pyramid data", pyramidData);
 
       svgElement.attr("height", "100%");
       svgElement.attr("width", "100%");
