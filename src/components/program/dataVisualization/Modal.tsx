@@ -9,6 +9,7 @@ import {
   getWorkoutsbyWeekNumber,
 } from "@/indexedDBActions";
 import DayOneSVG from "./DayOneSVG";
+import DayTwoSVG from "./DayTwoSVG";
 
 interface ModalProps {
   onClose: React.MouseEventHandler<HTMLButtonElement>;
@@ -75,7 +76,14 @@ const DataVisualizationModal = ({
         </h2>
         <section id="d3-section" className={styles.dataVisualizationSection}>
           {data.map((entry) => {
-            return <DayOneSVG data={entry} key={entry.id} />;
+            if (entry.dayAbbreviation === "5MES")
+              return <DayOneSVG data={entry} key={entry.id} />;
+            if (entry.dayAbbreviation === "PYRA")
+              return <DayTwoSVG data={entry} key={entry.id} />;
+            if (entry.dayAbbreviation === "3S3G")
+              return <DayTwoSVG data={entry} key={entry.id} />;
+            if (entry.dayAbbreviation === "MXTS")
+              return <DayTwoSVG data={entry} key={entry.id} />;
           })}
         </section>
         <button
