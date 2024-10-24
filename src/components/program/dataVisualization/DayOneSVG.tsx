@@ -64,7 +64,7 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
         .scaleBand()
         .domain(domain)
         .range([marginLeft, width - marginRight])
-        .padding(0.5);
+        .padding(0.35);
 
       const yScaleLeft = d3
         .scaleLinear()

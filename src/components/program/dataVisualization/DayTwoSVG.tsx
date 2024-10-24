@@ -114,7 +114,7 @@ export default function DayTwoSVG({ data }: DayTwoSVGProps) {
         .attr("class", "area")
         .attr("d", areaLinear)
         .attr("fill", "#2ECC40")
-        .attr("opacity", "50%");
+        .attr("opacity", "40%");
 
       // append line
       svgElement

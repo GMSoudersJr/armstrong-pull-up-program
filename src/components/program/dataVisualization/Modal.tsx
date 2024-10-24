@@ -10,6 +10,7 @@ import {
 } from "@/indexedDBActions";
 import DayOneSVG from "./DayOneSVG";
 import DayTwoSVG from "./DayTwoSVG";
+import DayThreeSVG from "./DayThreeSVG";
 
 interface ModalProps {
   onClose: React.MouseEventHandler<HTMLButtonElement>;
@@ -81,7 +82,7 @@ const DataVisualizationModal = ({
             if (entry.dayAbbreviation === "PYRA")
               return <DayTwoSVG data={entry} key={entry.id} />;
             if (entry.dayAbbreviation === "3S3G")
-              return <DayTwoSVG data={entry} key={entry.id} />;
+              return <DayThreeSVG data={entry} key={entry.id} />;
             if (entry.dayAbbreviation === "MXTS")
               return <DayTwoSVG data={entry} key={entry.id} />;
           })}
