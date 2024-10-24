@@ -67,18 +67,22 @@ export default function DayThreeSVG({ data }: DayThreeSVGProps) {
         }
       });
 
-      const arc = d3
-        .arc()
+      const arc: d3.Arc<any, d3.PieArcDatum<number>> = d3
+        .arc<d3.PieArcDatum<number>>()
         .innerRadius(radius * 0.618)
         .outerRadius(radius - 1);
 
       const pie = d3
-        .pie()
+        .pie<number>()
         .padAngle(1 / radius)
         .sort(null)
         .value((d) => d.valueOf());
 
       const color = d3.scaleQuantize(setSetMinMax(data.sets), d3.schemeYlGn[3]);
+      const firstGripColor = d3.scaleQuantize(
+        setSetMinMax(data.sets),
+        d3.schemeYlGnBu[5],
+      );
 
       svgElement.attr("height", "100%");
       svgElement.attr("width", "100%");
@@ -88,9 +92,9 @@ export default function DayThreeSVG({ data }: DayThreeSVGProps) {
       svgElement
         .append("g")
         .selectAll()
-        .data(pie(data.sets))
+        .data(pie(gripAndRepData.flatMap((entry) => entry.sets)))
         .join("path")
-        .attr("fill", (d) => color(d.value))
+        .attr("fill", (d) => firstGripColor(d.value))
         .attr("d", arc)
         .attr("opacity", "40%")
         .append("title")
@@ -116,7 +120,7 @@ export default function DayThreeSVG({ data }: DayThreeSVGProps) {
             .text((d) => d.data.valueOf()),
         );
     }
-  }, []);
+  }, [data]);
 
   return <svg ref={ref} />;
 }
