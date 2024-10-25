@@ -43,6 +43,9 @@ export const SVG_MARGIN_LEFT = HORIZONTAL_MARGIN;
 export const VIEWBOX_WIDTH = VIEWBOX_SQUARE;
 export const VIEWBOX_HEIGHT = VIEWBOX_SQUARE * 1.618;
 
+/**
+ * takes a number[] and returns [0, max]
+ */
 export function createDomain(sets: number[]): [number, number] {
   const min: number = 0;
   let max: number = 0;
@@ -52,7 +55,7 @@ export function createDomain(sets: number[]): [number, number] {
   return [min, max];
 }
 
-export function setTotalRepMinMax(sets: number[]): [number, number] {
+export function setTotalRepsMinMax(sets: number[]): [number, number] {
   const min = 0;
   let max = 0;
   if (sets.length > 0) {
@@ -61,7 +64,7 @@ export function setTotalRepMinMax(sets: number[]): [number, number] {
   return [min, max];
 }
 
-export function createCumulativeSetTotals(sets: number[]): number[] {
+export function createCumulativeTotals(sets: number[]): number[] {
   const result: number[] = [];
   for (let i = 0; i < sets.length; i++) {
     if (i === 0) {

@@ -1,53 +1,32 @@
 import { TDayComplete } from "@/definitions";
 import * as d3 from "d3";
 import { useRef, useEffect } from "react";
-import { VIEWBOX, SVG_CHART, SVG_TEXT_BOX } from "./utils";
-
-function setSetMinMax(sets: number[]): [number, number] {
-  const min = 0;
-  let max = 0;
-  if (sets.length > 0) {
-    max = Math.max(...sets);
-  }
-  return [min, max];
-}
-
-function setRepMinMax(sets: number[]): [number, number] {
-  const min = 0;
-  let max = 0;
-  if (sets.length > 0) {
-    max = sets.reduce((a, b) => a + b);
-  }
-  return [min, max];
-}
-
-function setCumulativeRepsTotal(sets: number[]): number[] {
-  const result: number[] = [];
-  for (let i = 0; i < sets.length; i++) {
-    if (i === 0) {
-      result.push(sets[i]);
-    } else {
-      result.push(result[i - 1] + sets[i]);
-    }
-  }
-  return result;
-}
+import {
+  VIEWBOX,
+  SVG_CHART,
+  setTotalRepsMinMax,
+  createCumulativeTotals,
+  createDomain,
+} from "./utils";
 
 interface DayOneSVGProps {
   data: TDayComplete;
 }
 
 export default function DayOneSVG({ data }: DayOneSVGProps) {
-  const domain = data.sets.map((_, i) => {
+  const xDomain = data.sets.map((_, i) => {
     return (i + 1).toString();
   });
+
+  const yLeftDomain = createDomain(data.sets);
+  const yRightDomain = setTotalRepsMinMax(data.sets);
+  const totalRepsData = createCumulativeTotals(data.sets);
 
   const ref = useRef(null);
 
   useEffect((): void => {
     if (ref.current) {
       const svgElement = d3.select(ref.current);
-      const totalRepsData = setCumulativeRepsTotal(data.sets);
 
       svgElement.attr("height", "100%");
       svgElement.attr("width", "100%");
@@ -62,7 +41,7 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
 
       const xScale = d3
         .scaleBand()
-        .domain(domain)
+        .domain(xDomain)
         .range([
           SVG_CHART.margin.left,
           SVG_CHART.width - SVG_CHART.margin.right,
@@ -72,7 +51,7 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
       const yScaleLeft = d3
         .scaleLinear()
         .nice()
-        .domain(setSetMinMax(data.sets))
+        .domain(yLeftDomain)
         .range([
           SVG_CHART.height - SVG_CHART.margin.bottom,
           SVG_CHART.margin.top,
@@ -81,7 +60,7 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
       const yScaleRight = d3
         .scaleLinear()
         .nice()
-        .domain(setRepMinMax(data.sets))
+        .domain(yRightDomain)
         .range([
           SVG_CHART.height - SVG_CHART.margin.bottom,
           SVG_CHART.margin.top,
@@ -125,7 +104,7 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
         .attr("class", "plus")
         .attr("d", plusSymbol)
         .attr("transform", (d, i) => {
-          const x = xScale(domain[i]);
+          const x = xScale(xDomain[i]);
           return x !== undefined
             ? `translate(${x + xScale.bandwidth() / 2}, ${yScaleRight(d)})`
             : ``;
@@ -214,7 +193,7 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
         .attr("text-anchor", "middle")
         .attr("fill", "currentColor")
         .attr("font-family", "consolas")
-        .text(`total: ${setRepMinMax(data.sets)[1]}`);
+        .text(`total: ${setTotalRepsMinMax(data.sets)[1]}`);
     }
   }, []);
 
