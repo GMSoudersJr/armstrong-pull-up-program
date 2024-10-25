@@ -1,6 +1,7 @@
 import { TDayComplete } from "@/definitions";
 import * as d3 from "d3";
 import { useRef, useEffect } from "react";
+import { VIEWBOX, SVG_CHART, SVG_TEXT_BOX } from "./utils";
 
 function setSetMinMax(sets: number[]): [number, number] {
   const min = 0;
@@ -37,13 +38,6 @@ interface DayOneSVGProps {
 }
 
 export default function DayOneSVG({ data }: DayOneSVGProps) {
-  const horizontalMargin = 20;
-  const width = 259;
-  const height = 259;
-  const marginTop = 30;
-  const marginRight = horizontalMargin;
-  const marginBottom = 30;
-  const marginLeft = horizontalMargin;
   const domain = data.sets.map((_, i) => {
     return (i + 1).toString();
   });
@@ -57,37 +51,53 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
 
       svgElement.attr("height", "100%");
       svgElement.attr("width", "100%");
-      svgElement.attr("viewBox", [0, 0, width, height]);
+      svgElement.attr("viewBox", [
+        VIEWBOX.minX,
+        VIEWBOX.minY,
+        VIEWBOX.width,
+        VIEWBOX.height,
+      ]);
       svgElement.attr("style", `height: auto`);
+      svgElement.attr("font-family", "consolas");
 
       const xScale = d3
         .scaleBand()
         .domain(domain)
-        .range([marginLeft, width - marginRight])
+        .range([
+          SVG_CHART.margin.left,
+          SVG_CHART.width - SVG_CHART.margin.right,
+        ])
         .padding(0.35);
 
       const yScaleLeft = d3
         .scaleLinear()
         .nice()
         .domain(setSetMinMax(data.sets))
-        .range([height - marginBottom, marginTop]);
+        .range([
+          SVG_CHART.height - SVG_CHART.margin.bottom,
+          SVG_CHART.margin.top,
+        ]);
 
       const yScaleRight = d3
         .scaleLinear()
         .nice()
         .domain(setRepMinMax(data.sets))
-        .range([height - marginBottom, marginTop]);
+        .range([
+          SVG_CHART.height - SVG_CHART.margin.bottom,
+          SVG_CHART.margin.top,
+        ]);
 
       const xAxisGenerator = d3.axisBottom(xScale).tickSizeOuter(0);
 
       const yAxisLeftGenerator = d3
         .axisLeft(yScaleLeft)
         .tickSizeOuter(0)
-        .ticks(d3.max(data.sets))
+        .ticks(6)
         .tickFormat(d3.format("d"));
 
       const yAxisRightGenerator = d3
         .axisRight(yScaleRight)
+        .ticks(6)
         .tickSizeOuter(0)
         .tickFormat(d3.format("d"));
 
@@ -126,14 +136,17 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
       // append the x-axis
       svgElement
         .append("g")
-        .attr("transform", `translate(0, ${height - marginBottom})`)
+        .attr(
+          "transform",
+          `translate(0, ${SVG_CHART.height - SVG_CHART.margin.bottom})`,
+        )
         .attr("style", "color: #0074D9")
         .call(xAxisGenerator)
         .call((g) =>
           g
             .append("text")
-            .attr("x", width / 2)
-            .attr("y", 30)
+            .attr("x", SVG_CHART.width / 2)
+            .attr("y", SVG_CHART.margin.bottom)
             .attr("fill", "currentColor")
             .attr("text-anchor", "middle")
             .text(`SETS`),
@@ -142,44 +155,66 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
       // append the left y-axis
       svgElement
         .append("g")
-        .attr("transform", `translate(${marginLeft}, 0)`)
+        .attr("transform", `translate(${SVG_CHART.margin.left}, 0)`)
         .attr("style", "color: #2ecc40")
         .call(yAxisLeftGenerator)
         .call((g) =>
           g
             .append("text")
-            .attr("x", -marginLeft)
+            .attr("x", 0)
             .attr("y", 10)
             .attr("fill", "currentColor")
-            .attr("text-anchor", "start")
-            .text(`MAX: ${setSetMinMax(data.sets)[1]}`),
+            .attr("text-anchor", "middle")
+            .text(`REPS`),
         );
-
-      const totalRepsXValueOffset = (reps: number): number => {
-        if (reps === 0) return 0;
-        if (reps < 100) return 8;
-        return 16;
-      };
 
       // append the right y-axis
       svgElement
         .append("g")
-        .attr("transform", `translate(${width - marginRight}, 0)`)
+        .attr(
+          "transform",
+          `translate(${SVG_CHART.width - SVG_CHART.margin.right}, 0)`,
+        )
         .attr("style", "color: #0074d9")
         .call(yAxisRightGenerator)
         .call((g) =>
           g
             .append("text")
-            .attr(
-              "x",
-              -marginRight +
-                totalRepsXValueOffset(setCumulativeRepsTotal(data.sets)[-1]),
-            )
+            .attr("x", 0)
             .attr("y", 10)
             .attr("fill", "currentColor")
             .attr("text-anchor", "middle")
-            .text(`TOTAL: ${d3.max(setCumulativeRepsTotal(data.sets))}`),
+            .text(`TOTAL`),
         );
+
+      svgElement
+        .append("text")
+        .attr("x", "50%")
+        .attr("y", `${SVG_CHART.height + SVG_CHART.margin.bottom}`)
+        .attr("text-anchor", "middle")
+        .attr("fill", "currentColor")
+        .attr("font-family", "consolas")
+        .text(`${data.dayAbbreviation} on ${data.date}`);
+
+      svgElement
+        .append("text")
+        .attr("x", "25%")
+        .attr("y", `${SVG_CHART.height + SVG_CHART.margin.bottom}`)
+        .attr("dy", "10%")
+        .attr("text-anchor", "middle")
+        .attr("fill", "currentColor")
+        .attr("font-family", "consolas")
+        .text(`max: ${Math.max(...data.sets)}`);
+
+      svgElement
+        .append("text")
+        .attr("x", "75%")
+        .attr("y", `${SVG_CHART.height + SVG_CHART.margin.bottom}`)
+        .attr("dy", "10%")
+        .attr("text-anchor", "middle")
+        .attr("fill", "currentColor")
+        .attr("font-family", "consolas")
+        .text(`total: ${setRepMinMax(data.sets)[1]}`);
     }
   }, []);
 

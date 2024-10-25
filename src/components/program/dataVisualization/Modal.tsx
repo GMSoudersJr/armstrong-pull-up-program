@@ -11,6 +11,7 @@ import {
 import DayOneSVG from "./DayOneSVG";
 import DayTwoSVG from "./DayTwoSVG";
 import DayThreeSVG from "./DayThreeSVG";
+import DayFourSVG from "./DayFourSVG";
 
 interface ModalProps {
   onClose: React.MouseEventHandler<HTMLButtonElement>;
@@ -84,7 +85,7 @@ const DataVisualizationModal = ({
             if (entry.dayAbbreviation === "3S3G")
               return <DayThreeSVG data={entry} key={entry.id} />;
             if (entry.dayAbbreviation === "MXTS")
-              return <DayTwoSVG data={entry} key={entry.id} />;
+              return <DayFourSVG data={entry} key={entry.id} />;
           })}
         </section>
         <button
