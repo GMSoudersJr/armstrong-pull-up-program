@@ -49,7 +49,6 @@ export default function DayFourSVG({ data }: DayFourSVGProps) {
         VIEWBOX.height,
       ]);
       svgElement.attr("style", `height: auto`);
-      svgElement.attr("style", `border: 1px solid black`);
 
       svgElement
         .append("g")
