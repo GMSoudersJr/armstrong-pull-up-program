@@ -76,7 +76,7 @@ export function createCumulativeTotals(sets: number[]): number[] {
   return result;
 }
 
-export const RADIUS = Math.min(SVG_HEIGHT, SVG_WIDTH) / 2;
+export const RADIUS = Math.min(VIEWBOX_HEIGHT, VIEWBOX_WIDTH) / 2;
 
 export const totalRepsXValueOffset = (reps: number): number => {
   if (reps === 0) return 0;

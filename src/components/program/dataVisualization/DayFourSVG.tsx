@@ -1,81 +1,62 @@
 import { TDayComplete } from "@/definitions";
 import * as d3 from "d3";
 import { useRef, useEffect } from "react";
-
-function setSetMinMax(sets: number[]): [number, number] {
-  const min = 0;
-  let max = 0;
-  if (sets.length > 0) {
-    max = Math.max(...sets);
-  }
-  return [min, max];
-}
-
-function setRepMinMax(sets: number[]): [number, number] {
-  const min = 0;
-  let max = 0;
-  if (sets.length > 0) {
-    max = sets.reduce((a, b) => a + b);
-  }
-  return [min, max];
-}
-
-function setCumulativeRepsTotal(sets: number[]): number[] {
-  const result: number[] = [];
-  for (let i = 0; i < sets.length; i++) {
-    if (i === 0) {
-      result.push(sets[i]);
-    } else {
-      result.push(result[i - 1] + sets[i]);
-    }
-  }
-  return result;
-}
+import {
+  RADIUS,
+  SVG_CHART,
+  VIEWBOX,
+  createDomain,
+  setTotalRepsMinMax,
+} from "./utils";
 
 interface DayFourSVGProps {
   data: TDayComplete;
 }
 
+const TIPS = {
+  success: "Safe to go up",
+  fail: "Stay here or go down",
+};
+
 export default function DayFourSVG({ data }: DayFourSVGProps) {
-  const horizontalMargin = 20;
-  const width = 259;
-  const height = 259;
-  const marginTop = 30;
-  const marginRight = horizontalMargin;
-  const marginBottom = 30;
-  const marginLeft = horizontalMargin;
-
-  const radius = Math.min(height, width) / 2;
-
   const ref = useRef(null);
   useEffect((): void => {
     if (ref.current) {
       const svgElement = d3.select(ref.current);
-      console.log(data);
       const arc: d3.Arc<any, d3.PieArcDatum<number>> = d3
         .arc<d3.PieArcDatum<number>>()
-        .innerRadius(radius * 0.618)
-        .outerRadius(radius - 1);
+        .innerRadius(RADIUS * 0.618)
+        .outerRadius(RADIUS);
 
       const pie = d3
         .pie<number>()
-        .padAngle(1 / radius)
+        .padAngle(1 / RADIUS)
         .sort(null)
         .value((d) => d.valueOf());
 
-      const color = d3.scaleQuantize(setSetMinMax(data.sets), d3.schemeYlGn[3]);
+      const color = d3.scaleQuantize(createDomain(data.sets), d3.schemeYlGn[3]);
       const firstGripColor = d3.scaleQuantize(
-        setSetMinMax(data.sets),
+        createDomain(data.sets),
         d3.schemeYlGnBu[5],
       );
 
       svgElement.attr("height", "100%");
       svgElement.attr("width", "100%");
-      svgElement.attr("viewBox", [-width / 2, -height / 2, width, height]);
+      svgElement.attr("viewBox", [
+        VIEWBOX.minX,
+        VIEWBOX.minY,
+        VIEWBOX.width,
+        VIEWBOX.height,
+      ]);
       svgElement.attr("style", `height: auto`);
+      svgElement.attr("style", `border: 1px solid black`);
 
       svgElement
         .append("g")
+        .attr(
+          "transform",
+          `translate(${SVG_CHART.width / 2}, ${SVG_CHART.height / 2})`,
+        )
         .selectAll()
         .data(pie(data.sets))
         .join("path")
@@ -87,6 +68,10 @@ export default function DayFourSVG({ data }: DayFourSVGProps) {
 
       svgElement
         .append("g")
+        .attr(
+          "transform",
+          `translate(${SVG_CHART.width / 2}, ${SVG_CHART.height / 2})`,
+        )
         .attr("font-family", "consolas")
         .attr("font-size", 12)
         .attr("text-anchor", "middle")
@@ -104,6 +89,58 @@ export default function DayFourSVG({ data }: DayFourSVGProps) {
             .attr("fill-opacity", 0.7)
             .text((d) => d.data.valueOf()),
         );
+
+      // append text summary
+      svgElement
+        .append("text")
+        .attr("x", "50%")
+        .attr("y", `${SVG_CHART.height + SVG_CHART.margin.bottom}`)
+        .attr("text-anchor", "middle")
+        .attr("fill", "currentColor")
+        .attr("font-family", "consolas")
+        .text(`${data.dayAbbreviation} on ${data.date}`);
+
+      svgElement
+        .append("text")
+        .attr("x", "50%")
+        .attr("y", `${SVG_CHART.height + SVG_CHART.margin.bottom}`)
+        .attr("dy", "7%")
+        .attr("text-anchor", "middle")
+        .attr("fill", "currentColor")
+        .attr("font-family", "consolas")
+        .text(`Training set reps: ${data.trainingSetReps}`);
+
+      svgElement
+        .append("text")
+        .attr("x", "33.3%")
+        .attr("y", `${SVG_CHART.height + SVG_CHART.margin.bottom}`)
+        .attr("dy", "14%")
+        .attr("text-anchor", "middle")
+        .attr("fill", "currentColor")
+        .attr("font-family", "consolas")
+        .text(
+          `Sets: ${data.sets.filter((set) => set === data.trainingSetReps).length}`,
+        );
+
+      svgElement
+        .append("text")
+        .attr("x", "66.6%")
+        .attr("y", `${SVG_CHART.height + SVG_CHART.margin.bottom}`)
+        .attr("dy", "14%")
+        .attr("text-anchor", "middle")
+        .attr("fill", "currentColor")
+        .attr("font-family", "consolas")
+        .text(`Total: ${setTotalRepsMinMax(data.sets)[1]}`);
+
+      svgElement
+        .append("text")
+        .attr("x", "50%")
+        .attr("y", `${SVG_CHART.height + SVG_CHART.margin.bottom}`)
+        .attr("dy", "21%")
+        .attr("text-anchor", "middle")
+        .attr("fill", "currentColor")
+        .attr("font-family", "consolas")
+        .text(`Tip: ${data.success ? TIPS.success : TIPS.fail}`);
     }
   }, [data]);
 
