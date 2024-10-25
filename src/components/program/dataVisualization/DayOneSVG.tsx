@@ -37,7 +37,6 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
         VIEWBOX.height,
       ]);
       svgElement.attr("style", `height: auto`);
-      svgElement.attr("font-family", "consolas");
 
       const xScale = d3
         .scaleBand()
@@ -83,7 +82,22 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
       // Append bars for each set
       svgElement
         .append("g")
-        .attr("fill", "#2ecc40")
+        .attr("fill", "#2ECC40")
+        .attr("opacity", "40%")
+        .selectAll()
+        .data(data.sets)
+        .join("rect")
+        .attr("x", (_, i) => `${xScale((i + 1).toString())}`)
+        .attr("y", (d) => yScaleLeft(d))
+        .attr("height", (d) => yScaleLeft(0) - yScaleLeft(d))
+        .attr("width", xScale.bandwidth());
+
+      // Append bars for each set
+      svgElement
+        .append("g")
+        .attr("fill", "none")
+        .attr("stroke-width", 1)
+        .attr("stroke", "#2ECC40")
         .selectAll()
         .data(data.sets)
         .join("rect")
@@ -166,6 +180,7 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
             .text(`TOTAL`),
         );
 
+      // append text summary
       svgElement
         .append("text")
         .attr("x", "50%")

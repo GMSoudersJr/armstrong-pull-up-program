@@ -1,6 +1,13 @@
 import { TDayComplete } from "@/definitions";
 import * as d3 from "d3";
 import { useRef, useEffect } from "react";
+import {
+  VIEWBOX,
+  SVG_CHART,
+  setTotalRepsMinMax,
+  createCumulativeTotals,
+  createDomain,
+} from "./utils";
 
 function createPyramidData(setData: number[]): number[] {
   return [0].concat(setData);
@@ -41,57 +48,65 @@ interface DayTwoSVGProps {
 }
 
 export default function DayTwoSVG({ data }: DayTwoSVGProps) {
-  const horizontalMargin = 20;
-  const width = 259;
-  const height = 259;
-  const marginTop = 30;
-  const marginRight = horizontalMargin;
-  const marginBottom = 30;
-  const marginLeft = horizontalMargin;
+  const pyramidData = createPyramidData(data.sets);
+  const totalRepsData = createCumulativeTotals(pyramidData);
+  const yRightDomain = setTotalRepsMinMax(pyramidData);
 
   const ref = useRef(null);
 
   useEffect((): void => {
     if (ref.current) {
       const svgElement = d3.select(ref.current);
-      const pyramidData = createPyramidData(data.sets);
-      const totalRepsData = setCumulativeRepsTotal(pyramidData);
 
       svgElement.attr("height", "100%");
       svgElement.attr("width", "100%");
-      svgElement.attr("viewBox", [0, 0, width, height]);
+      svgElement.attr("viewBox", [
+        VIEWBOX.minX,
+        VIEWBOX.minY,
+        VIEWBOX.width,
+        VIEWBOX.height,
+      ]);
       svgElement.attr("style", `height: auto`);
 
-      const xScaleLinear = d3
+      const xScale = d3
         .scaleLinear()
         .domain([0, pyramidData.length - 1])
-        .range([marginLeft, width - marginRight]);
+        .range([
+          SVG_CHART.margin.left,
+          SVG_CHART.width - SVG_CHART.margin.right,
+        ]);
 
       const yScaleLeft = d3
         .scaleLinear()
         .nice()
         .domain(setSetMinMax(pyramidData))
-        .range([height - marginBottom, marginTop]);
+        .range([
+          SVG_CHART.height - SVG_CHART.margin.bottom,
+          SVG_CHART.margin.top,
+        ]);
 
       const yScaleRight = d3
         .scaleLinear()
         .nice()
-        .domain(setRepMinMax(data.sets))
-        .range([height - marginBottom, marginTop]);
+        .domain(yRightDomain)
+        .range([
+          SVG_CHART.height - SVG_CHART.margin.bottom,
+          SVG_CHART.margin.top,
+        ]);
 
-      const areaLinear = d3
+      const area = d3
         .area<number>()
-        .x((_, i) => xScaleLinear(i))
-        .y0(height - marginBottom)
+        .x((_, i) => xScale(i))
+        .y0(SVG_CHART.height - SVG_CHART.margin.bottom)
         .y1((d) => yScaleLeft(d));
 
       const line = d3
         .line<number>()
-        .x((_, i) => xScaleLinear(i))
+        .x((_, i) => xScale(i))
         .y((d) => yScaleLeft(d));
 
       const xLinearAxisGenerator = d3
-        .axisBottom(xScaleLinear)
+        .axisBottom(xScale)
         .tickSizeOuter(0)
         .ticks(pyramidData.length)
         .tickFormat(d3.format("d"));
@@ -105,14 +120,14 @@ export default function DayTwoSVG({ data }: DayTwoSVGProps) {
       const yAxisRightGenerator = d3
         .axisRight(yScaleRight)
         .tickSizeOuter(0)
-        .ticks(d3.max(data.sets))
+        .ticks(6)
         .tickFormat(d3.format("d"));
 
       svgElement
         .append("path")
         .datum(pyramidData)
         .attr("class", "area")
-        .attr("d", areaLinear)
+        .attr("d", area)
         .attr("fill", "#2ECC40")
         .attr("opacity", "40%");
 
@@ -129,14 +144,17 @@ export default function DayTwoSVG({ data }: DayTwoSVGProps) {
       // append the linear x-axis
       svgElement
         .append("g")
-        .attr("transform", `translate(0, ${height - marginBottom})`)
+        .attr(
+          "transform",
+          `translate(0, ${SVG_CHART.height - SVG_CHART.margin.bottom})`,
+        )
         .attr("style", "color: #0074D9")
         .call(xLinearAxisGenerator)
         .call((g) =>
           g
             .append("text")
-            .attr("x", width / 2)
-            .attr("y", 30)
+            .attr("x", SVG_CHART.width / 2)
+            .attr("y", SVG_CHART.margin.bottom)
             .attr("fill", "currentColor")
             .attr("text-anchor", "middle")
             .text(`SETS`),
@@ -145,43 +163,36 @@ export default function DayTwoSVG({ data }: DayTwoSVGProps) {
       // append the left y-axis
       svgElement
         .append("g")
-        .attr("transform", `translate(${marginLeft}, 0)`)
+        .attr("transform", `translate(${SVG_CHART.margin.left}, 0)`)
         .attr("style", "color: #2ecc40")
         .call(yAxisLeftGenerator)
         .call((g) =>
           g
             .append("text")
-            .attr("x", -marginLeft)
+            .attr("x", 0)
             .attr("y", 10)
             .attr("fill", "currentColor")
-            .attr("text-anchor", "start")
-            .text(`PEAK: ${setSetMinMax(data.sets)[1]}`),
+            .attr("text-anchor", "middle")
+            .text(`PEAK`),
         );
-
-      const totalRepsXValueOffset = (reps: number): number => {
-        if (reps === 0) return 0;
-        if (reps < 100) return 8;
-        return 16;
-      };
 
       // append the right y-axis
       svgElement
         .append("g")
-        .attr("transform", `translate(${width - marginRight}, 0)`)
+        .attr(
+          "transform",
+          `translate(${SVG_CHART.width - SVG_CHART.margin.right}, 0)`,
+        )
         .attr("style", "color: #0074d9")
         .call(yAxisRightGenerator)
         .call((g) =>
           g
             .append("text")
-            .attr(
-              "x",
-              -marginRight +
-                totalRepsXValueOffset(setCumulativeRepsTotal(data.sets)[-1]),
-            )
+            .attr("x", 0)
             .attr("y", 10)
             .attr("fill", "currentColor")
             .attr("text-anchor", "middle")
-            .text(`TOTAL: ${d3.max(setCumulativeRepsTotal(data.sets))}`),
+            .text(`TOTAL`),
         );
 
       // append a star symbol for the cumulative total
@@ -197,10 +208,40 @@ export default function DayTwoSVG({ data }: DayTwoSVGProps) {
         .attr("d", starSymbol)
         .attr(
           "transform",
-          (d, i) => `translate(${xScaleLinear(i + 1)}, ${yScaleRight(d)})`,
+          (d, i) => `translate(${xScale(i + 1)}, ${yScaleRight(d)})`,
         )
         .attr("stroke", "currentColor")
         .attr("fill", "#FFFF00");
+      //
+      // append text summary
+      svgElement
+        .append("text")
+        .attr("x", "50%")
+        .attr("y", `${SVG_CHART.height + SVG_CHART.margin.bottom}`)
+        .attr("text-anchor", "middle")
+        .attr("fill", "currentColor")
+        .attr("font-family", "consolas")
+        .text(`${data.dayAbbreviation} on ${data.date}`);
+
+      svgElement
+        .append("text")
+        .attr("x", "25%")
+        .attr("y", `${SVG_CHART.height + SVG_CHART.margin.bottom}`)
+        .attr("dy", "10%")
+        .attr("text-anchor", "middle")
+        .attr("fill", "currentColor")
+        .attr("font-family", "consolas")
+        .text(`max: ${Math.max(...data.sets)}`);
+
+      svgElement
+        .append("text")
+        .attr("x", "75%")
+        .attr("y", `${SVG_CHART.height + SVG_CHART.margin.bottom}`)
+        .attr("dy", "10%")
+        .attr("text-anchor", "middle")
+        .attr("fill", "currentColor")
+        .attr("font-family", "consolas")
+        .text(`total: ${setTotalRepsMinMax(data.sets)[1]}`);
     }
   }, []);
 
