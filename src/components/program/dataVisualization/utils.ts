@@ -83,3 +83,8 @@ export const totalRepsXValueOffset = (reps: number): number => {
   if (reps < 100) return 8;
   return 16;
 };
+
+export const COLOR = {
+  success: "#2ECC40",
+  fail: "#0074D9",
+};
