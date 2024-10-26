@@ -35,7 +35,7 @@ const DataVisualizationModal = ({
       getWorkoutById(id)
         .then((value) => {
           setData(value);
-          setHeading(`W${value[0].weekNumber}-D${value[0].dayNumber} REPORT`);
+          setHeading(`W${value[0].weekNumber}-D${value[0].dayNumber} REVIEW`);
         })
         .catch((error) => {
           console.warn(error);
@@ -47,7 +47,7 @@ const DataVisualizationModal = ({
       getWorkoutsbyWeekNumber(weekNumber)
         .then((value) => {
           setData(value);
-          setHeading(`WEEK ${weekNumber} REPORT`);
+          setHeading(`W${weekNumber} REVIEW`);
         })
         .catch((error) => {
           console.warn(error);
@@ -59,7 +59,7 @@ const DataVisualizationModal = ({
       getWorkoutsByDayNumber(dayNumber)
         .then((value) => {
           setData(value);
-          setHeading(`DAY ${dayNumber} REPORT`);
+          setHeading(`D${dayNumber} REVIEW`);
         })
         .catch((error) => {
           console.warn(error);
@@ -73,21 +73,37 @@ const DataVisualizationModal = ({
         id="data-visualization-modal-content"
         className={styles.modalContent}
       >
-        <h2 className={styles.headerText} style={nunito.style}>
+        <h1 className={styles.headerText} style={nunito.style}>
           {heading}
-        </h2>
-        <section id="d3-section" className={styles.dataVisualizationSection}>
+        </h1>
+        <ul id="d3-section" className={styles.dataVisualizationSection}>
           {data.map((entry) => {
             if (entry.dayAbbreviation === "5MES")
-              return <DayOneSVG data={entry} key={entry.id} />;
+              return (
+                <li key={entry.id}>
+                  <DayOneSVG data={entry} />
+                </li>
+              );
             if (entry.dayAbbreviation === "PYRA")
-              return <DayTwoSVG data={entry} key={entry.id} />;
+              return (
+                <li key={entry.id}>
+                  <DayTwoSVG data={entry} />
+                </li>
+              );
             if (entry.dayAbbreviation === "3S3G")
-              return <DayThreeSVG data={entry} key={entry.id} />;
+              return (
+                <li key={entry.id}>
+                  <DayThreeSVG data={entry} />
+                </li>
+              );
             if (entry.dayAbbreviation === "MXTS")
-              return <DayFourSVG data={entry} key={entry.id} />;
+              return (
+                <li key={entry.id}>
+                  <DayFourSVG data={entry} />
+                </li>
+              );
           })}
-        </section>
+        </ul>
         <button
           id="daily-hint-modal-close-button"
           type="button"
