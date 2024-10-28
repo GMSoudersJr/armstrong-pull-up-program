@@ -1,0 +1,25 @@
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr;
+  row-gap: 3rem;
+  justify-items: center;
+  align-items: center;
+  justify-content: center;
+  color: #0074d9;
+  margin: auto auto;
+  max-width: 30rem;
+}
+
+.heading {
+  place-self: center;
+  text-align: center;
+}
+
+.dataVisualizationList > li {
+  margin-bottom: 4rem;
+}
+
+.dataVisualizationList > li:only-child {
+  margin-bottom: 0;
+}

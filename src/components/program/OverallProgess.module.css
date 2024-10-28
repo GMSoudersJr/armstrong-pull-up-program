@@ -9,12 +9,6 @@
   column-gap: 0.325rem;
 }
 
-.overallProgressSection > button {
-  display: grid;
-  justify-items: center;
-  align-items: center;
-}
-
 .overallProgressSection::-webkit-scrollbar {
   display: none;
 }
@@ -38,4 +32,11 @@
   background-color: #eeeeee;
   padding: 0.25rem;
   padding-left: 1rem;
+}
+
+.iconWrapper {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  background-color: #d1d1d1;
 }

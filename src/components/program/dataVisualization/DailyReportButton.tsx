@@ -1,4 +1,5 @@
 import { TDataToGet } from "@/definitions";
+import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction } from "react";
 
 interface DailyReportButtonProps {
@@ -14,9 +15,12 @@ export const DailyReportButton = ({
   showModalState,
   setShowModalState,
 }: DailyReportButtonProps) => {
+  const router = useRouter();
+
   function showDayReport() {
     setDataVisualizationState({ getWorkoutById: id });
     setShowModalState(true);
+    router.push("/program");
   }
 
   return <button onClick={showDayReport} disabled={showModalState}></button>;

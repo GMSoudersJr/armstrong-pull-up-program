@@ -4,12 +4,13 @@ import type { TDataToGet, TWeek } from "@/definitions";
 import styles from "./OverallProgess.module.css";
 import { useEffect, useState } from "react";
 import { getWeeklyProgress } from "@/indexedDBActions";
-import { LayoutGridIcon } from "lucide-react";
+import { ChartNoAxesColumnIcon, LayoutGridIcon } from "lucide-react";
 import { WeeklyReportButton } from "@/components/program/dataVisualization/WeeklyReportButton";
 import { DayCompareButton } from "@/components/program/dataVisualization/DayCompareButton";
 import { DailyReportButton } from "@/components/program/dataVisualization/DailyReportButton";
 import { createPortal } from "react-dom";
 import DataVisualizationModal from "@/components/program/dataVisualization/Modal";
+import { ReviewLink } from "./ReviewLink";
 
 const DAY_HEADERS = [
   { text: "D1", dayNumber: 1 },
@@ -42,17 +43,15 @@ const OverallProgess = () => {
 
   return (
     <section className={styles.overallProgressSection}>
-      <button>
+      <div className={styles.iconWrapper}>
         <LayoutGridIcon />
-      </button>
+      </div>
       {DAY_HEADERS.map((entry) => {
         return (
-          <DayCompareButton
-            text={entry.text}
-            setDataVisualizationState={setDataVisualizationToGet}
-            dayNumber={entry.dayNumber}
-            setShowModalState={setShowModal}
-            showModalState={showModal}
+          <ReviewLink
+            getData="day"
+            index={entry.dayNumber}
+            text={`D${entry.dayNumber}`}
             key={entry.dayNumber}
           />
         );
@@ -62,24 +61,15 @@ const OverallProgess = () => {
           const id = `${week.number}-${entry}`;
           if (i === 0) {
             return (
-              <WeeklyReportButton
-                weekNumber={week.number}
-                setDataVisualizationState={setDataVisualizationToGet}
-                setShowModalState={setShowModal}
-                showModalState={showModal}
+              <ReviewLink
+                getData="week"
+                index={week.number}
+                text={`W${week.number}`}
                 key={`W-${id}`}
               />
             );
           } else {
-            return (
-              <DailyReportButton
-                id={id}
-                setDataVisualizationState={setDataVisualizationToGet}
-                setShowModalState={setShowModal}
-                showModalState={showModal}
-                key={id}
-              />
-            );
+            return <ReviewLink getData="workout" index={id} key={id} />;
           }
         });
       })}
