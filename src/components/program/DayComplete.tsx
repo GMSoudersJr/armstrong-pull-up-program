@@ -19,7 +19,6 @@ import {
   DAY_COMPLETE_MESSAGES,
   THUMBS_UP_ICON_MESSAGE,
   CIRCLE_CHECK_BIG_ICON_MESSAGE,
-  SAVE_ICON_MESSAGE,
 } from "@/lib/strings/dayComplete";
 
 interface DayCompleteProps {

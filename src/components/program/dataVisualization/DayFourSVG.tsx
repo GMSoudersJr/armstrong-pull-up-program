@@ -13,6 +13,13 @@ const TIPS = {
 };
 
 export default function DayFourSVG({ data }: DayFourSVGProps) {
+  const nineOrMoreTrainingSets =
+    data.sets.filter((set) => {
+      if (data.trainingSetReps) {
+        return set >= data.trainingSetReps;
+      }
+    }).length >= 9;
+
   const ref = useRef(null);
 
   useEffect((): void => {
@@ -71,8 +78,7 @@ export default function DayFourSVG({ data }: DayFourSVGProps) {
         .attr("stroke-width", 1)
         .attr(
           "stroke",
-          (d) =>
-            `${data.trainingSetReps === d.value ? COLOR.success : COLOR.fail}`,
+          `${nineOrMoreTrainingSets ? COLOR.success : COLOR.fail}`,
         )
         .append("title")
         .text((d) => `${d.data}`);
