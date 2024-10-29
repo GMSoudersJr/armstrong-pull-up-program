@@ -1,7 +1,12 @@
 .overallProgressSection {
-  width: 17rem;
+  height: 80%;
   overflow-y: scroll;
   scrollbar-width: none;
+  display: grid;
+  grid-template-columns: repeat(6, 2.65rem);
+  grid-template-rows: repeat(auto-fill, 2.65rem);
+  row-gap: 0.325rem;
+  column-gap: 0.325rem;
 }
 
 .overallProgressSection::-webkit-scrollbar {
@@ -27,4 +32,11 @@
   background-color: #eeeeee;
   padding: 0.25rem;
   padding-left: 1rem;
+}
+
+.iconWrapper {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  background-color: #d1d1d1;
 }

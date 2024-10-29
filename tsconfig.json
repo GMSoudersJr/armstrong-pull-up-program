@@ -18,6 +18,7 @@
       }
     ],
     "paths": {
+      "@/dataVisualization": ["./src/components/program/dataVisualization"],
       "@/indexedDBActions": ["./src/app/lib/data/indexedDB/actions.ts"],
       "@/indexedDBConstants": ["./src/app/lib/data/indexedDB/constants.ts"],
       "@/definitions": ["./src/app/lib/definitions.ts"],
