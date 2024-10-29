@@ -61,8 +61,8 @@ export default function Page({
   }, [dataToGet]);
 
   return (
-    <Modal>
-      <DataVisualization data={data} heading={heading} />
+    <Modal heading={heading}>
+      <DataVisualization data={data} />
     </Modal>
   );
 }

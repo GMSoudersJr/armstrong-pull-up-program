@@ -9,6 +9,7 @@ interface DayThreeSVGProps {
 
 export default function DayThreeSVG({ data }: DayThreeSVGProps) {
   const ref = useRef(null);
+
   useEffect((): void => {
     if (ref.current && data.grips) {
       const svgElement = d3.select(ref.current);
@@ -102,7 +103,7 @@ export default function DayThreeSVG({ data }: DayThreeSVGProps) {
         )
         .call((text) =>
           text
-            .filter((d) => d.endAngle - d.startAngle > 0.35)
+            .filter((d) => d.endAngle - d.startAngle > 0.3)
             .append("tspan")
             .attr("x", 0)
             .attr("y", "0.3em")

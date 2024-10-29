@@ -14,6 +14,7 @@ const TIPS = {
 
 export default function DayFourSVG({ data }: DayFourSVGProps) {
   const ref = useRef(null);
+
   useEffect((): void => {
     if (ref.current) {
       const svgElement = d3.select(ref.current);

@@ -9,6 +9,7 @@ import {
   getWorkoutsbyWeekNumber,
 } from "@/indexedDBActions";
 import DataVisualization from "@/dataVisualization";
+import { nunito } from "@/fonts";
 
 const Page = ({ params }: { params: { getData: string; index: string } }) => {
   const initialData: TDayComplete[] = [];
@@ -63,9 +64,14 @@ const Page = ({ params }: { params: { getData: string; index: string } }) => {
   return (
     <div className={styles.page}>
       {dataError ? (
-        <p>Click the link, idiot</p>
+        <h1>Click the link, please</h1>
       ) : (
-        <DataVisualization data={data} heading={heading} />
+        <>
+          <h1 style={nunito.style} className={styles.heading}>
+            {heading}
+          </h1>
+          <DataVisualization data={data} />
+        </>
       )}
     </div>
   );

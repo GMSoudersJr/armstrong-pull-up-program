@@ -6,7 +6,6 @@ import {
   SVG_CHART,
   setTotalRepsMinMax,
   createCumulativeTotals,
-  createDomain,
 } from "./utils";
 
 function createPyramidData(setData: number[]): number[] {
@@ -20,27 +19,6 @@ function setSetMinMax(sets: number[]): [number, number] {
     max = Math.max(...sets);
   }
   return [min, max];
-}
-
-function setRepMinMax(sets: number[]): [number, number] {
-  const min = 0;
-  let max = 0;
-  if (sets.length > 0) {
-    max = sets.reduce((a, b) => a + b);
-  }
-  return [min, max];
-}
-
-function setCumulativeRepsTotal(sets: number[]): number[] {
-  const result: number[] = [];
-  for (let i = 0; i < sets.length; i++) {
-    if (i === 0) {
-      result.push(sets[i]);
-    } else {
-      result.push(result[i - 1] + sets[i]);
-    }
-  }
-  return result;
 }
 
 interface DayTwoSVGProps {
@@ -231,7 +209,7 @@ export default function DayTwoSVG({ data }: DayTwoSVGProps) {
         .attr("text-anchor", "middle")
         .attr("fill", "currentColor")
         .attr("font-family", "consolas")
-        .text(`max: ${Math.max(...data.sets)}`);
+        .text(`Peak: ${Math.max(...data.sets)}`);
 
       svgElement
         .append("text")
@@ -241,9 +219,9 @@ export default function DayTwoSVG({ data }: DayTwoSVGProps) {
         .attr("text-anchor", "middle")
         .attr("fill", "currentColor")
         .attr("font-family", "consolas")
-        .text(`total: ${setTotalRepsMinMax(data.sets)[1]}`);
+        .text(`Total: ${setTotalRepsMinMax(data.sets)[1]}`);
     }
-  }, []);
+  }, [data]);
 
   return <svg ref={ref} />;
 }

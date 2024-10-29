@@ -1,7 +1,10 @@
 .modal {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -24,39 +27,36 @@
   }
 }
 
-.modalContent {
+.headerSection {
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: min-content 1fr min-content;
-  row-gap: 2rem;
+  width: 100%;
+  grid-template-columns: 1fr max-content 1fr;
+  grid-template-rows: min-content;
   justify-items: center;
   align-items: center;
-  justify-content: center;
+  padding: 0.5rem;
   color: #0074d9;
-  margin: auto auto;
+}
+
+.iconWrapper {
+  font-size: clamp(1.5rem, 7vw + 1rem, 4rem);
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  height: 1em;
+  width: 1em;
+}
+
+.content {
   padding: 1.25rem;
   width: 100%;
-  height: 100%;
   max-width: 30rem;
-}
-
-.headerText {
-  place-self: center;
-  text-align: center;
-}
-
-.dataVisualizationSection {
   overflow-y: scroll;
   max-height: 100%;
   scrollbar-width: none;
-}
-
-.dataVisualizationSection > li {
-  margin-bottom: 4rem;
-}
-
-.dataVisualizationSection > li:only-child {
-  margin-bottom: 0;
+  place-self: center;
 }
 
 .closeButton {
@@ -64,11 +64,10 @@
   color: #aaa;
   font-size: var(--modal-close-button-font-size);
   font-weight: bold;
-  width: 100%;
-  height: 2.625rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #0074d9;
 }
 
 .closeButton:hover,
