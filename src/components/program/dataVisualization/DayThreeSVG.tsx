@@ -87,7 +87,7 @@ export default function DayThreeSVG({ data }: DayThreeSVGProps) {
           `translate(${SVG_CHART.width / 2}, ${SVG_CHART.height / 2})`,
         )
         .attr("font-family", "consolas")
-        .attr("font-size", 12)
+        .attr("font-size", 14)
         .attr("text-anchor", "middle")
         .selectAll()
         .data(pie(data.sets))
@@ -95,23 +95,33 @@ export default function DayThreeSVG({ data }: DayThreeSVGProps) {
         .attr("transform", (d) => `translate(${arc.centroid(d)})`)
         .call((text) =>
           text
-            .filter((d) => d.endAngle - d.startAngle > 0.25)
             .append("tspan")
             .attr("y", "0.3em")
             .attr("font-weight", "bold")
-            .text((_, i) => gripAndRepData.flatMap((entry) => entry.grip)[i]),
+            .text((d, i) => {
+              if (d.endAngle - d.startAngle > 0.25) {
+                return gripAndRepData.flatMap((entry) => entry.grip)[i];
+              } else {
+                return "";
+              }
+            }),
         )
         .call((text) =>
           text
-            .filter((d) => d.endAngle - d.startAngle > 0.3)
             .append("tspan")
             .attr("x", 0)
             .attr("y", "0.3em")
             .attr("fill", "#FFFFFF")
             .attr("font-weight", "bold")
-            .attr("font-size", 20)
-            .attr("fill-opacity", 0.7)
-            .text((d) => d.data.valueOf()),
+            .attr("font-size", 35)
+            .attr("fill-opacity", 0.3)
+            .text((d) => {
+              if (d.endAngle - d.startAngle > 0.3) {
+                return d.data.valueOf();
+              } else {
+                return "";
+              }
+            }),
         );
 
       // append text summary
