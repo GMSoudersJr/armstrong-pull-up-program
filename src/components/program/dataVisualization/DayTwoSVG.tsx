@@ -98,7 +98,7 @@ export default function DayTwoSVG({ data }: DayTwoSVGProps) {
       const yAxisRightGenerator = d3
         .axisRight(yScaleRight)
         .tickSizeOuter(0)
-        .ticks(6)
+        .ticks(Math.min(Math.max(...totalRepsData), 6))
         .tickFormat(d3.format("d"));
 
       svgElement
