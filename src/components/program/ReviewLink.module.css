@@ -13,3 +13,7 @@
 .reviewLink:hover {
   color: var(--blue);
 }
+
+.reviewLink:active {
+  background-color: var(--green);
+}
