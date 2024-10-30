@@ -114,7 +114,7 @@ export default function DayThreeSVG({ data }: DayThreeSVGProps) {
             .attr("fill", "#FFFF00")
             .attr("font-weight", "bold")
             .attr("font-size", 36)
-            .attr("fill-opacity", 0.3)
+            .attr("fill-opacity", 0.4)
             .text((d) => {
               if (d.endAngle - d.startAngle > 0.3) {
                 return d.data.valueOf();

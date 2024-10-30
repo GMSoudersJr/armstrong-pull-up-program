@@ -103,7 +103,7 @@ export default function DayFourSVG({ data }: DayFourSVGProps) {
             .attr("y", "0.3em")
             .attr("fill", "#FFFF00")
             .attr("font-weight", "bold")
-            .attr("fill-opacity", 0.7)
+            .attr("fill-opacity", 0.4)
             .text((d) => {
               if (d.endAngle - d.startAngle > 0.25) {
                 return d.data.valueOf();
