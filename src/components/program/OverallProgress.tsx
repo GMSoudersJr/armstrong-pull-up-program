@@ -1,46 +1,94 @@
 "use client";
 
-import type { TDayComplete } from "@/definitions";
+import type { TWeek } from "@/definitions";
 import styles from "./OverallProgess.module.css";
 import { useEffect, useState } from "react";
-import { getOverallProgess } from "@/indexedDBActions";
-import { nunito, ptSans } from "@/fonts";
+import { getWeeklyProgress } from "@/indexedDBActions";
+import { CalendarArrowDownIcon, CalendarArrowUpIcon } from "lucide-react";
+import { ReviewLink } from "./ReviewLink";
+import { nunito } from "@/fonts";
 
-const OverallProgess = () => {
-  const initialProgress: TDayComplete[] = [];
-  const [overallProgress, setOverallProgess] = useState(initialProgress);
+const DAY_HEADERS = [
+  { text: "D1", dayNumber: 1 },
+  { text: "D2", dayNumber: 2 },
+  { text: "D3", dayNumber: 3 },
+  { text: "D4", dayNumber: 4 },
+  { text: "D5", dayNumber: 5 },
+];
+
+const PastWorkouts = () => {
+  const initialProgress: TWeek[] = [];
+  const [weeklyProgress, setWeeklyProgress] = useState(initialProgress);
+  const [latest, setLatest] = useState(false);
+  const [fullWeek, setFullWeek] = useState(false);
+
+  function handleClick() {
+    setLatest(!latest);
+    setWeeklyProgress(weeklyProgress.reverse());
+  }
 
   useEffect(() => {
-    getOverallProgess()
-      .then((value) => setOverallProgess(value))
+    getWeeklyProgress()
+      .then((value) => {
+        setWeeklyProgress(value);
+        setFullWeek(value.slice(-1)[0].lastCompletedDay === 5);
+      })
       .catch((error) => console.warn(error));
   }, []);
 
   return (
-    <section className={styles.overallProgressSection}>
-      <ul className={styles.progressList}>
-        {overallProgress.map((day) => {
-          return (
-            <li key={day.id} className={styles.progressListItem}>
-              <details>
-                <summary style={nunito.style}>
-                  WK{day.weekNumber} D{day.dayNumber} - {day.dayAbbreviation} -
-                  TOTAL {day.sets.reduce((a, b) => a + b)}
-                </summary>
-                <p style={ptSans.style}>
-                  <time dateTime={day.date}>{day.date}</time>
-                </p>
-                {day.grips && (
-                  <p style={ptSans.style}>{day.grips.join(" | ")}</p>
-                )}
-                <p style={ptSans.style}>Sets: {day.sets.join(", ")}</p>
-              </details>
-            </li>
-          );
-        })}
-      </ul>
-    </section>
+    <>
+      <h2 style={nunito.style} className={styles.heading}>
+        {weeklyProgress.length > 0 ? "PAST WORKOUTS" : "GET STARTED"}
+      </h2>
+      <section className={styles.pastWorkouts}>
+        {weeklyProgress.length > 0 ? (
+          <>
+            <button
+              type="button"
+              className={`${styles.iconWrapper} ${styles.button}`}
+              onClick={handleClick}
+              disabled={!fullWeek}
+              title="week order toggler"
+            >
+              {latest ? <CalendarArrowUpIcon /> : <CalendarArrowDownIcon />}
+            </button>
+            {DAY_HEADERS.map((entry) => {
+              return (
+                <ReviewLink
+                  getData="day"
+                  index={entry.dayNumber}
+                  text={`D${entry.dayNumber}`}
+                  key={entry.dayNumber}
+                />
+              );
+            })}
+            {weeklyProgress.map((week) => {
+              return [week.number]
+                .concat(week.completedDays)
+                .map((entry, i) => {
+                  const id = `${week.number}-${entry}`;
+                  if (i === 0) {
+                    return (
+                      <ReviewLink
+                        getData="week"
+                        index={week.number}
+                        text={`W${week.number}`}
+                        key={`W-${id}`}
+                      />
+                    );
+                  } else {
+                    return <ReviewLink getData="workout" index={id} key={id} />;
+                  }
+                });
+            })}
+          </>
+        ) : (
+          <></>
+        )}
+      </section>
+    </>
   );
 };
 
-export default OverallProgess;
+export default PastWorkouts;

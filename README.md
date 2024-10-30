@@ -37,7 +37,7 @@ I came across this program called "The Armstrong Pull-up Program". I gave it a t
 - The app keeps track of which day the user last completed and guides them through the program.
 - Each day is as simple as inputing your number of pull-ups and then clicking that you have completed the set.
 - Users are shown their progress for the day and a tally of how many pull-ups they accomplished in the workout.
-- Users are shown details about their previous days and weeks of workouts upon openning the app.
+- Users are shown details about their previous days and weeks of workouts with bespoke data visualization thanks to D3.
 
 ### Recovery Timers ⏲️
 

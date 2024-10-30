@@ -1,0 +1,19 @@
+.reviewLink {
+  text-align: center;
+  background-color: #d1d1d1;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: clamp(var(--heading-6), calc(1vw + 0.1rem), var(--heading-5));
+  font-weight: 800;
+}
+
+.reviewLink:hover {
+  color: var(--blue);
+}
+
+.reviewLink:active {
+  background-color: var(--green);
+}
