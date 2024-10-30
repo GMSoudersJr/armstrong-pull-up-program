@@ -4,14 +4,9 @@ import type { TWeek } from "@/definitions";
 import styles from "./OverallProgess.module.css";
 import { useEffect, useState } from "react";
 import { getWeeklyProgress } from "@/indexedDBActions";
-import {
-  ArrowDownFromLine,
-  ArrowDownFromLineIcon,
-  LayoutGridIcon,
-} from "lucide-react";
+import { CalendarArrowDownIcon, CalendarArrowUpIcon } from "lucide-react";
 import { ReviewLink } from "./ReviewLink";
 import { nunito } from "@/fonts";
-import PullupSVG from "../PullupSVG";
 
 const DAY_HEADERS = [
   { text: "D1", dayNumber: 1 },
@@ -24,6 +19,12 @@ const DAY_HEADERS = [
 const PastWorkouts = () => {
   const initialProgress: TWeek[] = [];
   const [weeklyProgress, setWeeklyProgress] = useState(initialProgress);
+  const [latest, setLatest] = useState(false);
+
+  function handleClick() {
+    setLatest(!latest);
+    setWeeklyProgress(weeklyProgress.reverse());
+  }
 
   useEffect(() => {
     getWeeklyProgress()
@@ -39,9 +40,9 @@ const PastWorkouts = () => {
       <section className={styles.pastWorkouts}>
         {weeklyProgress.length > 0 ? (
           <>
-            <div className={styles.iconWrapper}>
-              <LayoutGridIcon />
-            </div>
+            <button className={styles.iconWrapper} onClick={handleClick}>
+              {latest ? <CalendarArrowUpIcon /> : <CalendarArrowDownIcon />}
+            </button>
             {DAY_HEADERS.map((entry) => {
               return (
                 <ReviewLink

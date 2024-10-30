@@ -1,10 +1,11 @@
 .reviewLink {
   text-align: center;
   background-color: #d1d1d1;
+  opacity: 0.8;
   display: grid;
   justify-items: center;
   align-items: center;
-  border: 1px solid #a1a1a1;
+  border: 1px solid var(--blue);
 }
 
 .reviewLink:hover {

@@ -107,7 +107,7 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
         .attr("width", xScale.bandwidth());
 
       // append a plus symbol for the cumulative total
-      const plusSymbol = d3.symbol().type(d3.symbolCross).size(60);
+      const plusSymbol = d3.symbol().type(d3.symbolCross).size(100);
 
       svgElement
         .append("g")
