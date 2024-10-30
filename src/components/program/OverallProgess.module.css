@@ -13,30 +13,10 @@
   display: none;
 }
 
-.progressListItem {
-  margin-bottom: 0.25rem;
-}
-
-.progressListItem:last-child {
-  margin-bottom: 0rem;
-}
-
-.progressListItem > details > summary {
-  padding: 0.25rem;
-  background-color: #eeeeee;
-  border: none;
-  cursor: pointer;
-}
-
-.progressListItem > details > p {
-  background-color: #eeeeee;
-  padding: 0.25rem;
-  padding-left: 1rem;
-}
-
 .iconWrapper {
   display: grid;
   justify-items: center;
   align-items: center;
   background-color: #d1d1d1;
+  border: 1px solid #a1a1a1;
 }

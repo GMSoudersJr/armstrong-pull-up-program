@@ -1,12 +1,10 @@
 "use client";
 
-import type { TDataToGet, TWeek } from "@/definitions";
+import type { TWeek } from "@/definitions";
 import styles from "./OverallProgess.module.css";
 import { useEffect, useState } from "react";
 import { getWeeklyProgress } from "@/indexedDBActions";
 import { LayoutGridIcon } from "lucide-react";
-import { createPortal } from "react-dom";
-import DataVisualizationModal from "@/components/program/dataVisualization/Modal";
 import { ReviewLink } from "./ReviewLink";
 
 const DAY_HEADERS = [
@@ -19,18 +17,7 @@ const DAY_HEADERS = [
 
 const OverallProgess = () => {
   const initialProgress: TWeek[] = [];
-  const initialDataToGet: TDataToGet = {};
   const [weeklyProgress, setWeeklyProgress] = useState(initialProgress);
-
-  const [showModal, setShowModal] = useState(false);
-
-  const [dataVisualizationToGet, setDataVisualizationToGet] =
-    useState(initialDataToGet);
-
-  function closeModal() {
-    setShowModal(false);
-    setDataVisualizationToGet(initialDataToGet);
-  }
 
   useEffect(() => {
     getWeeklyProgress()
@@ -70,14 +57,6 @@ const OverallProgess = () => {
           }
         });
       })}
-      {showModal &&
-        createPortal(
-          <DataVisualizationModal
-            onClose={closeModal}
-            dataVisualizationToGet={dataVisualizationToGet}
-          />,
-          document.body,
-        )}
     </section>
   );
 };

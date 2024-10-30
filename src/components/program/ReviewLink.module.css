@@ -4,6 +4,7 @@
   display: grid;
   justify-items: center;
   align-items: center;
+  border: 1px solid #a1a1a1;
 }
 
 .reviewLink:hover {
