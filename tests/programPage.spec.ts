@@ -8,4 +8,5 @@ test("program page should have correct elements", async ({ page }) => {
   await expect(programPage.homeLink).toBeVisible();
   await expect(programPage.getStartedHeader).toBeVisible();
   await expect(programPage.dayLink).toBeVisible();
+  await expect(programPage.yourWorkoutHeader).toBeVisible();
 });

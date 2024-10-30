@@ -20,6 +20,7 @@ const PastWorkouts = () => {
   const initialProgress: TWeek[] = [];
   const [weeklyProgress, setWeeklyProgress] = useState(initialProgress);
   const [latest, setLatest] = useState(false);
+  const [fullWeek, setFullWeek] = useState(false);
 
   function handleClick() {
     setLatest(!latest);
@@ -28,7 +29,10 @@ const PastWorkouts = () => {
 
   useEffect(() => {
     getWeeklyProgress()
-      .then((value) => setWeeklyProgress(value))
+      .then((value) => {
+        setWeeklyProgress(value);
+        setFullWeek(value.length % 5 === 0);
+      })
       .catch((error) => console.warn(error));
   }, []);
 
@@ -40,7 +44,11 @@ const PastWorkouts = () => {
       <section className={styles.pastWorkouts}>
         {weeklyProgress.length > 0 ? (
           <>
-            <button className={styles.iconWrapper} onClick={handleClick}>
+            <button
+              className={styles.iconWrapper}
+              onClick={handleClick}
+              disabled={!fullWeek}
+            >
               {latest ? <CalendarArrowUpIcon /> : <CalendarArrowDownIcon />}
             </button>
             {DAY_HEADERS.map((entry) => {
