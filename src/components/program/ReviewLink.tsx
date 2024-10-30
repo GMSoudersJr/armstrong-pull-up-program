@@ -15,8 +15,9 @@ export const ReviewLink = ({ getData, index, text }: ReviewLinkProps) => {
       className={styles.reviewLink}
       scroll={false}
       title={`Review ${getData} ${index}`}
+      style={nunito.style}
     >
-      <h6 style={nunito.style}>{text}</h6>
+      {text}
     </Link>
   );
 };
