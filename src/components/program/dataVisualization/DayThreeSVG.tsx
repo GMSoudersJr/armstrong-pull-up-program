@@ -87,7 +87,7 @@ export default function DayThreeSVG({ data }: DayThreeSVGProps) {
           `translate(${SVG_CHART.width / 2}, ${SVG_CHART.height / 2})`,
         )
         .attr("font-family", "consolas")
-        .attr("font-size", 14)
+        .attr("font-size", 12)
         .attr("text-anchor", "middle")
         .selectAll()
         .data(pie(data.sets))
@@ -111,9 +111,9 @@ export default function DayThreeSVG({ data }: DayThreeSVGProps) {
             .append("tspan")
             .attr("x", 0)
             .attr("y", "0.3em")
-            .attr("fill", "#FFFFFF")
+            .attr("fill", "#FFFF00")
             .attr("font-weight", "bold")
-            .attr("font-size", 35)
+            .attr("font-size", 36)
             .attr("fill-opacity", 0.3)
             .text((d) => {
               if (d.endAngle - d.startAngle > 0.3) {

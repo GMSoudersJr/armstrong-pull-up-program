@@ -90,7 +90,7 @@ export default function DayFourSVG({ data }: DayFourSVGProps) {
           `translate(${SVG_CHART.width / 2}, ${SVG_CHART.height / 2})`,
         )
         .attr("font-family", "consolas")
-        .attr("font-size", 24)
+        .attr("font-size", 36)
         .attr("text-anchor", "middle")
         .selectAll()
         .data(pie(data.sets))
@@ -101,7 +101,7 @@ export default function DayFourSVG({ data }: DayFourSVGProps) {
             .append("tspan")
             .attr("x", 0)
             .attr("y", "0.3em")
-            .attr("fill", "#FFFFFF")
+            .attr("fill", "#FFFF00")
             .attr("font-weight", "bold")
             .attr("fill-opacity", 0.7)
             .text((d) => {
