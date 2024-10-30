@@ -1,4 +1,4 @@
-.overallProgressSection {
+.pastWorkouts {
   height: 80%;
   overflow-y: scroll;
   scrollbar-width: none;
@@ -9,7 +9,11 @@
   column-gap: 0.325rem;
 }
 
-.overallProgressSection::-webkit-scrollbar {
+.heading {
+  text-align: center;
+}
+
+.pastWorkouts::-webkit-scrollbar {
   display: none;
 }
 
@@ -19,4 +23,13 @@
   align-items: center;
   background-color: #d1d1d1;
   border: 1px solid #a1a1a1;
+}
+
+.svgWrapper {
+  width: 20rem;
+  height: 20rem;
+  text-align: center;
+  margin: auto;
+  height: 100%;
+  border: 1px solid green;
 }

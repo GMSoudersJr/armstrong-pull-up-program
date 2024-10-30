@@ -4,8 +4,14 @@ import type { TWeek } from "@/definitions";
 import styles from "./OverallProgess.module.css";
 import { useEffect, useState } from "react";
 import { getWeeklyProgress } from "@/indexedDBActions";
-import { LayoutGridIcon } from "lucide-react";
+import {
+  ArrowDownFromLine,
+  ArrowDownFromLineIcon,
+  LayoutGridIcon,
+} from "lucide-react";
 import { ReviewLink } from "./ReviewLink";
+import { nunito } from "@/fonts";
+import PullupSVG from "../PullupSVG";
 
 const DAY_HEADERS = [
   { text: "D1", dayNumber: 1 },
@@ -15,7 +21,7 @@ const DAY_HEADERS = [
   { text: "D5", dayNumber: 5 },
 ];
 
-const OverallProgess = () => {
+const PastWorkouts = () => {
   const initialProgress: TWeek[] = [];
   const [weeklyProgress, setWeeklyProgress] = useState(initialProgress);
 
@@ -26,39 +32,52 @@ const OverallProgess = () => {
   }, []);
 
   return (
-    <section className={styles.overallProgressSection}>
-      <div className={styles.iconWrapper}>
-        <LayoutGridIcon />
-      </div>
-      {DAY_HEADERS.map((entry) => {
-        return (
-          <ReviewLink
-            getData="day"
-            index={entry.dayNumber}
-            text={`D${entry.dayNumber}`}
-            key={entry.dayNumber}
-          />
-        );
-      })}
-      {weeklyProgress.map((week) => {
-        return [week.number].concat(week.completedDays).map((entry, i) => {
-          const id = `${week.number}-${entry}`;
-          if (i === 0) {
-            return (
-              <ReviewLink
-                getData="week"
-                index={week.number}
-                text={`W${week.number}`}
-                key={`W-${id}`}
-              />
-            );
-          } else {
-            return <ReviewLink getData="workout" index={id} key={id} />;
-          }
-        });
-      })}
-    </section>
+    <>
+      <h2 style={nunito.style} className={styles.heading}>
+        {weeklyProgress.length > 0 ? "PAST WORKOUTS" : "GET STARTED"}
+      </h2>
+      <section className={styles.pastWorkouts}>
+        {weeklyProgress.length > 0 ? (
+          <>
+            <div className={styles.iconWrapper}>
+              <LayoutGridIcon />
+            </div>
+            {DAY_HEADERS.map((entry) => {
+              return (
+                <ReviewLink
+                  getData="day"
+                  index={entry.dayNumber}
+                  text={`D${entry.dayNumber}`}
+                  key={entry.dayNumber}
+                />
+              );
+            })}
+            {weeklyProgress.map((week) => {
+              return [week.number]
+                .concat(week.completedDays)
+                .map((entry, i) => {
+                  const id = `${week.number}-${entry}`;
+                  if (i === 0) {
+                    return (
+                      <ReviewLink
+                        getData="week"
+                        index={week.number}
+                        text={`W${week.number}`}
+                        key={`W-${id}`}
+                      />
+                    );
+                  } else {
+                    return <ReviewLink getData="workout" index={id} key={id} />;
+                  }
+                });
+            })}
+          </>
+        ) : (
+          <></>
+        )}
+      </section>
+    </>
   );
 };
 
-export default OverallProgess;
+export default PastWorkouts;
