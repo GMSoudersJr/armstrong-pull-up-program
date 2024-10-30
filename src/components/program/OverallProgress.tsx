@@ -31,10 +31,10 @@ const PastWorkouts = () => {
     getWeeklyProgress()
       .then((value) => {
         setWeeklyProgress(value);
-        setFullWeek(value.length % 5 === 0);
+        setFullWeek(value.slice(-1)[0].lastCompletedDay === 5);
       })
       .catch((error) => console.warn(error));
-  }, [fullWeek]);
+  }, []);
 
   return (
     <>
