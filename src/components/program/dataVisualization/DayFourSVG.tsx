@@ -165,7 +165,7 @@ export default function DayFourSVG({ data }: DayFourSVGProps) {
         .attr("font-family", "consolas")
         .text(`Tip: ${data.success ? TIPS.success : TIPS.fail}`);
     }
-  }, [data]);
+  }, [data, nineOrMoreTrainingSets]);
 
   return <svg ref={ref} />;
 }

@@ -221,7 +221,7 @@ export default function DayTwoSVG({ data }: DayTwoSVGProps) {
         .attr("font-family", "consolas")
         .text(`Total: ${setTotalRepsMinMax(data.sets)[1]}`);
     }
-  }, [data]);
+  }, [data, pyramidData, totalRepsData, yRightDomain]);
 
   return <svg ref={ref} />;
 }

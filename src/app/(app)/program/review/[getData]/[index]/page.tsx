@@ -59,7 +59,7 @@ const Page = ({ params }: { params: { getData: string; index: string } }) => {
           setDataError(true);
         });
     }
-  }, [dataToGet]);
+  }, [dataToGet, params.getData, params.index]);
 
   return (
     <div className={styles.page}>

@@ -210,7 +210,7 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
         .attr("font-family", "consolas")
         .text(`Total: ${setTotalRepsMinMax(data.sets)[1]}`);
     }
-  }, [data]);
+  }, [data, totalRepsData, yLeftDomain, yRightDomain, xDomain]);
 
   return <svg ref={ref} />;
 }
