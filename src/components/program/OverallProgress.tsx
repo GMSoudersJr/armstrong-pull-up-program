@@ -34,7 +34,7 @@ const PastWorkouts = () => {
         setFullWeek(value.length % 5 === 0);
       })
       .catch((error) => console.warn(error));
-  }, []);
+  }, [fullWeek]);
 
   return (
     <>

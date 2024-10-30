@@ -3,13 +3,14 @@
 import styles from "./page.module.css";
 import dynamic from "next/dynamic";
 
-const Program = dynamic(() => import("@/components/program/Program"), {
-  ssr: false,
-});
 const OverallProgess = dynamic(
   () => import("@/components/program/OverallProgress"),
   { ssr: false },
 );
+
+const Program = dynamic(() => import("@/components/program/Program"), {
+  ssr: false,
+});
 
 const ProgramPage = () => {
   /*
