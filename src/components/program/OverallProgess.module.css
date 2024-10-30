@@ -1,12 +1,11 @@
 .pastWorkouts {
-  height: 80%;
-  overflow-y: scroll;
+  overflow-y: auto;
   scrollbar-width: none;
   display: grid;
   grid-template-columns: repeat(6, 2.65rem);
-  grid-template-rows: repeat(auto-fill, 2.65rem);
-  row-gap: 0.325rem;
-  column-gap: 0.325rem;
+  grid-template-rows: repeat(auto-fit, 2.65rem);
+  grid-auto-rows: 2.65rem;
+  gap: 0.325rem;
 }
 
 .heading {

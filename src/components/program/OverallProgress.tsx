@@ -45,9 +45,11 @@ const PastWorkouts = () => {
         {weeklyProgress.length > 0 ? (
           <>
             <button
+              type="button"
               className={`${styles.iconWrapper} ${styles.button}`}
               onClick={handleClick}
               disabled={!fullWeek}
+              title="week order toggler"
             >
               {latest ? <CalendarArrowUpIcon /> : <CalendarArrowDownIcon />}
             </button>
