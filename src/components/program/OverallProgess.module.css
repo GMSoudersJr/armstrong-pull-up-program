@@ -23,5 +23,9 @@
   align-items: center;
   background-color: #d1d1d1;
   border: 1px solid var(--blue);
-  border-radius: 50%;
+  border-radius: 0.5rem;
+}
+
+.button:disabled {
+  border: 1px solid #aaa;
 }

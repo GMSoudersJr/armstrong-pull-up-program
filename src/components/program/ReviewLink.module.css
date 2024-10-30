@@ -5,7 +5,8 @@
   display: grid;
   justify-items: center;
   align-items: center;
-  border: 1px solid var(--blue);
+  border: none;
+  border-radius: 0.5rem;
 }
 
 .reviewLink:hover {

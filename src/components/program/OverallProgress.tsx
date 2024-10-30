@@ -45,7 +45,7 @@ const PastWorkouts = () => {
         {weeklyProgress.length > 0 ? (
           <>
             <button
-              className={styles.iconWrapper}
+              className={`${styles.iconWrapper} ${styles.button}`}
               onClick={handleClick}
               disabled={!fullWeek}
             >
