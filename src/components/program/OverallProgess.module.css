@@ -1,4 +1,5 @@
 .pastWorkouts {
+  height: 100%;
   overflow-y: auto;
   scrollbar-width: none;
   display: grid;
