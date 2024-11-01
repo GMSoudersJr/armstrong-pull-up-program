@@ -59,6 +59,7 @@ const TrainingSetRepsInput = ({
         <div className={styles.spanInput}>
           <button
             id="decrement-button"
+            title="Decrease the rep count"
             type="button"
             onClick={handleDecrement}
             className={`${styles.button} ${styles.decrement} actionButton`}
@@ -81,6 +82,7 @@ const TrainingSetRepsInput = ({
           />
           <button
             id="increment-button"
+            title="Increase the rep count"
             type="button"
             onClick={handleIncrement}
             className={`${styles.button} ${styles.increment} actionButton`}

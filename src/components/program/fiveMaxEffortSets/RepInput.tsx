@@ -69,7 +69,7 @@ const RepInput = ({
         <span className={styles.spanInput}>
           <button
             id="decrement-button"
-            title="decrease the rep count"
+            title="Decrease the rep count"
             type="button"
             onClick={handleDecrement}
             className={`${styles.button} ${styles.decrement} actionButton`}
@@ -93,7 +93,7 @@ const RepInput = ({
           />
           <button
             id="increment-button"
-            title="increase the rep count"
+            title="Increase the rep count"
             type="button"
             onClick={handleIncrement}
             className={`${styles.button} ${styles.increment} actionButton`}

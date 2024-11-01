@@ -87,6 +87,7 @@ const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
         ) : (
           <button
             id="save-icon-button"
+            title="save your workout"
             type="button"
             className={styles.saveButton}
             onClick={handleSave}

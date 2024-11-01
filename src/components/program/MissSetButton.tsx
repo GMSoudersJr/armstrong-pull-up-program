@@ -28,6 +28,7 @@ const MissSetButton = ({
   return (
     <button
       id="miss-set-button"
+      title="Failed to complete the set"
       type="button"
       onClick={handleMiss}
       disabled={
