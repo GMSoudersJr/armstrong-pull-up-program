@@ -16,11 +16,16 @@ const Footer = () => {
             "https://www.savannahstate.edu/cost/nrotc/documents/Inform2010-thearmstrongworkout_Enclosure15_5-2-10.pdf"
           }
           target="_blank"
+          style={nunito.style}
         >
-          <h5 style={nunito.style}>PDF SOURCE MATERIAL</h5>
+          <strong>PDF SOURCE MATERIAL</strong>
         </Link>
-        <Link href={"https://card-workout-tau.vercel.app/"} target="_blank">
-          <h5 style={nunito.style}>SUIT YOURSELF</h5>
+        <Link
+          href={"https://card-workout-tau.vercel.app/"}
+          target="_blank"
+          style={nunito.style}
+        >
+          <strong>SUIT YOURSELF</strong>
         </Link>
       </section>
       <section className={styles.socials}>

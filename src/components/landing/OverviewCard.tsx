@@ -9,7 +9,7 @@ const ProgramOverviewCard = ({ Icon, heading, body }: TCardProps) => {
       <div className={`${styles.iconWrapper} iconWrapper`}>
         <Icon className={styles.icon} />
       </div>
-      <h3 style={nunito.style}>{heading}</h3>
+      <h2 style={nunito.style}>{heading}</h2>
       <ul>
         {body.map((point, i) => {
           return (

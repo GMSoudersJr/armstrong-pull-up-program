@@ -5,6 +5,7 @@ export class ProgramPage {
   readonly homeLink: Locator;
   readonly getStartedLink: Locator;
   readonly getStartedHeader: Locator;
+  readonly dashboardHeader: Locator;
   readonly dayLink: Locator;
   readonly yourWorkoutHeader: Locator;
 
@@ -12,6 +13,7 @@ export class ProgramPage {
     this.page = page;
     this.homeLink = page.getByRole("link", { name: "PULLUP PROGRAM" });
     this.getStartedHeader = page.getByRole("heading", { name: "GET STARTED" });
+    this.dashboardHeader = page.getByRole("heading", { name: "PAST WORKOUTS" });
     this.yourWorkoutHeader = page.getByRole("heading", {
       name: "YOUR WORKOUT",
     });

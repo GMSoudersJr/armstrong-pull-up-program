@@ -90,6 +90,7 @@ const MaxTrainingSetsDisplay = ({
             />
             <button
               id="complete-set-button"
+              title="Completed the set"
               type="button"
               className={`${styles.actionButton} actionButton`}
               onClick={handleComplete}

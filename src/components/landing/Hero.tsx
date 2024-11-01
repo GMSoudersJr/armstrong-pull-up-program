@@ -10,9 +10,9 @@ const Hero = () => {
       <LandingNavbar />
       <div className={styles.heroLeft}>
         <h1 style={nunito.style}>Master Pull-Ups with Our App!</h1>
-        <h3 style={nunito.style}>
+        <h2 style={nunito.style}>
           Use the Armstrong Pull-up Program to achieve your pull-up goals!
-        </h3>
+        </h2>
         <PageLink label="learn more" path="/#features" />
       </div>
 

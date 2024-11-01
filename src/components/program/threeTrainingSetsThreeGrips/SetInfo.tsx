@@ -120,6 +120,7 @@ const SetInfo = ({
             {completedSetCount === 3 ? (
               <button
                 id="next-grip-button"
+                title="Choose next grip"
                 type="button"
                 className={`${styles.completeButton} actionButton`}
                 onClick={handleDone}
@@ -130,6 +131,7 @@ const SetInfo = ({
             ) : (
               <button
                 id="complete-set-button"
+                title="Completed the set"
                 type="button"
                 className={`${styles.completeButton} actionButton`}
                 onClick={handleDone}

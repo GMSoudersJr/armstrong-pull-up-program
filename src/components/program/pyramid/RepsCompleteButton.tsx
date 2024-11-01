@@ -32,6 +32,7 @@ const RepsCompleteButton = ({
   return (
     <button
       id="reps-complete-button"
+      title="Completed the set"
       type="button"
       className={`${styles.pyramidActionButton} actionButton`}
       onClick={handleClick}
