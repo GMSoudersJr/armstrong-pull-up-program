@@ -30,6 +30,16 @@
   font-size: var(--button-action-font-size);
 }
 
+.missedSetNumberContainer {
+  display: flex;
+  width: 20rem;
+  max-width: 100%;
+  overflow-x: scroll;
+  gap: 1rem;
+  scrollbar-width: none;
+  justify-content: space-around;
+}
+
 .icon {
   height: 1em;
   width: 1em;
