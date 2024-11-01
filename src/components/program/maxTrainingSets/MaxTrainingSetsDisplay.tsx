@@ -66,7 +66,10 @@ const MaxTrainingSetsDisplay = ({
       </div>
       <div className={styles.actionButtonsContainer}>
         {missedSet ? (
-          <>
+          <div
+            id="missed-set-number-container"
+            className={styles.missedSetNumberContainer}
+          >
             {Array.from({ length: trainingSetReps }, (_, i) => {
               return (
                 <NumberedMissRepButton
@@ -80,7 +83,7 @@ const MaxTrainingSetsDisplay = ({
                 />
               );
             })}
-          </>
+          </div>
         ) : (
           <section className={styles.missOrHitButtonsContainer}>
             <MissSetButton
