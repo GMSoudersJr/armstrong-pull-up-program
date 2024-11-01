@@ -34,10 +34,11 @@ const LandingNavbar = () => {
               className={styles.navListitem}
               style={nunito.style}
             >
-              <Link href={navLink.path} scroll={true} title={navLink.label}>
+              <Link href={navLink.path} scroll={true}>
                 {navLink.path === "/#home" ? (
                   <>
                     <BicepsFlexedIcon size={"0.698rem"} />
+                    <span className="visibly-hidden">home</span>
                   </>
                 ) : (
                   navLink.label.toUpperCase()
