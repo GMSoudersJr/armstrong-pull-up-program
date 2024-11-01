@@ -35,7 +35,7 @@ const TestimonyCard = ({
           )}
         </div>
         <h3 style={nunito.style}>{name}</h3>
-        <h5 style={ptSans.style}>{duration}</h5>
+        <h4 style={ptSans.style}>{duration}</h4>
         <div className={styles.quoteIconWrapper}>
           <QuoteIcon className={styles.quoteIcon} />
         </div>
