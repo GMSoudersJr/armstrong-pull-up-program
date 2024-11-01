@@ -87,7 +87,10 @@ const SetInfo = ({
 
       <div className={styles.buttonsContainer}>
         {missedSet ? (
-          <>
+          <div
+            id="missed-set-number-container"
+            className={styles.missedSetNumberContainer}
+          >
             {Array.from({ length: trainingSetReps }, (_, i) => {
               return (
                 <NumberedMissRepButton
@@ -108,7 +111,7 @@ const SetInfo = ({
                 />
               );
             })}
-          </>
+          </div>
         ) : (
           <section className={styles.actionButtonsContainer}>
             <MissSetButton
