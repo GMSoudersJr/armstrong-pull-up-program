@@ -21,6 +21,7 @@ const DailyHintButton = ({ dayNumber }: DailyHintButtonProps) => {
     <>
       <button
         id="hint-button"
+        title="Get a hint on what to do"
         type="button"
         onClick={handleClick}
         className={styles.button}
