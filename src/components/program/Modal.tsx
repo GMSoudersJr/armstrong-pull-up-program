@@ -28,6 +28,7 @@ export function Modal({ children, heading }: ModalProps) {
         </h2>
         <button
           id="data-visualization-modal-close-button"
+          title="Close modal"
           type="button"
           className={styles.closeButton}
           onClick={handleClick}

@@ -49,7 +49,7 @@ const PastWorkouts = () => {
               className={`${styles.iconWrapper} ${styles.button}`}
               onClick={handleClick}
               disabled={!fullWeek}
-              title="week order toggler"
+              title="Toggle week order"
             >
               {latest ? <CalendarArrowUpIcon /> : <CalendarArrowDownIcon />}
             </button>
