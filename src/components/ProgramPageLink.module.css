@@ -1,4 +1,4 @@
-.transitionLink {
+.programPageLink {
   min-width: 10rem;
   text-align: center;
   font-size: 1.5rem;
@@ -8,6 +8,6 @@
   background-color: #d1d1d1;
 }
 
-.transitionLink:hover {
+.programPageLink:hover {
   color: #0074d9;
 }

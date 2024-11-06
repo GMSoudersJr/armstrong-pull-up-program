@@ -5,21 +5,29 @@ export class ProgramPage {
   readonly homeLink: Locator;
   readonly getStartedLink: Locator;
   readonly getStartedHeader: Locator;
-  readonly dashboardHeader: Locator;
+  readonly dashboard: Locator;
+  readonly pastWorkoutsHeader: Locator;
+  readonly pastWorkoutsSection: Locator;
   readonly dayLink: Locator;
-  readonly yourWorkoutHeader: Locator;
+  readonly todaysWorkoutHeader: Locator;
+  readonly skipButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.homeLink = page.getByRole("link", { name: "PULLUP PROGRAM" });
     this.getStartedHeader = page.getByRole("heading", { name: "GET STARTED" });
-    this.dashboardHeader = page.getByRole("heading", { name: "PAST WORKOUTS" });
-    this.yourWorkoutHeader = page.getByRole("heading", {
-      name: "YOUR WORKOUT",
+    this.dashboard = page.locator("#dashboard");
+    this.pastWorkoutsHeader = page.getByRole("heading", {
+      name: "PAST WORKOUTS",
+    });
+    this.pastWorkoutsSection = page.locator("#past-workouts-section");
+    this.todaysWorkoutHeader = page.getByRole("heading", {
+      name: "TODAY'S WORKOUT",
     });
     this.dayLink = page.getByRole("link", { name: /DAY [1-5]/ });
     // This is the get started link from the landing page
     this.getStartedLink = page.getByRole("link", { name: "GET STARTED" });
+    this.skipButton = page.getByRole("button", { name: "SKIP" });
   }
 
   async goto() {
@@ -30,5 +38,9 @@ export class ProgramPage {
 
   async pressDayLink() {
     await this.dayLink.click();
+  }
+
+  async pressSkipButton() {
+    await this.skipButton.click();
   }
 }

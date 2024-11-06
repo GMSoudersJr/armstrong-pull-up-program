@@ -1,10 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import dynamic from "next/dynamic";
 
-const OverallProgess = dynamic(
-  () => import("@/components/program/OverallProgress"),
+const PastWorkouts = dynamic(
+  () => import("@/components/program/PastWorkouts"),
   { ssr: false },
 );
 
@@ -13,10 +14,14 @@ const Program = dynamic(() => import("@/components/program/Program"), {
 });
 
 const ProgramPage = () => {
+  const [updatePastWorkouts, setUpdatePastWorkouts] = useState(0);
+
+  useEffect(() => {}, [updatePastWorkouts]);
+
   return (
     <main className={styles.main} role="main">
-      <OverallProgess />
-      <Program />
+      <PastWorkouts updatePastWorkouts={updatePastWorkouts} />
+      <Program setStateForUpdatePastWorkouts={setUpdatePastWorkouts} />
     </main>
   );
 };
