@@ -13,7 +13,15 @@ const TIPS = {
 };
 
 export default function DayFourSVG({ data }: DayFourSVGProps) {
+  const nineOrMoreTrainingSets =
+    data.sets.filter((set) => {
+      if (data.trainingSetReps) {
+        return set >= data.trainingSetReps;
+      }
+    }).length >= 9;
+
   const ref = useRef(null);
+
   useEffect((): void => {
     if (ref.current) {
       const svgElement = d3.select(ref.current);
@@ -70,8 +78,7 @@ export default function DayFourSVG({ data }: DayFourSVGProps) {
         .attr("stroke-width", 1)
         .attr(
           "stroke",
-          (d) =>
-            `${data.trainingSetReps === d.value ? COLOR.success : COLOR.fail}`,
+          `${nineOrMoreTrainingSets ? COLOR.success : COLOR.fail}`,
         )
         .append("title")
         .text((d) => `${d.data}`);
@@ -83,7 +90,7 @@ export default function DayFourSVG({ data }: DayFourSVGProps) {
           `translate(${SVG_CHART.width / 2}, ${SVG_CHART.height / 2})`,
         )
         .attr("font-family", "consolas")
-        .attr("font-size", 16)
+        .attr("font-size", 36)
         .attr("text-anchor", "middle")
         .selectAll()
         .data(pie(data.sets))
@@ -91,14 +98,19 @@ export default function DayFourSVG({ data }: DayFourSVGProps) {
         .attr("transform", (d) => `translate(${arc.centroid(d)})`)
         .call((text) =>
           text
-            .filter((d) => d.endAngle - d.startAngle > 0.25)
             .append("tspan")
             .attr("x", 0)
             .attr("y", "0.3em")
             .attr("fill", "#FFFFFF")
             .attr("font-weight", "bold")
-            .attr("fill-opacity", 0.7)
-            .text((d) => d.data.valueOf()),
+            .attr("fill-opacity", 0.4)
+            .text((d) => {
+              if (d.endAngle - d.startAngle > 0.25) {
+                return d.data.valueOf();
+              } else {
+                return "";
+              }
+            }),
         );
 
       // append text summary
@@ -153,7 +165,7 @@ export default function DayFourSVG({ data }: DayFourSVGProps) {
         .attr("font-family", "consolas")
         .text(`Tip: ${data.success ? TIPS.success : TIPS.fail}`);
     }
-  }, [data]);
+  }, [data, nineOrMoreTrainingSets]);
 
   return <svg ref={ref} />;
 }

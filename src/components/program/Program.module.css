@@ -1,14 +1,16 @@
-.chooseProgramDayButtonContainer {
-  min-width: 20rem;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
+.sectionContainer {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: repeat(2, min-content);
+  justify-items: center;
+  place-self: end;
+  justify-self: center;
 }
 
-.headingContainer {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  gap: 0.5rem;
+.workoutDecisionSection {
+  width: calc((6 * 2.65rem) + (5 * 0.325rem));
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 2.65rem;
+  gap: 0.325rem;
 }

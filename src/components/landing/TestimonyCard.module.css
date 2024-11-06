@@ -36,12 +36,12 @@
   align-items: center;
 }
 
-.card h5 {
-  grid-area: duration;
+.card h2 {
+  grid-area: name;
 }
 
 .card h3 {
-  grid-area: name;
+  grid-area: duration;
 }
 
 .avatarIconWrapper {

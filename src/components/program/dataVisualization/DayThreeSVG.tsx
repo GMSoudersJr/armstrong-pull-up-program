@@ -9,6 +9,7 @@ interface DayThreeSVGProps {
 
 export default function DayThreeSVG({ data }: DayThreeSVGProps) {
   const ref = useRef(null);
+
   useEffect((): void => {
     if (ref.current && data.grips) {
       const svgElement = d3.select(ref.current);
@@ -94,23 +95,33 @@ export default function DayThreeSVG({ data }: DayThreeSVGProps) {
         .attr("transform", (d) => `translate(${arc.centroid(d)})`)
         .call((text) =>
           text
-            .filter((d) => d.endAngle - d.startAngle > 0.25)
             .append("tspan")
             .attr("y", "0.3em")
             .attr("font-weight", "bold")
-            .text((_, i) => gripAndRepData.flatMap((entry) => entry.grip)[i]),
+            .text((d, i) => {
+              if (d.endAngle - d.startAngle > 0.25) {
+                return gripAndRepData.flatMap((entry) => entry.grip)[i];
+              } else {
+                return "";
+              }
+            }),
         )
         .call((text) =>
           text
-            .filter((d) => d.endAngle - d.startAngle > 0.35)
             .append("tspan")
             .attr("x", 0)
             .attr("y", "0.3em")
             .attr("fill", "#FFFFFF")
             .attr("font-weight", "bold")
-            .attr("font-size", 20)
-            .attr("fill-opacity", 0.7)
-            .text((d) => d.data.valueOf()),
+            .attr("font-size", 36)
+            .attr("fill-opacity", 0.4)
+            .text((d) => {
+              if (d.endAngle - d.startAngle > 0.3) {
+                return d.data.valueOf();
+              } else {
+                return "";
+              }
+            }),
         );
 
       // append text summary

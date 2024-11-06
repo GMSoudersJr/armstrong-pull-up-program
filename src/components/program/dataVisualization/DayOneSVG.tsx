@@ -70,7 +70,7 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
       const yAxisLeftGenerator = d3
         .axisLeft(yScaleLeft)
         .tickSizeOuter(0)
-        .ticks(6)
+        .ticks(Math.min(Math.max(...data.sets), 6))
         .tickFormat(d3.format("d"));
 
       const yAxisRightGenerator = d3
@@ -107,7 +107,7 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
         .attr("width", xScale.bandwidth());
 
       // append a plus symbol for the cumulative total
-      const plusSymbol = d3.symbol().type(d3.symbolCross).size(60);
+      const plusSymbol = d3.symbol().type(d3.symbolCross).size(100);
 
       svgElement
         .append("g")
@@ -123,8 +123,8 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
             ? `translate(${x + xScale.bandwidth() / 2}, ${yScaleRight(d)})`
             : ``;
         })
-        .attr("stroke", "currentColor")
-        .attr("fill", "#FFFF00");
+        .attr("stroke", "#FFFF00")
+        .attr("fill", "currentColor");
 
       // append the x-axis
       svgElement
@@ -198,7 +198,7 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
         .attr("text-anchor", "middle")
         .attr("fill", "currentColor")
         .attr("font-family", "consolas")
-        .text(`max: ${Math.max(...data.sets)}`);
+        .text(`Max: ${Math.max(...data.sets)}`);
 
       svgElement
         .append("text")
@@ -208,9 +208,9 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
         .attr("text-anchor", "middle")
         .attr("fill", "currentColor")
         .attr("font-family", "consolas")
-        .text(`total: ${setTotalRepsMinMax(data.sets)[1]}`);
+        .text(`Total: ${setTotalRepsMinMax(data.sets)[1]}`);
     }
-  }, []);
+  }, [data, totalRepsData, yLeftDomain, yRightDomain, xDomain]);
 
   return <svg ref={ref} />;
 }

@@ -40,3 +40,13 @@
   justify-items: center;
   align-content: center;
 }
+
+.missedSetNumberContainer {
+  display: flex;
+  width: 20rem;
+  max-width: 100%;
+  overflow-x: scroll;
+  gap: 1rem;
+  scrollbar-width: none;
+  justify-content: space-around;
+}

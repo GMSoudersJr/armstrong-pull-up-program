@@ -22,6 +22,7 @@ const RepsRemoveButton = ({
   return (
     <button
       id="reps-remove-button"
+      title="Erase previous set"
       type="button"
       onClick={handleRemove}
       className={`${styles.button} ${styles.removeButton} actionButton`}

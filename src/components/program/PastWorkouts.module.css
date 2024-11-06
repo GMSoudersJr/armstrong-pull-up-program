@@ -1,0 +1,35 @@
+.sectionContainer {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: repeat(2, min-content);
+  justify-items: center;
+  place-self: start;
+  justify-self: center;
+}
+
+.pastWorkouts {
+  height: 61.8vh;
+  overflow-y: scroll;
+  display: grid;
+  grid-template-columns: repeat(6, 2.65rem);
+  grid-template-rows: repeat(auto-fit, 2.65rem);
+  grid-auto-rows: 2.65rem;
+  gap: 0.325rem;
+}
+
+.heading {
+  text-align: center;
+}
+
+.pastWorkouts::-webkit-scrollbar {
+  display: none;
+}
+
+.iconWrapper {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  background-color: #d1d1d1;
+  border-radius: 0.5rem;
+  border: none;
+}

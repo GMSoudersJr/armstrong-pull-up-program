@@ -9,12 +9,17 @@ import { TESTIMONIALS } from "@/data/testimonials";
 
 const Testimonials = () => {
   return (
-    <section id="testimonials" className={styles.testimonials}>
-      <h1 style={nunito.style}>Testimonials</h1>
+    <section
+      id="testimonials"
+      className={styles.testimonials}
+      aria-labelledby="carousel-heading"
+    >
+      <h1 style={nunito.style} id="carousel-heading">
+        Testimonials
+      </h1>
       <Splide
         className={styles.splide}
         tag="section"
-        aria-label="User Testimonials"
         options={{
           rewind: true,
           autoplay: true,

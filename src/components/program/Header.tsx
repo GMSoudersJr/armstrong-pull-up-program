@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <section className={styles.headerSection}>
+    <header className={styles.headerSection}>
       <div className={styles.iconWrapper}>
         <BicepsFlexedIcon className={`${styles.icon} ${styles.leftIcon}`} />
       </div>
@@ -17,6 +17,6 @@ export default function Header() {
       <div className={styles.iconWrapper}>
         <BicepsFlexedIcon className={`${styles.icon} ${styles.rightIcon}`} />
       </div>
-    </section>
+    </header>
   );
 }

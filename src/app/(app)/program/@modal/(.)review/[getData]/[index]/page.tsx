@@ -58,11 +58,11 @@ export default function Page({
           console.warn(error);
         });
     }
-  }, [dataToGet]);
+  }, [dataToGet, params.getData, params.index]);
 
   return (
-    <Modal>
-      <DataVisualization data={data} heading={heading} />
+    <Modal heading={heading}>
+      <DataVisualization data={data} />
     </Modal>
   );
 }

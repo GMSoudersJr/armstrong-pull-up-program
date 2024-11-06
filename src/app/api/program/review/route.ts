@@ -1,7 +1,6 @@
 import { type NextRequest } from "next/server";
 
 export function GET(request: NextRequest) {
-  console.log("hello");
   const searchParams = request.nextUrl.searchParams;
   const workoutId = searchParams.get("id");
   const dayNumber = searchParams.get("dayNumber");

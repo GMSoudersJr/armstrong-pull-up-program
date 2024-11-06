@@ -87,7 +87,10 @@ const SetInfo = ({
 
       <div className={styles.buttonsContainer}>
         {missedSet ? (
-          <>
+          <div
+            id="missed-set-number-container"
+            className={styles.missedSetNumberContainer}
+          >
             {Array.from({ length: trainingSetReps }, (_, i) => {
               return (
                 <NumberedMissRepButton
@@ -108,7 +111,7 @@ const SetInfo = ({
                 />
               );
             })}
-          </>
+          </div>
         ) : (
           <section className={styles.actionButtonsContainer}>
             <MissSetButton
@@ -120,6 +123,7 @@ const SetInfo = ({
             {completedSetCount === 3 ? (
               <button
                 id="next-grip-button"
+                title="Choose next grip"
                 type="button"
                 className={`${styles.completeButton} actionButton`}
                 onClick={handleDone}
@@ -130,6 +134,7 @@ const SetInfo = ({
             ) : (
               <button
                 id="complete-set-button"
+                title="Completed the set"
                 type="button"
                 className={`${styles.completeButton} actionButton`}
                 onClick={handleDone}

@@ -1,66 +1,27 @@
 "use client";
 
-import { nunito } from "@/fonts";
+import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import dynamic from "next/dynamic";
-import { useEffect } from "react";
+
+const PastWorkouts = dynamic(
+  () => import("@/components/program/PastWorkouts"),
+  { ssr: false },
+);
 
 const Program = dynamic(() => import("@/components/program/Program"), {
   ssr: false,
 });
-const OverallProgess = dynamic(
-  () => import("@/components/program/OverallProgress"),
-  { ssr: false },
-);
 
 const ProgramPage = () => {
-  /*
-  useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      registerServiceWorker();
-      detectServiceWorkerUpdate();
-    }
-  }, []);
+  const [updatePastWorkouts, setUpdatePastWorkouts] = useState(0);
 
-  async function registerServiceWorker(): Promise<void> {
-    await navigator.serviceWorker.register('/sw.js',{
-      scope: '/program',
-    });
-  }
-
-  async function detectServiceWorkerUpdate(): Promise<void> {
-    const registration = await navigator.serviceWorker.ready;
-
-    console.log("Detecting Service Worker Update...");
-
-    registration.addEventListener("updatefound", () => {
-      const newServiceWorker = registration.installing;
-      if (newServiceWorker) {
-        newServiceWorker.addEventListener("statechange", () => {
-          console.log("SW Update found");
-          if (newServiceWorker.state === "installed") {
-            updateServiceWorker(newServiceWorker);
-          }
-        });
-      }
-    });
-  };
-
-  function updateServiceWorker(newServiceWorker: ServiceWorker) {
-    console.log("Updating the service worker!")
-    newServiceWorker.postMessage({ type: 'SKIP_WAITING' });
-    window.location.reload();
-  }
-
-   */
+  useEffect(() => {}, [updatePastWorkouts]);
 
   return (
-    <main className={styles.main}>
-      <h1 style={nunito.style} className={styles.text}>
-        GET STARTED!
-      </h1>
-      <OverallProgess />
-      <Program />
+    <main className={styles.main} role="main">
+      <PastWorkouts updatePastWorkouts={updatePastWorkouts} />
+      <Program setStateForUpdatePastWorkouts={setUpdatePastWorkouts} />
     </main>
   );
 };

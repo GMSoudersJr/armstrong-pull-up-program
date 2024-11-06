@@ -50,11 +50,12 @@ const InstallPWAButton = () => {
       type="button"
       onClick={handleInstall}
       className={styles.installButton}
+      style={nunito.style}
     >
       <span className={styles.iconWrapper}>
         <DownloadIcon className={styles.downloadIcon} />
       </span>
-      <h5 style={nunito.style}>INSTALL THE APP!</h5>
+      <strong>INSTALL THE APP!</strong>
     </button>
   );
 };
