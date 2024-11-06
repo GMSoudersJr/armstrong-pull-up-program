@@ -62,7 +62,7 @@ export type TDataToGet = {
   getWorkoutsByDayNumber?: number;
 };
 
-export type TDayAbbreviation = "5MES" | "PYRA" | "3S3G" | "MXTS";
+export type TDayAbbreviation = "5MES" | "PYRA" | "3S3G" | "MXTS" | "SKPD";
 
 export type TGrip =
   | "neutral"

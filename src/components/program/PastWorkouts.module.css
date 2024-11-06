@@ -1,7 +1,15 @@
+.sectionContainer {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: repeat(2, min-content);
+  justify-items: center;
+  place-self: start;
+  justify-self: center;
+}
+
 .pastWorkouts {
-  height: 100%;
-  overflow-y: auto;
-  scrollbar-width: none;
+  height: 61.8vh;
+  overflow-y: scroll;
   display: grid;
   grid-template-columns: repeat(6, 2.65rem);
   grid-template-rows: repeat(auto-fit, 2.65rem);

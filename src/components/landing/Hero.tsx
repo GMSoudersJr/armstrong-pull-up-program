@@ -2,7 +2,7 @@ import { nunito } from "@/fonts";
 import styles from "./Hero.module.css";
 import PullupSVG from "@/components/PullupSVG";
 import LandingNavbar from "@/components/landing/Navbar";
-import { PageLink } from "@/components/PageLink";
+import { ProgramPageLink } from "@/components/ProgramPageLink";
 
 const Hero = () => {
   return (
@@ -13,7 +13,7 @@ const Hero = () => {
         <h2 style={nunito.style}>
           Use the Armstrong Pull-up Program to achieve your pull-up goals!
         </h2>
-        <PageLink label="learn more" path="/#features" />
+        <ProgramPageLink label="learn more" path="/#features" />
       </div>
 
       <div className={styles.heroRight}>
