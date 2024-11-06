@@ -3,8 +3,7 @@
   grid-template-columns: 100%;
   grid-template-rows: repeat(2, min-content);
   justify-items: center;
-  place-self: end;
-  justify-self: center;
+  place-self: center;
 }
 
 .workoutDecisionSection {

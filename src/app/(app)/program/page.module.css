@@ -2,8 +2,7 @@
   height: 100%;
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 2fr 1fr;
-  flex-direction: column;
+  grid-template-rows: 1fr min-content;
   justify-content: space-between;
   align-items: center;
   padding: 2rem 1rem;
