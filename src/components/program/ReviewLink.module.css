@@ -4,7 +4,7 @@
   display: grid;
   justify-items: center;
   align-items: center;
-  border: none;
+  border: 0.15rem solid #444444;
   border-radius: 0.5rem;
   font-size: clamp(var(--heading-6), calc(1vw + 0.1rem), var(--heading-5));
   font-weight: 800;
@@ -16,4 +16,12 @@
 
 .reviewLink:active {
   background-color: var(--green);
+}
+
+.skipped {
+  background-color: var(--lightened-blue);
+}
+
+.done {
+  background-color: var(--lightened-green);
 }
