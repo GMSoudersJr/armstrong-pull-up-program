@@ -1,5 +1,6 @@
 .sectionContainer {
   display: grid;
+  height: 100%;
   grid-template-columns: 100%;
   grid-template-rows: repeat(2, min-content);
   justify-items: center;
@@ -9,7 +10,7 @@
 
 .pastWorkouts {
   height: 61.8vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   display: grid;
   grid-template-columns: repeat(6, 2.65rem);
   grid-template-rows: repeat(auto-fit, 2.65rem);
