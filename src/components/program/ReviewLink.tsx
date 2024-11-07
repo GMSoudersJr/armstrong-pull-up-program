@@ -1,6 +1,8 @@
 import Link from "next/link";
 import styles from "./ReviewLink.module.css";
 import { nunito } from "@/fonts";
+import { getWorkoutById } from "@/indexedDBActions";
+import { useState } from "react";
 
 interface ReviewLinkProps {
   getData: "day" | "week" | "workout";
@@ -9,10 +11,20 @@ interface ReviewLinkProps {
 }
 
 export const ReviewLink = ({ getData, index, text }: ReviewLinkProps) => {
+  const [skipped, setSkipped] = useState(false);
+
+  if (getData === "workout") {
+    getWorkoutById(index.toString())
+      .then((value) => {
+        setSkipped(value[0].dayAbbreviation === "SKPD");
+      })
+      .catch((error) => console.warn(error));
+  }
+
   return (
     <Link
       href={`program/review/${getData}/${index}`}
-      className={`${styles.reviewLink} ${text ? "" : styles.blank}`}
+      className={`${styles.reviewLink} ${text ? "" : skipped === true ? styles.skipped : styles.done}`}
       scroll={false}
       title={`Review ${getData} ${index}`}
       style={nunito.style}

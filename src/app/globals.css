@@ -3,8 +3,11 @@
   --border-radius: 12px;
   --blue: #0074d9;
   --green: #2ecc40;
+  --yellow: #ffff00;
   --blue-rgba: rgba(0, 116, 217, 1);
   --green-rgba: rgba(40, 204, 64, 1);
+  --lightened-blue: color-mix(in srgb, var(--blue), #ffffff 30%);
+  --lightened-green: color-mix(in srgb, var(--green), #ffffff 30%);
 
   --button-action-font-size: clamp(2.625rem, 10vw + 1rem, 4rem);
   --modal-close-button-font-size: 1.75rem;
