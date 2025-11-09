@@ -23,7 +23,7 @@ const DownloadDataButton = () => {
 
     const a = document.createElement("a");
     a.href = url;
-    a.download = "Armstrong-Pullup-Program-Data-Migration.json"; // Friendly filename
+    a.download = "Pull-Up-App-Backup.json"; // Friendly filename
     a.style.display = "none";
 
     document.body.appendChild(a);
