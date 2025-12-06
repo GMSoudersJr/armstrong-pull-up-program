@@ -20,8 +20,11 @@ const Footer = () => {
         >
           <strong>PDF SOURCE MATERIAL</strong>
         </Link>
+        <Link href={"/privacy"} style={nunito.style}>
+          <strong>PRIVACY POLICY</strong>
+        </Link>
         <Link
-          href={"https://card-workout-tau.vercel.app/"}
+          href={"https://www.suityourself.app/"}
           target="_blank"
           style={nunito.style}
         >
