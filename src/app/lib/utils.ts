@@ -14,3 +14,13 @@ export async function getAllDailyInstructions(): Promise<TDailyInstruction[]> {
 export const isSingular = (count: number): boolean => {
   return count === 1;
 };
+
+export const isSafari = () => {
+  const ua = navigator.userAgent;
+  return /^((?!chrome|android).)*safari/i.test(ua);
+};
+
+export const isChrome = () => {
+  const ua = navigator.userAgent;
+  return /chrome/i.test(ua) && !isSafari();
+};
