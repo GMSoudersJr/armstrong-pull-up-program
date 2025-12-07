@@ -25,7 +25,7 @@ export default function PrivacyPolicy() {
               Welcome to Rep Yourself! Our commitment is to help you achieve
               your fitness goals. To improve your experience, our app uses
               anonymous analytics to understand how its features are used. This
-              Privacy Policy explains what data is collected, why it's
+              Privacy Policy explains what data is collected, why it is
               collected, and how you can control it. Your privacy and trust are
               our top priorities.
             </p>
@@ -100,7 +100,7 @@ export default function PrivacyPolicy() {
               Yourself relies on third-party services that may collect
               information from your device. We do not share your data with any
               third parties other than those listed below, which are essential
-              for the app's functionality and improvement.
+              for the app`&apos`s functionality and improvement.
             </p>
             <ul className={styles.unorderedList}>
               <li className={styles.listitem}>
@@ -114,7 +114,7 @@ export default function PrivacyPolicy() {
                 </p>
                 <p>
                   As Firebase is a Google product, its use is governed by
-                  Google's privacy practices. We strongly encourage you to
+                  Google`&apos`s privacy practices. We strongly encourage you to
                   review their policies to understand how they handle data.
                 </p>
                 <ul className={styles.unorderedList}>
@@ -145,8 +145,8 @@ export default function PrivacyPolicy() {
               You are in full control of your data. You can choose to disable
               the collection of anonymous usage data at any time. To do so,
               please navigate to the Settings screen within the Rep Yourself app
-              and turn off the "Share anonymous usage data" toggle. This will
-              stop any future data from being sent.
+              and turn off the `&quot`Share anonymous usage data`&quot` toggle.
+              This will stop any future data from being sent.
             </p>
           </section>
         </li>
@@ -168,9 +168,9 @@ export default function PrivacyPolicy() {
                 </strong>
                 Since the data we collect is anonymous, we cannot identify and
                 retrieve data for a specific person. However, you can
-                effectively delete your data by resetting the app's advertising
-                ID or by using the "Reset Program" function, which deletes all
-                locally stored workout history.
+                effectively delete your data by resetting the app`&apos`s
+                advertising ID or by using the `&quot`Reset Program`&quot`
+                function, which deletes all locally stored workout history.
               </li>
               <li className={styles.listitem}>
                 <strong>The right of rectification. </strong>If you believe any
@@ -179,8 +179,8 @@ export default function PrivacyPolicy() {
               <li className={styles.listitem}>
                 <strong>The right to object. </strong>You have the right to
                 object to our processing of your data. You can exercise this
-                right by disabling analytics collection in the app's Settings
-                screen.
+                right by disabling analytics collection in the app`&apos`s
+                Settings screen.
               </li>
               <li className={styles.listitem}>
                 <strong>The right of portability. </strong>You have the right to
@@ -209,30 +209,31 @@ export default function PrivacyPolicy() {
             <li className={styles.listitem}>
               <strong>Right to Know and Access: </strong>You have the right to
               know what categories of information we collect and the purposes
-              for which we use it. This is outlined in the "Information We
-              Collect" and "How We Use This Information" sections of this
-              policy.
+              for which we use it. This is outlined in the `&quot`Information We
+              Collect`&quot` and `&quot`How We Use This Information`&quot`
+              sections of this policy.
             </li>
             <li className={styles.listitem}>
               <strong>Right to Opt-Out of Sale or Sharing: </strong>Rep Yourself
               does not sell or share your personal information with third
               parties for cross-context behavioral advertising. As such, there
-              is no "sale" or "sharing" to opt out of. We only share anonymous
-              data with our analytics provider, Google, for the sole purpose of
-              improving our own app.
+              is no `&quot`sale`&quot` or `&quot`sharing`&quot` to opt out of.
+              We only share anonymous data with our analytics provider, Google,
+              for the sole purpose of improving our own app.
             </li>
             <li className={styles.listitem}>
               <strong>
                 Right to Limit Use of Sensitive Personal Information:{" "}
               </strong>
-              We do not collect "Sensitive Personal Information" as defined by
-              California law.
+              We do not collect `&quot`Sensitive Personal Information`&quot` as
+              defined by California law.
             </li>
             <li className={styles.listitem}>
               <strong>Right to Deletion: </strong>You have the right to request
               the deletion of your information. This can be accomplished by
-              using the "Reset Program" function in the app's settings, which
-              will permanently delete all your stored workout data.
+              using the `&quot`Reset Program`&quot` function in the app`&apos`s
+              settings, which will permanently delete all your stored workout
+              data.
             </li>
             <li className={styles.listitem}>
               <strong>Non-Discrimination: </strong> We will not discriminate
