@@ -20,7 +20,7 @@ export default function PrivacyPolicy() {
       <ol className={styles.orderedList}>
         <li className={styles.listitem}>
           <section id="introduction">
-            <h6>Introduction</h6>
+            <strong>Introduction</strong>
             <p>
               Welcome to Rep Yourself! Our commitment is to help you achieve
               your fitness goals. To improve your experience, our app uses
@@ -33,7 +33,7 @@ export default function PrivacyPolicy() {
         </li>
         <li className={styles.listitem}>
           <section id="information-collection">
-            <h6>What Information We Collect</h6>
+            <strong>What Information We Collect</strong>
             <p>
               Rep Yourself collects anonymous, non-personal data to help us
               improve the app. We do not collect personal information like your
@@ -62,7 +62,7 @@ export default function PrivacyPolicy() {
         </li>
         <li className={styles.listitem}>
           <section id="sharing-information">
-            <h6>How We Use This Information</h6>
+            <strong>How We Use This Information</strong>
             <p>
               We use this anonymous and aggregated data for one purpose: to make
               Rep Yourself a better app.
@@ -94,7 +94,7 @@ export default function PrivacyPolicy() {
         </li>
         <li className={styles.listitem}>
           <section id="third-party-services">
-            <h6>Third-Party Services & Data Sharing</h6>
+            <strong>Third-Party Services & Data Sharing</strong>
             <p>
               To provide our services and to understand how our app is used, Rep
               Yourself relies on third-party services that may collect
@@ -140,7 +140,7 @@ export default function PrivacyPolicy() {
         </li>
         <li className={styles.listitem}>
           <section id="choices-opt-out">
-            <h6>Your Choices and How to Opt-Out</h6>
+            <strong>Your Choices and How to Opt-Out</strong>
             <p>
               You are in full control of your data. You can choose to disable
               the collection of anonymous usage data at any time. To do so,
@@ -152,7 +152,7 @@ export default function PrivacyPolicy() {
         </li>
         <li className={styles.listitem}>
           <section id="gdpr-privacy">
-            <h6>Your Rights Under GDPR</h6>
+            <strong>Your Rights Under GDPR</strong>
             <p>
               If you are a resident of the European Economic Area (EEA), you
               have certain data protection rights under the General Data
@@ -199,7 +199,7 @@ export default function PrivacyPolicy() {
         </li>
         <li className={styles.listitem}>
           <section id="california-privacy"></section>
-          <h6>Your California Privacy Rights (CCPA/CPRA)</h6>
+          <strong>Your California Privacy Rights (CCPA/CPRA)</strong>
           <p>
             If you are a California resident, you have specific rights under the
             California Consumer Privacy Act (CCPA) and the California Privacy
@@ -243,7 +243,7 @@ export default function PrivacyPolicy() {
         </li>
         <li className={styles.listitem}>
           <section id="privacy-policy-changes">
-            <h6>Changes to This Privacy Policy</h6>
+            <strong>Changes to This Privacy Policy</strong>
             <p>
               I may update our Privacy Policy from time to time. Thus, you are
               advised to review this page periodically for any changes. I will
@@ -255,7 +255,7 @@ export default function PrivacyPolicy() {
         </li>
         <li className={styles.listitem}>
           <section id="contact">
-            <h6>Contact</h6>
+            <strong>Contact</strong>
             <p>
               If you have any questions or suggestions about the Privacy Policy,
               do not hesitate to contact me.
