@@ -1,0 +1,26 @@
+.privacyPolicy {
+  max-width: 37.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.orderedList,
+.unorderedList,
+.listitem {
+  list-style-type: revert;
+  list-style-position: revert;
+  margin: revert;
+  padding: revert;
+}
+
+.listitem > section > p,
+.listitem > * {
+  line-height: 1.5;
+}
+
+.orderedList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
