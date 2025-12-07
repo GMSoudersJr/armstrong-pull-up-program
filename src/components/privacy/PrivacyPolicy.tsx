@@ -6,6 +6,7 @@ const lastUpdatedDate = "December 8th, 2025";
 const mainGooglePrivacyPolicy = "https://policies.google.com/privacy";
 const otherGooglePrivacyPolicy =
   "https://policies.google.com/technologies/partner-sites";
+const emailAddress = "repyourself.privacy@gmail.com";
 
 export default function PrivacyPolicy() {
   return (
@@ -103,7 +104,7 @@ export default function PrivacyPolicy() {
             </p>
             <ul className={styles.unorderedList}>
               <li className={styles.listitem}>
-                <strong>Firebase Analytics (a Google Service)</strong>
+                <strong>Firebase Analytics (a Google Service) </strong>
                 <p>
                   We use Firebase Analytics to collect the anonymous usage and
                   diagnostic data described in this policy. This service helps
@@ -258,6 +259,7 @@ export default function PrivacyPolicy() {
               If you have any questions or suggestions about the Privacy Policy,
               do not hesitate to contact me.
             </p>
+            <p>{emailAddress}</p>
           </section>
         </li>
       </ol>
