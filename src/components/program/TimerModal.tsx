@@ -18,6 +18,14 @@ const TimerModal = ({
   const [secondsLeft, setSecondsLeft] = useState(recoveryTime);
 
   useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") onClose(e as unknown as React.MouseEvent<HTMLButtonElement>);
+    }
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
+  useEffect(() => {
     if (secondsLeft === 0) {
       const beep = new Audio("/audio/timer-beep.mp3");
       beep.volume = 0.1;
@@ -36,7 +44,13 @@ const TimerModal = ({
   }, [secondsLeft, setStateForShowTimerModal]);
 
   return (
-    <div id="timer-modal" className={styles.modal}>
+    <div
+      id="timer-modal"
+      className={styles.modal}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Recovery timer"
+    >
       <div id="timer-modal-content" className={styles.modalContent}>
         <div id="timer-modal-heading-container" className={styles.timer}>
           <h1 style={nunito.style}>Recovery</h1>
@@ -50,6 +64,7 @@ const TimerModal = ({
           type="button"
           className={styles.closeButton}
           onClick={onClose}
+          aria-label="Close timer"
         >
           <XIcon className={styles.icon} />
           <span className="visibly-hidden">close timer</span>
