@@ -17,49 +17,37 @@ export default function Page(
 ) {
   const params = use(props.params);
   const initialData: TDayComplete[] = [];
-  const [dataToGet, setDataToGet] = useState("");
   const [data, setData] = useState(initialData);
   const [heading, setHeading] = useState("");
 
   useEffect(() => {
-    setDataToGet(params.getData);
-
-    if (dataToGet === "workout") {
-      const id = params.index;
-      getWorkoutById(id)
+    if (params.getData === "workout") {
+      getWorkoutById(params.index)
         .then((value) => {
           setData(value);
           setHeading(`W${value[0].weekNumber}-D${value[0].dayNumber} REVIEW`);
         })
-        .catch((error) => {
-          console.warn(error);
-        });
+        .catch((error) => console.warn(error));
     }
 
-    if (dataToGet === "week") {
-      const weekNumber = params.index;
-      getWorkoutsbyWeekNumber(Number.parseInt(weekNumber))
+    if (params.getData === "week") {
+      getWorkoutsbyWeekNumber(Number.parseInt(params.index))
         .then((value) => {
           setData(value);
-          setHeading(`W${weekNumber} REVIEW`);
+          setHeading(`W${params.index} REVIEW`);
         })
-        .catch((error) => {
-          console.warn(error);
-        });
+        .catch((error) => console.warn(error));
     }
 
-    if (dataToGet === "day") {
-      const dayNumber = params.index;
-      getWorkoutsByDayNumber(Number.parseInt(dayNumber))
+    if (params.getData === "day") {
+      getWorkoutsByDayNumber(Number.parseInt(params.index))
         .then((value) => {
           setData(value);
-          setHeading(`D${dayNumber} REVIEW`);
+          setHeading(`D${params.index} REVIEW`);
         })
-        .catch((error) => {
-          console.warn(error);
-        });
+        .catch((error) => console.warn(error));
     }
-  }, [dataToGet, params.getData, params.index]);
+  }, [params.getData, params.index]);
 
   return (
     <Modal heading={heading}>
