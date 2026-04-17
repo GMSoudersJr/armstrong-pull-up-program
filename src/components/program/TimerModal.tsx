@@ -20,8 +20,8 @@ const TimerModal = ({
   useEffect(() => {
     if (secondsLeft === 0) {
       const beep = new Audio("/audio/timer-beep.mp3");
-      beep.play();
       beep.volume = 0.1;
+      beep.play().catch(() => {});
       setStateForShowTimerModal(false);
       return;
     }
