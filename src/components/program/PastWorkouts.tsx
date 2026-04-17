@@ -29,7 +29,7 @@ const PastWorkouts = ({ updatePastWorkouts }: PastWorkoutsProps) => {
 
   function handleClick() {
     setLatest(!latest);
-    setWeeklyProgress(weeklyProgress.reverse());
+    setWeeklyProgress([...weeklyProgress].reverse());
   }
 
   useEffect(() => {
