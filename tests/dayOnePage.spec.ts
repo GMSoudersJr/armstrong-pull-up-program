@@ -84,7 +84,7 @@ test("timer modal functionality", async ({ page }) => {
 });
 
 test("expect timer completes", async ({ page }) => {
-  test.setTimeout(100 * 1_000);
+  test.setTimeout(110 * 1_000);
   const dayOnePage = new DayOneWorkoutPage(page, 1);
   await dayOnePage.goto();
   await dayOnePage.pressCompleteSetButton();

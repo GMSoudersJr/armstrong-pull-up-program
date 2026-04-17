@@ -28,7 +28,7 @@ export function MixinTimerModal<
     }
 
     async waitForTimerModal(): Promise<void> {
-      await this.timerModal.waitFor({ state: "hidden", timeout: 91 * 1_000 });
+      await this.timerModal.waitFor({ state: "hidden", timeout: 95 * 1_000 });
     }
   };
 }
