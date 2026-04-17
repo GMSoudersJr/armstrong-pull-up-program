@@ -1,4 +1,3 @@
-import type { TStoreName } from "@/definitions";
 import { dbName, dbVersion } from "@/indexedDBConstants";
 import { createObjectStoreIndex, deleteObjectStoreIndex } from "./actions";
 
@@ -11,20 +10,6 @@ export const dbInitialized: Promise<void> = new Promise((resolve, reject) => {
   resolveDbReady = resolve;
   rejectDbReady = reject;
 });
-
-// MAKE_TRANSACTION {{{
-function makeTransaction(storeName: TStoreName, mode: IDBTransactionMode) {
-  if (!db) return;
-
-  let transaction = db.transaction(storeName, mode);
-
-  transaction.onerror = (err) => {
-    console.warn(err);
-  };
-
-  return transaction;
-}
-//}}}
 
 // Attach all handlers immediately so they can never miss IDB events.
 openRequest.onerror = (err) => {
@@ -98,8 +83,8 @@ openRequest.onsuccess = () => {
 
   // @ts-expect-error might not be imported
   if (typeof WEEK_TEST_DATA !== "undefined") {
-    let transaction = makeTransaction("weeksStore", "readwrite");
-    if (!transaction) return;
+    const transaction = db.transaction("weeksStore", "readwrite");
+    transaction.onerror = (err) => { console.warn(err); };
     transaction.oncomplete = () => console.log("Finished adding data.");
     const store = transaction.objectStore("weeksStore");
     const request = store.getAll();
