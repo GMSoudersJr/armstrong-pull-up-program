@@ -35,29 +35,40 @@ const dateFormatOptions: Intl.DateTimeFormatOptions = {
 
 const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
   const [isDataSaved, setIsDataSaved] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveError, setSaveError] = useState(false);
 
   async function handleSave() {
-    const startNewWeek = await shouldStartNewWeek();
-    let currentWeekNumber = await getCurrentWeekNumber();
+    if (isSaving || isDataSaved) return;
+    setIsSaving(true);
+    setSaveError(false);
 
-    if (startNewWeek) {
-      currentWeekNumber++;
-      addNewWeek(currentWeekNumber);
+    try {
+      const startNewWeek = await shouldStartNewWeek();
+      let currentWeekNumber = await getCurrentWeekNumber();
+
+      if (startNewWeek) {
+        currentWeekNumber++;
+        addNewWeek(currentWeekNumber);
+      }
+
+      const payload: TDayComplete = {
+        ...dayData,
+        date: new Date(Date.now()).toLocaleDateString("en-US", dateFormatOptions),
+        weekNumber: currentWeekNumber,
+        id: `${currentWeekNumber}-${dayData.dayNumber}`,
+      };
+
+      const dataSavedInIndexedDB = await addCompletedDayToWorkoutsStore(payload);
+      const weekDataToUpdate = await getWeekDataForWeekNumber(currentWeekNumber);
+      updateThisWeekWithWorkoutNumber(weekDataToUpdate, payload.dayNumber);
+      setIsDataSaved(dataSavedInIndexedDB);
+      setStateForSavedDay(true);
+    } catch {
+      setSaveError(true);
+    } finally {
+      setIsSaving(false);
     }
-
-    dayData.date = new Date(Date.now()).toLocaleDateString(
-      "en-US",
-      dateFormatOptions,
-    );
-
-    dayData.weekNumber = currentWeekNumber;
-
-    dayData.id = `${dayData.weekNumber}-${dayData.dayNumber}`;
-    const dataSavedInIndexedDB = await addCompletedDayToWorkoutsStore(dayData);
-    const weekDataToUpdate = await getWeekDataForWeekNumber(currentWeekNumber);
-    updateThisWeekWithWorkoutNumber(weekDataToUpdate, dayData.dayNumber);
-    setIsDataSaved(dataSavedInIndexedDB);
-    setStateForSavedDay(true);
   }
 
   return (
@@ -70,7 +81,11 @@ const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
         <TotalReps sets={dayData.sets} />
       </div>
       <h3 className={styles.message} style={nunito.style}>
-        {isDataSaved ? DAY_COMPLETE_MESSAGES[0] : DAY_COMPLETE_MESSAGES[1]}
+        {saveError
+          ? "Save failed — please try again"
+          : isDataSaved
+            ? DAY_COMPLETE_MESSAGES[0]
+            : DAY_COMPLETE_MESSAGES[1]}
       </h3>
       <div className={styles.takeAction} style={nunito.style}>
         {isDataSaved ? (
@@ -87,10 +102,11 @@ const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
         ) : (
           <button
             id="save-icon-button"
-            title="Save your workout"
+            title={isSaving ? "Saving…" : "Save your workout"}
             type="button"
             className={styles.saveButton}
             onClick={handleSave}
+            disabled={isSaving}
           >
             <SaveIcon className={`${styles.icon} ${styles.saveIcon}`} />
           </button>
