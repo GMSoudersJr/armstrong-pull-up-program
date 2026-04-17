@@ -14,6 +14,8 @@ export default function DayThreeSVG({ data }: DayThreeSVGProps) {
     if (ref.current && data.grips) {
       const svgElement = d3.select(ref.current);
 
+      svgElement.selectAll("*").remove();
+
       const gripAndRepData = data.grips.map((grip, i) => {
         return {
           grip: [grip, grip, grip],

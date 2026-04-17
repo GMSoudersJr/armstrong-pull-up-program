@@ -36,6 +36,8 @@ export default function DayTwoSVG({ data }: DayTwoSVGProps) {
     if (ref.current) {
       const svgElement = d3.select(ref.current);
 
+      svgElement.selectAll("*").remove();
+
       svgElement.attr("height", "100%");
       svgElement.attr("width", "100%");
       svgElement.attr("viewBox", [

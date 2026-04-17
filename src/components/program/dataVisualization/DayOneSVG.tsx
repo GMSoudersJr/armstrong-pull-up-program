@@ -28,6 +28,8 @@ export default function DayOneSVG({ data }: DayOneSVGProps) {
     if (ref.current) {
       const svgElement = d3.select(ref.current);
 
+      svgElement.selectAll("*").remove();
+
       svgElement.attr("height", "100%");
       svgElement.attr("width", "100%");
       svgElement.attr("viewBox", [
