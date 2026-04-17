@@ -219,19 +219,17 @@ export function updateThisWeekWithWorkoutNumber(
 
   open.onsuccess = () => {
     db = open.result;
-    if ([db.objectStoreNames].find((storeName) => storeName === storeName)) {
-      const transaction = makeTransaction(storeName, "readwrite");
+    const transaction = makeTransaction(storeName, "readwrite");
 
-      if (!transaction) return;
+    if (!transaction) return;
 
-      const objectStore = transaction.objectStore(storeName);
-      const serialized = JSON.parse(JSON.stringify(updatedWeekData));
-      const request = objectStore.put(serialized);
+    const objectStore = transaction.objectStore(storeName);
+    const serialized = JSON.parse(JSON.stringify(updatedWeekData));
+    const request = objectStore.put(serialized);
 
-      request.onerror = (err) => console.warn(err);
+    request.onerror = (err) => console.warn(err);
 
-      transaction.oncomplete = () => db?.close();
-    }
+    transaction.oncomplete = () => db?.close();
   };
 }
 //}}}
@@ -246,21 +244,19 @@ export const addCompletedDayToWorkoutsStore = (
   return new Promise<boolean>((resolve, reject) => {
     open.onsuccess = () => {
       db = open.result;
-      if ([db.objectStoreNames].find((storeName) => storeName === storeName)) {
-        const transaction = makeTransaction(storeName, "readwrite");
+      const transaction = makeTransaction(storeName, "readwrite");
 
-        if (!transaction) return;
+      if (!transaction) return;
 
-        const objectStore = transaction.objectStore(storeName);
-        const serialized = JSON.parse(JSON.stringify(payload));
-        const request = objectStore.put(serialized);
+      const objectStore = transaction.objectStore(storeName);
+      const serialized = JSON.parse(JSON.stringify(payload));
+      const request = objectStore.put(serialized);
 
-        request.onerror = (err) => reject(err);
+      request.onerror = (err) => reject(err);
 
-        request.onsuccess = () => resolve(true);
+      request.onsuccess = () => resolve(true);
 
-        transaction.oncomplete = () => db?.close();
-      }
+      transaction.oncomplete = () => db?.close();
     };
   });
 };

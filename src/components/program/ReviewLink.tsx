@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styles from "./ReviewLink.module.css";
 import { nunito } from "@/fonts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getWorkoutById } from "@/indexedDBActions";
 
 interface ReviewLinkProps {
@@ -13,13 +13,15 @@ interface ReviewLinkProps {
 export const ReviewLink = ({ getData, index, text }: ReviewLinkProps) => {
   const [skipped, setSkipped] = useState(false);
 
-  if (getData === "workout") {
-    getWorkoutById(index.toString())
-      .then((value) => {
-        setSkipped(value[0].dayAbbreviation === "SKPD");
-      })
-      .catch((error) => console.warn(error));
-  }
+  useEffect(() => {
+    if (getData === "workout") {
+      getWorkoutById(index.toString())
+        .then((value) => {
+          setSkipped(value[0].dayAbbreviation === "SKPD");
+        })
+        .catch((error) => console.warn(error));
+    }
+  }, [getData, index]);
   return (
     <Link
       href={`program/review/${getData}/${index}`}

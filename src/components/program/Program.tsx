@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { DAYS } from "@/const";
 import { PageLink } from "../PageLink";
 import { getLastCompletedDay } from "@/indexedDBActions";
-import { initializeIDB } from "@/data/indexedDB";
+import { initializeIDB, dbInitialized } from "@/data/indexedDB";
 import { nunito } from "@/fonts";
 import SkipDayButton from "./SkipDayButton";
 import { Dispatch, SetStateAction } from "react";
@@ -22,13 +22,14 @@ const Program = ({ setStateForUpdatePastWorkouts }: ProgramProps) => {
   const [programDayNumber, setProgramDayNumber] = useState(0);
 
   useEffect(() => {
-    getLastCompletedDay()
+    dbInitialized
+      .then(() => getLastCompletedDay())
       .then((value) => {
         setProgramDayNumber(value + 1);
         setStateForUpdatePastWorkouts(value + 1);
       })
       .catch((error) => console.warn(error));
-  }, [programDayNumber, setStateForUpdatePastWorkouts]);
+  }, [setStateForUpdatePastWorkouts]);
 
   const currentProgramDay = DAYS.filter(
     (day) => day.number === programDayNumber,
@@ -43,6 +44,7 @@ const Program = ({ setStateForUpdatePastWorkouts }: ProgramProps) => {
             <SkipDayButton
               dayNumber={day.number}
               setStateForProgramDayNumber={setProgramDayNumber}
+              setStateForUpdatePastWorkouts={setStateForUpdatePastWorkouts}
             />
             <PageLink path={day.path} label={day.label} />
           </section>

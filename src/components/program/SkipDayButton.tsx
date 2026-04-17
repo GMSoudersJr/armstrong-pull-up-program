@@ -16,6 +16,7 @@ import { Dispatch, SetStateAction } from "react";
 interface SkipDayButtonProps {
   dayNumber: TDayNumber;
   setStateForProgramDayNumber: Dispatch<SetStateAction<number>>;
+  setStateForUpdatePastWorkouts: Dispatch<SetStateAction<number>>;
 }
 
 const dateFormatOptions: Intl.DateTimeFormatOptions = {
@@ -35,6 +36,7 @@ const skippedDayData: TDayComplete = {
 const SkipDayButton = ({
   dayNumber,
   setStateForProgramDayNumber,
+  setStateForUpdatePastWorkouts,
 }: SkipDayButtonProps) => {
   async function handleSkip() {
     const startNewWeek = await shouldStartNewWeek();
@@ -58,7 +60,9 @@ const SkipDayButton = ({
     await addCompletedDayToWorkoutsStore(skippedDayData);
     const weekDataToUpdate = await getWeekDataForWeekNumber(currentWeekNumber);
     updateThisWeekWithWorkoutNumber(weekDataToUpdate, skippedDayData.dayNumber);
-    setStateForProgramDayNumber(skippedDayData.dayNumber + 1);
+    const nextDay = skippedDayData.dayNumber + 1;
+    setStateForProgramDayNumber(nextDay);
+    setStateForUpdatePastWorkouts(nextDay);
   }
 
   return (

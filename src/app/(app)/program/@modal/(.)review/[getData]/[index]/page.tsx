@@ -1,7 +1,7 @@
 "use client";
 
 import { Modal } from "@/components/program/Modal";
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 import { TDayComplete } from "@/definitions";
 import {
   getWorkoutById,
@@ -10,11 +10,12 @@ import {
 } from "@/indexedDBActions";
 import DataVisualization from "@/dataVisualization";
 
-export default function Page({
-  params,
-}: {
-  params: { getData: string; index: string };
-}) {
+export default function Page(
+  props: {
+    params: Promise<{ getData: string; index: string }>;
+  }
+) {
+  const params = use(props.params);
   const initialData: TDayComplete[] = [];
   const [dataToGet, setDataToGet] = useState("");
   const [data, setData] = useState(initialData);
