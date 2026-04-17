@@ -26,13 +26,6 @@ const dateFormatOptions: Intl.DateTimeFormatOptions = {
   day: "numeric",
 };
 
-const skippedDayData: TDayComplete = {
-  id: "",
-  dayAbbreviation: "SKPD",
-  dayNumber: 1,
-  sets: [0],
-};
-
 const SkipDayButton = ({
   dayNumber,
   setStateForProgramDayNumber,
@@ -47,15 +40,15 @@ const SkipDayButton = ({
       addNewWeek(currentWeekNumber);
     }
 
-    skippedDayData.date = new Date(Date.now()).toLocaleDateString(
-      "en-US",
-      dateFormatOptions,
-    );
-
-    skippedDayData.weekNumber = currentWeekNumber;
-    skippedDayData.dayNumber = dayNumber;
-
-    skippedDayData.id = `${skippedDayData.weekNumber}-${skippedDayData.dayNumber}`;
+    const date = new Date(Date.now()).toLocaleDateString("en-US", dateFormatOptions);
+    const skippedDayData: TDayComplete = {
+      id: `${currentWeekNumber}-${dayNumber}`,
+      dayAbbreviation: "SKPD",
+      dayNumber: dayNumber,
+      date,
+      weekNumber: currentWeekNumber,
+      sets: [0],
+    };
 
     await addCompletedDayToWorkoutsStore(skippedDayData);
     const weekDataToUpdate = await getWeekDataForWeekNumber(currentWeekNumber);
