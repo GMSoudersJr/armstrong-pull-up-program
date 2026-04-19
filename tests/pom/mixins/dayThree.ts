@@ -52,11 +52,15 @@ export function CreateDayThreePOM<
     }
 
     async pressPlusIcon(numberOfTimes?: number): Promise<void> {
-      await this.incrementRepButton.click({ clickCount: numberOfTimes || 1 });
+      for (let i = 0; i < (numberOfTimes || 1); i++) {
+        await this.incrementRepButton.click();
+      }
     }
 
     async pressMinusIcon(numberOfTimes?: number): Promise<void> {
-      await this.decrementRepButton.click({ clickCount: numberOfTimes || 1 });
+      for (let i = 0; i < (numberOfTimes || 1); i++) {
+        await this.decrementRepButton.click();
+      }
     }
 
     async pressSubmitButton(): Promise<void> {

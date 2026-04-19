@@ -21,11 +21,15 @@ export function CreateDayOnePOM<
     dayOneLink = this.page.getByRole("link", { name: "DAY 1" });
 
     async pressPlusIcon(numberOfTimes?: number): Promise<void> {
-      await this.incrementRepButton.click({ clickCount: numberOfTimes || 1 });
+      for (let i = 0; i < (numberOfTimes || 1); i++) {
+        await this.incrementRepButton.click();
+      }
     }
 
     async pressMinusIcon(numberOfTimes?: number): Promise<void> {
-      await this.decrementRepButton.click({ clickCount: numberOfTimes || 1 });
+      for (let i = 0; i < (numberOfTimes || 1); i++) {
+        await this.decrementRepButton.click();
+      }
     }
 
     async pressEraseSet(numberOfTimes?: number): Promise<void> {

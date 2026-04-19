@@ -25,6 +25,7 @@ export function MixinTimerModal<
 
     async closeTimerModal(): Promise<void> {
       await this.timerModalCloseButton.click();
+      await this.timerModal.waitFor({ state: "hidden" });
     }
 
     async waitForTimerModal(): Promise<void> {
