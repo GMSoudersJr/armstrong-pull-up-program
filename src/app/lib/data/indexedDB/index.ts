@@ -106,8 +106,3 @@ openRequest.onsuccess = () => {
     };
   }
 };
-
-//{{{ INITIALIZE_IDB
-// Kept for backwards compatibility — all setup now happens at module level above.
-export const initializeIDB = (): void => {};
-//}}}

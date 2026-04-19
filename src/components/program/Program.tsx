@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { DAYS } from "@/const";
 import { PageLink } from "../PageLink";
 import { getLastCompletedDay } from "@/indexedDBActions";
-import { initializeIDB, dbInitialized } from "@/data/indexedDB";
+import { dbInitialized } from "@/data/indexedDB";
 import { nunito } from "@/fonts";
 import SkipDayButton from "./SkipDayButton";
 import { Dispatch, SetStateAction } from "react";
@@ -17,8 +17,6 @@ interface ProgramProps {
 }
 
 const Program = ({ setStateForUpdatePastWorkouts }: ProgramProps) => {
-  initializeIDB();
-
   const [programDayNumber, setProgramDayNumber] = useState(0);
 
   useEffect(() => {
