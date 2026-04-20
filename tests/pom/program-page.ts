@@ -1,4 +1,4 @@
-import { type Locator, type Page } from "@playwright/test";
+import { expect, type Locator, type Page } from "@playwright/test";
 
 export class ProgramPage {
   readonly page: Page;
@@ -33,7 +33,7 @@ export class ProgramPage {
   async goto() {
     await this.page.goto("/");
     await this.getStartedLink.click();
-    await this.getStartedHeader.isVisible();
+    await expect(this.getStartedHeader).toBeVisible();
   }
 
   async pressDayLink() {

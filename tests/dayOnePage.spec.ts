@@ -99,7 +99,6 @@ test("expect complete day elements", async ({ page }) => {
   await dayOnePage.pressPlusIcon(3);
   for (let i = 0; i < 4; i++) {
     await dayOnePage.pressCompleteSetButton();
-    await dayOnePage.timerModalCloseButton.waitFor({ state: "visible" });
     await dayOnePage.closeTimerModal();
   }
   await dayOnePage.pressCompleteSetButton();
