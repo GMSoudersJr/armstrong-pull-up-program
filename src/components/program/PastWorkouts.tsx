@@ -8,6 +8,7 @@ import { CalendarArrowDownIcon, CalendarArrowUpIcon } from "lucide-react";
 import { ReviewLink } from "./ReviewLink";
 import { nunito } from "@/fonts";
 import DownloadDataButton from "./DownloadDataButton";
+import ResetProgramButton from "./ResetProgramButton";
 
 const DAY_HEADERS = [
   { text: "D1", dayNumber: 1 },
@@ -89,6 +90,7 @@ const PastWorkouts = ({ updatePastWorkouts }: PastWorkoutsProps) => {
               }
             });
           })}
+          <ResetProgramButton />
         </section>
       ) : (
         <></>
