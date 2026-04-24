@@ -54,6 +54,7 @@ const PastWorkouts = ({ updatePastWorkouts }: PastWorkoutsProps) => {
       {weeklyProgress.length > 0 ? (
         <section className={styles.pastWorkouts} id="past-workouts-section">
           <DownloadDataButton />
+          <ResetProgramButton />
           <button
             type="button"
             className={`${styles.iconWrapper} ${styles.button}`}
@@ -90,7 +91,6 @@ const PastWorkouts = ({ updatePastWorkouts }: PastWorkoutsProps) => {
               }
             });
           })}
-          <ResetProgramButton />
         </section>
       ) : (
         <></>

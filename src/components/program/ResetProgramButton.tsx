@@ -16,7 +16,6 @@ const ResetProgramButton = () => {
 
   return (
     <>
-      <div aria-hidden="true" className={styles.spacer} />
       <button
         id="reset-program-button"
         type="button"
