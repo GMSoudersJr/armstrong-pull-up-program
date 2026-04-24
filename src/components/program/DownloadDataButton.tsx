@@ -5,9 +5,11 @@ import { nunito } from "@/fonts";
 import styles from "./DownloadDataButton.module.css";
 import { getOverallProgess } from "@/indexedDBActions";
 import { isSafari } from "@/utils";
+import DownloadDataModal from "./DownloadDataModal";
 
 const DownloadDataButton = () => {
   const [showButton, setShowButton] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     if (!isSafari()) {
@@ -23,7 +25,7 @@ const DownloadDataButton = () => {
 
     const a = document.createElement("a");
     a.href = url;
-    a.download = "Pull-Up-App-Backup.json"; // Friendly filename
+    a.download = "Pull-Up-App-Backup.json";
     a.style.display = "none";
 
     document.body.appendChild(a);
@@ -31,20 +33,29 @@ const DownloadDataButton = () => {
 
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
+    setModalOpen(false);
   }
 
   if (!showButton) return;
 
   return (
-    <button
-      type="button"
-      className={styles.button}
-      id="migrate-data-button"
-      onClick={handleDownload}
-      style={nunito.style}
-    >
-      Download Workout History
-    </button>
+    <>
+      <button
+        type="button"
+        className={styles.button}
+        id="migrate-data-button"
+        onClick={() => setModalOpen(true)}
+        style={nunito.style}
+      >
+        Download Workout History
+      </button>
+      {modalOpen && (
+        <DownloadDataModal
+          onClose={() => setModalOpen(false)}
+          onConfirm={handleDownload}
+        />
+      )}
+    </>
   );
 };
 
