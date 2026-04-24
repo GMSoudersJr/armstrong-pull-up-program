@@ -91,3 +91,35 @@ test("confirming reset clears all data", async ({ page }) => {
   await expect(programPage.pastWorkoutsHeader).not.toBeVisible();
   await expect(programPage.resetButton).not.toBeVisible();
 });
+
+test("download button not visible before any data", async ({ page }) => {
+  const programPage = new ProgramPage(page);
+  await programPage.goto();
+  await expect(programPage.downloadButton).not.toBeVisible();
+});
+
+test("download button visible after skipping a day", async ({ page }) => {
+  const programPage = new ProgramPage(page);
+  await programPage.goto();
+  await programPage.pressSkipButton();
+  await expect(programPage.downloadButton).toBeVisible();
+});
+
+test("download modal opens on button click", async ({ page }) => {
+  const programPage = new ProgramPage(page);
+  await programPage.goto();
+  await programPage.pressSkipButton();
+  await programPage.pressDownloadButton();
+  await expect(programPage.downloadModal).toBeVisible();
+});
+
+test("download modal cancel closes without downloading", async ({ page }) => {
+  const programPage = new ProgramPage(page);
+  await programPage.goto();
+  await programPage.pressSkipButton();
+  await programPage.pressDownloadButton();
+  await expect(programPage.downloadModal).toBeVisible();
+  await programPage.cancelDownload();
+  await expect(programPage.downloadModal).not.toBeVisible();
+  await expect(programPage.pastWorkoutsHeader).toBeVisible();
+});

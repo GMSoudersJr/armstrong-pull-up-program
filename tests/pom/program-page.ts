@@ -15,6 +15,10 @@ export class ProgramPage {
   readonly resetModal: Locator;
   readonly resetModalCancelButton: Locator;
   readonly resetModalConfirmButton: Locator;
+  readonly downloadButton: Locator;
+  readonly downloadModal: Locator;
+  readonly downloadModalCancelButton: Locator;
+  readonly downloadModalConfirmButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -36,6 +40,10 @@ export class ProgramPage {
     this.resetModal = page.locator("#reset-program-modal");
     this.resetModalCancelButton = page.locator("#reset-modal-cancel-button");
     this.resetModalConfirmButton = page.locator("#reset-modal-confirm-button");
+    this.downloadButton = page.locator("#migrate-data-button");
+    this.downloadModal = page.locator("#download-data-modal");
+    this.downloadModalCancelButton = page.locator("#download-modal-cancel-button");
+    this.downloadModalConfirmButton = page.locator("#download-modal-confirm-button");
   }
 
   async goto() {
@@ -64,5 +72,14 @@ export class ProgramPage {
   async confirmReset() {
     await this.resetModalConfirmButton.click();
     await this.getStartedHeader.waitFor({ state: "visible" });
+  }
+
+  async pressDownloadButton() {
+    await this.downloadButton.click();
+  }
+
+  async cancelDownload() {
+    await this.downloadModalCancelButton.click();
+    await this.downloadModal.waitFor({ state: "hidden" });
   }
 }
