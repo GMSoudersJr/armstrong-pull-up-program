@@ -53,7 +53,7 @@ const SkipDayButton = ({
     await addCompletedDayToWorkoutsStore(skippedDayData);
     const weekDataToUpdate = await getWeekDataForWeekNumber(currentWeekNumber);
     updateThisWeekWithWorkoutNumber(weekDataToUpdate, skippedDayData.dayNumber);
-    const nextDay = skippedDayData.dayNumber + 1;
+    const nextDay = dayNumber < 5 ? dayNumber + 1 : 1;
     setStateForProgramDayNumber(nextDay);
     setStateForUpdatePastWorkouts(nextDay);
   }

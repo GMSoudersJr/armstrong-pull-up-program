@@ -372,6 +372,29 @@ export const shouldStartNewWeek = async (): Promise<boolean> => {
 };
 //}}}
 
+// CLEAR_ALL_DATA {{{
+export const clearAllData = (): Promise<void> => {
+  const open = indexedDB.open(dbName);
+  return new Promise<void>((resolve, reject) => {
+    open.onerror = () => reject(open.error);
+    open.onsuccess = () => {
+      db = open.result;
+      const transaction = db.transaction(
+        ["workoutsStore", "weeksStore"],
+        "readwrite",
+      );
+      transaction.onerror = () => reject(transaction.error);
+      transaction.objectStore("workoutsStore").clear();
+      transaction.objectStore("weeksStore").clear();
+      transaction.oncomplete = () => {
+        db?.close();
+        resolve();
+      };
+    };
+  });
+};
+//}}}
+
 // GET_LAST_COMPLETED_DAY {{{
 export const getLastCompletedDay = (): Promise<number> => {
   const open = indexedDB.open(dbName);

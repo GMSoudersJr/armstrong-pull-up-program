@@ -11,6 +11,10 @@ export class ProgramPage {
   readonly dayLink: Locator;
   readonly todaysWorkoutHeader: Locator;
   readonly skipButton: Locator;
+  readonly resetButton: Locator;
+  readonly resetModal: Locator;
+  readonly resetModalCancelButton: Locator;
+  readonly resetModalConfirmButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -28,6 +32,10 @@ export class ProgramPage {
     // This is the get started link from the landing page
     this.getStartedLink = page.getByRole("link", { name: "GET STARTED" });
     this.skipButton = page.getByRole("button", { name: "SKIP" });
+    this.resetButton = page.locator("#reset-program-button");
+    this.resetModal = page.locator("#reset-program-modal");
+    this.resetModalCancelButton = page.locator("#reset-modal-cancel-button");
+    this.resetModalConfirmButton = page.locator("#reset-modal-confirm-button");
   }
 
   async goto() {
@@ -42,5 +50,19 @@ export class ProgramPage {
 
   async pressSkipButton() {
     await this.skipButton.click();
+  }
+
+  async pressResetButton() {
+    await this.resetButton.click();
+  }
+
+  async cancelReset() {
+    await this.resetModalCancelButton.click();
+    await this.resetModal.waitFor({ state: "hidden" });
+  }
+
+  async confirmReset() {
+    await this.resetModalConfirmButton.click();
+    await this.getStartedHeader.waitFor({ state: "visible" });
   }
 }
