@@ -1,4 +1,4 @@
-import type { Locator, Page } from "@playwright/test";
+import { expect, type Locator, type Page } from "@playwright/test";
 import { DAYS } from "@/const";
 import {
   DAY_COMPLETE_MESSAGES,
@@ -70,10 +70,15 @@ export function MixinBaseWorkoutPage() {
     }
 
     async pressGoBackLink(): Promise<void> {
+      await expect(this.dayCompleteGoBackLink).toBeVisible();
+      // force: true bypasses stability check — the wiggle animation keeps the icon in motion
       await this.dayCompleteGoBackLink.click({ force: true });
     }
 
     async saveTheWorkout(): Promise<void> {
+      await expect(this.dayCompleteSaveButton).toBeVisible();
+      await expect(this.dayCompleteSaveButton).toBeEnabled();
+      // force: true bypasses stability check — the pulse animation keeps the button in motion
       await this.dayCompleteSaveButton.click({ force: true });
     }
   };

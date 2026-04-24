@@ -31,5 +31,5 @@ test("get started should navigate to app", async ({ page }) => {
   const landingPage = new LandingPage(page);
   await landingPage.goto();
   await landingPage.getStarted();
-  expect(page.locator("h1", { hasText: "PULLUP PROGRAM" }));
+  await expect(page.getByRole("link", { name: "PULLUP PROGRAM" })).toBeVisible();
 });

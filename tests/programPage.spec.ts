@@ -20,6 +20,7 @@ test("expect past workouts visible", async ({ page }) => {
   await programPage.goto();
   await expect(programPage.homeLink).toBeVisible();
   await expect(programPage.dashboard).toBeVisible();
+  await expect(programPage.dayLink).toBeVisible();
   await expect(programPage.skipButton).toBeVisible();
   await expect(programPage.skipButton).toBeEnabled();
   await programPage.pressSkipButton();
@@ -28,4 +29,16 @@ test("expect past workouts visible", async ({ page }) => {
   await expect(programPage.pastWorkoutsSection).toBeVisible();
   await expect(programPage.dayLink).toBeVisible();
   await expect(programPage.todaysWorkoutHeader).toBeVisible();
+});
+
+test("skip advances day counter to DAY 2", async ({ page }) => {
+  const programPage = new ProgramPage(page);
+  await programPage.goto();
+  await expect(programPage.dayLink).toBeVisible();
+  await expect(programPage.dayLink).toHaveText("DAY 1");
+  await expect(programPage.skipButton).toBeVisible();
+  await expect(programPage.skipButton).toBeEnabled();
+  await programPage.pressSkipButton();
+  await expect(programPage.dayLink).toBeVisible();
+  await expect(programPage.dayLink).toHaveText("DAY 2");
 });

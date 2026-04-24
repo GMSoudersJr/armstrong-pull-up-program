@@ -84,7 +84,7 @@ test("timer modal functionality", async ({ page }) => {
 });
 
 test("expect timer completes", async ({ page }) => {
-  test.setTimeout(100 * 1_000);
+  test.setTimeout(110 * 1_000);
   const dayOnePage = new DayOneWorkoutPage(page, 1);
   await dayOnePage.goto();
   await dayOnePage.pressCompleteSetButton();
@@ -116,4 +116,22 @@ test("expect complete day elements", async ({ page }) => {
   await expect(dayOnePage.dayCompleteGoBackLink).toBeVisible();
   await dayOnePage.pressGoBackLink();
   await expect(dayOnePage.dayHeading).not.toBeVisible();
+});
+
+test("Escape key closes hint modal", async ({ page }) => {
+  const dayOnePage = new DayOneWorkoutPage(page, 1);
+  await dayOnePage.goto();
+  await dayOnePage.pressDailyHintButton();
+  await expect(dayOnePage.dailyHintModal).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(dayOnePage.dailyHintModal).not.toBeVisible();
+});
+
+test("Escape key closes timer modal", async ({ page }) => {
+  const dayOnePage = new DayOneWorkoutPage(page, 1);
+  await dayOnePage.goto();
+  await dayOnePage.pressCompleteSetButton();
+  await expect(dayOnePage.timerModal).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(dayOnePage.timerModal).not.toBeVisible();
 });

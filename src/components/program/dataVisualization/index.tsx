@@ -37,6 +37,14 @@ const DataVisualization = ({ data }: DataVisualizationProps) => {
               <DayFourSVG data={entry} />
             </li>
           );
+        if (entry.dayAbbreviation === "SKPD")
+          return (
+            <li key={entry.id}>
+              <p className={styles.skippedEntry}>
+                SKPD on {entry.date}
+              </p>
+            </li>
+          );
       })}
     </ul>
   );

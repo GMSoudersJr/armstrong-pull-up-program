@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./page.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, use } from "react";
 import { TDayComplete } from "@/definitions";
 import {
   getWorkoutById,
@@ -11,19 +11,16 @@ import {
 import DataVisualization from "@/dataVisualization";
 import { nunito } from "@/fonts";
 
-const Page = ({ params }: { params: { getData: string; index: string } }) => {
+const Page = (props: { params: Promise<{ getData: string; index: string }> }) => {
+  const params = use(props.params);
   const initialData: TDayComplete[] = [];
-  const [dataToGet, setDataToGet] = useState("");
   const [data, setData] = useState(initialData);
   const [heading, setHeading] = useState("");
   const [dataError, setDataError] = useState(false);
 
   useEffect(() => {
-    setDataToGet(params.getData);
-
-    if (dataToGet === "workout") {
-      const id = params.index;
-      getWorkoutById(id)
+    if (params.getData === "workout") {
+      getWorkoutById(params.index)
         .then((value) => {
           setData(value);
           setHeading(`W${value[0].weekNumber}-D${value[0].dayNumber} REVIEW`);
@@ -34,12 +31,11 @@ const Page = ({ params }: { params: { getData: string; index: string } }) => {
         });
     }
 
-    if (dataToGet === "week") {
-      const weekNumber = params.index;
-      getWorkoutsbyWeekNumber(Number.parseInt(weekNumber))
+    if (params.getData === "week") {
+      getWorkoutsbyWeekNumber(Number.parseInt(params.index))
         .then((value) => {
           setData(value);
-          setHeading(`W${weekNumber} REVIEW`);
+          setHeading(`W${params.index} REVIEW`);
         })
         .catch((error) => {
           console.warn(error);
@@ -47,19 +43,18 @@ const Page = ({ params }: { params: { getData: string; index: string } }) => {
         });
     }
 
-    if (dataToGet === "day") {
-      const dayNumber = params.index;
-      getWorkoutsByDayNumber(Number.parseInt(dayNumber))
+    if (params.getData === "day") {
+      getWorkoutsByDayNumber(Number.parseInt(params.index))
         .then((value) => {
           setData(value);
-          setHeading(`D${dayNumber} REVIEW`);
+          setHeading(`D${params.index} REVIEW`);
         })
         .catch((error) => {
           console.warn(error);
           setDataError(true);
         });
     }
-  }, [dataToGet, params.getData, params.index]);
+  }, [params.getData, params.index]);
 
   return (
     <div className={styles.page}>

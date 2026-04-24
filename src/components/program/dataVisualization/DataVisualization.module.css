@@ -22,3 +22,11 @@
 .dataVisualizationList > li:only-child {
   margin-bottom: 0;
 }
+
+.skippedEntry {
+  text-align: center;
+  color: #aaa;
+  font-family: consolas, monospace;
+  font-size: 0.9rem;
+  padding: 1rem 0;
+}

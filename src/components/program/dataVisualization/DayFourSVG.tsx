@@ -25,6 +25,9 @@ export default function DayFourSVG({ data }: DayFourSVGProps) {
   useEffect((): void => {
     if (ref.current) {
       const svgElement = d3.select(ref.current);
+
+      svgElement.selectAll("*").remove();
+
       const arc: d3.Arc<any, d3.PieArcDatum<number>> = d3
         .arc<d3.PieArcDatum<number>>()
         .innerRadius(RADIUS * 0.618)

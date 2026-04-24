@@ -4,7 +4,7 @@ import styles from "./InstallInstructions.module.css";
 import { nunito, ptSans } from "@/fonts";
 import InstallPWAButton from "./InstallPWAButton";
 import {
-  ChromeIcon,
+  GlobeIcon,
   CompassIcon,
   DockIcon,
   MonitorDownIcon,
@@ -23,7 +23,7 @@ const InstallInstructions = () => {
           <ol className={styles.list}>
             <li style={ptSans.style}>
               <span className={styles.listitemSpan}>
-                Open site in Chrome browser <ChromeIcon />
+                Open site in Chrome browser <GlobeIcon />
               </span>
             </li>
             <li style={ptSans.style}>
