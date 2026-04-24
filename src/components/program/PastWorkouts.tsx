@@ -91,7 +91,6 @@ const PastWorkouts = ({ updatePastWorkouts }: PastWorkoutsProps) => {
               }
             });
           })}
-          <ResetProgramButton />
         </section>
       ) : (
         <></>
