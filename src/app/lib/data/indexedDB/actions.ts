@@ -47,7 +47,7 @@ export function makeTransaction(
 //}}}
 
 // ADD_NEW_WEEK {{{
-export function addNewWeek(weekNumber: number) {
+export function addNewWeek(weekNumber: number): Promise<void> {
   const weekData: TWeek = {
     number: weekNumber,
     lastCompletedDay: 0,
@@ -55,20 +55,27 @@ export function addNewWeek(weekNumber: number) {
   };
 
   const open = indexedDB.open(dbName);
-  open.onsuccess = () => {
-    db = open.result;
-    const transaction = makeTransaction("weeksStore", "readwrite");
-    if (!transaction) return;
+  return new Promise<void>((resolve, reject) => {
+    open.onerror = () => reject(open.error);
+    open.onsuccess = () => {
+      db = open.result;
+      const transaction = makeTransaction("weeksStore", "readwrite");
+      if (!transaction) {
+        reject(new Error("DB not ready"));
+        return;
+      }
 
-    let store = transaction.objectStore("weeksStore");
-    let request = store.add(weekData);
+      let store = transaction.objectStore("weeksStore");
+      let request = store.add(weekData);
 
-    request.onerror = (err) => {
-      console.warn("error adding new week", err);
+      request.onerror = (err) => reject(err);
+
+      transaction.oncomplete = () => {
+        db?.close();
+        resolve();
+      };
     };
-
-    transaction.oncomplete = () => db?.close();
-  };
+  });
 }
 //}}}
 
@@ -208,7 +215,7 @@ export function getWeekDataForWeekNumber(weekNumber: number): Promise<TWeek> {
 export function updateThisWeekWithWorkoutNumber(
   week: TWeek,
   workoutDayNumber: number,
-) {
+): Promise<void> {
   const open = indexedDB.open(dbName);
   const storeName: TStoreName = "weeksStore";
   const updatedWeekData: TWeek = {
@@ -217,20 +224,29 @@ export function updateThisWeekWithWorkoutNumber(
     lastCompletedDay: workoutDayNumber,
   };
 
-  open.onsuccess = () => {
-    db = open.result;
-    const transaction = makeTransaction(storeName, "readwrite");
+  return new Promise<void>((resolve, reject) => {
+    open.onerror = () => reject(open.error);
+    open.onsuccess = () => {
+      db = open.result;
+      const transaction = makeTransaction(storeName, "readwrite");
 
-    if (!transaction) return;
+      if (!transaction) {
+        reject(new Error("DB not ready"));
+        return;
+      }
 
-    const objectStore = transaction.objectStore(storeName);
-    const serialized = JSON.parse(JSON.stringify(updatedWeekData));
-    const request = objectStore.put(serialized);
+      const objectStore = transaction.objectStore(storeName);
+      const serialized = JSON.parse(JSON.stringify(updatedWeekData));
+      const request = objectStore.put(serialized);
 
-    request.onerror = (err) => console.warn(err);
+      request.onerror = (err) => reject(err);
 
-    transaction.oncomplete = () => db?.close();
-  };
+      transaction.oncomplete = () => {
+        db?.close();
+        resolve();
+      };
+    };
+  });
 }
 //}}}
 

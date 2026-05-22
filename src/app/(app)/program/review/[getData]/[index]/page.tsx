@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./page.module.css";
-import { useEffect, useState, use } from "react";
+import { useEffect, useState } from "react";
 import { TDayComplete } from "@/definitions";
 import {
   getWorkoutById,
@@ -11,8 +11,7 @@ import {
 import DataVisualization from "@/dataVisualization";
 import { nunito } from "@/fonts";
 
-const Page = (props: { params: Promise<{ getData: string; index: string }> }) => {
-  const params = use(props.params);
+const Page = ({ params }: { params: { getData: string; index: string } }) => {
   const initialData: TDayComplete[] = [];
   const [data, setData] = useState(initialData);
   const [heading, setHeading] = useState("");
