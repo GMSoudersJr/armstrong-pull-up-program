@@ -2,7 +2,6 @@ const {
   PHASE_DEVELOPMENT_SERVER,
   PHASE_PRODUCTION_BUILD,
 } = require("next/constants");
-const path = require("path");
 
 /** @type {(phase: string, defaultConfig: import("next").NextConfig) => Promise<import("next").NextConfig>} */
 module.exports = async (phase) => {
@@ -18,9 +17,6 @@ module.exports = async (phase) => {
       ],
     },
     transpilePackages: ["lucide-react"],
-    turbopack: {
-      root: path.resolve(__dirname),
-    },
   };
 
   if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {
@@ -29,6 +25,7 @@ module.exports = async (phase) => {
       swDest: "public/sw.js",
       reloadOnOnline: true,
       cacheOnNavigation: true,
+      disable: process.env.NODE_ENV !== "production",
     });
     return withSerwist(nextConfig);
   }

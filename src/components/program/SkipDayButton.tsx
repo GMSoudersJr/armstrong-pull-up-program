@@ -11,7 +11,7 @@ import {
   updateThisWeekWithWorkoutNumber,
   getWeekDataForWeekNumber,
 } from "@/indexedDBActions";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 interface SkipDayButtonProps {
   dayNumber: TDayNumber;
@@ -31,31 +31,39 @@ const SkipDayButton = ({
   setStateForProgramDayNumber,
   setStateForUpdatePastWorkouts,
 }: SkipDayButtonProps) => {
+  const [isSkipping, setIsSkipping] = useState(false);
+
   async function handleSkip() {
-    const startNewWeek = await shouldStartNewWeek();
-    let currentWeekNumber = await getCurrentWeekNumber();
+    if (isSkipping) return;
+    setIsSkipping(true);
+    try {
+      const startNewWeek = await shouldStartNewWeek();
+      let currentWeekNumber = await getCurrentWeekNumber();
 
-    if (startNewWeek) {
-      currentWeekNumber++;
-      addNewWeek(currentWeekNumber);
+      if (startNewWeek) {
+        currentWeekNumber++;
+        await addNewWeek(currentWeekNumber);
+      }
+
+      const date = new Date(Date.now()).toLocaleDateString("en-US", dateFormatOptions);
+      const skippedDayData: TDayComplete = {
+        id: `${currentWeekNumber}-${dayNumber}`,
+        dayAbbreviation: "SKPD",
+        dayNumber: dayNumber,
+        date,
+        weekNumber: currentWeekNumber,
+        sets: [0],
+      };
+
+      await addCompletedDayToWorkoutsStore(skippedDayData);
+      const weekDataToUpdate = await getWeekDataForWeekNumber(currentWeekNumber);
+      await updateThisWeekWithWorkoutNumber(weekDataToUpdate, skippedDayData.dayNumber);
+      const nextDay = dayNumber < 5 ? dayNumber + 1 : 1;
+      setStateForProgramDayNumber(nextDay);
+      setStateForUpdatePastWorkouts(nextDay);
+    } finally {
+      setIsSkipping(false);
     }
-
-    const date = new Date(Date.now()).toLocaleDateString("en-US", dateFormatOptions);
-    const skippedDayData: TDayComplete = {
-      id: `${currentWeekNumber}-${dayNumber}`,
-      dayAbbreviation: "SKPD",
-      dayNumber: dayNumber,
-      date,
-      weekNumber: currentWeekNumber,
-      sets: [0],
-    };
-
-    await addCompletedDayToWorkoutsStore(skippedDayData);
-    const weekDataToUpdate = await getWeekDataForWeekNumber(currentWeekNumber);
-    updateThisWeekWithWorkoutNumber(weekDataToUpdate, skippedDayData.dayNumber);
-    const nextDay = dayNumber < 5 ? dayNumber + 1 : 1;
-    setStateForProgramDayNumber(nextDay);
-    setStateForUpdatePastWorkouts(nextDay);
   }
 
   return (
@@ -64,6 +72,7 @@ const SkipDayButton = ({
       className={styles.button}
       id="skip-day-button"
       onClick={handleSkip}
+      disabled={isSkipping}
       style={nunito.style}
     >
       SKIP

@@ -6,7 +6,7 @@ import { BicepsFlexedIcon } from "lucide-react";
 const NAV_LINKS = [
   {
     path: "/#home",
-    label: "Armstrong Pull-up program",
+    label: "Rep Yourself",
     sr_only: "home",
   },
   {

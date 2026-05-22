@@ -49,7 +49,7 @@ const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
 
       if (startNewWeek) {
         currentWeekNumber++;
-        addNewWeek(currentWeekNumber);
+        await addNewWeek(currentWeekNumber);
       }
 
       const payload: TDayComplete = {
@@ -61,7 +61,7 @@ const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
 
       const dataSavedInIndexedDB = await addCompletedDayToWorkoutsStore(payload);
       const weekDataToUpdate = await getWeekDataForWeekNumber(currentWeekNumber);
-      updateThisWeekWithWorkoutNumber(weekDataToUpdate, payload.dayNumber);
+      await updateThisWeekWithWorkoutNumber(weekDataToUpdate, payload.dayNumber);
       setIsDataSaved(dataSavedInIndexedDB);
       setStateForSavedDay(true);
     } catch {

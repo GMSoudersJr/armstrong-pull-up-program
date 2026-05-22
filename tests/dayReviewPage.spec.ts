@@ -60,7 +60,7 @@ async function seedDatabase(page: Parameters<Parameters<typeof test>[1]>[0]["pag
 test("D1 review full page shows all Day 1 workouts in DOM", async ({ page }) => {
   const programPage = new ProgramPage(page);
   await programPage.goto();
-  await expect(programPage.getStartedHeader).toBeVisible();
+  await expect(programPage.skipButton).toBeVisible();
 
   await seedDatabase(page);
 
@@ -73,7 +73,7 @@ test("D1 review full page shows all Day 1 workouts in DOM", async ({ page }) => 
 test("D1 review full page — last chart is reachable by scrolling", async ({ page }) => {
   const programPage = new ProgramPage(page);
   await programPage.goto();
-  await expect(programPage.getStartedHeader).toBeVisible();
+  await expect(programPage.skipButton).toBeVisible();
 
   await seedDatabase(page);
 
@@ -88,7 +88,7 @@ test("D1 review full page — last chart is reachable by scrolling", async ({ pa
 test("D1 modal review shows all Day 1 workouts in DOM", async ({ page }) => {
   const programPage = new ProgramPage(page);
   await programPage.goto();
-  await expect(programPage.getStartedHeader).toBeVisible();
+  await expect(programPage.skipButton).toBeVisible();
 
   await seedDatabase(page);
 
@@ -104,7 +104,7 @@ test("D1 modal review shows all Day 1 workouts in DOM", async ({ page }) => {
 test("D1 modal review — last chart is reachable by scrolling", async ({ page }) => {
   const programPage = new ProgramPage(page);
   await programPage.goto();
-  await expect(programPage.getStartedHeader).toBeVisible();
+  await expect(programPage.skipButton).toBeVisible();
 
   await seedDatabase(page);
 
