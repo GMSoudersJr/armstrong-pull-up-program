@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./page.module.css";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { TDayComplete } from "@/definitions";
 import {
   getWorkoutById,
@@ -11,15 +11,20 @@ import {
 import DataVisualization from "@/dataVisualization";
 import { nunito } from "@/fonts";
 
-const Page = ({ params }: { params: { getData: string; index: string } }) => {
+const Page = ({
+  params,
+}: {
+  params: Promise<{ getData: string; index: string }>;
+}) => {
+  const { getData, index } = use(params);
   const initialData: TDayComplete[] = [];
   const [data, setData] = useState(initialData);
   const [heading, setHeading] = useState("");
   const [dataError, setDataError] = useState(false);
 
   useEffect(() => {
-    if (params.getData === "workout") {
-      getWorkoutById(params.index)
+    if (getData === "workout") {
+      getWorkoutById(index)
         .then((value) => {
           setData(value);
           setHeading(`W${value[0].weekNumber}-D${value[0].dayNumber} REVIEW`);
@@ -30,11 +35,11 @@ const Page = ({ params }: { params: { getData: string; index: string } }) => {
         });
     }
 
-    if (params.getData === "week") {
-      getWorkoutsbyWeekNumber(Number.parseInt(params.index))
+    if (getData === "week") {
+      getWorkoutsbyWeekNumber(Number.parseInt(index))
         .then((value) => {
           setData(value);
-          setHeading(`W${params.index} REVIEW`);
+          setHeading(`W${index} REVIEW`);
         })
         .catch((error) => {
           console.warn(error);
@@ -42,18 +47,18 @@ const Page = ({ params }: { params: { getData: string; index: string } }) => {
         });
     }
 
-    if (params.getData === "day") {
-      getWorkoutsByDayNumber(Number.parseInt(params.index))
+    if (getData === "day") {
+      getWorkoutsByDayNumber(Number.parseInt(index))
         .then((value) => {
           setData(value);
-          setHeading(`D${params.index} REVIEW`);
+          setHeading(`D${index} REVIEW`);
         })
         .catch((error) => {
           console.warn(error);
           setDataError(true);
         });
     }
-  }, [params.getData, params.index]);
+  }, [getData, index]);
 
   return (
     <div className={styles.page}>

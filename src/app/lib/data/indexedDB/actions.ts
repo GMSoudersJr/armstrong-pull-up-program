@@ -312,10 +312,14 @@ export function getWorkoutsByDayNumber(
   const open = indexedDB.open(dbName);
   const storeName: TStoreName = "workoutsStore";
   return new Promise<TDayComplete[]>((resolve, reject) => {
+    open.onerror = () => reject(open.error);
     open.onsuccess = () => {
       db = open.result;
       let transaction = makeTransaction(storeName, "readonly");
-      if (!transaction) return;
+      if (!transaction) {
+        reject(new Error("DB not ready"));
+        return;
+      }
 
       const objectStore = transaction.objectStore(storeName);
 
