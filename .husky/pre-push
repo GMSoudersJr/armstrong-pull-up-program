@@ -1,0 +1,91 @@
+# Husky v9 pre-push: run only Playwright specs affected by pushed changes
+
+Z40="0000000000000000000000000000000000000000"
+SPECS=""
+SERVER_PID=""
+
+cleanup() {
+  [ -n "$SERVER_PID" ] && kill "$SERVER_PID" 2>/dev/null
+}
+trap cleanup EXIT
+
+while IFS=' ' read -r local_ref local_sha remote_ref remote_sha; do
+  if [ "$remote_sha" = "$Z40" ]; then
+    echo "pre-push: new branch — running full test suite"
+    SPECS="tests/landingPage.spec.ts tests/programPage.spec.ts tests/dayOnePage.spec.ts tests/dayTwoPage.spec.ts tests/dayThreePage.spec.ts tests/dayFourPage.spec.ts tests/dayFivePage.spec.ts tests/dayReviewPage.spec.ts tests/fullWeek.spec.ts"
+    break
+  fi
+
+  CHANGED_FILES=$(git diff --name-only "$remote_sha".."$local_sha")
+
+  if [ -z "$CHANGED_FILES" ]; then
+    echo "pre-push: no file changes detected — skipping tests"
+    exit 0
+  fi
+
+  # Shared/config triggers → full suite
+  if echo "$CHANGED_FILES" | grep -qE \
+      'next\.config|playwright\.config|package\.json|src/app/layout|src/app/lib/|src/lib/|TimerModal|DailyHintModal|DailyHintButton|DayComplete\.tsx|DayProgressBar|tests/pom/'; then
+    echo "pre-push: shared/config file changed — running full test suite"
+    SPECS="tests/landingPage.spec.ts tests/programPage.spec.ts tests/dayOnePage.spec.ts tests/dayTwoPage.spec.ts tests/dayThreePage.spec.ts tests/dayFourPage.spec.ts tests/dayFivePage.spec.ts tests/dayReviewPage.spec.ts tests/fullWeek.spec.ts"
+    break
+  fi
+
+  # Spec-specific triggers
+  if echo "$CHANGED_FILES" | grep -qE 'src/app/\(marketing\)/|src/components/landing/'; then
+    SPECS="$SPECS tests/landingPage.spec.ts"
+  fi
+  if echo "$CHANGED_FILES" | grep -qE 'src/app/\(app\)/program/page|src/components/program/Program\.tsx|src/components/program/PastWorkouts|src/components/program/ResetProgramModal|src/components/program/DownloadDataModal'; then
+    SPECS="$SPECS tests/programPage.spec.ts"
+  fi
+  if echo "$CHANGED_FILES" | grep -qE 'src/app/\(app\)/program/day-one/|src/components/program/fiveMaxEffortSets/'; then
+    SPECS="$SPECS tests/dayOnePage.spec.ts tests/fullWeek.spec.ts"
+  fi
+  if echo "$CHANGED_FILES" | grep -qE 'src/app/\(app\)/program/day-two/|src/components/program/pyramid/'; then
+    SPECS="$SPECS tests/dayTwoPage.spec.ts tests/fullWeek.spec.ts"
+  fi
+  if echo "$CHANGED_FILES" | grep -qE 'src/app/\(app\)/program/day-three/|src/components/program/threeTrainingSetsThreeGrips/'; then
+    SPECS="$SPECS tests/dayThreePage.spec.ts tests/fullWeek.spec.ts"
+  fi
+  if echo "$CHANGED_FILES" | grep -qE 'src/app/\(app\)/program/day-four/|src/components/program/maxTrainingSets/'; then
+    SPECS="$SPECS tests/dayFourPage.spec.ts tests/fullWeek.spec.ts"
+  fi
+  if echo "$CHANGED_FILES" | grep -qE 'src/app/\(app\)/program/day-five/|src/components/program/repeatDay/'; then
+    SPECS="$SPECS tests/dayFivePage.spec.ts tests/fullWeek.spec.ts"
+  fi
+  if echo "$CHANGED_FILES" | grep -qE 'src/app/\(app\)/program/@modal/|src/components/program/dataVisualization/'; then
+    SPECS="$SPECS tests/dayReviewPage.spec.ts"
+  fi
+done
+
+# Deduplicate
+SPECS=$(echo "$SPECS" | tr ' ' '\n' | sort -u | tr '\n' ' ' | xargs)
+
+if [ -z "$SPECS" ]; then
+  echo "pre-push: no code files changed — skipping tests"
+  exit 0
+fi
+
+echo "pre-push: running specs: $SPECS"
+
+# Server handling
+if lsof -ti:3000 > /dev/null 2>&1; then
+  echo "pre-push: port 3000 occupied — reusing existing server"
+else
+  echo "pre-push: starting production server..."
+  npm run build && npm run start &
+  SERVER_PID=$!
+  TIMEOUT=180
+  ELAPSED=0
+  until curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000 | grep -q "200\|301\|302"; do
+    sleep 3
+    ELAPSED=$((ELAPSED + 3))
+    if [ "$ELAPSED" -ge "$TIMEOUT" ]; then
+      echo "pre-push: server failed to start — aborting"
+      exit 1
+    fi
+  done
+  echo "pre-push: server ready"
+fi
+
+npx playwright test $SPECS
