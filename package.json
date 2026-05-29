@@ -20,7 +20,7 @@
     "react-splide-ts": "^0.7.14"
   },
   "devDependencies": {
-    "@playwright/test": "^1.47.2",
+    "@playwright/test": "^1.60.0",
     "@types/d3": "^7.4.3",
     "@types/node": "^20",
     "@types/react": "^19.2.14",
