@@ -30,6 +30,13 @@
   justify-content: center;
 }
 
+.h1Subtitle {
+  display: block;
+  font-size: 0.5em;
+  font-weight: 400;
+  opacity: 0.75;
+}
+
 .button {
   padding: 0.875rem 1rem;
   place-self: center;

@@ -43,6 +43,7 @@ export function CreateDayOnePOM<
     async startUserFlow() {
       await this.page.goto(`/`);
       await this.getStartedLink.click();
+      await this.dayOneLink.waitFor({ state: "visible" });
       await this.dayOneLink.click();
     }
   };
