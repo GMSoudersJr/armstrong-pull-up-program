@@ -6,7 +6,7 @@ export const defaultMetadata: Metadata = {
     canonical: "/",
   },
   title: {
-    default: "Rep Yourself — The Armstrong Pull-up Program App",
+    default: "Rep Yourself • The Armstrong Pull-up Program App",
     template: "%s | Rep Yourself",
   },
   description:
