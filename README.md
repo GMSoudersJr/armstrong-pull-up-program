@@ -1,6 +1,6 @@
-# [Armstrong Pull-up Program App](https://armstrong-pull-up-program.vercel.app) 🦾
+# [Rep Yourself - The Armstrong Pull-up Program App](https://repyourself.app) 🦾
 
-Live link: https://armstrong-pull-up-program.vercel.app
+Live link: https://repyourself.app
 
 The information in the FAQ section came from [this PDF](https://www.savannahstate.edu/cost/nrotc/documents/Inform2010-thearmstrongworkout_Enclosure15_5-2-10.pdf)
 
