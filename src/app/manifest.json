@@ -1,10 +1,10 @@
 {
-  "version": "2",
+  "version": "3",
   "manifest_version": 2,
   "id": "/program",
-  "name": "Rep Yourself",
+  "name": "Rep Yourself | Armstrong Pull-up Program",
   "short_name": "Rep Yourself",
-  "description": "Rep Yourself — master pull-ups with the Armstrong Pull-up Program. Free, offline-capable PWA.",
+  "description": "Free Armstrong Pull-up Program app and tracker. Follow Major Armstrong's 5-day pull-up routine. Offline-capable PWA.",
   "start_url": "/program?utm_source=homescreen",
   "scope": "/",
   "display": "standalone",
