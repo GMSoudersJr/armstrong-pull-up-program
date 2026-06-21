@@ -23,3 +23,11 @@
   display: inline;
   float: left;
 }
+
+.features > h2 {
+  font-size: clamp(
+    var(--large-heading),
+    calc(10vw + 0.25rem),
+    var(--xtra-xtra-large-heading)
+  );
+}
