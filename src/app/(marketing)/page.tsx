@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import styles from "./page.module.css";
 import Hero from "@/components/landing/Hero";
 import Features from "@/components/landing/Features";
@@ -7,6 +8,10 @@ import Overview from "@/components/landing/Overview";
 import FaqAccordion from "@/components/landing/FaqAccordion";
 import InstallInstructions from "@/components/InstallInstructions";
 import { ProgramPageLink } from "@/components/ProgramPageLink";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const faqSchema = {
   "@context": "https://schema.org",
