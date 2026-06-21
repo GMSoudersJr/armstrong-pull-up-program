@@ -68,21 +68,24 @@ fi
 
 echo "pre-push: running specs: $SPECS"
 
-# Server handling — always start a fresh server from the current build
+# Server handling — kill any stale process, build synchronously, then start
 if lsof -ti:3000 > /dev/null 2>&1; then
   echo "pre-push: killing stale server on port 3000..."
   kill $(lsof -ti:3000) 2>/dev/null
   sleep 1
 fi
 
+echo "pre-push: building..."
+npm run build || { echo "pre-push: build failed — aborting"; exit 1; }
+
 echo "pre-push: starting production server..."
-npm run build && npm run start &
+npm run start &
 SERVER_PID=$!
-TIMEOUT=180
+TIMEOUT=60
 ELAPSED=0
 until curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000 | grep -q "200\|301\|302"; do
-  sleep 3
-  ELAPSED=$((ELAPSED + 3))
+  sleep 2
+  ELAPSED=$((ELAPSED + 2))
   if [ "$ELAPSED" -ge "$TIMEOUT" ]; then
     echo "pre-push: server failed to start — aborting"
     exit 1
