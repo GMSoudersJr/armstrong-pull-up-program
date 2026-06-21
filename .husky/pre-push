@@ -4,11 +4,10 @@ Z40="0000000000000000000000000000000000000000"
 SPECS=""
 
 clear_port_3000() {
-  local PIDS
-  PIDS=$(lsof -ti:3000 2>/dev/null)
-  if [ -n "$PIDS" ]; then
-    echo "pre-push: clearing port 3000 (pids: $PIDS)..."
-    kill $PIDS 2>/dev/null
+  # lsof is unreliable in WSL2; use ss to detect and fuser to kill
+  if ss -tlnp 2>/dev/null | grep -q ':3000 '; then
+    echo "pre-push: clearing port 3000..."
+    fuser -k 3000/tcp 2>/dev/null || true
     sleep 2
   fi
 }
