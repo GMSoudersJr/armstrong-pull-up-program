@@ -113,9 +113,34 @@ const howToSchema = {
   ],
 };
 
+const appSchema = {
+  "@context": "https://schema.org",
+  "@type": ["SoftwareApplication", "WebApplication"],
+  name: "Rep Yourself | Armstrong Pull-up Program",
+  operatingSystem: "Web, Android, iOS",
+  applicationCategory: "HealthApplication",
+  description:
+    "Free Armstrong Pull-up Program app and tracker. Follow Major Armstrong's 5-day pull-up routine, time your rest automatically, and track your progress offline.",
+  url: "https://repyourself.app",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  // aggregateRating: {
+  //   "@type": "AggregateRating",
+  //   "ratingValue": "X.X",
+  //   "ratingCount": "XX",
+  // },
+  // Add aggregateRating above once you have verified ratings from real users.
+  // Fabricated ratings violate Google's structured data guidelines and can
+  // result in a manual penalty. Only add this when you have genuine reviews
+  // collected through a verifiable platform.
+};
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
