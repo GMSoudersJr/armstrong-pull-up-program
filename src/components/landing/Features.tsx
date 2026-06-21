@@ -7,7 +7,7 @@ import type { TCardProps } from "@/definitions";
 const Features = () => {
   return (
     <section id="features" className={styles.features}>
-      <h1 style={nunito.style}>Features</h1>
+      <h2 style={nunito.style}>Features</h2>
       <ul className={styles.featuresList}>
         {FEATURES.map((feature) => {
           return (

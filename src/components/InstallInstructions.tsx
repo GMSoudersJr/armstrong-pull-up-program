@@ -16,7 +16,7 @@ import {
 const InstallInstructions = () => {
   return (
     <section className={styles.installInstructionsSection}>
-      <h1 style={nunito.style}>APP INSTALLATION</h1>
+      <h2 style={nunito.style}>APP INSTALLATION</h2>
       <div className={styles.intstallInstructions}>
         <div id="mostDevices">
           <h2 style={nunito.style}>MOST DEVICES</h2>

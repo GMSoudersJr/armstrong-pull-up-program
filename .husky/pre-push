@@ -2,12 +2,17 @@
 
 Z40="0000000000000000000000000000000000000000"
 SPECS=""
-SERVER_PID=""
 
-cleanup() {
-  [ -n "$SERVER_PID" ] && kill "$SERVER_PID" 2>/dev/null
+clear_port_3000() {
+  # lsof is unreliable in WSL2; use ss to detect and fuser to kill
+  if ss -tlnp 2>/dev/null | grep -q ':3000 '; then
+    echo "pre-push: clearing port 3000..."
+    fuser -k 3000/tcp 2>/dev/null || true
+    sleep 2
+  fi
 }
-trap cleanup EXIT
+
+trap clear_port_3000 EXIT
 
 while IFS=' ' read -r local_ref local_sha remote_ref remote_sha; do
   if [ "$remote_sha" = "$Z40" ]; then
@@ -68,19 +73,17 @@ fi
 
 echo "pre-push: running specs: $SPECS"
 
-# Server handling — kill any stale process, build synchronously, then start
-if lsof -ti:3000 > /dev/null 2>&1; then
-  echo "pre-push: killing stale server on port 3000..."
-  kill $(lsof -ti:3000) 2>/dev/null
-  sleep 1
-fi
+# Kill any stale server before building
+clear_port_3000
 
 echo "pre-push: building..."
 npm run build || { echo "pre-push: build failed — aborting"; exit 1; }
 
+# Next.js static generation temporarily binds port 3000 — clear it again after build
+clear_port_3000
+
 echo "pre-push: starting production server..."
 npm run start &
-SERVER_PID=$!
 TIMEOUT=60
 ELAPSED=0
 until curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:3000 | grep -q "200\|301\|302"; do

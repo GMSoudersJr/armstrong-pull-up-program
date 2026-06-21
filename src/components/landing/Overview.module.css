@@ -24,6 +24,14 @@
   flex: 1;
 }
 
+.overviewContainer > h2 {
+  font-size: clamp(
+    var(--large-heading),
+    calc(10vw + 0.25rem),
+    var(--xtra-xtra-large-heading)
+  );
+}
+
 @media (max-width: 40rem) {
   .overviewList {
     flex-direction: column;
