@@ -2,9 +2,6 @@ import { Metadata } from "next";
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL("https://repyourself.app/"),
-  alternates: {
-    canonical: "/",
-  },
   title: {
     default: "Rep Yourself • The Armstrong Pull-up Program App",
     template: "%s | Rep Yourself",
