@@ -10,10 +10,7 @@ const Hero = () => {
       <LandingNavbar />
       <div className={styles.heroLeft}>
         <h1 style={nunito.style}>
-          Rep Yourself
-          <span className={styles.h1Subtitle}>
-            The Armstrong Pull-up Program App
-          </span>
+          Rep Yourself: The Armstrong Pull-up Program App
         </h1>
         <h2 style={nunito.style}>
           Master pull-ups with the Armstrong Pull-up Program.

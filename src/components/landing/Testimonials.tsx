@@ -14,9 +14,9 @@ const Testimonials = () => {
       className={styles.testimonials}
       aria-labelledby="carousel-heading"
     >
-      <h1 style={nunito.style} id="carousel-heading">
+      <h2 style={nunito.style} id="carousel-heading">
         Testimonials
-      </h1>
+      </h2>
       <Splide
         className={styles.splide}
         tag="section"

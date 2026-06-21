@@ -7,7 +7,7 @@ import { ScaleIcon, ShapesIcon, Tally5Icon } from "lucide-react";
 const ProgramOverview = () => {
   return (
     <section id="overview" className={styles.overviewContainer}>
-      <h1 style={nunito.style}>Overview</h1>
+      <h2 style={nunito.style}>Overview</h2>
       <ul className={styles.overviewList}>
         {OVERVIEW_POINTS.map((point, key) => {
           return (
