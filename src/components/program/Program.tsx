@@ -4,6 +4,7 @@ import styles from "./Program.module.css";
 import { useState, useEffect } from "react";
 import { DAYS } from "@/const";
 import { PageLink } from "../PageLink";
+import { track } from "@/lib/track";
 import { getLastCompletedDay } from "@/indexedDBActions";
 import { dbInitialized } from "@/data/indexedDB";
 import { nunito } from "@/fonts";
@@ -44,7 +45,11 @@ const Program = ({ setStateForUpdatePastWorkouts }: ProgramProps) => {
               setStateForProgramDayNumber={setProgramDayNumber}
               setStateForUpdatePastWorkouts={setStateForUpdatePastWorkouts}
             />
-            <PageLink path={day.path} label={day.label} />
+            <PageLink
+              path={day.path}
+              label={day.label}
+              onClick={() => track("workout-start")}
+            />
           </section>
         );
       })}
