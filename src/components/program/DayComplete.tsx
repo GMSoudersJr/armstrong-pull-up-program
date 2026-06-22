@@ -12,6 +12,7 @@ import {
   getWeekDataForWeekNumber,
 } from "@/indexedDBActions";
 import TotalReps from "./TotalReps";
+import { track } from "@/lib/track";
 import { nunito } from "@/fonts";
 import { CircleCheckBigIcon, SaveIcon, ThumbsUpIcon } from "lucide-react";
 import Link from "next/link";
@@ -54,16 +55,26 @@ const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
 
       const payload: TDayComplete = {
         ...dayData,
-        date: new Date(Date.now()).toLocaleDateString("en-US", dateFormatOptions),
+        date: new Date(Date.now()).toLocaleDateString(
+          "en-US",
+          dateFormatOptions,
+        ),
         weekNumber: currentWeekNumber,
         id: `${currentWeekNumber}-${dayData.dayNumber}`,
       };
 
-      const dataSavedInIndexedDB = await addCompletedDayToWorkoutsStore(payload);
-      const weekDataToUpdate = await getWeekDataForWeekNumber(currentWeekNumber);
-      await updateThisWeekWithWorkoutNumber(weekDataToUpdate, payload.dayNumber);
+      const dataSavedInIndexedDB =
+        await addCompletedDayToWorkoutsStore(payload);
+      const weekDataToUpdate =
+        await getWeekDataForWeekNumber(currentWeekNumber);
+      await updateThisWeekWithWorkoutNumber(
+        weekDataToUpdate,
+        payload.dayNumber,
+      );
       setIsDataSaved(dataSavedInIndexedDB);
       setStateForSavedDay(true);
+      track("workout-complete");
+      if (payload.dayNumber === 5) track("week-complete");
     } catch {
       setSaveError(true);
     } finally {
