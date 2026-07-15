@@ -16,6 +16,7 @@ import { track } from "@/lib/track";
 import { nunito } from "@/fonts";
 import { CircleCheckBigIcon, SaveIcon, ThumbsUpIcon } from "lucide-react";
 import Link from "next/link";
+import { Fragment } from "react";
 import {
   DAY_COMPLETE_MESSAGES,
   THUMBS_UP_ICON_MESSAGE,
@@ -92,11 +93,18 @@ const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
         <TotalReps sets={dayData.sets} />
       </div>
       <h3 className={styles.message} style={nunito.style}>
-        {saveError
-          ? "Save failed — please try again"
-          : isDataSaved
-            ? DAY_COMPLETE_MESSAGES[0]
-            : DAY_COMPLETE_MESSAGES[1]}
+        {saveError ? (
+          <Fragment>
+            Save failed — please try again, or email{" "}
+            <Link href={"mailto:support@repyourself.app"}>
+              support@repyourself.app
+            </Link>
+          </Fragment>
+        ) : isDataSaved ? (
+          DAY_COMPLETE_MESSAGES[0]
+        ) : (
+          DAY_COMPLETE_MESSAGES[1]
+        )}
       </h3>
       <div className={styles.takeAction} style={nunito.style}>
         {isDataSaved ? (

@@ -6,7 +6,7 @@ const lastUpdatedDate = "December 8th, 2025";
 const mainGooglePrivacyPolicy = "https://policies.google.com/privacy";
 const otherGooglePrivacyPolicy =
   "https://policies.google.com/technologies/partner-sites";
-const emailAddress = "repyourself.privacy@gmail.com";
+const emailAddress = "privacy@repyourself.app";
 
 export default function PrivacyPolicy() {
   return (
@@ -257,10 +257,11 @@ export default function PrivacyPolicy() {
           <section id="contact">
             <h6>Contact</h6>
             <p>
-              If you have any questions or suggestions about the Privacy Policy,
-              do not hesitate to contact me.
+              If you have any questions, suggestions, or requests regarding your
+              data — including access, correction, or deletion requests — do not
+              hesitate to contact us at{" "}
+              <Link href={`mailto:${emailAddress}`}>{emailAddress}</Link>.
             </p>
-            <p>{emailAddress}</p>
           </section>
         </li>
       </ol>

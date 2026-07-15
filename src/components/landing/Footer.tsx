@@ -24,11 +24,14 @@ const Footer = () => {
           <strong>PRIVACY POLICY</strong>
         </Link>
         <Link
-          href={"https://www.suityourself.app/"}
+          href={"https://suityourself.app"}
           target="_blank"
           style={nunito.style}
         >
           <strong>SUIT YOURSELF</strong>
+        </Link>
+        <Link href={"mailto:support@repyourself.app"} style={nunito.style}>
+          <strong>SUPPORT</strong>
         </Link>
       </section>
       <section className={styles.socials}>

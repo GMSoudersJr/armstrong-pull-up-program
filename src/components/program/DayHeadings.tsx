@@ -3,6 +3,7 @@ import styles from "./DayHeadings.module.css";
 import { DAYS } from "@/const";
 import { nunito } from "@/fonts";
 import DailyHintButton from "@/components/program/DailyHintButton";
+import HowToLink from "@/components/program/HowToLink";
 
 interface DayHeadingsProps {
   dayNumber: TDayNumber;
@@ -24,6 +25,7 @@ const DayHeadings = ({ dayNumber, mostDifficultDay }: DayHeadingsProps) => {
             {DAYS.filter((day) => day.number === mostDifficultDay)[0].heading3}
           </h3>
           <DailyHintButton dayNumber={mostDifficultDay} />
+          <HowToLink dayNumber={mostDifficultDay} />
         </div>
       ) : (
         <div className={styles.headingsContainer}>
@@ -37,6 +39,7 @@ const DayHeadings = ({ dayNumber, mostDifficultDay }: DayHeadingsProps) => {
             {DAYS.filter((day) => day.number === dayNumber)[0].heading3}
           </h3>
           <DailyHintButton dayNumber={dayNumber} />
+          <HowToLink dayNumber={dayNumber} />
         </div>
       )}
     </>

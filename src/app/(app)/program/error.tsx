@@ -2,6 +2,7 @@
 
 import { nunito, ptSans } from "@/fonts";
 import { useEffect } from "react";
+import Link from "next/link";
 import styles from "./error.module.css";
 
 export default function Error({
@@ -28,6 +29,13 @@ export default function Error({
       >
         Try again!
       </button>
+      <p style={ptSans.style}>
+        Lost your progress? Email us at{" "}
+        <Link href={"mailto:support@repyourself.app"}>
+          support@repyourself.app
+        </Link>{" "}
+        and we&apos;ll help you sort it out.
+      </p>
     </main>
   );
 }
