@@ -14,16 +14,6 @@ export const metadata: Metadata = {
   description:
     "Rep Yourself is a free Armstrong Pull-up Program app and tracker. Follow Major Armstrong's 5-day pull-up routine, time your rest, and track your reps from 3 to 20+. Offline-capable PWA.",
   alternates: { canonical: "/" },
-  openGraph: {
-    title: "Rep Yourself | Armstrong Pull-up Program App & Tracker",
-    description:
-      "Rep Yourself is a free Armstrong Pull-up Program app and tracker. Follow Major Armstrong's 5-day pull-up routine, time your rest, and track your reps from 3 to 20+. Offline-capable PWA.",
-  },
-  twitter: {
-    title: "Rep Yourself | Armstrong Pull-up Program App & Tracker",
-    description:
-      "Rep Yourself is a free Armstrong Pull-up Program app and tracker. Follow Major Armstrong's 5-day pull-up routine, time your rest, and track your reps from 3 to 20+. Offline-capable PWA.",
-  },
 };
 
 const faqSchema = {
