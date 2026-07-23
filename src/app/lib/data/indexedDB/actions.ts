@@ -421,6 +421,9 @@ export const getLastCompletedDay = (): Promise<number> => {
   const storeName: TStoreName = "weeksStore";
 
   return new Promise<number>((resolve, reject) => {
+    open.onerror = () => reject(open.error);
+    open.onblocked = () => reject(new Error("IndexedDB open request blocked"));
+
     open.onsuccess = () => {
       db = open.result;
       let transaction = makeTransaction(storeName, "readonly");
