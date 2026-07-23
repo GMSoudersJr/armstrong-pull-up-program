@@ -21,13 +21,41 @@ const Program = ({ setStateForUpdatePastWorkouts }: ProgramProps) => {
   const [programDayNumber, setProgramDayNumber] = useState(0);
 
   useEffect(() => {
+    let isMounted = true;
+
+    // iOS PWAs launched cold from the home screen can hang on
+    // indexedDB.open() before ever calling onsuccess/onerror. Without this
+    // fallback, programDayNumber stays 0 forever and no day/skip buttons
+    // ever render, leaving the user with nothing to tap.
+    const fallbackTimer = setTimeout(() => {
+      if (isMounted) {
+        setProgramDayNumber(1);
+        setStateForUpdatePastWorkouts(1);
+      }
+    }, 3000);
+
     dbInitialized
       .then(() => getLastCompletedDay())
       .then((value) => {
-        setProgramDayNumber(value + 1);
-        setStateForUpdatePastWorkouts(value + 1);
+        clearTimeout(fallbackTimer);
+        if (isMounted) {
+          setProgramDayNumber(value + 1);
+          setStateForUpdatePastWorkouts(value + 1);
+        }
       })
-      .catch((error) => console.warn(error));
+      .catch((error) => {
+        console.warn(error);
+        clearTimeout(fallbackTimer);
+        if (isMounted) {
+          setProgramDayNumber(1);
+          setStateForUpdatePastWorkouts(1);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+      clearTimeout(fallbackTimer);
+    };
   }, [setStateForUpdatePastWorkouts]);
 
   const currentProgramDay = DAYS.filter(
