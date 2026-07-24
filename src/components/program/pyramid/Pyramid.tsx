@@ -10,6 +10,8 @@ import PyramidDisplay from "@/components/program/pyramid/PyramidDisplay";
 import NumberedMissRepButton from "@/components/program/NumberedMissRepButton";
 import TimerModal from "@/components/program/TimerModal";
 import MissSetButton from "@/components/program/MissSetButton";
+import ExitWorkoutModal from "@/components/program/ExitWorkoutModal";
+import { useConfirmExitOnBack } from "@/hooks/useConfirmExitOnBack";
 import { createPortal } from "react-dom";
 import { TDayAbbreviation, TDayNumber } from "@/definitions";
 import { nunito } from "@/fonts";
@@ -29,6 +31,10 @@ const Pyramid = ({ dayNumber }: PyramidProps) => {
   const [showMaxoutNumbers, setShowMaxoutNumbers] = useState(false);
   const [showTimerModal, setShowTimerModal] = useState(false);
   const [savedDay, setSavedDay] = useState(false);
+
+  const hasProgress = repsArray.length > 0 && !savedDay;
+  const { showExitModal, cancelExit, confirmExit } =
+    useConfirmExitOnBack(hasProgress);
 
   return (
     <section className={styles.pyramidSectionContainer}>
@@ -126,6 +132,9 @@ const Pyramid = ({ dayNumber }: PyramidProps) => {
               document.body,
             )}
         </>
+      )}
+      {showExitModal && (
+        <ExitWorkoutModal onClose={cancelExit} onConfirm={confirmExit} />
       )}
     </section>
   );

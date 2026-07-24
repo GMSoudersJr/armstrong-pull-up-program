@@ -5,6 +5,8 @@ import TrainingSetRepsInput from "@/components/program/TrainingSetRepsInput";
 import GripSelector from "@/components/program/threeTrainingSetsThreeGrips/GripSelector";
 import SetInfo from "@/components/program/threeTrainingSetsThreeGrips/SetInfo";
 import DayComplete from "@/components/program/DayComplete";
+import ExitWorkoutModal from "@/components/program/ExitWorkoutModal";
+import { useConfirmExitOnBack } from "@/hooks/useConfirmExitOnBack";
 import { TDayNumber, TGrip } from "@/app/lib/definitions";
 
 interface ThreeTrainingSetsThreeGripsProps {
@@ -25,6 +27,10 @@ const ThreeTrainingSetsThreeGrips = ({
   const [savedDay, setSavedDay] = useState(false);
 
   const dayComplete = completedGrips.length === 3;
+  const hasProgress =
+    (trainingSetReps > 0 || completedGrips.length > 0) && !savedDay;
+  const { showExitModal, cancelExit, confirmExit } =
+    useConfirmExitOnBack(hasProgress);
 
   return (
     <section>
@@ -57,6 +63,9 @@ const ThreeTrainingSetsThreeGrips = ({
           updateCurrentGrip={setCurrentGrip}
           updateCompletedGrips={setCompletedGrips}
         />
+      )}
+      {showExitModal && (
+        <ExitWorkoutModal onClose={cancelExit} onConfirm={confirmExit} />
       )}
     </section>
   );

@@ -23,6 +23,9 @@ export function MixinBaseWorkoutPage() {
     readonly dayCompleteSaveProgressMessage: Locator;
     readonly dayCompleteSaveButton: Locator;
     readonly dayCompleteGoBackLink: Locator;
+    readonly exitWorkoutModal: Locator;
+    readonly exitWorkoutModalCancelButton: Locator;
+    readonly exitWorkoutModalConfirmButton: Locator;
     indexForDays: number;
 
     constructor(page: Page, dayNumber: number) {
@@ -59,6 +62,13 @@ export function MixinBaseWorkoutPage() {
       this.dayCompleteGoBackLink = page.getByRole("link", {
         name: CIRCLE_CHECK_BIG_ICON_MESSAGE,
       });
+      this.exitWorkoutModal = page.locator("div#exit-workout-modal");
+      this.exitWorkoutModalCancelButton = page.locator(
+        "button#exit-workout-modal-cancel-button",
+      );
+      this.exitWorkoutModalConfirmButton = page.locator(
+        "button#exit-workout-modal-confirm-button",
+      );
     }
 
     async goto() {
