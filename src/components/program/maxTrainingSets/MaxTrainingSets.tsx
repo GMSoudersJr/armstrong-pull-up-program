@@ -4,6 +4,8 @@ import { useState } from "react";
 import TrainingSetRepsInput from "@/components/program/TrainingSetRepsInput";
 import MaxTrainingSetsDisplay from "@/components/program/maxTrainingSets/MaxTrainingSetsDisplay";
 import DayComplete from "@/components/program/DayComplete";
+import ExitWorkoutModal from "@/components/program/ExitWorkoutModal";
+import { useConfirmExitOnBack } from "@/hooks/useConfirmExitOnBack";
 import { TDayNumber } from "@/definitions";
 
 interface MaxTrainingSetsProps {
@@ -18,6 +20,11 @@ const MaxTrainingSets = ({ dayNumber }: MaxTrainingSetsProps) => {
     initialCompletedTrainingSets,
   );
   const [savedDay, setSavedDay] = useState(false);
+
+  const hasProgress =
+    (trainingSetReps > 0 || completedTrainingSets.length > 0) && !savedDay;
+  const { showExitModal, cancelExit, confirmExit } =
+    useConfirmExitOnBack(hasProgress);
 
   return (
     <section>
@@ -42,6 +49,9 @@ const MaxTrainingSets = ({ dayNumber }: MaxTrainingSetsProps) => {
           updateCompletedTrainingSets={setCompletedTrainingSets}
           updateDayComplete={setDayComplete}
         />
+      )}
+      {showExitModal && (
+        <ExitWorkoutModal onClose={cancelExit} onConfirm={confirmExit} />
       )}
     </section>
   );

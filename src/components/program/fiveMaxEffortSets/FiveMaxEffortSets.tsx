@@ -9,6 +9,8 @@ import SetsTable from "@/components/program/fiveMaxEffortSets/SetsTable";
 import { createPortal } from "react-dom";
 import TimerModal from "@/components/program/TimerModal";
 import DayComplete from "@/components/program/DayComplete";
+import ExitWorkoutModal from "@/components/program/ExitWorkoutModal";
+import { useConfirmExitOnBack } from "@/hooks/useConfirmExitOnBack";
 import { TDayNumber } from "@/definitions";
 import DayProgessBar from "../DayProgressBar";
 
@@ -27,6 +29,9 @@ const FiveMaxEffortSets = ({ dayNumber }: FiveMaxEffortSetsProps) => {
   const [savedDay, setSavedDay] = useState(false);
 
   const dayComplete = repsArray.length === 5;
+  const hasProgress = repsArray.length > 0 && !savedDay;
+  const { showExitModal, cancelExit, confirmExit } =
+    useConfirmExitOnBack(hasProgress);
 
   return (
     <section className={styles.repInfoSection}>
@@ -87,6 +92,9 @@ const FiveMaxEffortSets = ({ dayNumber }: FiveMaxEffortSetsProps) => {
               document.body,
             )}
         </>
+      )}
+      {showExitModal && (
+        <ExitWorkoutModal onClose={cancelExit} onConfirm={confirmExit} />
       )}
     </section>
   );
