@@ -13,3 +13,10 @@
   grid-template-rows: 2.65rem;
   gap: 0.325rem;
 }
+
+.loadingIndicator {
+  grid-column: 1 / -1;
+  height: 2.65rem;
+  width: 2.65rem;
+  place-self: center;
+}

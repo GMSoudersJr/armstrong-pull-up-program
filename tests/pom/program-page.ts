@@ -11,6 +11,7 @@ export class ProgramPage {
   readonly dayLink: Locator;
   readonly todaysWorkoutHeader: Locator;
   readonly skipButton: Locator;
+  readonly loadingIndicator: Locator;
   readonly resetButton: Locator;
   readonly resetModal: Locator;
   readonly resetModalCancelButton: Locator;
@@ -36,14 +37,21 @@ export class ProgramPage {
     // This is the get started link from the landing page
     this.getStartedLink = page.getByRole("link", { name: "GET STARTED" });
     this.skipButton = page.getByRole("button", { name: "SKIP" });
+    this.loadingIndicator = page.getByRole("status", {
+      name: "Loading your workout",
+    });
     this.resetButton = page.locator("#reset-program-button");
     this.resetModal = page.locator("#reset-program-modal");
     this.resetModalCancelButton = page.locator("#reset-modal-cancel-button");
     this.resetModalConfirmButton = page.locator("#reset-modal-confirm-button");
     this.downloadButton = page.locator("#migrate-data-button");
     this.downloadModal = page.locator("#download-data-modal");
-    this.downloadModalCancelButton = page.locator("#download-modal-cancel-button");
-    this.downloadModalConfirmButton = page.locator("#download-modal-confirm-button");
+    this.downloadModalCancelButton = page.locator(
+      "#download-modal-cancel-button",
+    );
+    this.downloadModalConfirmButton = page.locator(
+      "#download-modal-confirm-button",
+    );
   }
 
   async goto() {

@@ -9,6 +9,7 @@ import { getLastCompletedDay } from "@/indexedDBActions";
 import { dbInitialized } from "@/data/indexedDB";
 import { nunito } from "@/fonts";
 import SkipDayButton from "./SkipDayButton";
+import PullupSVG from "../PullupSVG";
 import { Dispatch, SetStateAction } from "react";
 
 const heading = "TODAY'S WORKOUT";
@@ -19,6 +20,7 @@ interface ProgramProps {
 
 const Program = ({ setStateForUpdatePastWorkouts }: ProgramProps) => {
   const [programDayNumber, setProgramDayNumber] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
@@ -30,6 +32,7 @@ const Program = ({ setStateForUpdatePastWorkouts }: ProgramProps) => {
     const fallbackTimer = setTimeout(() => {
       if (isMounted) {
         setProgramDayNumber(1);
+        setIsLoading(false);
         setStateForUpdatePastWorkouts(1);
       }
     }, 3000);
@@ -40,6 +43,7 @@ const Program = ({ setStateForUpdatePastWorkouts }: ProgramProps) => {
         clearTimeout(fallbackTimer);
         if (isMounted) {
           setProgramDayNumber(value + 1);
+          setIsLoading(false);
           setStateForUpdatePastWorkouts(value + 1);
         }
       })
@@ -48,6 +52,7 @@ const Program = ({ setStateForUpdatePastWorkouts }: ProgramProps) => {
         clearTimeout(fallbackTimer);
         if (isMounted) {
           setProgramDayNumber(1);
+          setIsLoading(false);
           setStateForUpdatePastWorkouts(1);
         }
       });
@@ -58,29 +63,35 @@ const Program = ({ setStateForUpdatePastWorkouts }: ProgramProps) => {
     };
   }, [setStateForUpdatePastWorkouts]);
 
-  const currentProgramDay = DAYS.filter(
-    (day) => day.number === programDayNumber,
-  );
+  const currentProgramDay = DAYS.find((day) => day.number === programDayNumber);
 
   return (
     <section className={styles.sectionContainer}>
       <h2 style={nunito.style}>{heading}</h2>
-      {currentProgramDay.map((day) => {
-        return (
-          <section className={styles.workoutDecisionSection} key={day.name}>
+      <section className={styles.workoutDecisionSection}>
+        {isLoading || !currentProgramDay ? (
+          <div
+            className={styles.loadingIndicator}
+            role="status"
+            aria-label="Loading your workout"
+          >
+            <PullupSVG />
+          </div>
+        ) : (
+          <>
             <SkipDayButton
-              dayNumber={day.number}
+              dayNumber={currentProgramDay.number}
               setStateForProgramDayNumber={setProgramDayNumber}
               setStateForUpdatePastWorkouts={setStateForUpdatePastWorkouts}
             />
             <PageLink
-              path={day.path}
-              label={day.label}
+              path={currentProgramDay.path}
+              label={currentProgramDay.label}
               onClick={() => track("workout-start")}
             />
-          </section>
-        );
-      })}
+          </>
+        )}
+      </section>
     </section>
   );
 };
