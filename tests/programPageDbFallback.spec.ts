@@ -27,11 +27,13 @@ test("SKIP and DAY 1 buttons still render when IndexedDB never responds", async 
 
   // GET STARTED heading renders unconditionally, unlike the day buttons.
   await expect(programPage.getStartedHeader).toBeVisible();
+  await expect(programPage.loadingIndicator).toBeVisible();
   await expect(programPage.dayLink).not.toBeVisible();
   await expect(programPage.skipButton).not.toBeVisible();
 
   await page.clock.fastForward(3000);
 
+  await expect(programPage.loadingIndicator).not.toBeVisible();
   await expect(programPage.dayLink).toBeVisible();
   await expect(programPage.dayLink).toHaveText("DAY 1");
   await expect(programPage.skipButton).toBeVisible();
