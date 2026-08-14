@@ -11,6 +11,12 @@ const Footer = () => {
     <footer className={styles.footer}>
       <PullupSVG />
       <section className={styles.otherLinks}>
+        <Link href={"/support"} style={nunito.style}>
+          <strong>SUPPORT</strong>
+        </Link>
+        <Link href={"/privacy"} style={nunito.style}>
+          <strong>PRIVACY POLICY</strong>
+        </Link>
         <Link
           href={
             "https://www.savannahstate.edu/cost/nrotc/documents/Inform2010-thearmstrongworkout_Enclosure15_5-2-10.pdf"
@@ -20,18 +26,12 @@ const Footer = () => {
         >
           <strong>PDF SOURCE MATERIAL</strong>
         </Link>
-        <Link href={"/privacy"} style={nunito.style}>
-          <strong>PRIVACY POLICY</strong>
-        </Link>
         <Link
           href={"https://suityourself.app"}
           target="_blank"
           style={nunito.style}
         >
           <strong>SUIT YOURSELF</strong>
-        </Link>
-        <Link href={"mailto:support@repyourself.app"} style={nunito.style}>
-          <strong>SUPPORT</strong>
         </Link>
       </section>
       <section className={styles.socials}>
