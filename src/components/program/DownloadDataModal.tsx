@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
+import Link from "next/link";
 import { DownloadIcon } from "lucide-react";
 import { nunito, ptSans } from "@/fonts";
 import styles from "./DownloadDataModal.module.css";
@@ -6,9 +7,14 @@ import styles from "./DownloadDataModal.module.css";
 interface DownloadDataModalProps {
   onClose: () => void;
   onConfirm: () => void;
+  saveError?: boolean;
 }
 
-const DownloadDataModal = ({ onClose, onConfirm }: DownloadDataModalProps) => {
+const DownloadDataModal = ({
+  onClose,
+  onConfirm,
+  saveError,
+}: DownloadDataModalProps) => {
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") onClose();
@@ -27,12 +33,28 @@ const DownloadDataModal = ({ onClose, onConfirm }: DownloadDataModalProps) => {
     >
       <div className={styles.dialog}>
         <DownloadIcon className={styles.icon} />
-        <h2 id="download-modal-heading" style={nunito.style} className={styles.heading}>
+        <h2
+          id="download-modal-heading"
+          style={nunito.style}
+          className={styles.heading}
+        >
           Download Workout History
         </h2>
-        <p className={styles.message} style={ptSans.style}>
-          Your workout history will be saved as a JSON file. You can use this
-          file to back up or transfer your data.
+        <p
+          id={saveError ? "download-modal-error" : undefined}
+          className={styles.message}
+          style={ptSans.style}
+        >
+          {saveError ? (
+            <Fragment>
+              Download failed — please try again, or email{" "}
+              <Link href={"mailto:support@repyourself.app"}>
+                support@repyourself.app
+              </Link>
+            </Fragment>
+          ) : (
+            "Your workout history will be saved as a JSON file. You can use this file to back up or transfer your data."
+          )}
         </p>
         <div className={styles.actions}>
           <button

@@ -1,5 +1,6 @@
 import { ProgramPage } from "./pom/program-page";
 import { test, expect } from "@playwright/test";
+import { stubWebShareAvailable, stubWebShareFailure } from "./pom/mockShare";
 
 test("expect correct elements", async ({ page }) => {
   const programPage = new ProgramPage(page);
@@ -122,4 +123,51 @@ test("download modal cancel closes without downloading", async ({ page }) => {
   await programPage.cancelDownload();
   await expect(programPage.downloadModal).not.toBeVisible();
   await expect(programPage.pastWorkoutsHeader).toBeVisible();
+});
+
+test("download succeeds via Web Share API when available", async ({ page }) => {
+  // Never let a test touch the real navigator.share — stub it so this
+  // deterministically exercises the share branch without ever risking a
+  // hang on a native OS share surface in headless/automated Chromium.
+  await stubWebShareAvailable(page, { resolve: true });
+  const programPage = new ProgramPage(page);
+  await programPage.goto();
+  await programPage.pressSkipButton();
+  await programPage.pressDownloadButton();
+  await expect(programPage.downloadModal).toBeVisible();
+  await programPage.confirmDownload();
+  await expect(programPage.downloadModal).not.toBeVisible();
+  await expect(programPage.downloadModalErrorMessage).not.toBeVisible();
+});
+
+test("download modal closes silently when share is cancelled", async ({
+  page,
+}) => {
+  await stubWebShareAvailable(page, { resolve: false });
+  const programPage = new ProgramPage(page);
+  await programPage.goto();
+  await programPage.pressSkipButton();
+  await programPage.pressDownloadButton();
+  await expect(programPage.downloadModal).toBeVisible();
+  await programPage.confirmDownload();
+  await expect(programPage.downloadModal).not.toBeVisible();
+  await expect(programPage.downloadModalErrorMessage).not.toBeVisible();
+});
+
+test("download falls back to a direct download when Web Share fails", async ({
+  page,
+}) => {
+  // Some browsers (e.g. Chrome, which enforces stricter transient-activation
+  // rules than WebKit) can report canShare() as true but still reject the
+  // actual share() call. That should silently fall back to the classic
+  // <a download> path rather than leaving the user with an error.
+  await stubWebShareFailure(page);
+  const programPage = new ProgramPage(page);
+  await programPage.goto();
+  await programPage.pressSkipButton();
+  await programPage.pressDownloadButton();
+  await expect(programPage.downloadModal).toBeVisible();
+  await programPage.confirmDownload();
+  await expect(programPage.downloadModal).not.toBeVisible();
+  await expect(programPage.downloadModalErrorMessage).not.toBeVisible();
 });

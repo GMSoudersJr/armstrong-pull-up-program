@@ -20,6 +20,7 @@ export class ProgramPage {
   readonly downloadModal: Locator;
   readonly downloadModalCancelButton: Locator;
   readonly downloadModalConfirmButton: Locator;
+  readonly downloadModalErrorMessage: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -52,6 +53,7 @@ export class ProgramPage {
     this.downloadModalConfirmButton = page.locator(
       "#download-modal-confirm-button",
     );
+    this.downloadModalErrorMessage = page.locator("#download-modal-error");
   }
 
   async goto() {
@@ -89,5 +91,9 @@ export class ProgramPage {
   async cancelDownload() {
     await this.downloadModalCancelButton.click();
     await this.downloadModal.waitFor({ state: "hidden" });
+  }
+
+  async confirmDownload() {
+    await this.downloadModalConfirmButton.click();
   }
 }
