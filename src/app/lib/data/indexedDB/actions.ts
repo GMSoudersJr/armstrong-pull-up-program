@@ -47,31 +47,58 @@ export function makeTransaction(
 //}}}
 
 // SAFE_OPEN {{{
+// Memoized so every caller shares one connection instead of each of the 14
+// functions below opening (and closing) its own. A per-call open/close was
+// the pre-existing pattern, but round-tripping every call through an extra
+// .then() tick to reach it introduced a race on the shared `db` variable
+// when two calls landed close together (e.g. Program.tsx and
+// PastWorkouts.tsx both reading on page load) -- whichever call's onsuccess
+// fired last would silently steal `db` out from under the other's
+// in-flight transaction. A single long-lived connection removes the race
+// entirely and avoids paying IndexedDB's open/close overhead on every call.
+let dbConnection: Promise<IDBDatabase> | null = null;
+
 /**
- * Opens the shared per-call IndexedDB connection, guarding against a
- * synchronous throw from indexedDB.open() -- e.g. WebKit can set
- * window.indexedDB to null in some private-browsing / Chrome-for-iOS
+ * Guards against a synchronous throw from indexedDB.open() -- e.g. WebKit
+ * can set window.indexedDB to null in some private-browsing / Chrome-for-iOS
  * contexts, so calling .open() on it throws a TypeError before any
  * IDBOpenDBRequest exists -- as well as the request's own onerror/onblocked
  * events. Always resolves or rejects; never leaves a caller's promise
  * hanging forever the way an unguarded open() with no onerror handler did.
  */
 function safeOpenDb(): Promise<IDBDatabase> {
-  return new Promise((resolve, reject) => {
+  if (dbConnection) return dbConnection;
+
+  dbConnection = new Promise((resolve, reject) => {
     let open: IDBOpenDBRequest;
     try {
       open = indexedDB.open(dbName);
     } catch (err) {
+      dbConnection = null;
       reject(err);
       return;
     }
-    open.onerror = () => reject(open.error);
-    open.onblocked = () => reject(new Error("IndexedDB open request blocked"));
+    open.onerror = () => {
+      dbConnection = null;
+      reject(open.error);
+    };
+    open.onblocked = () => {
+      dbConnection = null;
+      reject(new Error("IndexedDB open request blocked"));
+    };
     open.onsuccess = () => {
       db = open.result;
+      // If the connection is unexpectedly closed later (e.g. the browser
+      // reclaims it), drop the memo so the next call reopens instead of
+      // reusing a dead connection forever.
+      db.onclose = () => {
+        dbConnection = null;
+      };
       resolve(db);
     };
   });
+
+  return dbConnection;
 }
 //}}}
 
@@ -98,7 +125,6 @@ export function addNewWeek(weekNumber: number): Promise<void> {
         request.onerror = (err) => reject(err);
 
         transaction.oncomplete = () => {
-          db?.close();
           resolve();
         };
       }),
@@ -125,8 +151,6 @@ export function getOverallProgess(): Promise<TDayComplete[]> {
 
         transaction.oncomplete = () => {
           resolve(getAllWorkoutsRequest.result);
-
-          db?.close();
         };
       }),
   );
@@ -151,8 +175,6 @@ export function getWeeklyProgress(): Promise<TWeek[]> {
 
         transaction.oncomplete = () => {
           resolve(getAllWeeklyData.result);
-
-          db?.close();
         };
       }),
   );
@@ -183,8 +205,6 @@ export function getWorkoutsbyWeekNumber(
 
         transaction.oncomplete = () => {
           resolve(request.result);
-
-          db?.close();
         };
       }),
   );
@@ -212,8 +232,6 @@ export function getWorkoutById(id: string): Promise<TDayComplete[]> {
 
         transaction.oncomplete = () => {
           resolve([request.result]);
-
-          db?.close();
         };
       }),
   );
@@ -241,8 +259,6 @@ export function getWeekDataForWeekNumber(weekNumber: number): Promise<TWeek> {
 
         transaction.oncomplete = () => {
           resolve(request.result);
-
-          db?.close();
         };
       }),
   );
@@ -278,7 +294,6 @@ export function updateThisWeekWithWorkoutNumber(
         request.onerror = (err) => reject(err);
 
         transaction.oncomplete = () => {
-          db?.close();
           resolve();
         };
       }),
@@ -309,8 +324,6 @@ export const addCompletedDayToWorkoutsStore = (
         request.onerror = (err) => reject(err);
 
         request.onsuccess = () => resolve(true);
-
-        transaction.oncomplete = () => db?.close();
       }),
   );
 };
@@ -336,8 +349,6 @@ export const getCurrentWeekNumber = (): Promise<number> => {
           if (request.result.length === 0) resolve(0);
 
           resolve(Number(request.result.at(-1)));
-
-          db?.close();
         };
       }),
   );
@@ -366,8 +377,6 @@ export function getWorkoutsByDayNumber(
         request.onerror = () => reject(request.error);
 
         request.onsuccess = () => resolve(request.result);
-
-        transaction.oncomplete = () => db?.close();
       }),
   );
 }
@@ -394,8 +403,6 @@ export function getIncompleteWeek(): Promise<TWeek[]> {
         request.onerror = () => reject(request.error);
 
         request.onsuccess = () => resolve(request.result);
-
-        transaction.oncomplete = () => db?.close();
       }),
   );
 }
@@ -425,7 +432,6 @@ export const shouldStartNewWeek = async (): Promise<boolean> => {
 
         transaction.oncomplete = () => {
           resolve(allWeeksRequest.result === completeWeeksRequest.result);
-          db?.close();
         };
       }),
   );
@@ -449,7 +455,6 @@ export const clearAllData = (): Promise<void> => {
         transaction.objectStore("workoutsStore").clear();
         transaction.objectStore("weeksStore").clear();
         transaction.oncomplete = () => {
-          db?.close();
           resolve();
         };
       }),
@@ -490,7 +495,6 @@ export const getLastCompletedDay = (): Promise<number> => {
           } else {
             resolve(lastCompletedDayRequest.result[0].lastCompletedDay);
           }
-          db?.close();
         };
       }),
   );
