@@ -39,3 +39,33 @@ test("SKIP and DAY 1 buttons still render when IndexedDB never responds", async 
   await expect(programPage.skipButton).toBeVisible();
   await expect(programPage.skipButton).toBeEnabled();
 });
+
+/**
+ * Regression test for a distinct failure mode from the hang above: on some
+ * Chrome-for-iOS / WebKit configurations, window.indexedDB.open() can throw
+ * SYNCHRONOUSLY (e.g. window.indexedDB is null) instead of hanging. Because
+ * src/app/lib/data/indexedDB/index.ts used to call indexedDB.open() at
+ * module-load time with no try/catch, this failed the dynamic import of
+ * Program.tsx before it ever mounted -- so the 3s fallback timer inside the
+ * component (tested above) never ran, and the dashboard rendered nothing.
+ * Unlike the hang case, no fake clock is needed here: the fix rejects
+ * dbInitialized immediately rather than waiting out a timer.
+ */
+test("SKIP and DAY 1 buttons still render when indexedDB.open throws synchronously", async ({
+  page,
+}) => {
+  await page.addInitScript(() => {
+    window.indexedDB.open = () => {
+      throw new TypeError("indexedDB.open is not a function");
+    };
+  });
+
+  const programPage = new ProgramPage(page);
+  await programPage.goto();
+
+  await expect(programPage.todaysWorkoutHeader).toBeVisible();
+  await expect(programPage.dayLink).toBeVisible();
+  await expect(programPage.dayLink).toHaveText("DAY 1");
+  await expect(programPage.skipButton).toBeVisible();
+  await expect(programPage.skipButton).toBeEnabled();
+});
