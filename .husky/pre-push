@@ -28,6 +28,11 @@ clear_port_3000() {
 trap clear_port_3000 EXIT
 
 while IFS=' ' read -r local_ref local_sha remote_ref remote_sha; do
+  if [ "$local_sha" = "$Z40" ]; then
+    echo "pre-push: deleting remote ref $remote_ref — skipping tests"
+    continue
+  fi
+
   if [ "$remote_sha" = "$Z40" ]; then
     echo "pre-push: new branch — running full test suite"
     SPECS="tests/landingPage.spec.ts tests/programPage.spec.ts tests/dayOnePage.spec.ts tests/dayTwoPage.spec.ts tests/dayThreePage.spec.ts tests/dayFourPage.spec.ts tests/dayFivePage.spec.ts tests/dayReviewPage.spec.ts tests/fullWeek.spec.ts"
