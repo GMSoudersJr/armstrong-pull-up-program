@@ -69,3 +69,57 @@ test("SKIP and DAY 1 buttons still render when indexedDB.open throws synchronous
   await expect(programPage.skipButton).toBeVisible();
   await expect(programPage.skipButton).toBeEnabled();
 });
+
+/**
+ * Regression test for PastWorkouts.tsx reading from IndexedDB before schema
+ * creation finishes. index.ts opens the DB WITH a version arg and only
+ * resolves dbInitialized in onsuccess (which fires after onupgradeneeded);
+ * actions.ts's safeOpenDb() opens WITHOUT a version arg and has no
+ * onupgradeneeded handler at all. Program.tsx already awaits dbInitialized
+ * before reading, so it's safe. PastWorkouts.tsx used to call
+ * getWeeklyProgress() directly on mount -- on a real first-ever cold launch,
+ * if that unversioned open resolved before the versioned one finished
+ * creating the schema, it would silently create a schema-less v1 database,
+ * and the subsequent transaction() call would throw NotFoundError (swallowed
+ * by a bare console.warn), leaving PastWorkouts stuck on the empty state.
+ *
+ * We simulate this by hanging only the versioned (index.ts) open call, same
+ * technique as the hang test above, while letting the unversioned
+ * (actions.ts) call through to the real, fresh (and therefore schema-less)
+ * IndexedDB. Under the fix, PastWorkouts awaits the (never-resolving)
+ * dbInitialized before reading, so it never attempts the read at all -- no
+ * NotFoundError should ever be logged.
+ */
+test("PastWorkouts does not read from IndexedDB before dbInitialized resolves", async ({
+  page,
+}) => {
+  const consoleWarnings: string[] = [];
+  page.on("console", (msg) => {
+    if (msg.type() === "warning") {
+      consoleWarnings.push(msg.text());
+    }
+  });
+
+  await page.addInitScript(() => {
+    const realOpen = window.indexedDB.open.bind(window.indexedDB);
+    window.indexedDB.open = ((...args: unknown[]) => {
+      // index.ts opens with a version arg; actions.ts's safeOpenDb() does
+      // not -- hang only the versioned call so dbInitialized never resolves.
+      if (args.length >= 2) {
+        return {} as unknown as IDBOpenDBRequest;
+      }
+      return (realOpen as (...a: unknown[]) => IDBOpenDBRequest)(...args);
+    }) as typeof window.indexedDB.open;
+  });
+
+  const programPage = new ProgramPage(page);
+  await programPage.goto();
+
+  await page.waitForTimeout(500);
+
+  await expect(programPage.getStartedHeader).toBeVisible();
+  await expect(programPage.pastWorkoutsHeader).not.toBeVisible();
+  expect(
+    consoleWarnings.some((text) => /NotFoundError|object store/i.test(text)),
+  ).toBe(false);
+});

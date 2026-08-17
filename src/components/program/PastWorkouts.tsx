@@ -4,6 +4,7 @@ import type { TWeek } from "@/definitions";
 import styles from "./PastWorkouts.module.css";
 import { useEffect, useState } from "react";
 import { getWeeklyProgress } from "@/indexedDBActions";
+import { dbInitialized } from "@/data/indexedDB";
 import { CalendarArrowDownIcon, CalendarArrowUpIcon } from "lucide-react";
 import { ReviewLink } from "./ReviewLink";
 import { nunito } from "@/fonts";
@@ -34,8 +35,12 @@ const PastWorkouts = ({ updatePastWorkouts }: PastWorkoutsProps) => {
   }
 
   useEffect(() => {
-    getWeeklyProgress()
+    let isMounted = true;
+
+    dbInitialized
+      .then(() => getWeeklyProgress())
       .then((value) => {
+        if (!isMounted) return;
         setWeeklyProgress(value);
         setFullWeek(() => {
           if (value.length > 0)
@@ -44,6 +49,10 @@ const PastWorkouts = ({ updatePastWorkouts }: PastWorkoutsProps) => {
         });
       })
       .catch((error) => console.warn(error));
+
+    return () => {
+      isMounted = false;
+    };
   }, [updatePastWorkouts]);
 
   return (
