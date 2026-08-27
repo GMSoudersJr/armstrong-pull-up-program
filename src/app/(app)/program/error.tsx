@@ -31,8 +31,8 @@ export default function Error({
       </button>
       <p style={ptSans.style}>
         Lost your progress? Email us at{" "}
-        <Link href={"mailto:support@repyourself.app"}>
-          support@repyourself.app
+        <Link href={"mailto:appsbygerald@gmail.com"}>
+          appsbygerald@gmail.com
         </Link>{" "}
         and we&apos;ll help you sort it out.
       </p>
