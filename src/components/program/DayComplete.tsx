@@ -96,8 +96,8 @@ const DayComplete = ({ dayData, setStateForSavedDay }: DayCompleteProps) => {
         {saveError ? (
           <Fragment>
             Save failed — please try again, or email{" "}
-            <Link href={"mailto:support@repyourself.app"}>
-              support@repyourself.app
+            <Link href={"mailto:appsbygerald@gmail.com"}>
+              appsbygerald@gmail.com
             </Link>
           </Fragment>
         ) : isDataSaved ? (

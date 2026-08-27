@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import styles from "./Support.module.css";
 
-const emailAddress = "support@repyourself.app";
+const emailAddress = "appsbygerald@gmail.com";
 
 export default function Support() {
   return (

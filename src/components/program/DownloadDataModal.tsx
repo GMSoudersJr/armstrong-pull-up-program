@@ -48,8 +48,8 @@ const DownloadDataModal = ({
           {saveError ? (
             <Fragment>
               Download failed — please try again, or email{" "}
-              <Link href={"mailto:support@repyourself.app"}>
-                support@repyourself.app
+              <Link href={"mailto:appsbygerald@gmail.com"}>
+                appsbygerald@gmail.com
               </Link>
             </Fragment>
           ) : (
