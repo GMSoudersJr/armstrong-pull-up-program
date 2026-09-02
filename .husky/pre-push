@@ -35,7 +35,7 @@ while IFS=' ' read -r local_ref local_sha remote_ref remote_sha; do
 
   if [ "$remote_sha" = "$Z40" ]; then
     echo "pre-push: new branch — running full test suite"
-    SPECS="tests/landingPage.spec.ts tests/programPage.spec.ts tests/dayOnePage.spec.ts tests/dayTwoPage.spec.ts tests/dayThreePage.spec.ts tests/dayFourPage.spec.ts tests/dayFivePage.spec.ts tests/dayReviewPage.spec.ts tests/fullWeek.spec.ts"
+    SPECS="tests/landingPage.spec.ts tests/programPage.spec.ts tests/dayOnePage.spec.ts tests/dayTwoPage.spec.ts tests/dayThreePage.spec.ts tests/dayFourPage.spec.ts tests/dayFivePage.spec.ts tests/dayReviewPage.spec.ts tests/fullWeek.spec.ts tests/betaInviteBanner.spec.ts"
     break
   fi
 
@@ -50,7 +50,7 @@ while IFS=' ' read -r local_ref local_sha remote_ref remote_sha; do
   if echo "$CHANGED_FILES" | grep -qE \
       'next\.config|playwright\.config|package\.json|src/app/layout|src/app/lib/|src/lib/|TimerModal|DailyHintModal|DailyHintButton|DayComplete\.tsx|DayProgressBar|tests/pom/'; then
     echo "pre-push: shared/config file changed — running full test suite"
-    SPECS="tests/landingPage.spec.ts tests/programPage.spec.ts tests/dayOnePage.spec.ts tests/dayTwoPage.spec.ts tests/dayThreePage.spec.ts tests/dayFourPage.spec.ts tests/dayFivePage.spec.ts tests/dayReviewPage.spec.ts tests/fullWeek.spec.ts"
+    SPECS="tests/landingPage.spec.ts tests/programPage.spec.ts tests/dayOnePage.spec.ts tests/dayTwoPage.spec.ts tests/dayThreePage.spec.ts tests/dayFourPage.spec.ts tests/dayFivePage.spec.ts tests/dayReviewPage.spec.ts tests/fullWeek.spec.ts tests/betaInviteBanner.spec.ts"
     break
   fi
 
@@ -78,6 +78,9 @@ while IFS=' ' read -r local_ref local_sha remote_ref remote_sha; do
   fi
   if echo "$CHANGED_FILES" | grep -qE 'src/app/\(app\)/program/@modal/|src/components/program/dataVisualization/'; then
     SPECS="$SPECS tests/dayReviewPage.spec.ts"
+  fi
+  if echo "$CHANGED_FILES" | grep -qE 'BetaInviteBanner|betaInviteStore'; then
+    SPECS="$SPECS tests/betaInviteBanner.spec.ts"
   fi
 done
 

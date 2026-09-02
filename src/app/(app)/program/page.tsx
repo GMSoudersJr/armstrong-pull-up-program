@@ -14,6 +14,11 @@ const Program = dynamic(() => import("@/components/program/Program"), {
   ssr: false,
 });
 
+const BetaInviteBanner = dynamic(
+  () => import("@/components/program/BetaInviteBanner"),
+  { ssr: false },
+);
+
 // Module-level flag prevents double-fire in React Strict Mode dev double-render
 let appOpenFired = false;
 
@@ -39,6 +44,7 @@ const ProgramPage = () => {
 
   return (
     <main className={styles.main} role="main">
+      <BetaInviteBanner />
       <PastWorkouts updatePastWorkouts={updatePastWorkouts} />
       <Program setStateForUpdatePastWorkouts={setUpdatePastWorkouts} />
     </main>

@@ -36,7 +36,7 @@ export type TFAQ = {
   body: string[] | [];
 };
 
-export type TStoreName = "weeksStore" | "workoutsStore";
+export type TStoreName = "weeksStore" | "workoutsStore" | "betaInviteStore";
 
 export type TWeek = {
   number: number;
@@ -85,4 +85,11 @@ export type TDayComplete = {
   success?: boolean;
   trainingSetReps?: number;
   trainingSetsCount?: number;
+};
+
+export type TBetaInvite = {
+  id: "beta-invite";
+  timesShown: number;
+  lastShownAt: number | null;
+  dismissedPermanently: boolean;
 };

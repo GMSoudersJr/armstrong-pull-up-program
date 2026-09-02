@@ -1,7 +1,7 @@
 /**
  * Version control number for IndexedDB
  */
-export const dbVersion: number = 4;
+export const dbVersion: number = 5;
 /**
  * IndexedDB dabtabase name
  */

@@ -17,6 +17,10 @@ module.exports = async (phase) => {
       ],
     },
     transpilePackages: ["lucide-react"],
+    // Lets the dev server be reached from another device on the LAN (e.g.
+    // testing on a phone) -- Next.js 16 blocks cross-origin dev requests by
+    // default unless the requesting origin is allowlisted here.
+    allowedDevOrigins: ["192.168.1.75"],
   };
 
   if (phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD) {

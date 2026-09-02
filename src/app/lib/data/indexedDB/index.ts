@@ -62,6 +62,14 @@ try {
       weeksStore = db.transaction("weeksStore").objectStore("weeksStore");
     }
 
+    // Added in v5. Checked independently of the branch above so it's
+    // created exactly once whether this is a fresh install or an upgrade
+    // from any earlier version -- existing stores and their records are
+    // untouched either way.
+    if (!db.objectStoreNames.contains("betaInviteStore")) {
+      db.createObjectStore("betaInviteStore", { keyPath: "id" });
+    }
+
     // delete these old indexes if they exist
     deleteObjectStoreIndex(workoutsStore, "training_set_reps");
     deleteObjectStoreIndex(workoutsStore, "day_number");
