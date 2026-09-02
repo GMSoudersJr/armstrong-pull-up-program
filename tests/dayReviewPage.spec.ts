@@ -2,7 +2,9 @@ import { test, expect } from "@playwright/test";
 import { ProgramPage } from "./pom/program-page";
 
 const DB_NAME = "armstrong_pullup_program_db";
-const DB_VERSION = 4;
+// Keep in sync with dbVersion in src/app/lib/data/indexedDB/constants.ts --
+// indexedDB.open() throws if this is behind the real schema version.
+const DB_VERSION = 5;
 
 const WEEK_COUNT = 10;
 
@@ -33,31 +35,46 @@ const WEEK_RECORDS = Array.from({ length: WEEK_COUNT }, (_, i) => ({
   completedDays: [1],
 }));
 
-async function seedDatabase(page: Parameters<Parameters<typeof test>[1]>[0]["page"]) {
+async function seedDatabase(
+  page: Parameters<Parameters<typeof test>[1]>[0]["page"],
+) {
   await page.evaluate(
     ({ dbName, dbVersion, workouts, weeks }) => {
       return new Promise<void>((resolve, reject) => {
         const open = indexedDB.open(dbName, dbVersion);
         open.onsuccess = () => {
           const db = open.result;
-          const tx = db.transaction(["workoutsStore", "weeksStore"], "readwrite");
+          const tx = db.transaction(
+            ["workoutsStore", "weeksStore"],
+            "readwrite",
+          );
           const workoutsStore = tx.objectStore("workoutsStore");
           const weeksStore = tx.objectStore("weeksStore");
 
           workouts.forEach((record) => workoutsStore.put(record));
           weeks.forEach((record) => weeksStore.put(record));
 
-          tx.oncomplete = () => { db.close(); resolve(); };
+          tx.oncomplete = () => {
+            db.close();
+            resolve();
+          };
           tx.onerror = () => reject(tx.error);
         };
         open.onerror = () => reject(open.error);
       });
     },
-    { dbName: DB_NAME, dbVersion: DB_VERSION, workouts: DAY_ONE_RECORDS, weeks: WEEK_RECORDS },
+    {
+      dbName: DB_NAME,
+      dbVersion: DB_VERSION,
+      workouts: DAY_ONE_RECORDS,
+      weeks: WEEK_RECORDS,
+    },
   );
 }
 
-test("D1 review full page shows all Day 1 workouts in DOM", async ({ page }) => {
+test("D1 review full page shows all Day 1 workouts in DOM", async ({
+  page,
+}) => {
   const programPage = new ProgramPage(page);
   await programPage.goto();
   await expect(programPage.skipButton).toBeVisible();
@@ -70,7 +87,9 @@ test("D1 review full page shows all Day 1 workouts in DOM", async ({ page }) => 
   await expect(charts).toHaveCount(DAY_ONE_RECORDS.length);
 });
 
-test("D1 review full page — last chart is reachable by scrolling", async ({ page }) => {
+test("D1 review full page — last chart is reachable by scrolling", async ({
+  page,
+}) => {
   const programPage = new ProgramPage(page);
   await programPage.goto();
   await expect(programPage.skipButton).toBeVisible();
@@ -101,7 +120,9 @@ test("D1 modal review shows all Day 1 workouts in DOM", async ({ page }) => {
   await expect(charts).toHaveCount(DAY_ONE_RECORDS.length);
 });
 
-test("D1 modal review — last chart is reachable by scrolling", async ({ page }) => {
+test("D1 modal review — last chart is reachable by scrolling", async ({
+  page,
+}) => {
   const programPage = new ProgramPage(page);
   await programPage.goto();
   await expect(programPage.skipButton).toBeVisible();
