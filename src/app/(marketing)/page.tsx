@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import styles from "./page.module.css";
 import Hero from "@/components/landing/Hero";
 import Features from "@/components/landing/Features";
+import BetaTesting from "@/components/landing/BetaTesting";
 import Footer from "@/components/landing/Footer";
 import Testimonials from "@/components/landing/Testimonials";
 import Overview from "@/components/landing/Overview";
@@ -147,6 +148,7 @@ export default function Home() {
         <FaqAccordion />
         <ProgramPageLink path="/program" label="Get started!" />
         <InstallInstructions />
+        <BetaTesting />
         <Footer />
       </main>
     </>

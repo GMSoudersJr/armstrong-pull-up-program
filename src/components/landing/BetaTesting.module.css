@@ -1,0 +1,63 @@
+.betaTesting {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  min-height: 60vh;
+  width: 100%;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  background-image: linear-gradient(var(--blue), var(--green));
+  color: #fefefe;
+}
+
+.betaTesting > h2 {
+  font-size: clamp(
+    var(--large-heading),
+    calc(10vw + 0.25rem),
+    var(--xtra-xtra-large-heading)
+  );
+}
+
+.betaTesting > p {
+  max-width: 40rem;
+}
+
+.icon {
+  height: 3rem;
+  width: 3rem;
+}
+
+.ctaGroup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ctaButton {
+  min-width: 12rem;
+  text-align: center;
+  font-size: 1.25rem;
+  padding: 0.75rem;
+  font-weight: 600;
+  border-radius: 0.75rem;
+  background-color: #fefefe;
+  color: #0074d9;
+}
+
+.ctaButton:hover {
+  background-color: #d1d1d1;
+}
+
+@media (max-width: 40rem) {
+  .ctaGroup {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .ctaButton {
+    width: 100%;
+  }
+}
