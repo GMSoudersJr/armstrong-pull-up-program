@@ -1,4 +1,9 @@
-import type { TDayComplete, TWeek, TStoreName } from "@/definitions";
+import type {
+  TDayComplete,
+  TWeek,
+  TStoreName,
+  TBetaInvite,
+} from "@/definitions";
 import { dbName } from "@/indexedDBConstants";
 
 let db: IDBDatabase | null = null;
@@ -495,6 +500,58 @@ export const getLastCompletedDay = (): Promise<number> => {
           } else {
             resolve(lastCompletedDayRequest.result[0].lastCompletedDay);
           }
+        };
+      }),
+  );
+};
+//}}}
+
+// GET_BETA_INVITE_STATE {{{
+export const getBetaInviteState = (): Promise<TBetaInvite | undefined> => {
+  const storeName: TStoreName = "betaInviteStore";
+
+  return safeOpenDb().then(
+    () =>
+      new Promise<TBetaInvite | undefined>((resolve, reject) => {
+        const transaction = makeTransaction(storeName, "readonly");
+        if (!transaction) {
+          reject(new Error("DB not ready"));
+          return;
+        }
+
+        const objectStore = transaction.objectStore(storeName);
+        const request = objectStore.get("beta-invite");
+
+        request.onerror = () => reject(request.error);
+
+        transaction.oncomplete = () => {
+          resolve(request.result);
+        };
+      }),
+  );
+};
+//}}}
+
+// SET_BETA_INVITE_STATE {{{
+export const setBetaInviteState = (state: TBetaInvite): Promise<void> => {
+  const storeName: TStoreName = "betaInviteStore";
+
+  return safeOpenDb().then(
+    () =>
+      new Promise<void>((resolve, reject) => {
+        const transaction = makeTransaction(storeName, "readwrite");
+        if (!transaction) {
+          reject(new Error("DB not ready"));
+          return;
+        }
+
+        const objectStore = transaction.objectStore(storeName);
+        const request = objectStore.put(state);
+
+        request.onerror = (err) => reject(err);
+
+        transaction.oncomplete = () => {
+          resolve();
         };
       }),
   );

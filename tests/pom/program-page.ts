@@ -21,6 +21,10 @@ export class ProgramPage {
   readonly downloadModalCancelButton: Locator;
   readonly downloadModalConfirmButton: Locator;
   readonly downloadModalErrorMessage: Locator;
+  readonly betaBanner: Locator;
+  readonly betaBannerCloseButton: Locator;
+  readonly betaBannerIosLink: Locator;
+  readonly betaBannerAndroidLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -54,6 +58,16 @@ export class ProgramPage {
       "#download-modal-confirm-button",
     );
     this.downloadModalErrorMessage = page.locator("#download-modal-error");
+    this.betaBanner = page.locator("#beta-invite-banner");
+    this.betaBannerCloseButton = page.locator(
+      "#beta-invite-banner-close-button",
+    );
+    this.betaBannerIosLink = this.betaBanner.getByRole("link", {
+      name: "iOS",
+    });
+    this.betaBannerAndroidLink = this.betaBanner.getByRole("link", {
+      name: "Android",
+    });
   }
 
   async goto() {
@@ -95,5 +109,10 @@ export class ProgramPage {
 
   async confirmDownload() {
     await this.downloadModalConfirmButton.click();
+  }
+
+  async dismissBetaBanner() {
+    await this.betaBannerCloseButton.click();
+    await this.betaBanner.waitFor({ state: "hidden" });
   }
 }

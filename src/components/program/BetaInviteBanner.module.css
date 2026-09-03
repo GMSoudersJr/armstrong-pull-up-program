@@ -1,0 +1,102 @@
+.banner {
+  /* Floating toast, deliberately outside document/grid flow -- its
+     presence or absence can never move Past Workouts/Today's Workout,
+     unlike the in-flow banner this replaced. */
+  position: fixed;
+  /* Header's real height: icon clamp(1.5rem,7vw+1rem,4rem) + 0.5rem top/bottom
+     padding (see Header.module.css), plus a small gap. Derived from that
+     formula rather than guessed, so it can't drift out of sync if Header's
+     sizing ever changes. */
+  top: calc(clamp(1.5rem, 7vw + 1rem, 4rem) + 1rem + 0.5rem);
+  left: 1rem;
+  right: 1rem;
+  max-width: 28rem;
+  margin-inline: auto;
+  /* Deliberately BELOW the app's other overlays (highest existing is 2, used
+     by ResetProgramModal/DownloadDataModal backdrops; the @modal review
+     dialog uses 1 and renders before this toast in the DOM, so equal
+     z-index would let the toast win ties and paint over it). This toast
+     must always lose to any modal that can appear on the same route. */
+  z-index: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem 0.75rem;
+  /* right padding reserves room for the absolutely-positioned close button
+     so wrapped text/buttons never sit underneath it */
+  padding: 0.6rem 2.75rem 0.6rem 1rem;
+  background-image: linear-gradient(var(--blue), var(--green));
+  color: #fefefe;
+  text-align: center;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease;
+}
+
+.banner.dismissing {
+  opacity: 0;
+  transform: translateY(-0.5rem);
+  pointer-events: none;
+}
+
+.banner > p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.ctaGroup {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.ctaButton {
+  /* equal-width buttons regardless of label length ("iOS" vs "Android"),
+     matching the .actions/flex:1 pattern used by ResetProgramModal,
+     ExitWorkoutModal, and DownloadDataModal */
+  flex: 1;
+  text-align: center;
+  padding: 0.3rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  background-color: #fefefe;
+  color: #0074d9;
+}
+
+.ctaButton:hover {
+  background-color: #d1d1d1;
+}
+
+.closeButton {
+  /* pinned to the corner and taken out of flex flow so it can never wrap
+     into the same row as the CTA buttons on narrow screens */
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* ~44px tap target (Apple HIG / WCAG minimum) even though the visible
+     icon stays small */
+  height: 2.75rem;
+  width: 2.75rem;
+  background: transparent;
+  border: none;
+}
+
+.closeButton:hover,
+.closeButton:focus {
+  cursor: pointer;
+}
+
+.icon {
+  height: 1.1rem;
+  width: 1.1rem;
+  color: #fefefe;
+}
