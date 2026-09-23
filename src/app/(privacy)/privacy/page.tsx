@@ -5,7 +5,7 @@ import PrivacyPolicy from "@/components/privacy/PrivacyPolicy";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "Read the Rep Yourself privacy policy. This app stores all workout data locally on your device and collects no personal information.",
+    "Read the Rep Yourself privacy policy. This app stores all workout data locally on your device and collects no personal information like your name or email.",
   alternates: { canonical: "/privacy" },
 };
 
