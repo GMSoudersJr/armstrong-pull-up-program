@@ -198,47 +198,49 @@ export default function PrivacyPolicy() {
           </section>
         </li>
         <li className={styles.listitem}>
-          <section id="california-privacy"></section>
-          <h6>Your California Privacy Rights (CCPA/CPRA)</h6>
-          <p>
-            If you are a California resident, you have specific rights under the
-            California Consumer Privacy Act (CCPA) and the California Privacy
-            Rights Act (CPRA).
-          </p>
-          <ul className={styles.unorderedList}>
-            <li className={styles.listitem}>
-              <strong>Right to Know and Access: </strong>You have the right to
-              know what categories of information we collect and the purposes
-              for which we use it. This is outlined in the "Information We
-              Collect" and "How We Use This Information" sections of this
-              policy.
-            </li>
-            <li className={styles.listitem}>
-              <strong>Right to Opt-Out of Sale or Sharing: </strong>Rep Yourself
-              does not sell or share your personal information with third
-              parties for cross-context behavioral advertising. As such, there
-              is no "sale" or "sharing" to opt out of. We only share anonymous
-              data with our analytics provider, Google, for the sole purpose of
-              improving our own app.
-            </li>
-            <li className={styles.listitem}>
-              <strong>
-                Right to Limit Use of Sensitive Personal Information:{" "}
-              </strong>
-              We do not collect "Sensitive Personal Information" as defined by
-              California law.
-            </li>
-            <li className={styles.listitem}>
-              <strong>Right to Deletion: </strong>You have the right to request
-              the deletion of your information. This can be accomplished by
-              using the "Reset Program" function in the app's settings, which
-              will permanently delete all your stored workout data.
-            </li>
-            <li className={styles.listitem}>
-              <strong>Non-Discrimination: </strong> We will not discriminate
-              against you for exercising any of your CCPA/CPRA rights.
-            </li>
-          </ul>
+          <section id="california-privacy">
+            <h6>Your California Privacy Rights (CCPA/CPRA)</h6>
+            <p>
+              If you are a California resident, you have specific rights under
+              the California Consumer Privacy Act (CCPA) and the California
+              Privacy Rights Act (CPRA).
+            </p>
+            <ul className={styles.unorderedList}>
+              <li className={styles.listitem}>
+                <strong>Right to Know and Access: </strong>You have the right to
+                know what categories of information we collect and the purposes
+                for which we use it. This is outlined in the "Information We
+                Collect" and "How We Use This Information" sections of this
+                policy.
+              </li>
+              <li className={styles.listitem}>
+                <strong>Right to Opt-Out of Sale or Sharing: </strong>Rep
+                Yourself does not sell or share your personal information with
+                third parties for cross-context behavioral advertising. As such,
+                there is no "sale" or "sharing" to opt out of. We only share
+                anonymous data with our analytics provider, Google, for the sole
+                purpose of improving our own app.
+              </li>
+              <li className={styles.listitem}>
+                <strong>
+                  Right to Limit Use of Sensitive Personal Information:{" "}
+                </strong>
+                We do not collect "Sensitive Personal Information" as defined by
+                California law.
+              </li>
+              <li className={styles.listitem}>
+                <strong>Right to Deletion: </strong>You have the right to
+                request the deletion of your information. This can be
+                accomplished by using the "Reset Program" function in the app's
+                settings, which will permanently delete all your stored workout
+                data.
+              </li>
+              <li className={styles.listitem}>
+                <strong>Non-Discrimination: </strong> We will not discriminate
+                against you for exercising any of your CCPA/CPRA rights.
+              </li>
+            </ul>
+          </section>
         </li>
         <li className={styles.listitem}>
           <section id="privacy-policy-changes">
