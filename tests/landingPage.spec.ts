@@ -81,3 +81,20 @@ test("page title should not repeat the brand", async ({ page }) => {
     "Rep Yourself | Armstrong Pull-up Program App & Tracker",
   );
 });
+
+test("FAQ should link to the full program page", async ({ page }) => {
+  const landingPage = new LandingPage(page);
+  await landingPage.goto();
+  await expect(landingPage.fullProgramLink).toHaveAttribute(
+    "href",
+    "/armstrong-program",
+  );
+  await landingPage.fullProgramLink.click();
+  await expect(page).toHaveURL(/\/armstrong-program$/);
+  await expect(
+    page.getByRole("heading", {
+      level: 1,
+      name: "The Armstrong Pull-up Program",
+    }),
+  ).toBeVisible();
+});
