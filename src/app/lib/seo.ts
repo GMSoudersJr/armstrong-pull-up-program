@@ -39,9 +39,7 @@ export const defaultMetadata: Metadata = {
       "Rep Yourself is a free Armstrong Pull-up Program app and tracker. Follow Major Armstrong's 5-day pull-up routine, time your rest, and track your reps from 3 to 20+. Offline-capable PWA.",
   },
   twitter: {
-    creator: "@handle",
     title: "Rep Yourself | Armstrong Pull-up Program App & Tracker",
-    site: "@site",
     card: "summary_large_image",
   },
 };

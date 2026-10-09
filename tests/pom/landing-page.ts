@@ -50,7 +50,7 @@ export class LandingPage {
       name: "MOST DEVICES",
     });
     this.iOSDevicesHeader = page.getByRole("heading", { name: "iOS DEVICES" });
-    this.pdfSourceLink = page.getByRole("link", {
+    this.pdfSourceLink = page.locator("footer").getByRole("link", {
       name: "pdf source material",
     });
     this.suitYourselfLink = page.getByRole("link", { name: "suit yourself" });

@@ -73,3 +73,11 @@ test("iOS install instructions should link to the App Store", async ({
   await expect(badge).toBeVisible();
   expect(await badge.getAttribute("href")).toContain("ct=web-install");
 });
+
+test("page title should not repeat the brand", async ({ page }) => {
+  const landingPage = new LandingPage(page);
+  await landingPage.goto();
+  await expect(page).toHaveTitle(
+    "Rep Yourself | Armstrong Pull-up Program App & Tracker",
+  );
+});
