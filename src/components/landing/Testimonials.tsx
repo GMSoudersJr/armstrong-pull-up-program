@@ -1,38 +1,16 @@
-"use client";
-
-import { Splide, SplideSlide } from "react-splide-ts";
-import "react-splide-ts/css";
-import { nunito } from "@/fonts";
+import { nunito, ptSans } from "@/fonts";
 import styles from "./Testimonials.module.css";
 import TestimonyCard from "@/components/landing/TestimonyCard";
 import { TESTIMONIALS } from "@/data/testimonials";
 
 const Testimonials = () => {
   return (
-    <section
-      id="testimonials"
-      className={styles.testimonials}
-      aria-labelledby="carousel-heading"
-    >
-      <h2 style={nunito.style} id="carousel-heading">
-        Testimonials
-      </h2>
-      <Splide
-        className={styles.splide}
-        tag="section"
-        options={{
-          rewind: true,
-          autoplay: true,
-          width: "80vw",
-          gap: "1rem",
-        }}
-      >
+    <section id="testimonials" className={styles.testimonials}>
+      <h2 style={nunito.style}>Testimonials</h2>
+      <ul className={styles.testimonialList}>
         {TESTIMONIALS.map((testimony, i) => {
           return (
-            <SplideSlide
-              className={styles.splideSlide}
-              key={`${testimony.name}-${i}`}
-            >
+            <li key={`${testimony.name}-${i}`}>
               <TestimonyCard
                 body={testimony.body}
                 name={testimony.name}
@@ -40,10 +18,17 @@ const Testimonials = () => {
                 duration={testimony.duration}
                 stars={testimony.rating}
               />
-            </SplideSlide>
+            </li>
           );
         })}
-      </Splide>
+      </ul>
+      <figure className={styles.founderNote}>
+        <blockquote style={ptSans.style}>
+          I built Rep Yourself after the Armstrong program took me from 3 to 27
+          pull-ups. I wanted a simple, free way to follow it.
+        </blockquote>
+        <figcaption style={nunito.style}>Gerald, developer</figcaption>
+      </figure>
     </section>
   );
 };

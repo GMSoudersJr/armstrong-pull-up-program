@@ -12,15 +12,6 @@ const FaqAccordion = () => {
   return (
     <section id="faq" className={styles.faq}>
       <h3 style={nunito.style}>FAQ</h3>
-      <Link
-        href={
-          "https://www.savannahstate.edu/cost/nrotc/documents/Inform2010-thearmstrongworkout_Enclosure15_5-2-10.pdf"
-        }
-        referrerPolicy="no-referrer"
-        style={ptSans.style}
-      >
-        PDF Source Material
-      </Link>
       <ul className={styles.faqList}>
         {FAQ.map((faq) => {
           return (
@@ -36,6 +27,9 @@ const FaqAccordion = () => {
           );
         })}
       </ul>
+      <Link href="/armstrong-program" style={ptSans.style}>
+        Read the full Armstrong Pull-up Program
+      </Link>
     </section>
   );
 };

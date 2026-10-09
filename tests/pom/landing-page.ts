@@ -8,6 +8,7 @@ export class LandingPage {
   readonly page: Page;
   readonly appStoreHeroLink: Locator;
   readonly startInBrowserLink: Locator;
+  readonly fullProgramLink: Locator;
   readonly getStartedLink: Locator;
   readonly featuresLink: Locator;
   readonly testimonialsLink: Locator;
@@ -32,6 +33,9 @@ export class LandingPage {
       .getByRole("link", { name: "Download on the App Store" });
     this.startInBrowserLink = page.getByRole("link", {
       name: "Start in browser",
+    });
+    this.fullProgramLink = page.getByRole("link", {
+      name: "Read the full Armstrong Pull-up Program",
     });
     this.getStartedLink = page.getByRole("link", { name: "Get Started!" });
     this.featuresLink = page.getByRole("link", { name: "features" });

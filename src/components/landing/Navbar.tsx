@@ -1,7 +1,7 @@
 import { nunito } from "@/fonts";
 import styles from "./Navbar.module.css";
 import Link from "next/link";
-import { BicepsFlexedIcon } from "lucide-react";
+import BrandMark from "@/components/BrandMark";
 
 const NAV_LINKS = [
   {
@@ -37,8 +37,8 @@ const LandingNavbar = () => {
               <Link href={navLink.path} scroll={true}>
                 {navLink.path === "/#home" ? (
                   <>
-                    <BicepsFlexedIcon size={"0.698rem"} />
-                    <span className="visibly-hidden">home</span>
+                    <BrandMark className={styles.brandMark} />
+                    <span className="visibly-hidden">Rep Yourself home</span>
                   </>
                 ) : (
                   navLink.label.toUpperCase()

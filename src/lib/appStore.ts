@@ -4,3 +4,4 @@ const APP_STORE_BASE_URL = `https://apps.apple.com/app/apple-store/id${APP_STORE
 
 export const APP_STORE_HERO_URL = `${APP_STORE_BASE_URL}&ct=web-hero`;
 export const APP_STORE_INSTALL_URL = `${APP_STORE_BASE_URL}&ct=web-install`;
+export const APP_STORE_FAQ_URL = `${APP_STORE_BASE_URL}&ct=web-faq`;

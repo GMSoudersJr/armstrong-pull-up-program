@@ -1,22 +1,10 @@
 .testimonials {
   width: 100%;
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 3.236fr;
-  justify-items: center;
-  justify-content: center;
-  align-items: center;
-}
-
-.splide {
-  align-content: center;
-}
-
-.splideSlide {
+  padding: 4rem 1.5rem;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  gap: 2.5rem;
 }
 
 .testimonials > h2 {
@@ -25,4 +13,33 @@
     calc(10vw + 0.25rem),
     var(--xtra-xtra-large-heading)
   );
+}
+
+.testimonialList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  list-style: none;
+}
+
+.founderNote {
+  max-width: 32rem;
+  margin: 0;
+  text-align: center;
+  font-style: italic;
+  color: #444;
+}
+
+.founderNote > blockquote {
+  margin: 0 0 0.5rem;
+}
+
+.founderNote > figcaption {
+  font-style: normal;
+  font-weight: 600;
+}
+
+.founderNote > figcaption::before {
+  content: "— ";
 }
