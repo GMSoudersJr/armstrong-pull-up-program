@@ -6,7 +6,8 @@ const linkedInAlt = socials.filter((social) => social.id === "linkedIn")[0].alt;
 
 export class LandingPage {
   readonly page: Page;
-  readonly learnMoreLink: Locator;
+  readonly appStoreHeroLink: Locator;
+  readonly startInBrowserLink: Locator;
   readonly getStartedLink: Locator;
   readonly featuresLink: Locator;
   readonly testimonialsLink: Locator;
@@ -26,7 +27,12 @@ export class LandingPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.learnMoreLink = page.getByRole("link", { name: "Learn More" });
+    this.appStoreHeroLink = page
+      .locator("section#home")
+      .getByRole("link", { name: "Download on the App Store" });
+    this.startInBrowserLink = page.getByRole("link", {
+      name: "Start in browser",
+    });
     this.getStartedLink = page.getByRole("link", { name: "Get Started!" });
     this.featuresLink = page.getByRole("link", { name: "features" });
     this.testimonialsLink = page.getByRole("link", { name: "testimonials" });

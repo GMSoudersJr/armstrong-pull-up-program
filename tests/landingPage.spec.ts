@@ -8,7 +8,7 @@ test("should have correct links", async ({ page }) => {
   await expect(landingPage.featuresLink).toBeVisible();
   await expect(landingPage.testimonialsLink).toBeVisible();
   await expect(landingPage.overviewLink).toBeVisible();
-  await expect(landingPage.learnMoreLink).toBeVisible();
+  await expect(landingPage.startInBrowserLink).toBeVisible();
   await expect(landingPage.getStartedLink).toBeVisible();
   await expect(landingPage.pdfSourceLink).toBeVisible();
   await expect(landingPage.suitYourselfLink).toBeVisible();
@@ -44,4 +44,20 @@ test("should have the Smart App Banner meta tag", async ({ page }) => {
     "content",
     `app-id=${APP_STORE_ID}`,
   );
+});
+
+test("hero should link to the App Store", async ({ page }) => {
+  const landingPage = new LandingPage(page);
+  await landingPage.goto();
+  await expect(landingPage.appStoreHeroLink).toBeVisible();
+  const href = await landingPage.appStoreHeroLink.getAttribute("href");
+  expect(href).toContain(`id${APP_STORE_ID}`);
+  expect(href).toContain("ct=web-hero");
+});
+
+test("start in browser should navigate to the program", async ({ page }) => {
+  const landingPage = new LandingPage(page);
+  await landingPage.goto();
+  await landingPage.startInBrowserLink.click();
+  await expect(page).toHaveURL(/\/program$/);
 });

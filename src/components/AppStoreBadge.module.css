@@ -1,0 +1,9 @@
+.appStoreBadge {
+  display: inline-block;
+  line-height: 0;
+}
+
+.appStoreBadge img {
+  height: 3.125rem;
+  width: auto;
+}
