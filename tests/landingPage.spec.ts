@@ -61,3 +61,15 @@ test("start in browser should navigate to the program", async ({ page }) => {
   await landingPage.startInBrowserLink.click();
   await expect(page).toHaveURL(/\/program$/);
 });
+
+test("iOS install instructions should link to the App Store", async ({
+  page,
+}) => {
+  const landingPage = new LandingPage(page);
+  await landingPage.goto();
+  const badge = page
+    .locator("#iosDevices")
+    .getByRole("link", { name: "Download on the App Store" });
+  await expect(badge).toBeVisible();
+  expect(await badge.getAttribute("href")).toContain("ct=web-install");
+});
