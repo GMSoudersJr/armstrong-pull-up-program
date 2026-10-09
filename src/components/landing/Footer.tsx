@@ -50,7 +50,7 @@ const Footer = () => {
       </section>
       <section id="copyright" className={styles.copyright}>
         <CopyrightIcon />
-        <p style={ptSans.style}>2024 by Gerald Souders</p>
+        <p style={ptSans.style}>{new Date().getFullYear()} by Gerald Souders</p>
       </section>
     </footer>
   );

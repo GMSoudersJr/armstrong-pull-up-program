@@ -3,15 +3,9 @@
 import styles from "./InstallInstructions.module.css";
 import { nunito, ptSans } from "@/fonts";
 import InstallPWAButton from "./InstallPWAButton";
-import {
-  GlobeIcon,
-  CompassIcon,
-  DockIcon,
-  MonitorDownIcon,
-  MoveDownIcon,
-  PlusSquareIcon,
-  ShareIcon,
-} from "lucide-react";
+import AppStoreBadge from "./AppStoreBadge";
+import { APP_STORE_INSTALL_URL } from "@/lib/appStore";
+import { GlobeIcon, MonitorDownIcon, MoveDownIcon } from "lucide-react";
 
 const InstallInstructions = () => {
   return (
@@ -42,28 +36,8 @@ const InstallInstructions = () => {
 
         <div id="iosDevices">
           <h2 style={nunito.style}>iOS DEVICES</h2>
-          <ol className={styles.list}>
-            <li style={ptSans.style}>
-              <span className={styles.listitemSpan}>
-                open site in Safari browser <CompassIcon />
-              </span>
-            </li>
-            <li style={ptSans.style}>
-              <span className={styles.listitemSpan}>
-                Share <ShareIcon />
-              </span>
-            </li>
-            <li style={ptSans.style}>
-              <span className={styles.listitemSpan}>
-                Add to Home Screen <PlusSquareIcon /> or
-              </span>
-            </li>
-            <li style={ptSans.style}>
-              <span className={styles.listitemSpan}>
-                Add to Dock <DockIcon />
-              </span>
-            </li>
-          </ol>
+          <p style={ptSans.style}>Get the native app on the App Store</p>
+          <AppStoreBadge href={APP_STORE_INSTALL_URL} placement="install" />
         </div>
       </div>
     </section>

@@ -20,8 +20,33 @@
 }
 
 .heroLeft {
-  padding-left: 3rem;
-  padding-right: 3rem;
+  height: auto;
+  min-height: 100vh;
+  padding: 4rem 3rem 2rem;
+  gap: 1.5rem;
+}
+
+.heroBody {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.ctas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.screenshot {
+  width: 11rem;
+  height: auto;
+  aspect-ratio: 660 / 1434;
+  border-radius: 1.5rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.2);
 }
 
 .heroRight {

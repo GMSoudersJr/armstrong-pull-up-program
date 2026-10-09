@@ -19,7 +19,7 @@ const FaqAccordion = () => {
         referrerPolicy="no-referrer"
         style={ptSans.style}
       >
-        PDF Souce Material
+        PDF Source Material
       </Link>
       <ul className={styles.faqList}>
         {FAQ.map((faq) => {

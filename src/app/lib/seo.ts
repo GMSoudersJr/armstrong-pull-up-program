@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { APP_STORE_ID } from "@/lib/appStore";
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL("https://repyourself.app/"),
@@ -9,6 +10,7 @@ export const defaultMetadata: Metadata = {
   description:
     "Rep Yourself is a free Armstrong Pull-up Program app and tracker. Follow Major Armstrong's 5-day pull-up routine, time your rest, and track your reps from 3 to 20+. Offline-capable PWA.",
   applicationName: "Rep Yourself",
+  itunes: { appId: APP_STORE_ID },
   keywords: [
     "armstrong pull-up program",
     "Armstrong pull-up program",
@@ -37,9 +39,7 @@ export const defaultMetadata: Metadata = {
       "Rep Yourself is a free Armstrong Pull-up Program app and tracker. Follow Major Armstrong's 5-day pull-up routine, time your rest, and track your reps from 3 to 20+. Offline-capable PWA.",
   },
   twitter: {
-    creator: "@handle",
     title: "Rep Yourself | Armstrong Pull-up Program App & Tracker",
-    site: "@site",
     card: "summary_large_image",
   },
 };
