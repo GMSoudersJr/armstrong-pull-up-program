@@ -36,12 +36,18 @@
   align-items: center;
 }
 
+/* The card is a fixed 20rem wide, so the name and duration get fixed
+   sizes too -- the viewport-scaled sizes wrapped the name onto two lines
+   on wider screens. 1.5rem matches how the name renders on phones. */
 .card h2 {
   grid-area: name;
+  font-size: 1.5rem;
+  white-space: nowrap;
 }
 
 .card h3 {
   grid-area: duration;
+  font-size: 1.125rem;
 }
 
 .avatarIconWrapper {
