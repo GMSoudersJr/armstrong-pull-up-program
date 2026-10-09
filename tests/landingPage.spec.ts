@@ -1,5 +1,6 @@
 import { LandingPage } from "./pom/landing-page";
 import { test, expect } from "@playwright/test";
+import { APP_STORE_ID } from "@/lib/appStore";
 
 test("should have correct links", async ({ page }) => {
   const landingPage = new LandingPage(page);
@@ -31,5 +32,16 @@ test("get started should navigate to app", async ({ page }) => {
   const landingPage = new LandingPage(page);
   await landingPage.goto();
   await landingPage.getStarted();
-  await expect(page.getByRole("link", { name: "PULLUP PROGRAM" })).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "PULLUP PROGRAM" }),
+  ).toBeVisible();
+});
+
+test("should have the Smart App Banner meta tag", async ({ page }) => {
+  const landingPage = new LandingPage(page);
+  await landingPage.goto();
+  await expect(page.locator('meta[name="apple-itunes-app"]')).toHaveAttribute(
+    "content",
+    `app-id=${APP_STORE_ID}`,
+  );
 });
