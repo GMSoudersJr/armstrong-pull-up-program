@@ -12,6 +12,7 @@ import {
 } from "@/indexedDBActions";
 import { TBetaInvite } from "@/definitions";
 import { track } from "@/lib/track";
+import { APP_STORE_BANNER_URL } from "@/lib/appStore";
 
 const emailAddress = "appsbygerald@gmail.com";
 const MAX_TIMES_SHOWN = 3;
@@ -21,12 +22,6 @@ const MS_PER_DAY = 24 * 60 * 60 * 1000;
 // keeps the component mounted for the length of the fade-out instead of
 // snapping straight to unmounted.
 const DISMISS_ANIMATION_MS = 200;
-
-const iosMailto = `mailto:${emailAddress}?subject=${encodeURIComponent(
-  "iOS Beta Interest",
-)}&body=${encodeURIComponent(
-  "Hey Gerald,\n\nI'd like to try the Rep Yourself iOS beta. My email for a TestFlight invite is:\n",
-)}`;
 
 const androidMailto = `mailto:${emailAddress}?subject=${encodeURIComponent(
   "Android Beta Interest",
@@ -53,7 +48,7 @@ const BetaInviteBanner = () => {
       .then(([existing, lastCompletedDay]) => {
         if (!isMounted) return;
 
-        // Don't show a beta-testing pitch to someone who hasn't completed a
+        // Don't show an app pitch to someone who hasn't completed a
         // single day yet -- on a brand-new install this would push the
         // "GET STARTED"/"TODAY'S WORKOUT" first-run CTA below the fold
         // before they've done a single rep.
@@ -120,8 +115,14 @@ const BetaInviteBanner = () => {
     startDismissAnimation();
   }
 
-  function handleCtaClick(platform: "ios" | "android") {
-    track("beta-cta-click", { title: `${platform}-banner` });
+  function handleAppStoreClick() {
+    track("app-store-click", { title: "banner" });
+    dismissPermanently();
+    startDismissAnimation();
+  }
+
+  function handleAndroidBetaClick() {
+    track("beta-cta-click", { title: "android-banner" });
     dismissPermanently();
     startDismissAnimation();
   }
@@ -133,25 +134,25 @@ const BetaInviteBanner = () => {
       id="beta-invite-banner"
       className={`${styles.banner} ${dismissing ? styles.dismissing : ""}`}
       role="complementary"
-      aria-label="Beta testing invite"
+      aria-label="Get the app"
     >
       <p style={ptSans.style}>
-        Want early access? Join the iOS or Android beta.
+        Rep Yourself is on the App Store for iPhone. On Android? Join the beta.
       </p>
       <div className={styles.ctaGroup}>
         <a
-          href={iosMailto}
+          href={APP_STORE_BANNER_URL}
           style={nunito.style}
           className={styles.ctaButton}
-          onClick={() => handleCtaClick("ios")}
+          onClick={handleAppStoreClick}
         >
-          iOS
+          App Store
         </a>
         <a
           href={androidMailto}
           style={nunito.style}
           className={styles.ctaButton}
-          onClick={() => handleCtaClick("android")}
+          onClick={handleAndroidBetaClick}
         >
           Android
         </a>
@@ -161,7 +162,7 @@ const BetaInviteBanner = () => {
         type="button"
         className={styles.closeButton}
         onClick={handleDismiss}
-        aria-label="Dismiss beta invite"
+        aria-label="Dismiss app invite"
       >
         <XIcon className={styles.icon} />
       </button>

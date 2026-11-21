@@ -23,7 +23,7 @@ export class ProgramPage {
   readonly downloadModalErrorMessage: Locator;
   readonly betaBanner: Locator;
   readonly betaBannerCloseButton: Locator;
-  readonly betaBannerIosLink: Locator;
+  readonly betaBannerAppStoreLink: Locator;
   readonly betaBannerAndroidLink: Locator;
 
   constructor(page: Page) {
@@ -62,8 +62,8 @@ export class ProgramPage {
     this.betaBannerCloseButton = page.locator(
       "#beta-invite-banner-close-button",
     );
-    this.betaBannerIosLink = this.betaBanner.getByRole("link", {
-      name: "iOS",
+    this.betaBannerAppStoreLink = this.betaBanner.getByRole("link", {
+      name: "App Store",
     });
     this.betaBannerAndroidLink = this.betaBanner.getByRole("link", {
       name: "Android",
