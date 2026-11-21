@@ -101,7 +101,7 @@ test("shows after completing a day, on a fresh beta-invite state", async ({
 
   await expect(programPage.pastWorkoutsHeader).toBeVisible(); // sanity: gate passed
   await expect(programPage.betaBanner).toBeVisible();
-  await expect(programPage.betaBannerIosLink).toBeVisible();
+  await expect(programPage.betaBannerAppStoreLink).toBeVisible();
   await expect(programPage.betaBannerAndroidLink).toBeVisible();
   await expect.poll(() => getEventCount(page, "beta-banner-shown")).toBe(1);
 
@@ -131,19 +131,37 @@ test("dismissing hides it permanently", async ({ page }) => {
   expect(state?.dismissedPermanently).toBe(true);
 });
 
-test("clicking the iOS CTA hides it permanently and fires tracking", async ({
+test("clicking the App Store CTA hides it permanently and fires tracking", async ({
   page,
 }) => {
   await installGcSpy(page);
+  // Keep the test on the program page instead of following the link out.
+  // preventDefault still lets the click reach the banner's onClick handler.
+  await page.addInitScript(() => {
+    document.addEventListener(
+      "click",
+      (e) => {
+        const target = e.target as Element | null;
+        if (target?.closest('a[href^="https://apps.apple.com"]')) {
+          e.preventDefault();
+        }
+      },
+      true,
+    );
+  });
   const programPage = new ProgramPage(page);
   await programPage.goto();
   await seedCompletedDay(page, 1);
   await page.reload();
 
   await expect(programPage.betaBanner).toBeVisible();
-  await programPage.betaBannerIosLink.click();
+  await expect(programPage.betaBannerAppStoreLink).toHaveAttribute(
+    "href",
+    /^https:\/\/apps\.apple\.com\/.*ct=web-banner/,
+  );
+  await programPage.betaBannerAppStoreLink.click();
   await expect(programPage.betaBanner).not.toBeVisible();
-  await expect.poll(() => getEventCount(page, "beta-cta-click")).toBe(1);
+  await expect.poll(() => getEventCount(page, "app-store-click")).toBe(1);
 
   await page.reload();
   await expect(programPage.betaBanner).not.toBeVisible();
